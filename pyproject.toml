@@ -1,0 +1,120 @@
+[project]
+name = "probative"
+version = "0.1.0.dev0"
+description = "Evidence-grounded product discovery: every claim cites its source or is labelled a hypothesis with a test attached."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Ved Muthal", email = "muthal.ved@gmail.com" }]
+requires-python = ">=3.12"
+keywords = ["product-discovery", "product-management", "evidence", "requirements", "lean-product"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development",
+  "Typing :: Typed",
+]
+dependencies = [
+  "litellm>=1.80",
+  "pydantic>=2.10",
+  "pydantic-settings>=2.7",
+  "typer>=0.15",
+]
+
+[project.urls]
+Homepage = "https://probative.wevit.ai"
+Repository = "https://github.com/vedm1/probative"
+Issues = "https://github.com/vedm1/probative/issues"
+
+[project.scripts]
+probative = "probative.cli:app"
+
+[dependency-groups]
+dev = [
+  "mypy>=1.14",
+  "pre-commit>=4.0",
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+  "ruff>=0.9",
+]
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/probative"]
+
+# ---------------------------------------------------------------------------
+# ruff
+# ---------------------------------------------------------------------------
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+# Prose docs carry illustrative Python fences (type sketches, not real code) —
+# ruff's markdown formatter would rewrite them. Those files are owned by the
+# planning process, not this phase; PB0 only lints and formats real source.
+extend-exclude = ["docs/", "*.md"]
+
+[tool.ruff.lint]
+select = [
+  "E", "W",   # pycodestyle
+  "F",        # pyflakes
+  "I",        # isort
+  "UP",       # pyupgrade
+  "B",        # bugbear
+  "SIM",      # simplify
+  "RUF",      # ruff-specific
+  "TID",      # tidy imports
+]
+ignore = [
+  "UP046",    # `Generic[T]` is pydantic's own documented generic-model pattern
+]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+# LiteLLM is an implementation detail behind probative.llm. Nothing else may import it.
+# Enforced here for editor feedback and by tests/test_no_llm_import_leak.py for CI.
+"litellm".msg = "Import litellm only inside probative.llm; everything else uses probative.llm.Provider."
+
+[tool.ruff.lint.per-file-ignores]
+"src/probative/llm/litellm_provider.py" = ["TID251"]
+
+# ---------------------------------------------------------------------------
+# mypy — strict on core/ and formulas/ (I4 lives there), permissive elsewhere
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.12"
+packages = ["probative"]
+plugins = ["pydantic.mypy"]
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+check_untyped_defs = true
+no_implicit_optional = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["probative.core.*", "probative.formulas.*"]
+strict = true
+
+# ---------------------------------------------------------------------------
+# pytest — the default suite must pass with no LLM credentials present (S3)
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not live' --strict-markers"
+markers = [
+  "live: makes a real LLM call; needs credentials; excluded from the default run and from CI",
+]
+
+[tool.coverage.run]
+source = ["probative"]
+branch = true
+
+[tool.coverage.report]
+skip_covered = false
+show_missing = true

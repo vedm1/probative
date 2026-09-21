@@ -1,0 +1,12 @@
+title = "Probative gitleaks config"
+
+# Extend the default ruleset rather than replace it.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Files that intentionally look like secrets but are not"
+paths = [
+  '''\.env\.example$''',
+  '''tests/fixtures/.*''',
+]

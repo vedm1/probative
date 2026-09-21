@@ -1,0 +1,30 @@
+# Planning documents (docs/ and the root PROBATIVE_*/PHASES/CLAUDE files) are
+# owned by the planning process, not a phase's code. Whitespace/EOF hooks are
+# scoped away from them so a build session never carries an incidental
+# formatting diff into files it wasn't asked to touch (CLAUDE.md § Surgical
+# changes). Secret scanning still covers them — never exclude gitleaks.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.8
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.3
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: end-of-file-fixer
+        exclude: '^(docs/|CLAUDE\.md|PHASES\.md|PROBATIVE_BUILD_PLAN\.md|PROBATIVE_PHASE_SPECS\.md)'
+      - id: trailing-whitespace
+        exclude: '^(docs/|CLAUDE\.md|PHASES\.md|PROBATIVE_BUILD_PLAN\.md|PROBATIVE_PHASE_SPECS\.md)'
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
