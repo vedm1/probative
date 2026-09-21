@@ -1,0 +1,3 @@
+Probative ingests ordinary documents.
+Every extractor produces a normalised text projection.
+Offsets into that projection must survive re-extraction.

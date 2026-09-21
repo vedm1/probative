@@ -180,27 +180,187 @@ CI runs all four on a pull request from a fork and passes. Secret-scanning pre-c
 - OCR is **detected and refused** at PB1 with a clear message naming the file. Scanned documents are PB1-ext, not a silent partial extraction.
 - Encrypted or corrupt files fail loudly, naming the file and the reason.
 
-**Out of scope for PB1**: Confluence and tracker exports (PB2); images (later); tier and kind *inference* — at PB1 they are declared by the caller, not guessed; any claim extraction (PB4).
+**Out of scope for PB1**: Confluence and tracker exports (PB2); images (later); tier and kind *inference* — at PB1 they are declared by the caller, not guessed; any claim extraction (PB4); DOCX table cells (paragraphs only — a documented gap, not a silent one); CSV fields containing embedded newlines (rows are assumed one physical line each).
 
-**Contracts**
+**New package**: PB0's scaffold (`core, agents, graph_runtime, render, exporters, interfaces, llm, formulas`) has no home for format-specific parsing. This phase adds `src/probative/ingest/`. The typed shapes it produces live in `src/probative/core/evidence.py` instead, since they are the foundational graph-facing evidence types (§5.1) that PB10 will build the graph on top of — they belong under `core`'s existing strict-mypy scope, not under `ingest`.
+
+## Types — `src/probative/core/evidence.py` (mypy strict)
 
 ```python
-def ingest(path: Path, *, tier: Tier, kind: EvidenceKind) -> Source
-def spans(source: Source, ranges: list[Range]) -> list[EvidenceSpan]
-def reextract(span: EvidenceSpan) -> str   # must equal span.text, always
+class Tier(str, Enum):
+    T1 = "T1"   # Primary
+    T2 = "T2"   # Secondary
+    T3 = "T3"   # Elicited
+    T4 = "T4"   # Inferred
+    T5 = "T5"   # Simulated
+
+class EvidenceKind(str, Enum):
+    CUSTOMER = "customer"
+    OPERATIONAL = "operational"
+    DOCUMENTARY = "documentary"
+    SYSTEM = "system"
+    DELIVERY = "delivery"
+    MARKET = "market"
+
+class SourceFormat(str, Enum):
+    PDF = "pdf"
+    DOCX = "docx"
+    XLSX = "xlsx"
+    CSV = "csv"
+    MARKDOWN = "markdown"
+    TEXT = "text"
+
+class Locator(BaseModel):
+    """Human-meaningful place within a Source. Every field optional; a
+    format populates only the ones that apply to it."""
+    page: int | None = None          # PDF: 1-indexed
+    line: int | None = None          # PDF/TXT/CSV/Markdown: 1-indexed; DOCX: paragraph index (1-indexed)
+    sheet: str | None = None         # XLSX: sheet name
+    cell: str | None = None          # XLSX: A1-style coordinate, e.g. "B7"
+    heading_path: list[str] | None = None  # Markdown/DOCX: breadcrumb, e.g. ["Introduction", "Scope"]
+
+class LocatorRegion(BaseModel):
+    """One contiguous, non-overlapping slice of `Source.text`. Every
+    Source's regions are sorted by `start` and cover `[0, len(text))`
+    with no gaps — `spans()` depends on this invariant."""
+    start: int   # inclusive offset into Source.text
+    end: int     # exclusive offset into Source.text
+    locator: Locator
+
+class Source(BaseModel):
+    id: str                      # f"src_{sha256[:16]}" — stable across re-ingests of the same bytes
+    path: Path
+    sha256: str                  # hex digest of the raw file bytes
+    format: SourceFormat
+    tier: Tier                   # declared by the caller (not inferred at PB1)
+    kind: EvidenceKind           # declared by the caller (not inferred at PB1)
+    ingested_at: datetime        # UTC; NOT part of idempotence — wall-clock, allowed to differ on re-ingest
+    extractor: str               # e.g. "probative.ingest.pdf"
+    extractor_version: str       # e.g. "pdf/1" — bumped when normalisation changes
+    text: str                    # the normalised text projection, in full
+    locator_regions: list[LocatorRegion]
+
+class EvidenceSpan(BaseModel):
+    source_id: str
+    start: int                   # inclusive offset into the owning Source.text
+    end: int                     # exclusive
+    text: str                    # source.text[start:end], captured at span-creation time
+    locator: Locator
+
+# Exception hierarchy — every one names the offending file.
+class IngestError(Exception):
+    def __init__(self, path: Path, message: str) -> None:
+        self.path = path
+        super().__init__(f"{path}: {message}")
+
+class UnsupportedFormatError(IngestError): ...   # unrecognised extension
+class EmptySourceError(IngestError): ...         # zero-byte file
+class EncryptedSourceError(IngestError): ...     # password-protected PDF/DOCX/XLSX
+class CorruptSourceError(IngestError): ...       # unparseable / truncated file
+class NoTextLayerError(IngestError): ...         # PDF has no extractable text on ≥1 page (OCR refusal)
+class MalformedCSVError(IngestError): ...        # inconsistent column count
+class SpanOutOfRangeError(IngestError): ...      # spans() given an invalid range
+class StaleNormalizationError(IngestError): ...  # reextract() detects a normalisation-version mismatch
 ```
 
-**Tests**
+`EvidenceSpan` deliberately does **not** carry `source_path`/`format`/`extractor_version` — see the revised `reextract` contract below. Duplicating those onto every span would create a second source of record for fields `Source` already owns (CLAUDE.md's "single source of record per field").
 
-- **Round-trip, per format**: ingest a fixture, take spans at known ranges, call `reextract`, assert byte-identical text. This is the phase's reason to exist.
-- **Idempotence**: ingesting the same file twice produces identical source hash and identical offsets.
-- **Normalisation stability**: a golden test pinning the normalised projection of each fixture, so a change to normalisation fails loudly rather than silently invalidating spans.
-- **Locator correctness**: a span in a known PDF reports the correct page; a span in a known XLSX reports the correct sheet and cell.
-- **Failure modes**: encrypted PDF, zero-byte file, XLSX with the header row not first, CSV with inconsistent column counts, a PDF with no text layer — each raises a typed error naming the file.
+## Contracts — `src/probative/ingest/__init__.py`
 
-**Gating check**: `uv run pytest tests/ingest -q` green, including the round-trip test across all six formats, on a committed fixture corpus that is synthetic or public-domain.
+```python
+def ingest(path: Path, *, tier: Tier, kind: EvidenceKind) -> Source: ...
 
-**Implementation notes (resolved during build session)**: *(to be appended)*
+def spans(source: Source, ranges: list[tuple[int, int]]) -> list[EvidenceSpan]: ...
+
+def reextract(source: Source, span: EvidenceSpan) -> str:
+    """Re-run extraction on source.path and slice at [span.start:span.end].
+
+    Deviation from the original single-arg sketch: taking `source` avoids
+    denormalising path/format/version onto EvidenceSpan (see above). Raises
+    StaleNormalizationError if re-ingesting now would produce a different
+    extractor_version (the normalisation algorithm changed since this
+    source was ingested — existing offsets are not guaranteed valid), and
+    CorruptSourceError if the file's sha256 no longer matches (the file on
+    disk changed since ingestion). Otherwise returns the freshly-extracted
+    text at the span's original offsets, which must equal span.text.
+    """
+```
+
+`ingest()` algorithm: read the raw bytes; `EmptySourceError` on zero length; compute `sha256`; detect `SourceFormat` from the file extension (`UnsupportedFormatError` if unrecognised — content-sniffing is out of scope); dispatch to the matching per-format extractor (below), which returns `(text, locator_regions, normalization_version)` or raises a typed `IngestError`; assemble and return `Source`. `id` and `sha256` are pure functions of the file's bytes, so re-ingesting the same file is idempotent by construction; `ingested_at` is the one field allowed to differ between calls.
+
+`spans()` algorithm: for each `(start, end)`, validate `0 <= start < end <= len(source.text)` (else `SpanOutOfRangeError`); binary-search `source.locator_regions` (sorted by `start`) for the region containing offset `start`; build the `EvidenceSpan` with `text = source.text[start:end]`. If a range straddles two locator regions, the *first* character's locator wins — offsets are the source of truth for provenance; the locator is a best-effort human aid.
+
+## Per-format extraction algorithms
+
+Each lives in its own module under `src/probative/ingest/`, exposing `NORMALIZATION_VERSION: str` and `extract(path: Path) -> ExtractedDocument` (an internal, unexported `text` + `locator_regions` pair — not a public type, lives in `src/probative/ingest/_extracted.py`).
+
+**`text.py` (`.txt`) — version `"text/1"`.** Decode UTF-8 (strip a leading BOM if present); normalise line endings (`\r\n`, `\r` → `\n`). One `LocatorRegion` per line (`Locator(line=i)`, 1-indexed), spanning that line's text plus its trailing `\n` (the last line may lack one).
+
+**`markdown.py` (`.md`, `.markdown`) — version `"markdown/1"`.** Same decode/line-ending normalisation as `text.py`. `text` is the verbatim normalised source (no HTML rendering — offsets must point at raw Markdown a human would read). Heading tracking is a hand-rolled line scanner (no new dependency, since only heading detection is needed): track `in_fence: bool` and `fence_marker: str | None`; a line whose stripped form starts with three-or-more `` ` `` or `~` toggles fence state (recording the marker on entry, matching it on exit) — headings inside a fence are not headings. Outside a fence, a line matching `^(#{1,6})\s+(.*)$` sets heading level `len(group 1)`; a stack of `(level, text)` is popped down to `level - 1` and the new heading pushed; `heading_path` for every subsequent line (until the next heading changes the stack) is `[text for _, text in stack]`. One `LocatorRegion` per line: `Locator(line=i, heading_path=current_path or None)`.
+
+**`csv_.py` (`.csv`) — version `"csv/1"`.** Same decode/line-ending normalisation; `UnicodeDecodeError` → `CorruptSourceError`. `text` is the verbatim normalised source. First non-empty line is the header; its column count (via `csv.reader` on that one line) is the expected count. Every subsequent non-empty line is parsed the same way (one line = one record — embedded newlines in quoted fields are explicitly unsupported, see out-of-scope); a mismatched column count raises `MalformedCSVError` naming the file and the 1-indexed line number. One `LocatorRegion` per physical line: `Locator(line=i)`.
+
+**`xlsx.py` (`.xlsx`) — version `"xlsx/1"`.** `openpyxl.load_workbook(path, data_only=True)` in **normal (non-read-only) mode** — deliberately, since read-only mode can silently truncate iteration when a sheet's `<dimension>` metadata undercounts its actual populated cells; loading fully in memory sidesteps that class of silent-partial-extraction bug entirely. `EncryptedSourceError` on `zipfile.BadZipFile` / `openpyxl.utils.exceptions.InvalidFileException` (password-protected XLSX is not a valid OOXML zip). No header/schema assumption — this is cell-level, unstructured extraction; table semantics are PB2's job. Walk every sheet in workbook order, every non-empty cell in row-major order; for each, append `str(cell.value) + "\n"` to `text` and record a `LocatorRegion` of `Locator(sheet=sheet.title, cell=cell.coordinate)`. A sheet with zero non-empty cells contributes nothing (not an error by itself; a workbook where *every* sheet is empty raises `EmptySourceError`).
+
+**`pdf.py` (`.pdf`) — version `"pdf/1"`.** `pdfplumber.open(path)` (MIT, wraps pdfminer.six — chosen over PyMuPDF specifically to avoid pulling an AGPL dependency into an Apache-2.0-distributed package). A `pdfminer` password/decryption exception → `EncryptedSourceError`; any other parse failure → `CorruptSourceError`. For each page (1-indexed): if `page.chars` is empty (no extractable text objects — an image-only/scanned page), record it; **if any page in the document has no text layer, raise `NoTextLayerError` naming the file and the affected page number(s) — for the whole document, not just that page.** This is the same "no silent partial extraction" reasoning as OCR refusal generally: a document that is 90% real text and 10% a scanned exhibit should not quietly lose the exhibit. Otherwise, `page.extract_text()` split into lines; each line appended to `text` with a trailing `\n`; one `LocatorRegion` per line: `Locator(page=page_num, line=line_num_within_page)`.
+
+**`docx_.py` (`.docx`) — version `"docx/1"`.** `docx.Document(path)`; a `docx.opc.exceptions.PackageNotFoundError` (encrypted DOCX is not a valid OOXML zip) → `EncryptedSourceError`. Walk `document.paragraphs` in order (**tables are out of scope for PB1** — a documented gap; no fixture contains one, to avoid a false impression of coverage). Heading tracking mirrors `markdown.py`'s stack algorithm, keyed off `paragraph.style.name` matching `Heading \d`. One `LocatorRegion` per paragraph: `Locator(line=paragraph_index, heading_path=current_path or None)` — `line` here means "paragraph index" (DOCX has no native line-number concept; this is the closest stable, human-checkable analogue, and is documented as such).
+
+## Fixture corpus — `tests/fixtures/ingest/`
+
+All synthetic, generated by a committed script (`tests/fixtures/ingest/generate.py`) so they're reproducible; the generated binaries are committed alongside it (S3 — fixtures must be usable without regenerating).
+
+| Fixture | Format | Purpose |
+|---|---|---|
+| `plain.txt` | TXT | happy path, multi-line |
+| `crlf.txt` | TXT | CRLF line endings → normalisation test |
+| `empty.txt` | TXT | zero-byte → `EmptySourceError` |
+| `notes.md` | Markdown | nested headings (H1→H2→H3) + a fenced code block containing a literal `#` (must not be read as a heading) |
+| `data.csv` | CSV | happy path, header + 5 consistent rows |
+| `bad_columns.csv` | CSV | one data row with a different column count → `MalformedCSVError` |
+| `sheet.xlsx` | XLSX | two sheets, non-contiguous populated cells, one fully empty sheet |
+| `report.docx` | DOCX | headings + paragraphs |
+| `memo.pdf` | PDF | multi-page, real text layer |
+| `scanned.pdf` | PDF | one page with an embedded image and no text objects → `NoTextLayerError` |
+| `encrypted.pdf` | PDF | password-protected, no password supplied → `EncryptedSourceError` |
+| `corrupt.pdf` | PDF | a valid PDF truncated mid-file → `CorruptSourceError` |
+
+Generation notes: `report.docx`/`sheet.xlsx` are built directly with `python-docx`/`openpyxl` (the same libraries used to read them). `memo.pdf`/`scanned.pdf` are built with `fpdf2` (dev-only dependency, MIT). `encrypted.pdf` is `memo.pdf` re-saved with `pypdf`'s `PdfWriter.encrypt()` (dev-only dependency, MIT). `corrupt.pdf` is the first 200 bytes of `memo.pdf`.
+
+**New dependencies**
+
+```toml
+# [project] dependencies
+"pdfplumber>=0.11",
+"python-docx>=1.1",
+"openpyxl>=3.1",
+
+# [dependency-groups] dev
+"fpdf2>=2.8",
+"pypdf>=5.1",
+```
+
+## Tests — `tests/ingest/`
+
+- `test_roundtrip.py` — parametrised over all 6 happy-path fixtures: `ingest()`, take `spans()` at 2–3 known ranges each, `reextract(source, span) == span.text` for every span. **This is the phase's reason to exist.**
+- `test_idempotence.py` — ingest each happy-path fixture twice; assert equal `id`, `sha256`, `text`, `locator_regions`; assert `ingested_at` is allowed to differ.
+- `test_normalization_golden.py` — for each happy-path fixture, `source.text` equals a committed golden file under `tests/fixtures/ingest/golden/<name>.txt`.
+- `test_locators.py` — `memo.pdf`: a known span reports the correct `page`; `sheet.xlsx`: a known span reports the correct `sheet` and `cell`; `notes.md`: a span under the nested heading reports `heading_path == ["Introduction", "Scope"]` (or the fixture's actual structure); a span inside the fenced code block reports the *enclosing* heading, not a heading derived from the `#` inside the fence.
+- `test_failures.py` — one case per typed error: `empty.txt` → `EmptySourceError`; `encrypted.pdf` → `EncryptedSourceError`; `corrupt.pdf` → `CorruptSourceError`; `scanned.pdf` → `NoTextLayerError` naming the file; `bad_columns.csv` → `MalformedCSVError` naming the file and line number; a `.xyz` file → `UnsupportedFormatError`. Every assertion checks the file path appears in the error message, not just the exception type.
+- `test_stale_normalization.py` — ingest `plain.txt`, hand-construct a `Source` copy with `extractor_version` set to a version string that isn't `text.NORMALIZATION_VERSION`, call `reextract` → `StaleNormalizationError`.
+- `test_span_bounds.py` — `spans()` with `start >= end`, and with `end > len(source.text)` → `SpanOutOfRangeError` in both cases.
+
+**Gating check**: `uv run pytest tests/ingest -q` green — round-trip across all six formats, idempotence, normalisation golden, locator correctness, and every listed failure mode — on the committed synthetic fixture corpus. `uv run mypy src` stays clean with `probative.core.evidence` under strict mode.
+
+**Implementation notes (resolved during build session)**:
+
+- **`git add` was silently corrupting the CRLF fixture.** This repo's local `core.autocrlf=input` rewrites CRLF→LF on every commit, which would have quietly turned `crlf.txt` into an LF file the moment it was committed — defeating the one fixture that exists to test CRLF normalisation, on every future clone or CI checkout, with no visible symptom (the working-tree copy stays untouched, so `pytest` run locally never sees the problem). Caught by literally diffing the staged blob (`git show :path | xxd`) against the working-tree bytes before assuming the commit was safe — exactly the "verify, don't assume" instinct CLAUDE.md asks for. Fixed with a new root `.gitattributes` (`tests/fixtures/ingest/** -text`), which also protects the binary PDF/DOCX/XLSX fixtures from any line-ending mangling on a contributor's machine with a different autocrlf setting.
+- **pdfplumber discards the original pdfminer exception type.** Every parse failure — wrong password or genuinely corrupt file — surfaces as `pdfplumber.utils.exceptions.PdfminerException`, with the real cause (`PDFPasswordIncorrect`, etc.) preserved only as `exc.__context__`, not as the exception's type or a catchable subclass. `pdf.py` inspects `__context__` to tell "encrypted" apart from "corrupt" — confirmed empirically against both fixtures (`uv run python -c "..."` on `encrypted.pdf`/`corrupt.pdf`) rather than assumed from pdfplumber's docs, which don't document this wrapping behaviour.
+- **`reextract`'s signature changed from the spec's sketch**, from `reextract(span) -> str` to `reextract(source, span) -> str`. A single-arg version would force `EvidenceSpan` to carry a duplicate `source_path`/`format`/`extractor_version` — a second source of record for fields `Source` already owns. Flagged during spec review, not discovered mid-implementation.
+- **The XLSX "header row not first" failure mode from the original phase-spec stub didn't survive contact with the actual design.** Cell-level, schema-free extraction (the correct approach for *unstructured* ingestion — header/row semantics are PB2's job) has no header assumption to violate. Reinterpreted as the real XLSX risk it was probably gesturing at: `openpyxl`'s read-only mode can silently truncate iteration when a sheet's `<dimension>` metadata undercounts its actual populated cells. Mitigated by loading in normal (non-read-only) mode; the `sheet.xlsx` fixture's "Notes" sheet (data starting at `A3`, nothing above it) exercises the no-header-assumption path directly.
+- **Extraction quality bar for DOCX/Markdown heading tracking**: the same (level, text) stack algorithm is used in both `markdown.py` and `docx_.py`; the `report.docx` fixture deliberately includes an H1 that pops a prior H2 off the stack (`Overview > Timeline`, then a sibling `Risks` H1), which was needed to get real test coverage of the pop branch — a fixture with only monotonically-deepening headings would never exercise it.
+- **CSV embedded-newline handling was scoped out**, not silently unhandled: `csv_.py` assumes one physical line per record. A quoted field containing a literal newline will be misread as multiple records without raising an error. No fixture exercises this; a future phase (PB2, or a PB1 extension) that needs it should add explicit multi-line-record support rather than assume today's implementation already has it.
+- **Coverage**: 98–100% line coverage per new module (`uv run pytest --cov=probative.ingest --cov=probative.core.evidence --cov-report=term-missing tests/ingest`). The two remaining gaps are a defensive `AssertionError` in `spans()`'s internal locator lookup (unreachable unless an extractor violates the "regions fully cover the text" invariant) and one partial branch in the Markdown fence-toggle logic.
 
 ---
 

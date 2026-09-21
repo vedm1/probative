@@ -1,0 +1,6 @@
+# The PB1 ingest fixture corpus tests byte-exact normalisation (including a
+# CRLF fixture, and binary PDF/DOCX/XLSX files) — every byte must survive
+# `git add`/checkout unchanged regardless of the committer's or CI runner's
+# core.autocrlf setting. Without this, `crlf.txt`'s CRLF line endings get
+# silently rewritten to LF on commit, defeating the fixture it names.
+tests/fixtures/ingest/** -text
