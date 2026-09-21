@@ -1,0 +1,15 @@
+{
+  "_comment": "A hand-built stand-in for a litellm.completion() ModelResponse, shaped exactly as LiteLLMProvider.complete_structured reads it. Not a real API response and not derived from one — see S3: recorded fixtures replace live calls in the default test suite.",
+  "model": "anthropic/claude-opus-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"text\": \"hello from the fixture\"}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 42,
+    "completion_tokens": 7
+  }
+}
