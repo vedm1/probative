@@ -1,6 +1,9 @@
 # CI on push and on pull requests, including from forks. No job in this file
-# reads any secret — the default test suite is required to pass with zero
-# LLM credentials present (CLAUDE.md § Tests run without an API key; S3).
+# reads a *user-configured* secret — the default test suite is required to
+# pass with zero LLM credentials present (CLAUDE.md § Tests run without an
+# API key; S3). The gitleaks job uses `secrets.GITHUB_TOKEN`, the ephemeral,
+# read-only-scoped token GitHub injects into every run automatically
+# (including fork PRs) — not a stored credential.
 name: CI
 
 on:
@@ -50,8 +53,12 @@ jobs:
   secrets-scan:
     name: gitleaks
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
