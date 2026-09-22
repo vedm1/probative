@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/TR/REC-html40">
+<head><title>Jira</title></head>
+<body>
+<table id="issuetable" class="aui" border="1" cellpadding="3" cellspacing="1" width="100%">
+<thead>
+<tr class="rowHeader">
+<th class="colHeaderLink headerrow-issuetype" data-id="issuetype">Issue Type</th>
+<th class="colHeaderLink headerrow-issuekey" data-id="issuekey">Key</th>
+<th class="colHeaderLink headerrow-summary" data-id="summary">Summary</th>
+<th class="colHeaderLink headerrow-status" data-id="status">Status</th>
+<th class="colHeaderLink headerrow-parent" data-id="parent">Parent</th>
+<th class="colHeaderLink headerrow-description" data-id="description">Description</th>
+<th class="colHeaderLink headerrow-customfield_19999" data-id="customfield_19999">Acceptance Criteria</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="issuerow" data-rowkey="DEMO-1">
+<td class="issuetype">Bug</td>
+<td class="issuekey"><a class="issue-link" data-issue-key="DEMO-1" href="https://example.atlassian.net/browse/DEMO-1">DEMO-1</a></td>
+<td class="summary">Login button is unresponsive</td>
+<td class="status"><span class="jira-issue-status-lozenge">Open</span></td>
+<td class="parent"></td>
+<td class="description">The login button does nothing when clicked.<br/><br/># Click the login button<br/># Observe that nothing happens<br/><br/>See *important* note from [~accountid:abc123] and the [tracking issue|https://example.com/DEMO-0] and !screenshot.png!</td>
+<td class="customfield_19999"></td>
+</tr>
+
+<tr class="issuerow" data-rowkey="DEMO-2">
+<td class="issuetype">Story</td>
+<td class="issuekey"><a class="issue-link" data-issue-key="DEMO-2" href="https://example.atlassian.net/browse/DEMO-2">DEMO-2</a></td>
+<td class="summary">Add password reset flow</td>
+<td class="status"><span class="jira-issue-status-lozenge">In Progress</span></td>
+<td class="parent">DEMO-1</td>
+<td class="description">Reset flow lets users regain access.</td>
+<td class="customfield_19999">Given a user requests reset, when they submit their email, then a reset link is emailed within 5 minutes.</td>
+</tr>
+
+<tr class="issuerow" data-rowkey="DEMO-3">
+<td class="issuetype">Epic</td>
+<td class="issuekey"><a class="issue-link" data-issue-key="DEMO-3" href="https://example.atlassian.net/browse/DEMO-3">DEMO-3</a></td>
+<td class="summary">Improve authentication reliability</td>
+<td class="status"><span class="jira-issue-status-lozenge">To Do</span></td>
+<td class="parent"></td>
+<td class="description"></td>
+<td class="customfield_19999"></td>
+</tr>
+
+<tr class="issuerow" data-rowkey="DEMO-4">
+<td class="issuetype">Sub-task</td>
+<td class="issuekey"><a class="issue-link" data-issue-key="DEMO-4" href="https://example.atlassian.net/browse/DEMO-4">DEMO-4</a></td>
+<td class="summary">Write unit tests for reset flow</td>
+<td class="status"><span class="jira-issue-status-lozenge">Done</span></td>
+<td class="parent">DEMO-2</td>
+<td class="description">Cover expiry and invalid token cases.</td>
+<td class="customfield_19999"></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

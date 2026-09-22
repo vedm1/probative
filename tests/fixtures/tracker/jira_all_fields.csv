@@ -1,0 +1,10 @@
+Summary,Issue key,Issue Type,Status,Labels,Labels,Parent,Parent key,Parent summary,Description,Watchers,Watchers,Custom field (Acceptance Criteria),Comment,Comment
+Login button is unresponsive,DEMO-1,Bug,Open,bug-triage,,,,,"The login button does nothing when clicked.
+
+# Click the login button
+# Observe that nothing happens
+
+See *important* note from [~accountid:abc123] and the [tracking issue|https://example.com/DEMO-0] and !screenshot.png!",Alex Kim,,,09/Jun/26;user1;first comment,
+Add password reset flow,DEMO-2,Story,In Progress,,,10001,DEMO-1,Login button is unresponsive,Reset flow lets users regain access.,Alex Kim,Jamie Lee,"Given a user requests reset, when they submit their email, then a reset link is emailed within 5 minutes.",,
+Improve authentication reliability,DEMO-3,Epic,To Do,,,,,,,Jamie Lee,,,,
+Write unit tests for reset flow,DEMO-4,Sub-task,Done,testing,backend,10002,DEMO-2,Add password reset flow,Cover expiry and invalid token cases.,Alex Kim,,,,

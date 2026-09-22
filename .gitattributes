@@ -4,3 +4,9 @@
 # core.autocrlf setting. Without this, `crlf.txt`'s CRLF line endings get
 # silently rewritten to LF on commit, defeating the fixture it names.
 tests/fixtures/ingest/** -text
+
+# Same reasoning for the PB2 tracker fixture corpus (generate.py already
+# forces LF explicitly, but this is the same belt-and-suspenders PB1 added
+# after being bitten once — see PROBATIVE_PHASE_SPECS.md PB1's Implementation
+# notes).
+tests/fixtures/tracker/** -text

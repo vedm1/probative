@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="0.92">
+<channel>
+<title>Jira</title>
+<item>
+<title>[DEMO-1] Login button is unresponsive</title>
+<key id="20001">DEMO-1</key>
+<summary>Login button is unresponsive</summary>
+<type id="1">Bug</type>
+<status id="1">Open</status>
+
+<description>&lt;p&gt;The login button does nothing when clicked.&lt;/p&gt;&lt;p&gt;STEPS TO REPRODUCE&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Click the login button&lt;/li&gt;&lt;li&gt;Observe that nothing happens&lt;/li&gt;&lt;/ol&gt;</description>
+
+</item>
+<item>
+<title>[DEMO-2] Add password reset flow</title>
+<key id="20002">DEMO-2</key>
+<summary>Add password reset flow</summary>
+<type id="1">Story</type>
+<status id="1">In Progress</status>
+<parent id="20001">DEMO-1</parent>
+<description>&lt;p&gt;Reset flow lets users regain access.&lt;/p&gt;</description>
+<customfields><customfield><customfieldname>Acceptance Criteria</customfieldname><customfieldvalues><customfieldvalue>Given a user requests reset, when they submit their email, then a reset link is emailed within 5 minutes.</customfieldvalue></customfieldvalues></customfield></customfields>
+</item>
+<item>
+<title>[DEMO-3] Improve authentication reliability</title>
+<key id="20003">DEMO-3</key>
+<summary>Improve authentication reliability</summary>
+<type id="1">Epic</type>
+<status id="1">To Do</status>
+
+<description></description>
+
+</item>
+<item>
+<title>[DEMO-4] Write unit tests for reset flow</title>
+<key id="20004">DEMO-4</key>
+<summary>Write unit tests for reset flow</summary>
+<type id="1">Sub-task</type>
+<status id="1">Done</status>
+<parent id="20002">DEMO-2</parent>
+<description>&lt;p&gt;Cover expiry and invalid token cases.&lt;/p&gt;</description>
+
+</item>
+</channel>
+</rss>

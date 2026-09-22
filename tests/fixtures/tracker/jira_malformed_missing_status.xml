@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="0.92"><channel><title>Jira</title>
+<item>
+<title>[DEMO-1] Login button is unresponsive</title>
+<key id="20001">DEMO-1</key>
+<summary>Login button is unresponsive</summary>
+<type id="1">Bug</type>
+<description>broken</description>
+</item>
+</channel></rss>

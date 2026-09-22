@@ -1,0 +1,4 @@
+﻿Area Path,Parent,ID,Work Item Type,Title,Description,State,Tags
+Product\Auth,,30001,Bug,Login button is unresponsive,<div>The button does nothing when clicked.</div>,Active,P1
+Product\Auth,99999,30002,Product Backlog Item,Add password reset flow,<div>As a user</div><div>I need to reset my password&nbsp;</div>,New,
+Product\Auth,30002,30003,Task,Write unit tests for reset flow,<div>Cover expiry and invalid token cases.</div>,Closed,

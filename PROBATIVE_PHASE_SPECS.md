@@ -368,10 +368,53 @@ Generation notes: `report.docx`/`sheet.xlsx` are built directly with `python-doc
 
 Specs are written at the start of each build session. These record objective, prerequisites and known unknowns only.
 
-## PB2 — Ingest: structured exports
-**Objective**: Confluence exports and Jira/ADO CSV exports become sources with recognised issue keys, hierarchy and acceptance criteria.
-**Prerequisites**: PB1 ✅, OI5 resolved.
-**Known unknowns**: how many Confluence export variants matter; whether ADO's HTML description field needs its own normalisation path.
+## PB2 — Ingest: structured exports (Jira + ADO)
+**Objective**: Jira CSV/HTML/XML exports and ADO CSV exports become sources with recognised issue keys, hierarchy and acceptance criteria where present.
+**Prerequisites**: PB1 ✅.
+**Scope note**: Confluence was originally in this phase's objective but is split into **PB2-p2** — no real Confluence export sample was available during the build session, and CLAUDE.md's "reality wins over the spec" / "don't build on an unconfirmed assumption" rules out guessing at a format never seen. OI5 (which Confluence variants matter) was not resolved by this session and now blocks PB2-p2 instead of PB2.
+
+**Types** (`probative/core/evidence.py`): `SourceFormat` gains `JIRA_CSV`/`JIRA_HTML`/`JIRA_XML`/`ADO_CSV`. `Locator` gains `issue_key: str | None` and `field: str | None`. New `UnrecognisedTrackerFormatError(IngestError)` for a declared format whose required column/field is missing.
+
+**Public API** (`probative/ingest/tracker.py`, deliberately separate from PB1's `ingest`/`spans`/`reextract`):
+```python
+class Issue(BaseModel):
+    key: str
+    type: str
+    status: str
+    parent_key: str | None
+    summary: EvidenceSpan
+    description: EvidenceSpan | None
+    acceptance_criteria: EvidenceSpan | None
+
+def ingest_tracker(path: Path, *, format: SourceFormat, tier: Tier, kind: EvidenceKind) -> Source
+def issues(source: Source) -> list[Issue]
+def reextract_tracker(source: Source, span: EvidenceSpan) -> str
+```
+`format` is explicit rather than extension-sniffed: a tracker export's system (Jira vs ADO) is a run-start choice (docs/DESIGN.md line 736), not something a `.csv` extension can disambiguate. `issues()` is a derived view over `Source.locator_regions` — it calls PB1's own `spans()` to build each field's `EvidenceSpan`, so provenance and re-extraction guarantees are identical to PB1's, not a second implementation of them.
+
+**Normalised-text layout** (`probative/ingest/_tracker_text.py`): one block per issue — a `field="header"` line (`key\ttype\tstatus\tparent_key`) then exactly-bounded regions for `summary` (always) and, only when present, `description` and `acceptance_criteria`. Blank-line padding between fields gets its own untagged region so every character of `Source.text` is covered (the `LocatorRegion` "no gaps" invariant PB1 established).
+
+**Per-format extractors** — algorithms confirmed against real Jira/ADO exports provided during the session (never committed; see Implementation notes):
+- `jira_csv.py` / `ado_csv.py`: stdlib `csv.reader` + `header.index(...)` column lookup — not `DictReader`, which silently keeps only the *last* occurrence of a repeated header name. `Description`/Acceptance-Criteria pass through `_wiki.to_text()` (Jira) or `_html.to_text()` (ADO).
+- `jira_html.py`: new dependency **beautifulsoup4** (stdlib `html.parser` backend). Matches built-in fields by the shared `data-id`/`class` vocabulary (`issuekey`, `issuetype`, `status`, `summary`, `description`, `parent`); matches Acceptance Criteria (a custom field with an instance-specific `customfield_NNNNN` id) by its `<th>` label text instead. Description cells carry wiki markup with `<br/>` for newlines — converted to `\n` before running the same `_wiki.to_text()` as `jira_csv.py`.
+- `jira_xml.py`: stdlib `ElementTree` over `channel/item`; `<parent id="...">KEY</parent>` for hierarchy; Acceptance Criteria matched by `<customfieldname>` text under `<customfields>`. `<description>` is genuine escaped HTML here (unlike CSV/HTML-export's wiki markup) — normalised via `_html.to_text()`.
+
+**Normalisation helpers**: `_wiki.py` (Jira wiki markup → text: list leaders, `*bold*`/`_italic_`/etc. emphasis, `!image!` macros, `[text|url]` links, `[~accountid:...]` mentions — documented v1 scope, anything else passes through verbatim) and `_html.py` (HTML → text: block tags → line breaks, tags stripped, entities unescaped).
+
+**Test plan** (`tests/ingest/tracker/`, fixtures under `tests/fixtures/tracker/`, all synthetic): `test_jira_csv.py` (visible vs all-fields column-set independence, wiki-markup normalisation, acceptance-criteria present/absent), `test_jira_html.py` (nested lozenge/anchor markup, hierarchy, description parity with the CSV equivalent), `test_jira_xml.py` (HTML description normalisation, `<parent>` hierarchy, customfields acceptance criteria), `test_ado_csv.py` (HTML description, the dangling-parent case, acceptance-criteria present/absent), `test_roundtrip.py` (every field span reextracts exactly; idempotent re-ingestion), `test_failures.py` (one case per required-column/field omission, not-well-formed XML, empty file), `test_reextract_edge_cases.py` (wrong source, stale normalisation, file changed on disk), `test_wiki_normalize.py`/`test_html_normalize.py` (unit tests on the normalisers).
+
+**Gating check**: `uv run pytest tests/ingest/tracker -q` green across all four formats — round-trip, hierarchy (including the dangling-reference case), and acceptance-criteria recognition (present *and* absent, never invented) all covered. `uv run mypy src` clean.
+
+**Implementation notes (resolved during build session)**:
+
+- **The real samples reshaped the scope before any code was written.** Six real export files (two Jira CSV column-sets, two Jira HTML column-sets, one Jira XML, one ADO CSV) were provided for structural inspection — never committed (CLAUDE.md § Secrets: sample corpora must be synthetic or public-domain). None of them was a Confluence export, which is why Confluence moved to PB2-p2 rather than being guessed at.
+- **A real Jira CSV export has no dedicated Acceptance Criteria column.** DESIGN.md's exporter-schema table (§7.7, for PB28) assumes one; the real inbound export doesn't have it — the phrase only ever appears as free text inside `Description`. PB2 recognises the column only when present (`Custom field (Acceptance Criteria)` for Jira, `Acceptance Criteria` for ADO) and never fabricates it — exercised by a synthetic fixture rather than the real sample, since the real sample never had one.
+- **Jira hierarchy is `Parent key` / `<parent id="...">`, not `Epic Link`.** The real export is a modern, team-managed Jira project where even Epics are linked via `Parent`, confirming the post-Epic-Link-deprecation shape rather than the older `Epic Link` custom field DESIGN.md's ADO row implies.
+- **Two different markup dialects hide behind the same logical field.** Jira CSV and Jira HTML's `Description` is Jira wiki markup (`# ` list items, `*bold*`); Jira XML's `<description>` and ADO's `Description` are genuine escaped/rich-text HTML. Confirmed empirically (not assumed) by inspecting the same underlying issue across all three Jira export formats — this is why there are two separate normalisers (`_wiki.py`, `_html.py`) rather than one.
+- **`csv.DictReader` was rejected, not just avoided by convention.** A real "all fields" Jira export repeats `Labels`, `Watchers`, `Attachment`, `Comment` and `Sprint` as duplicate column headers (up to 30 `Comment` columns in the real sample); `DictReader` silently collapses duplicates to the last occurrence, which would have been a silent-data-loss bug for any canonical column that ever became a repeated one. `header.index(...)` makes "first occurrence, duplicates ignored" explicit.
+- **ADO's `Parent` frequently references a work item outside the exported set.** Confirmed against the real 40-row sample: 0 of 17 distinct parent IDs resolved within the file. PB2 records `parent_key` verbatim and does not attempt resolution — that's a graph-era concern (see the new open item below), not this phase's, and inventing a resolution here would risk fabricating a hierarchy edge I8/I1 don't license.
+- **jira_html.py needed BeautifulSoup, not regex.** A real status cell is a lozenge `<span data-tooltip="...">`; a real key cell is `<a data-issue-key="...">`. Confirmed by direct inspection that regex extraction breaks on the real markup; `bs4`'s `get_text(strip=True)` on the matched `<td>` (found by the `class`/`data-id` field-id shared with `<th>`) is robust to arbitrary nesting.
+- **Coverage**: 97% across the new/changed modules; `tracker.py` (the phase's own novel logic) at 100%. Two classes of gap remain, both documented and both mirroring PB1's own precedent of accepted gaps: (1) each CSV extractor's "no header row" branch is unreachable through the public `ingest_tracker()` entrypoint, because a zero-byte file is already rejected by `EmptySourceError` before extraction runs; (2) a handful of `jira_html.py`/`jira_xml.py` defensive branches (a `<td>` with no `class`, a `<customfield>` with an empty value) that no real export has been seen to produce.
 
 ## PB3 — Finding model + critic framework
 **Objective**: A critic can be added by writing a rubric file (S2) and a class with one method, with no runtime change.

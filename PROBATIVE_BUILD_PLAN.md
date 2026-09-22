@@ -62,7 +62,9 @@ Baselines, exporters and the provenance map are three independent consumers of a
 
 ### PB2
 - **Risk**: "Confluence export" is at least three different formats depending on version and whether it is Cloud or Data Center.
-- **Mitigation**: OI5. Confirm which variants matter before building; support one properly rather than three badly.
+- **Mitigation**: OI5. Confirm which variants matter before building; support one properly rather than three badly. **Resolution**: no real Confluence sample was available in PB2's build session, so Confluence was split out entirely to PB2-p2 rather than guessed at — the mitigation was applied by deferring, not by picking a variant blind.
+- **Risk (materialised, not anticipated)**: real Jira/ADO exports turned out to have their own format-variance risk the original stub didn't name — two different Jira CSV column-set sizes, three different Jira export formats (CSV/HTML/XML) for the same data, and two different markup dialects (wiki markup vs. real HTML) hiding behind the same "Description" field name.
+- **Mitigation (applied)**: real samples of every in-scope format were inspected before writing the spec; column/field recognition is name-driven and column-order/repeat-column independent rather than positional, so instance-to-instance variance within a format doesn't require a code change.
 
 ### PB4
 - **Risk**: extraction quality silently caps the quality of every critic built on top of it, and it is hard to attribute a bad finding to bad extraction.
@@ -130,7 +132,7 @@ Resolve before the phase that depends on them. Never delete a row — strike thr
 | **OI2** Pin a reference model for published eval numbers, so catch rate and false-positive rate are comparable across releases | PB5, PB32 | 🔲 Open |
 | **OI3** Choose the LLM response recording library for fixture-based tests (vcr-style cassettes vs. a hand-rolled JSON fixture store) | PB5 | 🔲 Open |
 | **OI4** Dogfood corpus — the real, messy seed material the ingester and elicitation are built against. Shape and messiness matter more than volume | PB1, PB13 | 🔲 Open |
-| **OI5** Which Confluence export variants matter — Cloud, Data Center, XML, HTML | PB2 | 🔲 Open |
+| **OI5** Which Confluence export variants matter — Cloud, Data Center, XML, HTML. **Note (PB2 build session):** PB2 itself shipped scoped to Jira CSV/HTML/XML + ADO CSV only — none of the samples available during that session were Confluence exports, so this item was not resolved and PB2 was not blocked on it; the split is recorded as phase **PB2-p2**. Still needs a real Confluence export sample before that phase can start | PB2-p2 | 🔲 Open |
 | **OI6** Jira and ADO CSV column variation across real instances. Needs a sample from at least two different organisations | PB28 | 🔲 Open |
 | **OI7** Process model notation — is mermaid sufficient, or does a BFSI audience expect BPMN? | PB20 | 🔲 Open |
 | **OI8** Story-point threshold above which a chunk must be split (Olsen p. 80 leaves this to the team). Needs a default and a config key | PB24 | 🔲 Open |
@@ -140,6 +142,7 @@ Resolve before the phase that depends on them. Never delete a row — strike thr
 | **OI14** Does `onboard` read live connectors (Jira/Confluence/GitHub MCP) or exports only in v0.1? Exports work for a joiner without access; live is better for everyone else | PB36 | 🔲 Open |
 | **OI12** How a PM/BA on a locked-down enterprise laptop installs this at all. No terminal, no admin rights, no Python. The plugin path answers it only for people already inside Claude. Signed standalone binaries are the other candidate and cost money and a certificate. Affects who the reachable audience actually is | PB34 | 🔲 Open |
 | **OI11** Shared remote convention for partitions — a git repo, or a filesystem layout? Affects the v0.2 merge design but the schema must not preclude either | PB10 | 🔲 Open |
+| **OI15** ADO CSV `Parent` references frequently point outside the exported set (confirmed: 0 of 17 distinct parents resolved within a real 40-row sample). PB2 records `parent_key` verbatim without resolving it. Graph-era hierarchy building (PB10) and constraint/dependency traceability (PB25) need a defined behaviour for a dangling parent — treat as an unresolved reference `Question`, or silently drop the edge? | PB10, PB25 | 🔲 Open |
 
 ---
 

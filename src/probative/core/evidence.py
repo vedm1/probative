@@ -43,6 +43,10 @@ class SourceFormat(StrEnum):
     CSV = "csv"
     MARKDOWN = "markdown"
     TEXT = "text"
+    JIRA_CSV = "jira_csv"
+    JIRA_HTML = "jira_html"
+    JIRA_XML = "jira_xml"
+    ADO_CSV = "ado_csv"
 
 
 class Locator(BaseModel):
@@ -50,7 +54,7 @@ class Locator(BaseModel):
 
     Every field is optional; a given format populates only the ones that
     apply to it (page/line for PDF, sheet/cell for XLSX, heading_path for
-    Markdown and DOCX).
+    Markdown and DOCX, issue_key/field for the PB2 tracker formats).
     """
 
     page: int | None = None
@@ -58,6 +62,8 @@ class Locator(BaseModel):
     sheet: str | None = None
     cell: str | None = None
     heading_path: list[str] | None = None
+    issue_key: str | None = None
+    field: str | None = None
 
 
 class LocatorRegion(BaseModel):
@@ -143,3 +149,9 @@ class StaleNormalizationError(IngestError):
     """`reextract()` found that re-ingesting now would use a different
     normalisation version than the one the span's offsets were recorded
     against — those offsets are not guaranteed valid any more."""
+
+
+class UnrecognisedTrackerFormatError(IngestError):
+    """A tracker export (PB2) is missing a column/field its declared
+    `SourceFormat` requires — the file does not match the format it was
+    told to be ingested as."""
