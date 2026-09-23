@@ -1,0 +1,81 @@
+Content-Type: multipart/related;
+ boundary="===============8597160822886271413=="
+MIME-Version: 1.0
+Date: Tue, 22 Sep 2026 07:37:20 +0000 (UTC)
+Subject: Exported From Confluence
+
+--===============8597160822886271413==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:word'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Widget classification based on availability</title>
+    <style>
+        table { border: solid 1px; border-collapse: collapse; }
+        table td, table th { border: solid 1px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Widget classification based on availability</h1>
+    <div class=3D"Section1">
+        <div class=3D"table-wrap">
+        <table data-table-width=3D"760" data-layout=3D"default" class=3D"co=
+nfluenceTable">
+        <tbody>
+        <tr>
+        <th class=3D"confluenceTh"><p><strong>Widget name</strong></p></th>
+        <th class=3D"confluenceTh"><p><strong>Description</strong></p></th>
+        <th class=3D"confluenceTh"><p><strong>Availability</strong></p></th>
+        </tr>
+        <tr>
+        <td class=3D"confluenceTd"><p>Sprocket</p></td>
+        <td class=3D"confluenceTd"><p>Turns the main gear assembly.</p></td>
+        <td class=3D"confluenceTd"><p>Generally available</p></td>
+        </tr>
+        <tr>
+        <td class=3D"confluenceTd"><p>Widget</p></td>
+        <td class=3D"confluenceTd"><p>Placeholder for the thing itself.</p>=
+</td>
+        <td class=3D"confluenceTd"><p>Alpha</p></td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        <h2>Definitions</h2>
+        <p>Terms used in the table above are defined here.</p>
+        <div class=3D"table-wrap">
+        <table data-table-width=3D"760" data-layout=3D"default" class=3D"co=
+nfluenceTable">
+        <tbody>
+        <tr>
+        <th class=3D"confluenceTh"><p><strong>Alpha</strong></p></th>
+        <th class=3D"confluenceTh"><p><strong>Generally available</strong><=
+/p></th>
+        </tr>
+        <tr>
+        <td class=3D"confluenceTd">
+        <p>Audience - Internal teams</p>
+        <p>Stability - Experimentation in progress</p>
+        <p>Support - None</p>
+        </td>
+        <td class=3D"confluenceTd"><p>Officially launched and used by clien=
+ts.</p></td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        <h2>Notes</h2>
+        <p>A second top-level heading closes out the Definitions section.</=
+p>
+    </div>
+</body>
+</html>
+
+--===============8597160822886271413==--

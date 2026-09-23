@@ -47,6 +47,7 @@ class SourceFormat(StrEnum):
     JIRA_HTML = "jira_html"
     JIRA_XML = "jira_xml"
     ADO_CSV = "ado_csv"
+    CONFLUENCE_WORD = "confluence_word"
 
 
 class Locator(BaseModel):
