@@ -453,9 +453,208 @@ One `LocatorRegion` per emitted line (`Locator(line=<sequential>, heading_path=<
 - **OI5 narrows, doesn't close.** The per-page Word/PDF variants are now confirmed and built; Confluence's admin-level "export space" bulk XML/HTML variant (a zip of many pages, plausibly carrying real page hierarchy) remains unconfirmed — no sample exists, and CLAUDE.md rules out guessing at it. Left open rather than built speculatively.
 
 ## PB3 — Finding model + critic framework
-**Objective**: A critic can be added by writing a rubric file (S2) and a class with one method, with no runtime change.
-**Prerequisites**: PB0 ✅, OI3 resolved.
-**Known unknowns**: whether dimension scores should be a weighted mean of findings or a floor-based rubric; the former is smoother, the latter harder to game.
+
+**Objective**: A critic can be added to Probative by writing a rubric file (S2) and subclassing a base class with one method, with no runtime change. This phase builds the `Finding`/`Rubric`/`Severity` shapes, the rubric loader, the `Critic` base, a fan-out runner and deterministic dimension scoring that every critic phase (PB5–PB9) builds directly on.
+
+**Prerequisites**: PB0 ✅. The stub's "OI3 resolved" prerequisite is stale — `PROBATIVE_BUILD_PLAN.md`'s open-items table has OI3 (the LLM response-recording library) blocking **PB5**, not PB3, and reality confirms this: PB3 introduces no LLM/agent code at all, so there is nothing for OI3 to gate here. Corrected in this session (CLAUDE.md "reality wins").
+
+**In scope**
+
+- `Severity` (`block`/`warn`/`note`), `RubricCheck`, `Rubric` (the S2 shape, verbatim — no new fields invented), `Finding`, `DimensionScore`.
+- A YAML rubric loader with a typed error hierarchy (missing file, invalid YAML, schema violation).
+- `Critic` — an ABC with one abstract method (`check`) and a `_finding()` helper that fills `critic_id`/`invariant`/`remedy` from the rubric so a critic author never hand-populates them.
+- `run_critics()` — sequential fan-out over a list of critics and candidates, filtered by each rubric's `applies_to`.
+- `score_dimension()`/`aggregate()` — the floor-based dimension scoring that resolves this phase's "known unknown" (below).
+- `assert_rubric_fixtures()` — S2's fixture contract ("must raise nothing on clean, must catch every seeded defect") made runnable, for every future critic phase's own tests to call.
+- One throwaway demo critic + rubric + fixture pair, used only to prove the framework end-to-end. Not a real critic.
+
+**Out of scope**: any real critic (`SpaceWarden`, `EvidenceAuditor`, etc. — PB5–PB8); candidate node types (`Claim`, `Need`, `Story`, `Constraint` — PB4); parallel/async fan-out (`run_critics` is deliberately sequential — true parallel fan-out is PB12's LangGraph runtime concern); Markdown/HTML report rendering and the `probative critique` CLI command (PB9/PB33/PB34); LLM-backed critics (the `Critic.check()` interface does not preclude one — an implementation could call a `Provider` inside `check()` — but none is built this phase).
+
+**Known unknown, resolved**: dimension scores are **floor-based**, not a weighted mean. A `block`-severity finding collapses that dimension's score to `0.0` outright — a critic's veto (DESIGN.md §9.1: "a critic returning `severity: block` stops the pipeline. Real control flow, not a suggestion in a prompt") must not be averaged away by unrelated clean checks in the same rubric. Absent a block, the score starts at a ceiling of `10.0` and is discounted per finding — harder to game than a mean, which a critic author could keep smooth by burying one real defect among many trivial passing checks. A separate `blocked: bool` field stays distinct from the numeric floor, since a `warn`-heavy dimension can also reach `0.0` by accumulation without ever being a genuine veto — these are different facts and PB9's report must not conflate them.
+
+### Types — `src/probative/core/critic.py` (mypy strict)
+
+```python
+class Severity(StrEnum):
+    BLOCK = "block"
+    WARN = "warn"
+    NOTE = "note"
+
+class RubricCheck(BaseModel):
+    """One named check within a rubric (S2)."""
+    id: str = Field(min_length=1)
+    description: str = Field(min_length=1)
+    examples_bad: list[str] = Field(default_factory=list)
+    examples_good: list[str] = Field(default_factory=list)
+    remedy: str = Field(min_length=1)
+
+class Rubric(BaseModel):
+    """A critic's configuration, loaded from YAML (S2). Exactly the S2
+    shape — no field here that isn't in the documented format."""
+    id: str = Field(min_length=1)                  # e.g. "space_warden"
+    severity: Severity                              # this rubric's default finding severity
+    invariant: str | None = None                    # e.g. "I3"; None for a critic with no single guardrail
+    applies_to: list[str] = Field(default_factory=list)  # candidate class names; [] means "all"
+    checks: list[RubricCheck] = Field(min_length=1)
+    clean_fixtures: str = Field(min_length=1)        # glob, relative to the rubric file's directory
+    defect_fixtures: str = Field(min_length=1)       # glob, relative to the rubric file's directory
+
+class Finding(BaseModel):
+    """What a critic emits — S1's `AgentResult` never carries these directly;
+    they attach to a patch via the Committer's critic fan-out (PB12)."""
+    critic_id: str                     # == the rubric's id
+    check_id: str                      # == one of rubric.checks[].id
+    severity: Severity
+    invariant: str | None
+    message: str                       # critic-authored prose describing the specific violation
+    remedy: str                        # copied from the matching RubricCheck.remedy
+    target_id: str | None = None       # id of the candidate/node this finding is about, if any
+    evidence: EvidenceSpan | None = None  # the quoted text this finding rests on, if any (I1)
+
+class DimensionScore(BaseModel):
+    """One rubric's aggregate result over a batch of findings."""
+    critic_id: str
+    invariant: str | None
+    blocked: bool                      # True iff >=1 finding of this rubric has severity BLOCK
+    score: float                       # 0.0-10.0, floor-based (see algorithm below)
+    findings: list[Finding]            # this rubric's own findings, in the order they were produced
+
+# Exception hierarchy — rubric *loading* failures, always naming the offending file.
+class RubricError(Exception):
+    def __init__(self, path: Path, message: str) -> None:
+        self.path = path
+        super().__init__(f"{path}: {message}")
+
+class RubricNotFoundError(RubricError): ...   # path does not exist
+class MalformedRubricError(RubricError): ...  # invalid YAML syntax, not a mapping, or schema violation
+
+# A critic-authoring bug, not a rubric-loading failure — raised at `check()` time,
+# not `load_rubric()` time, so it does not need a file path.
+class UnknownCheckError(ValueError):
+    def __init__(self, critic_id: str, check_id: str) -> None:
+        self.critic_id = critic_id
+        self.check_id = check_id
+        super().__init__(f"{critic_id}: no check {check_id!r} declared in its rubric")
+```
+
+`Finding.evidence` reuses `core.evidence.EvidenceSpan` rather than duplicating a text+locator shape — a finding that quotes evidence quotes the same span type everything else in the codebase does (CLAUDE.md "single source of record per field").
+
+### Contracts — `src/probative/critics/`
+
+```python
+# rubric.py
+def load_rubric(path: Path) -> Rubric:
+    """Parse and validate one rubric YAML file. Raises RubricNotFoundError
+    if `path` does not exist, MalformedRubricError if the file is not valid
+    YAML, is not a mapping at the top level, or fails Rubric's schema."""
+
+def resolve_fixture_paths(rubric: Rubric, rubric_path: Path) -> tuple[list[Path], list[Path]]:
+    """Resolve `rubric.clean_fixtures`/`defect_fixtures` (globs relative to
+    `rubric_path.parent`) to sorted lists of actual paths. An empty match is
+    not an error here — fixtures are a test-time concern; a rubric can be
+    loaded in a production install with no fixtures on disk at all. Only
+    `assert_rubric_fixtures` (below) treats an empty match as a failure."""
+
+# base.py
+class Critic(ABC):
+    """Adding a critic means writing a rubric (S2) and subclassing this
+    with one method — `check`. Nothing else in the runtime changes. A
+    Critic is not an Agent (S1): it never proposes a patch and never
+    touches the graph: it only returns Findings."""
+
+    def __init__(self, rubric: Rubric) -> None: ...
+
+    @abstractmethod
+    def check(self, candidates: Sequence[BaseModel]) -> list[Finding]:
+        """Evaluate candidates against this critic's rubric. Return zero or
+        more Findings. Never raises on a violation found in a candidate;
+        never mutates a candidate."""
+
+    def _finding(
+        self, *, check_id: str, message: str, severity: Severity | None = None,
+        target_id: str | None = None, evidence: EvidenceSpan | None = None,
+    ) -> Finding:
+        """Construct a Finding against one of this critic's own declared
+        checks, filling critic_id/invariant/remedy from the rubric and
+        defaulting severity to the rubric's. Raises UnknownCheckError if
+        `check_id` is not declared in this critic's rubric — a typo here
+        must fail loudly, not silently produce an undocumented finding."""
+
+# runner.py
+def run_critics(critics: Sequence[Critic], candidates: Sequence[BaseModel]) -> list[Finding]:
+    """Run every critic against the candidates whose type name appears in
+    its rubric's `applies_to` (empty `applies_to` means every candidate).
+    Concatenates all Findings, critic by critic, in the order `critics` was
+    given. Sequential by design — see 'Out of scope'."""
+
+# scoring.py
+def score_dimension(rubric: Rubric, findings: Sequence[Finding]) -> DimensionScore:
+    """Filter `findings` to this rubric's own (`critic_id == rubric.id`).
+    If any has severity BLOCK: score = 0.0, blocked = True. Otherwise:
+    score = max(0.0, 10.0 - 2.0 * count(WARN) - 0.5 * count(NOTE)),
+    blocked = False."""
+
+def aggregate(rubrics: Sequence[Rubric], findings: Sequence[Finding]) -> list[DimensionScore]:
+    """One DimensionScore per rubric, via score_dimension, in rubric order."""
+
+# testing.py
+def assert_rubric_fixtures(
+    critic: Critic, rubric_path: Path,
+    parse_fixture: Callable[[Path], Sequence[BaseModel]],
+) -> None:
+    """The S2 contract, made runnable. Resolves clean/defect fixture paths
+    via resolve_fixture_paths; raises AssertionError immediately if either
+    glob matched zero files (a fixture-authoring bug, not a critic bug).
+    For each clean fixture: parse_fixture(path) then critic.check(...) must
+    return []. For each defect fixture: critic.check(...) must return a
+    non-empty list. `parse_fixture` is supplied by the caller because
+    turning a fixture file into typed candidates needs the candidate type
+    this framework doesn't know about — that knowledge lives with each
+    critic phase's own tests, not here."""
+```
+
+### New dependency
+
+```toml
+# [project] dependencies
+"pyyaml>=6.0",
+```
+
+Already present transitively (via `pre-commit`); this makes it a direct dependency since `critics/rubric.py` imports it.
+
+### Fixture corpus — `tests/fixtures/critics/`
+
+All hand-written JSON/YAML, no generator script needed (unlike PB1/PB2's binary formats).
+
+| Path | Purpose |
+|---|---|
+| `example/rubric.yaml` | A minimal, real rubric (`id: non_empty_text`, `severity: warn`, `applies_to: [Note]`) — the one non-real critic this phase ships, proving the S2 loop end-to-end |
+| `example/fixtures/clean/*.json` | `Note` candidates with non-empty text — `NonEmptyTextCritic` must raise nothing |
+| `example/fixtures/seeded/*.json` | `Note` candidates with empty/whitespace-only text — `NonEmptyTextCritic` must catch every one |
+| `malformed/missing_field.yaml` | Valid YAML, missing `checks` → `MalformedRubricError` |
+| `malformed/bad_severity.yaml` | `severity: critical` (not in the enum) → `MalformedRubricError` |
+| `malformed/not_a_mapping.yaml` | A YAML list at the top level → `MalformedRubricError` |
+| `malformed/invalid_syntax.yaml` | Broken YAML syntax → `MalformedRubricError` wrapping the `YAMLError` |
+
+`Note` (`id: str`, `text: str`) and `NonEmptyTextCritic` live in `tests/critics/_example.py` — test-only, not shipped in `src/`, since they exist purely to demonstrate the framework rather than to be a real critic.
+
+### Tests — `tests/critics/`
+
+- `test_rubric.py` — happy-path load against `example/rubric.yaml` (asserts every field); `RubricNotFoundError` on a missing path; `MalformedRubricError` for each of the four `malformed/*.yaml` fixtures; `resolve_fixture_paths` returns the expected sorted, non-empty lists for `example/rubric.yaml` and an empty list (not an error) for a glob that matches nothing.
+- `test_base.py` — `Critic(rubric)` cannot be instantiated directly (`TypeError`, ABC); a concrete subclass's `_finding()` fills `critic_id`/`invariant`/`remedy` from the rubric and defaults `severity` to `rubric.severity`; an explicit `severity=` overrides it; `_finding(check_id="nonexistent", ...)` raises `UnknownCheckError`.
+- `test_runner.py` — two critics with disjoint `applies_to` each see only their matching candidates; a rubric with `applies_to: []` sees every candidate; a critic with no relevant candidates in the batch is never called (spied); results from multiple critics concatenate in critic order.
+- `test_scoring.py` — no findings → `score == 10.0`, `blocked is False`; one `BLOCK` finding among others → `score == 0.0`, `blocked is True` regardless of accompanying warn/note findings; 2 `WARN` findings → `6.0`; 3 `NOTE` findings → `8.5`; 10 `WARN` findings → floors at `0.0` (not negative); a finding belonging to a different `critic_id` is excluded from this rubric's score; `aggregate()` over 2 rubrics returns 2 `DimensionScore`s in the given order.
+- `test_example_framework_contract.py` — `assert_rubric_fixtures(NonEmptyTextCritic(load_rubric(...)), rubric_path, parse_fixture=...)` passes against the real `example/` fixtures (the S2 contract, actually exercised); a deliberately regressed critic (`check()` always returns `[]`) run through the same call raises `AssertionError` (proving the harness would actually catch a regression); a rubric copy whose `clean_fixtures` glob matches nothing raises `AssertionError` from `assert_rubric_fixtures` itself, not a downstream error.
+
+**Gating check** (PHASES.md): `uv run pytest tests/critics -q` green. A critic can be added by writing a rubric file and a class with one method, with no runtime change — demonstrated by `NonEmptyTextCritic` needing zero changes to `runner.py`/`scoring.py`/`base.py`. Findings aggregate into dimension scores deterministically: `test_scoring.py` calls `score_dimension` twice on the same inputs and asserts equal output. Severity ordering is enforced by type: `Rubric.model_validate({"severity": "critical", ...})` raises before any critic runs. `uv run mypy src` clean with `probative.core.critic` under strict mode; `uv run ruff check`/`ruff format --check` clean.
+
+**Implementation notes (resolved during build session)**:
+
+- **The spec held exactly as written** — every type, contract and algorithm above was implemented verbatim, including the floor-based scoring formula and its constants (`10.0` ceiling, `2.0`/`0.5` penalties). No deviation to record here, unlike PB1/PB2-p2 where real samples reshaped the design; PB3 had no external material to react to, only an internal design choice, which the spec itself already resolved.
+- **The `applies_to` matching mechanism (`type(candidate).__name__` against a plain string list) was the one design point requiring care**: it's what lets `run_critics`/`Critic` stay fully decoupled from PB4's not-yet-existing node types (`Need`, `FeatureIdea`, etc.) while still implementing S2's documented rubric shape exactly. Confirmed by `test_runner.py` using two throwaway Pydantic models (`Alpha`, `Beta`) that share no relationship with any real or planned node type — proof the framework doesn't secretly depend on one.
+- **`Critic.check()`'s LLM-backed path is unexercised.** The interface (`Sequence[BaseModel] -> list[Finding]`) doesn't preclude a critic that calls a `Provider` internally (needed later for `RedTeam`, PB8), but nothing in this phase proves that works end-to-end — it remains a documented assumption until PB8 actually builds one.
+- **Coverage**: 100% line+branch on every new module except one line in `Critic`'s abstract `check` method (`raise NotImplementedError` in its body) — unreachable because Python's `ABC` machinery already prevents instantiating a `Critic` subclass that doesn't override it; `test_base.py::test_critic_is_abstract` proves that enforcement directly instead. Same class of documented, intentional gap as PB1's own unreachable defensive branches.
+- **Cross-reference fix, not a scope change**: the PB3 stub previously listed "OI3 resolved" as a prerequisite. `PROBATIVE_BUILD_PLAN.md`'s open-items table was already correct (OI3 blocks PB5); the stub was stale. Corrected in the Prerequisites line above rather than left to accumulate confusion at PB5.
 
 ## PB4 — Shallow extraction
 **Objective**: Typed candidates — claims, needs, stories, constraints, dependencies — extracted from a single document with locators, without constructing a graph.

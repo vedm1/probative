@@ -1,0 +1,5 @@
+id: missing_checks
+severity: warn
+applies_to: [Note]
+clean_fixtures: fixtures/clean/*.json
+defect_fixtures: fixtures/seeded/*.json

@@ -1,0 +1,9 @@
+id: bad_severity
+severity: critical
+applies_to: [Note]
+checks:
+  - id: some_check
+    description: A check
+    remedy: Fix it
+clean_fixtures: fixtures/clean/*.json
+defect_fixtures: fixtures/seeded/*.json

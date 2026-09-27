@@ -1,0 +1,12 @@
+id: non_empty_text
+severity: warn
+invariant: null
+applies_to: [Note]
+checks:
+  - id: non_empty_text
+    description: A Note's text must not be empty or whitespace-only
+    examples_bad: [""]
+    examples_good: ["a real note"]
+    remedy: Fill in the note's text
+clean_fixtures: fixtures/clean/*.json
+defect_fixtures: fixtures/seeded/*.json

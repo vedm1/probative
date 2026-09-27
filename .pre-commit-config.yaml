@@ -28,3 +28,9 @@ repos:
       - id: check-merge-conflict
       - id: check-toml
       - id: check-yaml
+        # This one fixture is deliberately invalid YAML syntax — it exists to
+        # test that probative.critics.rubric.load_rubric raises
+        # MalformedRubricError on a YAMLError (PB3). The other malformed/*.yaml
+        # fixtures are syntactically valid YAML (schema-invalid only) and are
+        # still checked.
+        exclude: '^tests/fixtures/critics/malformed/invalid_syntax\.yaml$'
