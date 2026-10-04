@@ -1,0 +1,17 @@
+{
+  "check": "untraced_obligation",
+  "kind": "no_story_near_subject",
+  "text": "# Mobile plans: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Call-data records must be kept for twelve months, as the Telecom Licence requires. |\n| C2 | Customers must be told of a price rise 30 days before it takes effect, under Consumer Code 4. |\n\n## Backlog\n\nUS-1 As a subscriber, I want to see my data usage for the month so that I avoid overage.\nUS-2 As a subscriber, I want a notice a month before my price goes up so that I can switch if I do not like it.\nUS-3 As a subscriber, I want to top up my balance by card so that I never run out.\n",
+  "constraints": [
+    "Call-data records must be kept for twelve months, as the Telecom Licence requires.",
+    "Customers must be told of a price rise 30 days before it takes effect, under Consumer Code 4."
+  ],
+  "stories": [
+    "As a subscriber, I want to see my data usage for the month so that I avoid overage.",
+    "As a subscriber, I want a notice a month before my price goes up so that I can switch if I do not like it.",
+    "As a subscriber, I want to top up my balance by card so that I never run out."
+  ],
+  "expect_untraced": [
+    "Call-data records must be kept for twelve months, as the Telecom Licence requires."
+  ]
+}

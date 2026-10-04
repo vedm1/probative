@@ -1,0 +1,31 @@
+id: dependency_critic
+severity: block
+invariant: null           # DESIGN §11 assigns DependencyCritic no invariant (cf. segment_skeptic)
+applies_to: [DependencyCandidate]
+checks:
+  - id: unowned_dependency
+    description: >-
+      The statement says delivery relies on something outside the team (another
+      team, a system, a vendor, a data source, a legal or compliance sign-off, a
+      migration), including a rule that can only be met when an outside party
+      acts, such as a sign-off, approval or countersignature, but names no
+      individual who is responsible for it. An owner is a person's name, on
+      either side of the dependency, stated as responsible for, accountable for,
+      owning, leading or driving it. A team, department, vendor, function, role or
+      title without a name ("the engineering lead") and a placeholder ("TBD", "to
+      be assigned") are not owners, and a remark that an owner exists, is assigned
+      or is pre-approved is not a name. Judged from the statement's own words: a
+      name that appears without being stated as responsible for the dependency is
+      not an owner. Not a violation: a rule or target the team itself must meet,
+      with no outside party relied on, or a statement that says the reliance is
+      already satisfied (delivered, shipped, completed).
+    examples_bad:
+      - "Our reporting depends on the finance team's monthly ledger close"
+      - "Helix Telematics supplies the vehicle location feed we cannot launch without"
+      - "Quarterly figures cannot go out until the auditor's review committee has cleared them"
+    examples_good:
+      - "Hannah Brandt is the single point of contact accountable for the vendor's security questionnaire, which we need before launch"
+      - "Delivery relies on the data-sharing approval from the privacy office, and Kenji Ito is leading it"
+    remedy: Name one person who is accountable for this dependency
+clean_fixtures: fixtures/clean/**/*.json
+defect_fixtures: fixtures/seeded/**/*.json

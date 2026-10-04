@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "obligation_preclearance",
+  "text": "# RAID log\n\n### Dependencies\n\n* Pricing changes must be pre-cleared by the regulator's markets team before they go live.\n",
+  "dependencies": [
+    "Pricing changes must be pre-cleared by the regulator's markets team before they go live."
+  ]
+}

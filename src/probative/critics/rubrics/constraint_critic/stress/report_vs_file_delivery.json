@@ -1,0 +1,15 @@
+{
+  "expect_untraced": [],
+  "allow_also_untraced": [
+    "Settlement files must be delivered to the partner bank by 06:00 UTC, per the Services Agreement."
+  ],
+  "why": "a report is about the same data as a delivery deadline, not about delivering it on time: defensible either way",
+  "text": "# Settlements\n\n## Requirements\n\n- Settlement files must be delivered to the partner bank by 06:00 UTC, per the Services Agreement.\n\n## Stories\n\n- As a finance analyst, I want a settlement report so that I can reconcile payouts.\n- As a finance analyst, I want to filter payouts by merchant so that I can answer queries.\n",
+  "constraints": [
+    "Settlement files must be delivered to the partner bank by 06:00 UTC, per the Services Agreement."
+  ],
+  "stories": [
+    "As a finance analyst, I want a settlement report so that I can reconcile payouts.",
+    "As a finance analyst, I want to filter payouts by merchant so that I can answer queries."
+  ]
+}

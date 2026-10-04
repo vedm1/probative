@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_e156924b2e98\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"migrated to the new database by the platform group\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2167,
+    "completion_tokens": 75
+  }
+}

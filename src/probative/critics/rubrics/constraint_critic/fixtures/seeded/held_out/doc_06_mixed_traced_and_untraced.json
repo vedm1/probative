@@ -1,0 +1,17 @@
+{
+  "check": "untraced_obligation",
+  "kind": "mixed_traced_and_untraced",
+  "text": "# Airline check-in: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Passport details must be deleted 30 days after the flight, under the Border Data Agreement. |\n| C2 | Passengers must be offered the chance to refuse a seat upgrade that carries a fee, under the Passenger Rights Charter. |\n\n## Backlog\n\nUS-1 As a passenger, I want to scan my passport at check-in so that I skip the desk.\nUS-2 As a gate agent, I want to see who has checked in so that I can start boarding.\nUS-3 As a passenger, I want to decline any paid upgrade offered to me so that I am never charged for one I did not want.\n",
+  "constraints": [
+    "Passport details must be deleted 30 days after the flight, under the Border Data Agreement.",
+    "Passengers must be offered the chance to refuse a seat upgrade that carries a fee, under the Passenger Rights Charter."
+  ],
+  "stories": [
+    "As a passenger, I want to scan my passport at check-in so that I skip the desk.",
+    "As a gate agent, I want to see who has checked in so that I can start boarding.",
+    "As a passenger, I want to decline any paid upgrade offered to me so that I am never charged for one I did not want."
+  ],
+  "expect_untraced": [
+    "Passport details must be deleted 30 days after the flight, under the Border Data Agreement."
+  ]
+}

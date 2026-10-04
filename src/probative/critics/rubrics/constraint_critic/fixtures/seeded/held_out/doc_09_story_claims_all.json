@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "story_claims_all",
+  "text": "# Property listings: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Listings must state the energy rating of the building, per the Housing Disclosure Regulations. |\n| C2 | Agents must not publish a listing without the owner's written consent, under the Estate Agents Code. |\n\n## Backlog\n\nUS-1 As a product owner, I want every listing page to meet all the rules in this document so that we pass inspection.\nUS-2 As an agent, I want to add photos to a listing so that it attracts viewers.\nUS-3 As an agent, I want publishing blocked until the owner's signed consent is uploaded so that I never list a property without it.\nUS-4 As a buyer, I want to filter listings by price so that I see what I can afford.\n",
+  "constraints": [
+    "Listings must state the energy rating of the building, per the Housing Disclosure Regulations.",
+    "Agents must not publish a listing without the owner's written consent, under the Estate Agents Code."
+  ],
+  "stories": [
+    "As a product owner, I want every listing page to meet all the rules in this document so that we pass inspection.",
+    "As an agent, I want to add photos to a listing so that it attracts viewers.",
+    "As an agent, I want publishing blocked until the owner's signed consent is uploaded so that I never list a property without it.",
+    "As a buyer, I want to filter listings by price so that I see what I can afford."
+  ],
+  "expect_untraced": [
+    "Listings must state the energy rating of the building, per the Housing Disclosure Regulations."
+  ]
+}

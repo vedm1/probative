@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_757cccc183be\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"we still need the vendor's integration team to open the API\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2169,
+    "completion_tokens": 186
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "text": "# RAID log\n\n### Dependencies\n\n* Blocker: sandbox credentials from the processor; Joon-ho Park is leading the effort to get them.\n* RAID D-9: data-sharing agreement with the hospital group, owner Beatrice Lindqvist.\n* Depends on central IT opening the firewall port; Ravi Menon raised the ticket and owns it.\n",
+  "dependencies": [
+    "Blocker: sandbox credentials from the processor; Joon-ho Park is leading the effort to get them.",
+    "RAID D-9: data-sharing agreement with the hospital group, owner Beatrice Lindqvist.",
+    "Depends on central IT opening the firewall port; Ravi Menon raised the ticket and owns it."
+  ]
+}

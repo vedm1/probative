@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_dfc0efbff6b8\",\"story_id\":\"cand_story_955f06e0ce6b\",\"quote\":\"reach me by phone within thirty minutes\"},{\"constraint_id\":\"cand_constraint_4f750dc64589\",\"story_id\":\"cand_story_8781784ef20d\",\"quote\":\"results sent only to the doctor who ordered the test\"},{\"constraint_id\":\"cand_constraint_6e0b56745cdc\",\"story_id\":\"cand_story_7f2f6b2ebb25\",\"quote\":\"print labels carrying two patient identifiers\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2138,
+    "completion_tokens": 207
+  }
+}

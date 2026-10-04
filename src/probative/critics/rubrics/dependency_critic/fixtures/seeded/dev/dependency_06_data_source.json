@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "data_source",
+  "text": "# Dependencies\n\n## What we rely on\n\n- We cannot build the churn model until the CRM export is made available by sales operations.\n",
+  "dependencies": [
+    "We cannot build the churn model until the CRM export is made available by sales operations."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_50d914655937\",\"story_id\":\"cand_story_7f4dcd2a9056\",\"quote\":\"log when I arrive at and leave a site\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2233,
+    "completion_tokens": 100
+  }
+}

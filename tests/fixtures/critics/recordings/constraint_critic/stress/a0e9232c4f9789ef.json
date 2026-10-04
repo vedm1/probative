@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_a9a7040a2800\",\"story_id\":\"cand_story_965ad4c117f2\",\"quote\":\"a security alert on my screen within one minute of it being raised\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1968,
+    "completion_tokens": 152
+  }
+}

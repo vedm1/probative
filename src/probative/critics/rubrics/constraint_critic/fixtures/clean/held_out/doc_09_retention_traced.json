@@ -1,0 +1,12 @@
+{
+  "text": "# Voice messaging: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Voice messages must not be stored longer than 7 days, under the Messaging Privacy Rules. |\n\n## Backlog\n\nUS-1 As a user, I want my voice messages to disappear from the server after a week so that old ones do not pile up.\nUS-2 As a user, I want to play messages at double speed so that I save time.\nUS-3 As a user, I want to record a voice message so that I can talk without typing.\n",
+  "constraints": [
+    "Voice messages must not be stored longer than 7 days, under the Messaging Privacy Rules."
+  ],
+  "stories": [
+    "As a user, I want my voice messages to disappear from the server after a week so that old ones do not pile up.",
+    "As a user, I want to play messages at double speed so that I save time.",
+    "As a user, I want to record a voice message so that I can talk without typing."
+  ],
+  "expect_untraced": []
+}

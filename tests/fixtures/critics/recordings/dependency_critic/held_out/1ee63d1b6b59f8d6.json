@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_802772522e1f\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Depends on: central IT to open the firewall port for the reporting server.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2156,
+    "completion_tokens": 83
+  }
+}

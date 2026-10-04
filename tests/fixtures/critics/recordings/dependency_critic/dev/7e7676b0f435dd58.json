@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_2ed5a90b61d3\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Delivery depends on the tax engine from the finance systems team\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2174,
+    "completion_tokens": 191
+  }
+}

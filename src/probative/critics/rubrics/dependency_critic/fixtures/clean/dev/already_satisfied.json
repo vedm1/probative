@@ -1,0 +1,8 @@
+{
+  "text": "# Dependencies\n\n## What we rely on\n\n- The identity provider integration shipped in March, so nothing further is needed from the platform group.\n- The vendor's sandbox is already live and in use, so there is nothing to wait for.\n- The legal review of the new terms was completed last week and is no longer a blocker.\n",
+  "dependencies": [
+    "The identity provider integration shipped in March, so nothing further is needed from the platform group.",
+    "The vendor's sandbox is already live and in use, so there is nothing to wait for.",
+    "The legal review of the new terms was completed last week and is no longer a blocker."
+  ]
+}

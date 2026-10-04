@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_e0b807b94bf4\",\"story_id\":\"cand_story_96e51c452fda\",\"quote\":\"an overdue notice within two days of the due date\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2005,
+    "completion_tokens": 74
+  }
+}

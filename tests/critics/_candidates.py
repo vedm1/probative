@@ -10,6 +10,8 @@ from typing import Any
 from probative.core.candidates import (
     CandidateKind,
     ClaimCandidate,
+    ConstraintCandidate,
+    DependencyCandidate,
     NeedCandidate,
     SegmentCandidate,
     StoryCandidate,
@@ -66,6 +68,32 @@ def segments(
     return out
 
 
+def constraints(
+    text: str, quotes: list[str], *, source_id: str = "src_test"
+) -> list[ConstraintCandidate]:
+    source = make_source(text, source_id=source_id)
+    out = []
+    for quote in quotes:
+        span = _resolve(source, quote)
+        out.append(
+            ConstraintCandidate(id=candidate_id(CandidateKind.CONSTRAINT, span), evidence=span)
+        )
+    return out
+
+
+def dependencies(
+    text: str, quotes: list[str], *, source_id: str = "src_test"
+) -> list[DependencyCandidate]:
+    source = make_source(text, source_id=source_id)
+    out = []
+    for quote in quotes:
+        span = _resolve(source, quote)
+        out.append(
+            DependencyCandidate(id=candidate_id(CandidateKind.DEPENDENCY, span), evidence=span)
+        )
+    return out
+
+
 def load_fixture(path: Path) -> dict[str, Any]:
     raw: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
     return raw
@@ -88,6 +116,11 @@ def parse_story_fixture(path: Path) -> list[StoryCandidate]:
 def parse_claim_fixture(path: Path) -> list[ClaimCandidate]:
     data = load_fixture(path)
     return claims(data["text"], data["claims"], source_id=f"src_{path.stem}")
+
+
+def parse_dependency_fixture(path: Path) -> list[DependencyCandidate]:
+    data = load_fixture(path)
+    return dependencies(data["text"], data["dependencies"], source_id=f"src_{path.stem}")
 
 
 def parse_segment_fixture(path: Path) -> list[SegmentCandidate]:

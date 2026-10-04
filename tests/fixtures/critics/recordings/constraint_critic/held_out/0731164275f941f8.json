@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_5abc387b7ae3\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_516bd645151d\",\"story_id\":\"cand_story_0f8c4cab367e\",\"quote\":\"applicants under 18 to be declined automatically so that no minor opens an account\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2114,
+    "completion_tokens": 353
+  }
+}

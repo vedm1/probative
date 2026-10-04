@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "deadline_vs_feature",
+  "text": "# Payroll\n\n## Requirements\n\n- Overtime must be paid at one and a half times the base rate under the Collective Agreement.\n- Salaries must reach employees no later than the 25th of each month under the standard Employment Agreement.\n\n## Stories\n\n- As an employee, I want to download my annual tax statement so that I can file my return.\n- As an employee, I want to update my bank details so that my pay goes to the right account.\n- As a payroll clerk, I want overtime hours calculated at one and a half times the base rate so that staff are paid what the agreement says.\n- As an employee, I want to view my payslip so that I can check my pay.\n",
+  "constraints": [
+    "Overtime must be paid at one and a half times the base rate under the Collective Agreement.",
+    "Salaries must reach employees no later than the 25th of each month under the standard Employment Agreement."
+  ],
+  "stories": [
+    "As an employee, I want to download my annual tax statement so that I can file my return.",
+    "As an employee, I want to update my bank details so that my pay goes to the right account.",
+    "As a payroll clerk, I want overtime hours calculated at one and a half times the base rate so that staff are paid what the agreement says.",
+    "As an employee, I want to view my payslip so that I can check my pay."
+  ],
+  "expect_untraced": [
+    "Salaries must reach employees no later than the 25th of each month under the standard Employment Agreement."
+  ]
+}

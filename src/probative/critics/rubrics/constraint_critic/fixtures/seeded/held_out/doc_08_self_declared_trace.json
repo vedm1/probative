@@ -1,0 +1,16 @@
+{
+  "check": "untraced_obligation",
+  "kind": "self_declared_trace",
+  "text": "# E-learning: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Course completion records must be kept for five years under the Training Standards Act (traced to US-6). |\n\n## Backlog\n\nUS-1 As a learner, I want to take a quiz after each module so that I check my understanding.\nUS-2 As an admin, I want to enrol a team in a course so that they start together.\nUS-3 As a learner, I want to resume a lesson where I stopped so that I save time.\n",
+  "constraints": [
+    "Course completion records must be kept for five years under the Training Standards Act (traced to US-6)."
+  ],
+  "stories": [
+    "As a learner, I want to take a quiz after each module so that I check my understanding.",
+    "As an admin, I want to enrol a team in a course so that they start together.",
+    "As a learner, I want to resume a lesson where I stopped so that I save time."
+  ],
+  "expect_untraced": [
+    "Course completion records must be kept for five years under the Training Standards Act (traced to US-6)."
+  ]
+}

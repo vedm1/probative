@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_5c6b1d960b44\",\"story_id\":\"cand_story_330e01e3bcc9\",\"quote\":\"I want my fee refunded if I withdraw within 14 days\"},{\"constraint_id\":\"cand_constraint_8618871a536f\",\"story_id\":null,\"quote\":null}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2105,
+    "completion_tokens": 117
+  }
+}

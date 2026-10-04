@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_c4eaa81dedef\",\"story_id\":\"cand_story_845b49176004\",\"quote\":\"I want the video of my visit deleted as soon as the doctor has signed off the write-up\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2012,
+    "completion_tokens": 86
+  }
+}

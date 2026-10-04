@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "approval_obligation",
+  "text": "# Charity payments: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Payments to a new beneficiary must be approved by the treasurer, per the Charity Finance Rules. |\n| C2 | Donor details must not be shared with third parties without permission, under the Fundraising Code. |\n\n## Backlog\n\nUS-1 As a finance officer, I want to add a new beneficiary so that I can pay them.\nUS-2 As a finance officer, I want to schedule a payment run so that bills go out on time.\nUS-3 As a trustee, I want to see the payments made last month so that I can review them.\nUS-4 As a donor, I want my details kept from other organisations unless I say yes so that I am not contacted by strangers.\n",
+  "constraints": [
+    "Payments to a new beneficiary must be approved by the treasurer, per the Charity Finance Rules.",
+    "Donor details must not be shared with third parties without permission, under the Fundraising Code."
+  ],
+  "stories": [
+    "As a finance officer, I want to add a new beneficiary so that I can pay them.",
+    "As a finance officer, I want to schedule a payment run so that bills go out on time.",
+    "As a trustee, I want to see the payments made last month so that I can review them.",
+    "As a donor, I want my details kept from other organisations unless I say yes so that I am not contacted by strangers."
+  ],
+  "expect_untraced": [
+    "Payments to a new beneficiary must be approved by the treasurer, per the Charity Finance Rules."
+  ]
+}

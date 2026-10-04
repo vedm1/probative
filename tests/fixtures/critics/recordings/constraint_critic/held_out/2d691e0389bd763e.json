@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_0d4c0a2efae0\",\"story_id\":\"cand_story_84ef43bdf54e\",\"quote\":\"a driver taken off the road automatically when a safety complaint is opened\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2024,
+    "completion_tokens": 117
+  }
+}

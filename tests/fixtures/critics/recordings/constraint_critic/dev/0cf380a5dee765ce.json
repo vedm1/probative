@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_f1378e4846b5\",\"story_id\":\"cand_story_911b18425b99\",\"quote\":\"a written explanation of why my claim was accepted or refused\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2056,
+    "completion_tokens": 105
+  }
+}

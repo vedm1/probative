@@ -1,0 +1,12 @@
+{
+  "text": "# Telehealth\n\n## Requirements\n\n- Consultation recordings must be destroyed once the clinical note is signed, as required by the Health Data Standard 6.\n\n## Stories\n\n- As a patient, I want the video of my visit deleted as soon as the doctor has signed off the write-up so that no copy lingers.\n- As a patient, I want to share my documents before a visit so that the doctor has them.\n- As a patient, I want to schedule a visit so that I can see a doctor from home.\n",
+  "constraints": [
+    "Consultation recordings must be destroyed once the clinical note is signed, as required by the Health Data Standard 6."
+  ],
+  "stories": [
+    "As a patient, I want the video of my visit deleted as soon as the doctor has signed off the write-up so that no copy lingers.",
+    "As a patient, I want to share my documents before a visit so that the doctor has them.",
+    "As a patient, I want to schedule a visit so that I can see a doctor from home."
+  ],
+  "expect_untraced": []
+}

@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "deadline_vs_feature",
+  "text": "# Planning permits: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Fee refunds must be offered when an application is withdrawn within 14 days, per the Fees Regulations. |\n| C2 | Applications must be decided within 28 days under the Planning Act. |\n\n## Backlog\n\nUS-1 As an applicant, I want to upload drawings so that the council can assess them.\nUS-2 As an applicant, I want my fee refunded if I withdraw within 14 days so that I do not lose money on a change of mind.\nUS-3 As an applicant, I want to pay the fee online so that I avoid a cheque.\nUS-4 As an applicant, I want to see the status of my application so that I know where it stands.\n",
+  "constraints": [
+    "Fee refunds must be offered when an application is withdrawn within 14 days, per the Fees Regulations.",
+    "Applications must be decided within 28 days under the Planning Act."
+  ],
+  "stories": [
+    "As an applicant, I want to upload drawings so that the council can assess them.",
+    "As an applicant, I want my fee refunded if I withdraw within 14 days so that I do not lose money on a change of mind.",
+    "As an applicant, I want to pay the fee online so that I avoid a cheque.",
+    "As an applicant, I want to see the status of my application so that I know where it stands."
+  ],
+  "expect_untraced": [
+    "Applications must be decided within 28 days under the Planning Act."
+  ]
+}

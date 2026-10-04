@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_2923a692af8d\",\"story_id\":\"cand_story_b2faa12b49f5\",\"quote\":\"amend my return up to a year after filing\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2000,
+    "completion_tokens": 128
+  }
+}

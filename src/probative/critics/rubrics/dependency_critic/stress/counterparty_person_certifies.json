@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unowned_dependency"
+  ],
+  "why": "a named person on the other side, not stated as accountable: defensible either way",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Launch needs certification from Acme's compliance head, Raj Shah.\n",
+  "dependencies": [
+    "Launch needs certification from Acme's compliance head, Raj Shah."
+  ]
+}

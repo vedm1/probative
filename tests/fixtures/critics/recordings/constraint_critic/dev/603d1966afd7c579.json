@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_719f4741ef79\",\"story_id\":\"cand_story_a228c27d2721\",\"quote\":\"be given a day's notice before anyone visits\"},{\"constraint_id\":\"cand_constraint_6d22206b0f64\",\"story_id\":\"cand_story_27841083ffcd\",\"quote\":\"deposits kept apart from the company's own money\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2095,
+    "completion_tokens": 134
+  }
+}

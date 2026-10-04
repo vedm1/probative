@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "blocker_unassigned",
+  "text": "# RAID log\n\n### Dependencies\n\n* Blocker: sandbox credentials from the payments processor. Owner: unassigned.\n",
+  "dependencies": [
+    "Blocker: sandbox credentials from the payments processor. Owner: unassigned."
+  ]
+}

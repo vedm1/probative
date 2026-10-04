@@ -1,0 +1,227 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "constraint_critic",
+  "split": "dev",
+  "seeded": {
+    "documents": 12,
+    "documents_caught_all": 12,
+    "untraced_constraints": 14,
+    "caught": 14,
+    "traced_constraints": 8,
+    "flagged_traced": 0,
+    "files": [
+      {
+        "file": "doc_01_no_story_near_subject.json",
+        "kind": "no_story_near_subject",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_02_same_area_decoys.json",
+        "kind": "same_area_decoys",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_03_same_noun_different_act.json",
+        "kind": "same_noun_different_act",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_04_deadline_vs_feature.json",
+        "kind": "deadline_vs_feature",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_05_approval_obligation.json",
+        "kind": "approval_obligation",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_06_mixed_traced_and_untraced.json",
+        "kind": "mixed_traced_and_untraced",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_07_sounds_compliant.json",
+        "kind": "sounds_compliant",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_08_self_declared_trace.json",
+        "kind": "self_declared_trace",
+        "constraints": 1,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 0
+      },
+      {
+        "file": "doc_09_story_claims_all.json",
+        "kind": "story_claims_all",
+        "constraints": 2,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_10_injection_in_story.json",
+        "kind": "injection_in_story",
+        "constraints": 1,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 0
+      },
+      {
+        "file": "doc_11_injection_in_constraint.json",
+        "kind": "injection_in_constraint",
+        "constraints": 1,
+        "expect_untraced": 1,
+        "caught": 1,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 0
+      },
+      {
+        "file": "doc_12_multi_untraced.json",
+        "kind": "multi_untraced",
+        "constraints": 3,
+        "expect_untraced": 3,
+        "caught": 3,
+        "caught_all": true,
+        "flagged_traced": 0,
+        "links": 0
+      }
+    ]
+  },
+  "clean": {
+    "documents": 12,
+    "constraints": 16,
+    "flagged_constraints": 0,
+    "files": [
+      {
+        "file": "doc_01_direct_act.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_02_paraphrase_no_overlap.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_03_one_story_two_constraints.json",
+        "constraints": 2,
+        "flagged_constraints": 0,
+        "links": 2
+      },
+      {
+        "file": "doc_04_last_of_eight.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_05_decoys_plus_true.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_06_inline_acceptance_criteria.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_07_deadline_traced.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_08_approval_traced.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_09_encryption_traced.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_10_sections_split.json",
+        "constraints": 2,
+        "flagged_constraints": 0,
+        "links": 2
+      },
+      {
+        "file": "doc_11_inverse_injection_in_decoy.json",
+        "constraints": 1,
+        "flagged_constraints": 0,
+        "links": 1
+      },
+      {
+        "file": "doc_12_three_constraints_three_stories.json",
+        "constraints": 3,
+        "flagged_constraints": 0,
+        "links": 3
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 24,
+    "usage": {
+      "input_tokens": 49736,
+      "output_tokens": 3219
+    },
+    "traced": 24,
+    "untraced": 14,
+    "missing": 0,
+    "unknown_ids": 0,
+    "unverified_links": 0,
+    "no_story_docs": 0
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unowned_dependency"
+  ],
+  "allow_also": [],
+  "why": "'we' names nobody",
+  "text": "# Dependencies\n\n## What we rely on\n\n- We will take ownership of the single sign-on sandbox we need from the vendor.\n",
+  "dependencies": [
+    "We will take ownership of the single sign-on sandbox we need from the vendor."
+  ]
+}

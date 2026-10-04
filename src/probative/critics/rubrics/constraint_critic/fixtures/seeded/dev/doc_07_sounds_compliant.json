@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "sounds_compliant",
+  "text": "# Backup service\n\n## Requirements\n\n- Backups must be encrypted with a key held outside the backup system, per Security Standard 9.\n- Restore tests must be run every quarter, under Continuity Policy 4.\n\n## Stories\n\n- As an operator, I want a restore test to run automatically every quarter so that we know backups work.\n- As an operator, I want to restore a backup to a new server so that I can recover quickly.\n- As an operator, I want my backups to be handled safely so that I feel secure about my data.\n- As an operator, I want to schedule nightly backups so that nothing is lost.\n",
+  "constraints": [
+    "Backups must be encrypted with a key held outside the backup system, per Security Standard 9.",
+    "Restore tests must be run every quarter, under Continuity Policy 4."
+  ],
+  "stories": [
+    "As an operator, I want a restore test to run automatically every quarter so that we know backups work.",
+    "As an operator, I want to restore a backup to a new server so that I can recover quickly.",
+    "As an operator, I want my backups to be handled safely so that I feel secure about my data.",
+    "As an operator, I want to schedule nightly backups so that nothing is lost."
+  ],
+  "expect_untraced": [
+    "Backups must be encrypted with a key held outside the backup system, per Security Standard 9."
+  ]
+}

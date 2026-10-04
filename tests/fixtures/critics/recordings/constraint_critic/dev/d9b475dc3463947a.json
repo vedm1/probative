@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_2d32f16dd600\",\"story_id\":\"cand_story_4793b5b0ceb4\",\"quote\":\"the reminder is sent at least 14 days before the charge\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2032,
+    "completion_tokens": 80
+  }
+}

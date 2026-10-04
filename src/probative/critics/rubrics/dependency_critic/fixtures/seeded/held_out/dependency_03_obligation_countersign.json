@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "obligation_countersign",
+  "text": "# RAID log\n\n### Dependencies\n\n* Release notes must be countersigned by the partner bank's risk office before we publish them.\n",
+  "dependencies": [
+    "Release notes must be countersigned by the partner bank's risk office before we publish them."
+  ]
+}

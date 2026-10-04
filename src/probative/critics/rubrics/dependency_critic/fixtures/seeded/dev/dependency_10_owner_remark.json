@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "owner_remark",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Delivery depends on the tax engine from the finance systems team; an owner has been agreed and needs no naming here.\n",
+  "dependencies": [
+    "Delivery depends on the tax engine from the finance systems team; an owner has been agreed and needs no naming here."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "text": "# Dependencies\n\n## What we rely on\n\n- Priya Nair is accountable for getting the fraud team's scoring API into our build.\n- We are waiting on the bank to certify our integration, which Tomasz Wrona is driving on our side.\n- Lena Okafor owns our access to the vendor's test environment and chases it weekly.\n",
+  "dependencies": [
+    "Priya Nair is accountable for getting the fraud team's scoring API into our build.",
+    "We are waiting on the bank to certify our integration, which Tomasz Wrona is driving on our side.",
+    "Lena Okafor owns our access to the vendor's test environment and chases it weekly."
+  ]
+}

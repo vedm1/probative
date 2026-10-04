@@ -1,0 +1,12 @@
+{
+  "text": "# Grants\n\n## Requirements\n\n- Awards above 50,000 must be countersigned by the programme director, under Grants Policy 8.\n\n## Stories\n\n- As a programme director, I want to countersign any award above 50,000 before it is released so that large grants get a second pair of eyes.\n- As an assessor, I want to score applications against the criteria so that decisions are consistent.\n- As an applicant, I want to track my application so that I know when to expect a decision.\n",
+  "constraints": [
+    "Awards above 50,000 must be countersigned by the programme director, under Grants Policy 8."
+  ],
+  "stories": [
+    "As a programme director, I want to countersign any award above 50,000 before it is released so that large grants get a second pair of eyes.",
+    "As an assessor, I want to score applications against the criteria so that decisions are consistent.",
+    "As an applicant, I want to track my application so that I know when to expect a decision."
+  ],
+  "expect_untraced": []
+}

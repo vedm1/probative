@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_e387915ce2c6\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_435aabad380e\",\"story_id\":\"cand_story_f7176bb5f808\",\"quote\":\"read the whole document before I can press sign\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2101,
+    "completion_tokens": 107
+  }
+}

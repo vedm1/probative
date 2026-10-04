@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_4e5ce358514d\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"must be pre-cleared by the regulator's markets team before they go live\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2164,
+    "completion_tokens": 85
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "passive_voice",
+  "text": "# Dependencies\n\n## What we rely on\n\n- The customer export must be validated by the data office before we can release it.\n",
+  "dependencies": [
+    "The customer export must be validated by the data office before we can release it."
+  ]
+}

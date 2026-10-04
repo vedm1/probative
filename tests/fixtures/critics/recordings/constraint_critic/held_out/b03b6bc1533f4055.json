@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_70f39bba59ac\",\"story_id\":\"cand_story_419a7e7ed745\",\"quote\":\"an acknowledgement an hour at most after I file\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2267,
+    "completion_tokens": 76
+  }
+}

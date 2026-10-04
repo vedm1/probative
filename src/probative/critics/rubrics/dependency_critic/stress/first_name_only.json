@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a first name is a name",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Dana is the person responsible for getting us into the vendor's test environment.\n",
+  "dependencies": [
+    "Dana is the person responsible for getting us into the vendor's test environment."
+  ]
+}

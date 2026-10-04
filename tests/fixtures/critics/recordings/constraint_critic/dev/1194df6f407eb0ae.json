@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_b8fbb41e4a3c\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_44139baf9e3b\",\"story_id\":\"cand_story_bc2f9d98b236\",\"quote\":\"a restore test to run automatically every quarter\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2103,
+    "completion_tokens": 197
+  }
+}

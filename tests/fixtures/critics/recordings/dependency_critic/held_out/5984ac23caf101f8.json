@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_839197dd9d78\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_f14f4dbc5fe6\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_ee27af140501\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2287,
+    "completion_tokens": 166
+  }
+}

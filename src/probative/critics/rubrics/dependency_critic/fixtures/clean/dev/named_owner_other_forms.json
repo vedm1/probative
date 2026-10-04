@@ -1,0 +1,8 @@
+{
+  "text": "# Dependencies\n\n## What we rely on\n\n- The shipping rates come from Parcelio, and their account lead Marcus Hale answers for keeping the feed live.\n- Ana Silva answers for the data warehouse refresh we depend on.\n- Mei Tanaka is the named owner of our reliance on the central identity service.\n",
+  "dependencies": [
+    "The shipping rates come from Parcelio, and their account lead Marcus Hale answers for keeping the feed live.",
+    "Ana Silva answers for the data warehouse refresh we depend on.",
+    "Mei Tanaka is the named owner of our reliance on the central identity service."
+  ]
+}

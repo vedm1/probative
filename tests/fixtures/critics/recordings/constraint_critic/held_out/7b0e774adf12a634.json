@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_db1c0232b06a\",\"story_id\":\"cand_story_567755716721\",\"quote\":\"cancel at no cost until two days before I arrive\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2037,
+    "completion_tokens": 72
+  }
+}

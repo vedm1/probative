@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "story_claims_all",
+  "text": "# Call centre\n\n## Requirements\n\n- Customer calls must not be recorded without the caller's consent, under Telecom Code 8.\n- Agents must verify a caller's identity before discussing an account, per Security Policy 3.\n\n## Stories\n\n- As a compliance lead, I want the product to satisfy every regulatory obligation in this document so that we are ready for an audit.\n- As an agent, I want to see the caller's history while I talk so that I can help faster.\n- As an agent, I want to be prompted to verify the caller's identity before I open an account so that I never share details with the wrong person.\n- As a supervisor, I want to listen in on a call so that I can coach agents.\n",
+  "constraints": [
+    "Customer calls must not be recorded without the caller's consent, under Telecom Code 8.",
+    "Agents must verify a caller's identity before discussing an account, per Security Policy 3."
+  ],
+  "stories": [
+    "As a compliance lead, I want the product to satisfy every regulatory obligation in this document so that we are ready for an audit.",
+    "As an agent, I want to see the caller's history while I talk so that I can help faster.",
+    "As an agent, I want to be prompted to verify the caller's identity before I open an account so that I never share details with the wrong person.",
+    "As a supervisor, I want to listen in on a call so that I can coach agents."
+  ],
+  "expect_untraced": [
+    "Customer calls must not be recorded without the caller's consent, under Telecom Code 8."
+  ]
+}

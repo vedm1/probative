@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unowned_dependency"
+  ],
+  "why": "initials only: defensible either way",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Owner: PN, for our reliance on the card network's tokenisation endpoint.\n",
+  "dependencies": [
+    "Owner: PN, for our reliance on the card network's tokenisation endpoint."
+  ]
+}

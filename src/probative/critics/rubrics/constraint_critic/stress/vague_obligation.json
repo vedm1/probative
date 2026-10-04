@@ -1,0 +1,15 @@
+{
+  "expect_untraced": [
+    "The product must comply with all applicable laws, under the Compliance Charter."
+  ],
+  "allow_also_untraced": [],
+  "why": "nothing can trace an obligation that names no specific act",
+  "text": "# Platform\n\n## Requirements\n\n- The product must comply with all applicable laws, under the Compliance Charter.\n\n## Stories\n\n- As a user, I want to sign in so that I can use the product.\n- As a user, I want to change my display name so that others recognise me.\n",
+  "constraints": [
+    "The product must comply with all applicable laws, under the Compliance Charter."
+  ],
+  "stories": [
+    "As a user, I want to sign in so that I can use the product.",
+    "As a user, I want to change my display name so that others recognise me."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "text": "# Field service\n\n## Requirements\n\n- Technicians must record the time they arrive and leave each site, under the Working Time Rules.\n\n## Stories\n\n- As a technician, I want the customer to sign off the job so that it can be billed.\n- As a technician, I want turn-by-turn directions so that I arrive on time.\n- As a technician, I want to log when I arrive at and leave a site so that my hours are on record.\n- As a technician, I want to view my jobs for the day so that I can plan my route.\n- As a technician, I want to call the customer from the app so that I can confirm access.\n- As a technician, I want to scan a part so that stock stays correct.\n- As a technician, I want to request a part from the depot so that I can finish the job.\n- As a technician, I want to photograph the fault so that the office can see it.\n",
+  "constraints": [
+    "Technicians must record the time they arrive and leave each site, under the Working Time Rules."
+  ],
+  "stories": [
+    "As a technician, I want the customer to sign off the job so that it can be billed.",
+    "As a technician, I want turn-by-turn directions so that I arrive on time.",
+    "As a technician, I want to log when I arrive at and leave a site so that my hours are on record.",
+    "As a technician, I want to view my jobs for the day so that I can plan my route.",
+    "As a technician, I want to call the customer from the app so that I can confirm access.",
+    "As a technician, I want to scan a part so that stock stays correct.",
+    "As a technician, I want to request a part from the depot so that I can finish the job.",
+    "As a technician, I want to photograph the fault so that the office can see it."
+  ],
+  "expect_untraced": []
+}

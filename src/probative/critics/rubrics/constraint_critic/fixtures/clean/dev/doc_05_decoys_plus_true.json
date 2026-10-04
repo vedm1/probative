@@ -1,0 +1,13 @@
+{
+  "text": "# Insurance claims\n\n## Requirements\n\n- Claim decisions must be explained to the policyholder in writing, per the Fair Claims Code.\n\n## Stories\n\n- As a policyholder, I want to upload photos of the damage so that my claim has proof.\n- As a policyholder, I want to track the status of my claim so that I know what happens next.\n- As a policyholder, I want a written explanation of why my claim was accepted or refused so that I understand the decision.\n- As a policyholder, I want to speak to an adjuster so that I can ask questions.\n",
+  "constraints": [
+    "Claim decisions must be explained to the policyholder in writing, per the Fair Claims Code."
+  ],
+  "stories": [
+    "As a policyholder, I want to upload photos of the damage so that my claim has proof.",
+    "As a policyholder, I want to track the status of my claim so that I know what happens next.",
+    "As a policyholder, I want a written explanation of why my claim was accepted or refused so that I understand the decision.",
+    "As a policyholder, I want to speak to an adjuster so that I can ask questions."
+  ],
+  "expect_untraced": []
+}

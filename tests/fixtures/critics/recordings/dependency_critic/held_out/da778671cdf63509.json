@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_c2095b8d25a6\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"sits with the platform engineering lead\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2167,
+    "completion_tokens": 76
+  }
+}

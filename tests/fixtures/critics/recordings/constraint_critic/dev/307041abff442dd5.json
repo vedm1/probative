@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_81791505e1e9\",\"story_id\":\"cand_story_30521dd5ee04\",\"quote\":\"left out of the logs\"},{\"constraint_id\":\"cand_constraint_2505def78f23\",\"story_id\":\"cand_story_30521dd5ee04\",\"quote\":\"card numbers hidden on my screen\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2055,
+    "completion_tokens": 125
+  }
+}

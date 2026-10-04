@@ -1,0 +1,25 @@
+{
+  "check": "untraced_obligation",
+  "kind": "multi_untraced",
+  "text": "# Student portal\n\n## Requirements\n\n- Appeals against a grade must be answered within fifteen working days, per the Student Charter.\n- Coursework submissions must be retained for two years under the Academic Regulations.\n- Grades must not be shown to anyone but the student and their tutors, under the Student Privacy Policy.\n\n## Stories\n\n- As a student, I want to view my grades so that I know where I stand.\n- As a student, I want to update my contact details so that the university can reach me.\n- As a student, I want to join a study group so that I can work with others.\n- As a student, I want to open my timetable so that I turn up to the right room.\n- As a student, I want to download lecture notes so that I can revise.\n- As a student, I want to submit coursework online so that I do not have to print it.\n- As a student, I want to see deadlines in one place so that I do not miss one.\n- As a student, I want to message my tutor so that I can ask a question.\n",
+  "constraints": [
+    "Appeals against a grade must be answered within fifteen working days, per the Student Charter.",
+    "Coursework submissions must be retained for two years under the Academic Regulations.",
+    "Grades must not be shown to anyone but the student and their tutors, under the Student Privacy Policy."
+  ],
+  "stories": [
+    "As a student, I want to view my grades so that I know where I stand.",
+    "As a student, I want to update my contact details so that the university can reach me.",
+    "As a student, I want to join a study group so that I can work with others.",
+    "As a student, I want to open my timetable so that I turn up to the right room.",
+    "As a student, I want to download lecture notes so that I can revise.",
+    "As a student, I want to submit coursework online so that I do not have to print it.",
+    "As a student, I want to see deadlines in one place so that I do not miss one.",
+    "As a student, I want to message my tutor so that I can ask a question."
+  ],
+  "expect_untraced": [
+    "Appeals against a grade must be answered within fifteen working days, per the Student Charter.",
+    "Coursework submissions must be retained for two years under the Academic Regulations.",
+    "Grades must not be shown to anyone but the student and their tutors, under the Student Privacy Policy."
+  ]
+}

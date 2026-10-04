@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "same_noun_different_act",
+  "text": "# Admin console\n\n## Requirements\n\n- Audit logs must be tamper-evident under the Internal Controls Policy 7.\n- Administrators must re-authenticate with a second factor before changing roles, per Access Policy 2.\n\n## Stories\n\n- As an administrator, I want to be asked for a second factor before I change a role so that a stolen session cannot grant access.\n- As an administrator, I want to invite a colleague so that they can help me manage settings.\n- As an administrator, I want to filter the audit log by user so that I can investigate an incident.\n- As an administrator, I want to export the audit log to a spreadsheet so that I can share it with the auditor.\n",
+  "constraints": [
+    "Audit logs must be tamper-evident under the Internal Controls Policy 7.",
+    "Administrators must re-authenticate with a second factor before changing roles, per Access Policy 2."
+  ],
+  "stories": [
+    "As an administrator, I want to be asked for a second factor before I change a role so that a stolen session cannot grant access.",
+    "As an administrator, I want to invite a colleague so that they can help me manage settings.",
+    "As an administrator, I want to filter the audit log by user so that I can investigate an incident.",
+    "As an administrator, I want to export the audit log to a spreadsheet so that I can share it with the auditor."
+  ],
+  "expect_untraced": [
+    "Audit logs must be tamper-evident under the Internal Controls Policy 7."
+  ]
+}

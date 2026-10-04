@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "same_area_decoys",
+  "text": "# Shop accounts\n\n## Requirements\n\n- Marketing emails must carry an unsubscribe link, under the Anti-Spam Code section 5.\n- A customer account must be deleted within 30 days of a closure request, per the Data Handling Standard 2.4.\n\n## Stories\n\n- As a subscriber, I want an unsubscribe link in every marketing email so that I can stop them.\n- As a customer, I want to change my password so that my account stays secure.\n- As a customer, I want to update my email address so that receipts reach me.\n- As a customer, I want to see my past orders so that I can reorder.\n",
+  "constraints": [
+    "Marketing emails must carry an unsubscribe link, under the Anti-Spam Code section 5.",
+    "A customer account must be deleted within 30 days of a closure request, per the Data Handling Standard 2.4."
+  ],
+  "stories": [
+    "As a subscriber, I want an unsubscribe link in every marketing email so that I can stop them.",
+    "As a customer, I want to change my password so that my account stays secure.",
+    "As a customer, I want to update my email address so that receipts reach me.",
+    "As a customer, I want to see my past orders so that I can reorder."
+  ],
+  "expect_untraced": [
+    "A customer account must be deleted within 30 days of a closure request, per the Data Handling Standard 2.4."
+  ]
+}

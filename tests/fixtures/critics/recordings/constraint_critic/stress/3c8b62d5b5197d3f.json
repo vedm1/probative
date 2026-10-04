@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_088423a934ad\",\"story_id\":\"cand_story_87d3a6729a34\",\"quote\":\"block me from starting a truck without a valid licence on file\"},{\"constraint_id\":\"cand_constraint_5f73500f9f41\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_59a517741277\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_0528a7d9170c\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_4a6a9a7be2e7\",\"story_id\":null,\"quote\":null}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2334,
+    "completion_tokens": 507
+  }
+}

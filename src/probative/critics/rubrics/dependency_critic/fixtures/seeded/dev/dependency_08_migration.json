@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "migration",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Settlement reports can only be switched on once the ledger has been migrated to the new database by the platform group.\n",
+  "dependencies": [
+    "Settlement reports can only be switched on once the ledger has been migrated to the new database by the platform group."
+  ]
+}

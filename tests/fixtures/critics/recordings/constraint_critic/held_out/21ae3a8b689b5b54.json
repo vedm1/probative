@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_00d26633db98\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_eca6e44eab2f\",\"story_id\":\"cand_story_b46b27c361e8\",\"quote\":\"decline any paid upgrade offered to me\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2073,
+    "completion_tokens": 110
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "text": "# Dependencies\n\n## What we rely on\n\n- Every export must carry the date it was generated, per Policy OPS-3.\n- The service must respond within 300 milliseconds at the 95th percentile.\n- Card data must be encrypted at rest in line with Security Standard 9.\n",
+  "dependencies": [
+    "Every export must carry the date it was generated, per Policy OPS-3.",
+    "The service must respond within 300 milliseconds at the 95th percentile.",
+    "Card data must be encrypted at rest in line with Security Standard 9."
+  ]
+}

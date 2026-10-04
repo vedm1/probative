@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_650ac319e301\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_8a19bf3cf61d\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"depends on the infrastructure group provisioning a staging cluster in the EU region\"},{\"candidate_id\":\"cand_dependency_b36b4206e5db\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_3cd38decfea2\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"depends on the tax engine from the finance systems team\"},{\"candidate_id\":\"cand_dependency_cdb80c6f1af2\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2400,
+    "completion_tokens": 589
+  }
+}

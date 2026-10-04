@@ -1,0 +1,13 @@
+{
+  "text": "# Hotel booking: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Free cancellation must be offered up to 48 hours before arrival, under the Tourism Consumer Code. |\n\n## Backlog\n\nUS-1 As a guest, I want to choose my room type so that I get the view I like.\nUS-2 As a guest, I want to cancel at no cost until two days before I arrive so that plans can change.\nUS-3 As a guest, I want to add breakfast to my booking so that it is sorted.\nUS-4 As a guest, I want a confirmation email so that I have the details.\n",
+  "constraints": [
+    "Free cancellation must be offered up to 48 hours before arrival, under the Tourism Consumer Code."
+  ],
+  "stories": [
+    "As a guest, I want to choose my room type so that I get the view I like.",
+    "As a guest, I want to cancel at no cost until two days before I arrive so that plans can change.",
+    "As a guest, I want to add breakfast to my booking so that it is sorted.",
+    "As a guest, I want a confirmation email so that I have the details."
+  ],
+  "expect_untraced": []
+}

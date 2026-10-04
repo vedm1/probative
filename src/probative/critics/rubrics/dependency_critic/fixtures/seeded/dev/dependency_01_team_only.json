@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "team_only",
+  "text": "# Dependencies\n\n## What we rely on\n\n- The mobile release cannot go out before the Identity team finishes the new login service.\n",
+  "dependencies": [
+    "The mobile release cannot go out before the Identity team finishes the new login service."
+  ]
+}

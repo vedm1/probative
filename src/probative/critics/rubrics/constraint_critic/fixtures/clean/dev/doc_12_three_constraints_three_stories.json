@@ -1,0 +1,14 @@
+{
+  "text": "# HR portal\n\n## Requirements\n\n- Managers must complete harassment training every year, under the Workplace Code.\n- Employees must be able to see everything held about them, per the Data Rights Policy.\n- Leave records must be kept for six years under the Employment Records Act.\n\n## Stories\n\n- As a manager, I want a yearly harassment training course assigned to me so that I stay within the code.\n- As an HR officer, I want leave records retained for six years so that the legal period is met.\n- As an employee, I want to see all the information the company holds about me so that I can check it.\n",
+  "constraints": [
+    "Managers must complete harassment training every year, under the Workplace Code.",
+    "Employees must be able to see everything held about them, per the Data Rights Policy.",
+    "Leave records must be kept for six years under the Employment Records Act."
+  ],
+  "stories": [
+    "As a manager, I want a yearly harassment training course assigned to me so that I stay within the code.",
+    "As an HR officer, I want leave records retained for six years so that the legal period is met.",
+    "As an employee, I want to see all the information the company holds about me so that I can check it."
+  ],
+  "expect_untraced": []
+}

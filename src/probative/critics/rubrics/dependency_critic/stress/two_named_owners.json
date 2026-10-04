@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "two named individuals both stated as owners",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Nuria Vidal and Ola Bakare are both on the hook for the billing export we need.\n",
+  "dependencies": [
+    "Nuria Vidal and Ola Bakare are both on the hook for the billing export we need."
+  ]
+}

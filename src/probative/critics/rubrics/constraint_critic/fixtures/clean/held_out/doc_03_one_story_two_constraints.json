@@ -1,0 +1,13 @@
+{
+  "text": "# Smart meter: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Readings must be sent over an encrypted channel, per Energy Security Code 3. |\n| C2 | Readings must carry a signature so tampering is detectable, per Energy Security Code 4. |\n\n## Backlog\n\nUS-1 As a resident, I want to see my usage by hour so that I can shift demand.\nUS-2 As a utility engineer, I want to update meter firmware remotely so that I avoid site visits.\nUS-3 As a utility engineer, I want each reading encrypted in transit and signed at source so that nothing can be read or altered on the way.\n",
+  "constraints": [
+    "Readings must be sent over an encrypted channel, per Energy Security Code 3.",
+    "Readings must carry a signature so tampering is detectable, per Energy Security Code 4."
+  ],
+  "stories": [
+    "As a resident, I want to see my usage by hour so that I can shift demand.",
+    "As a utility engineer, I want to update meter firmware remotely so that I avoid site visits.",
+    "As a utility engineer, I want each reading encrypted in transit and signed at source so that nothing can be read or altered on the way."
+  ],
+  "expect_untraced": []
+}

@@ -1,0 +1,198 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "dependency_critic",
+  "stress": {
+    "critic": "dependency_critic",
+    "n": 14,
+    "as_expected": 14,
+    "files": [
+      {
+        "file": "bare_noun_phrase.json",
+        "expect_fired": [
+          "unowned_dependency"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unowned_dependency"
+        ],
+        "as_expected": true,
+        "why": "a noun phrase naming an outside party is a complete statement, not cannot_tell"
+      },
+      {
+        "file": "counterparty_person_certifies.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unowned_dependency"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "a named person on the other side, not stated as accountable: defensible either way"
+      },
+      {
+        "file": "doc_voice_injection.json",
+        "expect_fired": [
+          "unowned_dependency"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unowned_dependency"
+        ],
+        "as_expected": true,
+        "why": "an instruction aimed at the reviewer inside the statement, no name"
+      },
+      {
+        "file": "first_name_only.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a first name is a name"
+      },
+      {
+        "file": "heading_only.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a heading names no outside party and is no statement: cannot_tell, no finding"
+      },
+      {
+        "file": "initials_only.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unowned_dependency"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "initials only: defensible either way"
+      },
+      {
+        "file": "leads_the_building_team.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unowned_dependency"
+        ],
+        "fired": [
+          "unowned_dependency"
+        ],
+        "as_expected": true,
+        "why": "a named lead of the owning team: defensible either way, so a flag is tolerated"
+      },
+      {
+        "file": "name_without_responsibility.json",
+        "expect_fired": [
+          "unowned_dependency"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unowned_dependency"
+        ],
+        "as_expected": true,
+        "why": "a name appears but is not stated as responsible for the dependency"
+      },
+      {
+        "file": "obligation_with_outside_party.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unowned_dependency"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "an obligation that names a counterparty: the carve-out says met, but it reads like a reliance"
+      },
+      {
+        "file": "owner_in_next_sentence.json",
+        "expect_fired": [
+          "unowned_dependency"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unowned_dependency"
+        ],
+        "as_expected": true,
+        "why": "the owner is named in the NEXT sentence, which a one-statement critic cannot see: the known false-positive class (OI23b)"
+      },
+      {
+        "file": "owner_in_table_column.json",
+        "expect_fired": [
+          "unowned_dependency"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unowned_dependency"
+        ],
+        "as_expected": true,
+        "why": "the statement is a table cell and the owner sits in another cell the candidate does not contain"
+      },
+      {
+        "file": "resolved_in_the_statement.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "already satisfied: met on the carve-out"
+      },
+      {
+        "file": "two_named_owners.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "two named individuals both stated as owners"
+      },
+      {
+        "file": "we_will_own_it.json",
+        "expect_fired": [
+          "unowned_dependency"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unowned_dependency"
+        ],
+        "as_expected": true,
+        "why": "'we' names nobody"
+      }
+    ],
+    "judge_stats": {
+      "calls": 14,
+      "usage": {
+        "input_tokens": 30231,
+        "output_tokens": 3724
+      },
+      "met": 6,
+      "not_met": 7,
+      "cannot_tell": 1,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  },
+  "mixed": {
+    "critic": "dependency_critic",
+    "candidates": 48,
+    "seeded": {
+      "n": 24,
+      "caught": 24,
+      "caught_intended": 24
+    },
+    "clean": {
+      "candidates": 24,
+      "flagged_candidates": 0
+    },
+    "judge_stats": {
+      "calls": 10,
+      "usage": {
+        "input_tokens": 23737,
+        "output_tokens": 5067
+      },
+      "met": 24,
+      "not_met": 24,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  }
+}

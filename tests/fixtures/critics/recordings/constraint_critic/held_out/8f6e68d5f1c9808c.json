@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_6b2d2539e52d\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_ed3d40bfd67b\",\"story_id\":\"cand_story_cc5de23904a9\",\"quote\":\"kept from other organisations unless I say yes\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2113,
+    "completion_tokens": 218
+  }
+}

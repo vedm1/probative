@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_2383e76b7195\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"cannot go out before the Identity team finishes the new login service\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2159,
+    "completion_tokens": 81
+  }
+}

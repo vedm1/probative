@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "raid_awaiting",
+  "text": "# RAID log\n\n### Dependencies\n\n* RAID D-7: data-sharing agreement with the hospital group, awaiting legal.\n",
+  "dependencies": [
+    "RAID D-7: data-sharing agreement with the hospital group, awaiting legal."
+  ]
+}

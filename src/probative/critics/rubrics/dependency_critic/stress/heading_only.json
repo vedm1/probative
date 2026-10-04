@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a heading names no outside party and is no statement: cannot_tell, no finding",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Dependencies\n",
+  "dependencies": [
+    "Dependencies"
+  ]
+}

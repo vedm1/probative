@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_2676cd9a8ce3\",\"story_id\":\"cand_story_614ac3b88bce\",\"quote\":\"my refund for a cancelled flight within seven days\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2004,
+    "completion_tokens": 78
+  }
+}

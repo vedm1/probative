@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unowned_dependency"
+  ],
+  "why": "a named lead of the owning team: defensible either way, so a flag is tolerated",
+  "text": "# Dependencies\n\n## What we rely on\n\n- We lean on the risk API that Maria Lopez's team is building.\n",
+  "dependencies": [
+    "We lean on the risk API that Maria Lopez's team is building."
+  ]
+}

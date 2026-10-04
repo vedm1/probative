@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_a304a7adb7c3\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"central IT to open the firewall port\"},{\"candidate_id\":\"cand_dependency_69ec75a0d7de\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_a83a712744f8\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"pre-cleared by the regulator's markets team\"},{\"candidate_id\":\"cand_dependency_7c974a5e6bb4\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_174201f83459\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"print vendor for card production\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2380,
+    "completion_tokens": 754
+  }
+}

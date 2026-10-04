@@ -1,0 +1,15 @@
+{
+  "expect_untraced": [
+    "The checkout must be fast, under the Experience Charter."
+  ],
+  "allow_also_untraced": [],
+  "why": "PB4 can emit a wish with a charter attached as a constraint; no story states the act",
+  "text": "# Checkout\n\n## Requirements\n\n- The checkout must be fast, under the Experience Charter.\n\n## Stories\n\n- As a shopper, I want to review my basket so that I can remove items.\n- As a shopper, I want to choose a delivery slot so that I am home.\n",
+  "constraints": [
+    "The checkout must be fast, under the Experience Charter."
+  ],
+  "stories": [
+    "As a shopper, I want to review my basket so that I can remove items.",
+    "As a shopper, I want to choose a delivery slot so that I am home."
+  ]
+}

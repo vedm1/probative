@@ -1,0 +1,12 @@
+{
+  "text": "# Procurement: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Purchases above 5,000 must have two quotes attached, under Procurement Policy 3. |\n\n## Backlog\n\nUS-1 As a buyer, I want the system to require two quotes on any purchase above 5,000 so that we compare suppliers.\nUS-2 As a supplier, I want to see which invoices are paid so that I can plan cash.\nUS-3 As a buyer, I want to raise a purchase request so that finance can approve it.\n",
+  "constraints": [
+    "Purchases above 5,000 must have two quotes attached, under Procurement Policy 3."
+  ],
+  "stories": [
+    "As a buyer, I want the system to require two quotes on any purchase above 5,000 so that we compare suppliers.",
+    "As a supplier, I want to see which invoices are paid so that I can plan cash.",
+    "As a buyer, I want to raise a purchase request so that finance can approve it."
+  ],
+  "expect_untraced": []
+}

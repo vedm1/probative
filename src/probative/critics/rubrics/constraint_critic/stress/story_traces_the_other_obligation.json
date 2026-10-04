@@ -1,0 +1,17 @@
+{
+  "expect_untraced": [
+    "Applicants must be told the reason when a loan is refused, per the Fair Lending Code."
+  ],
+  "allow_also_untraced": [],
+  "why": "one story traces the first obligation only; the second has a topical decoy",
+  "text": "# Lending\n\n## Requirements\n\n- Loan offers must show the total cost of credit, under the Credit Disclosure Act.\n- Applicants must be told the reason when a loan is refused, per the Fair Lending Code.\n\n## Stories\n\n- As an applicant, I want the offer to show the total cost of credit so that I can compare lenders.\n- As an applicant, I want to check how far along my loan request is so that I know what to chase.\n- As an applicant, I want to upload payslips so that the lender can check my income.\n",
+  "constraints": [
+    "Loan offers must show the total cost of credit, under the Credit Disclosure Act.",
+    "Applicants must be told the reason when a loan is refused, per the Fair Lending Code."
+  ],
+  "stories": [
+    "As an applicant, I want the offer to show the total cost of credit so that I can compare lenders.",
+    "As an applicant, I want to check how far along my loan request is so that I know what to chase.",
+    "As an applicant, I want to upload payslips so that the lender can check my income."
+  ]
+}

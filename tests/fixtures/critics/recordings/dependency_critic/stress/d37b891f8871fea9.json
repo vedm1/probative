@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_7e87352fc863\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_83f6e4eb57a7\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Delivery depends on the warehouse integration\"},{\"candidate_id\":\"cand_dependency_55960344b3dc\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_4099bec1e945\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"validated by the data office\"},{\"candidate_id\":\"cand_dependency_b42df73a7ac4\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2372,
+    "completion_tokens": 580
+  }
+}

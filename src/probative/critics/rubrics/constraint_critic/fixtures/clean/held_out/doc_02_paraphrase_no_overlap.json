@@ -1,0 +1,12 @@
+{
+  "text": "# Fitness tracker: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Heart-rate data must not be sold to advertisers, under the Health Data Pledge. |\n\n## Backlog\n\nUS-1 As a wearer, I want to set a weekly step goal so that I stay motivated.\nUS-2 As a wearer, I want to compare runs so that I see progress.\nUS-3 As a wearer, I want my pulse readings never passed to ad companies for money so that nobody profits from my health.\n",
+  "constraints": [
+    "Heart-rate data must not be sold to advertisers, under the Health Data Pledge."
+  ],
+  "stories": [
+    "As a wearer, I want to set a weekly step goal so that I stay motivated.",
+    "As a wearer, I want to compare runs so that I see progress.",
+    "As a wearer, I want my pulse readings never passed to ad companies for money so that nobody profits from my health."
+  ],
+  "expect_untraced": []
+}

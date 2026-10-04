@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_e8fba1acaeab\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"We rely on the partner bank's sandbox for testing\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2178,
+    "completion_tokens": 165
+  }
+}

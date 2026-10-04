@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unowned_dependency"
+  ],
+  "allow_also": [],
+  "why": "the owner is named in the NEXT sentence, which a one-statement critic cannot see: the known false-positive class (OI23b)",
+  "text": "# Dependencies\n\n## What we rely on\n\n- We cannot release until the fraud team has exposed its scoring endpoint.\n\nElif Demir is accountable for it and reports status every Friday.\n",
+  "dependencies": [
+    "We cannot release until the fraud team has exposed its scoring endpoint."
+  ]
+}

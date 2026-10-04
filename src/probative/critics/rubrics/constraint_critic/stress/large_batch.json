@@ -1,0 +1,29 @@
+{
+  "expect_untraced": [
+    "Hazardous goods must be stored apart from food, under Storage Regulation 2.",
+    "Pick lists must be retained for three years, under the Records Standard 3.",
+    "Damaged pallets must be quarantined within one hour, under Quality Policy 4.",
+    "Night shifts must not exceed ten hours, under the Working Time Order 5.",
+    "Cold rooms must be logged every four hours, under Food Safety Code 6."
+  ],
+  "allow_also_untraced": [],
+  "why": "eight constraints in one document: five are untraced and three traced, which also exercises batching of constraints",
+  "text": "# Warehouse\n\n## Requirements\n\n- Forklift drivers must hold a valid licence, under Workplace Safety Rule 1.\n- Hazardous goods must be stored apart from food, under Storage Regulation 2.\n- Pick lists must be retained for three years, under the Records Standard 3.\n- Damaged pallets must be quarantined within one hour, under Quality Policy 4.\n- Night shifts must not exceed ten hours, under the Working Time Order 5.\n- Cold rooms must be logged every four hours, under Food Safety Code 6.\n- Visitors must sign in and out, under the Site Access Rules 7.\n- Fire exits must be checked weekly, under Fire Safety Order 8.\n\n## Stories\n\n- As a driver, I want the system to block me from starting a truck without a valid licence on file so that unlicensed people never drive.\n- As a picker, I want a pick list on my scanner so that I know what to collect.\n- As a supervisor, I want a weekly fire exit check to be assigned and ticked off so that no exit is missed.\n- As a supervisor, I want to see today's pallets so that I can plan loading.\n- As a security guard, I want visitors to sign in and out on a tablet so that we know who is on site.\n",
+  "constraints": [
+    "Forklift drivers must hold a valid licence, under Workplace Safety Rule 1.",
+    "Hazardous goods must be stored apart from food, under Storage Regulation 2.",
+    "Pick lists must be retained for three years, under the Records Standard 3.",
+    "Damaged pallets must be quarantined within one hour, under Quality Policy 4.",
+    "Night shifts must not exceed ten hours, under the Working Time Order 5.",
+    "Cold rooms must be logged every four hours, under Food Safety Code 6.",
+    "Visitors must sign in and out, under the Site Access Rules 7.",
+    "Fire exits must be checked weekly, under Fire Safety Order 8."
+  ],
+  "stories": [
+    "As a driver, I want the system to block me from starting a truck without a valid licence on file so that unlicensed people never drive.",
+    "As a picker, I want a pick list on my scanner so that I know what to collect.",
+    "As a supervisor, I want a weekly fire exit check to be assigned and ticked off so that no exit is missed.",
+    "As a supervisor, I want to see today's pallets so that I can plan loading.",
+    "As a security guard, I want visitors to sign in and out on a tablet so that we know who is on site."
+  ]
+}

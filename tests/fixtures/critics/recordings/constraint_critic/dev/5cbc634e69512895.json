@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_05d4c5825791\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_4f9beb3eb7f5\",\"story_id\":\"cand_story_d7709d1dcee4\",\"quote\":\"each price change recorded with who made it\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2111,
+    "completion_tokens": 207
+  }
+}

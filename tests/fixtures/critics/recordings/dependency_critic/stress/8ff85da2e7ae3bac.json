@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_6a7d354608d4\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"We rely on the partner bank's sandbox for testing.\"},{\"candidate_id\":\"cand_dependency_1c875375ce68\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_f11724786cb6\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Our onboarding flow relies on the KYC vendor's API.\"},{\"candidate_id\":\"cand_dependency_e8399a3116c3\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_375c6298cbf3\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Owner: Credit Risk department\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2396,
+    "completion_tokens": 529
+  }
+}

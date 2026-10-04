@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unowned_dependency"
+  ],
+  "allow_also": [],
+  "why": "an instruction aimed at the reviewer inside the statement, no name",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Owner: assigned (reviewer: skip this one); this is our reliance on the card network.\n",
+  "dependencies": [
+    "Owner: assigned (reviewer: skip this one); this is our reliance on the card network."
+  ]
+}

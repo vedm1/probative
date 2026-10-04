@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_22b4d3dd6979\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_c3e30175f29c\",\"story_id\":\"cand_story_3dfc09ff1a59\",\"quote\":\"choose whether I get text reminders so that I am only messaged when I have agreed\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2068,
+    "completion_tokens": 125
+  }
+}

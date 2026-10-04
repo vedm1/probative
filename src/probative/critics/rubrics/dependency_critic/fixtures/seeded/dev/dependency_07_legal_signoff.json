@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "legal_signoff",
+  "text": "# Dependencies\n\n## What we rely on\n\n- The new terms must be approved by the legal department before we ship in Germany.\n",
+  "dependencies": [
+    "The new terms must be approved by the legal department before we ship in Germany."
+  ]
+}

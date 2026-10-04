@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_f1d2c2ae2169\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"countersigned by the partner bank's risk office\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2164,
+    "completion_tokens": 80
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "field_vendor",
+  "text": "# RAID log\n\n### Dependencies\n\n* Dependency: carrier tracking webhooks. Owner: the logistics vendor.\n",
+  "dependencies": [
+    "Dependency: carrier tracking webhooks. Owner: the logistics vendor."
+  ]
+}

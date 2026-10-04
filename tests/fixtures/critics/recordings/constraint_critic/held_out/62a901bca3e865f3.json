@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_d26fe4b2fb65\",\"story_id\":\"cand_story_feb7c4c8dc37\",\"quote\":\"I want a record kept of every evacuation drill\"},{\"constraint_id\":\"cand_constraint_be23bcfe0dd8\",\"story_id\":\"cand_story_2a9256dd2117\",\"quote\":\"I want my door-entry history to vanish after a month\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2103,
+    "completion_tokens": 263
+  }
+}

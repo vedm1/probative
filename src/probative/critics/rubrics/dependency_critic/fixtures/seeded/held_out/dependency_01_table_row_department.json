@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "table_row_department",
+  "text": "# RAID log\n\n### Dependencies\n\n* D-2 | Credit bureau score feed | Owner: Credit Risk department | Q3\n",
+  "dependencies": [
+    "D-2 | Credit bureau score feed | Owner: Credit Risk department | Q3"
+  ]
+}

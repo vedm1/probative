@@ -1,0 +1,14 @@
+{
+  "expect_untraced": [
+    "Sales receipts must stay on file for eight years, under the Tax Procedure Act.",
+    "Filings to the registry must be countersigned by the company secretary, under the Companies Rules."
+  ],
+  "allow_also_untraced": [],
+  "why": "no stories at all: deterministic, no model call (I8 read literally)",
+  "text": "# Compliance notes\n\n## Requirements\n\n- Sales receipts must stay on file for eight years, under the Tax Procedure Act.\n- Filings to the registry must be countersigned by the company secretary, under the Companies Rules.\n",
+  "constraints": [
+    "Sales receipts must stay on file for eight years, under the Tax Procedure Act.",
+    "Filings to the registry must be countersigned by the company secretary, under the Companies Rules."
+  ],
+  "stories": []
+}

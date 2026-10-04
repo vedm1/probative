@@ -1,0 +1,12 @@
+{
+  "text": "# Tax filing: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Corrections to a filed return must be accepted for twelve months, under the Revenue Act 40. |\n\n## Backlog\n\nUS-1 As a taxpayer, I want to amend my return up to a year after filing so that I can fix mistakes.\nUS-2 As a taxpayer, I want to see my refund status so that I know when it arrives.\nUS-3 As a taxpayer, I want to file my return online so that I avoid paper.\n",
+  "constraints": [
+    "Corrections to a filed return must be accepted for twelve months, under the Revenue Act 40."
+  ],
+  "stories": [
+    "As a taxpayer, I want to amend my return up to a year after filing so that I can fix mistakes.",
+    "As a taxpayer, I want to see my refund status so that I know when it arrives.",
+    "As a taxpayer, I want to file my return online so that I avoid paper."
+  ],
+  "expect_untraced": []
+}

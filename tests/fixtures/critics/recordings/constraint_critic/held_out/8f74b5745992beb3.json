@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_777ec1ac4425\",\"story_id\":\"cand_story_626a7bc9b931\",\"quote\":\"the pickup button stays locked until a pharmacist has approved\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2033,
+    "completion_tokens": 80
+  }
+}

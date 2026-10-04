@@ -1,0 +1,15 @@
+{
+  "expect_untraced": [],
+  "allow_also_untraced": [
+    "Subscribers must be able to withdraw consent and have their data erased within 30 days, under Privacy Policy 6."
+  ],
+  "why": "a story covers half of a two-part obligation: defensible either way, so a flag is tolerated and not required",
+  "text": "# Newsletter\n\n## Requirements\n\n- Subscribers must be able to withdraw consent and have their data erased within 30 days, under Privacy Policy 6.\n\n## Stories\n\n- As a subscriber, I want to withdraw my consent to marketing so that I stop receiving it.\n- As a subscriber, I want to pick topics so that I only get what I like.\n",
+  "constraints": [
+    "Subscribers must be able to withdraw consent and have their data erased within 30 days, under Privacy Policy 6."
+  ],
+  "stories": [
+    "As a subscriber, I want to withdraw my consent to marketing so that I stop receiving it.",
+    "As a subscriber, I want to pick topics so that I only get what I like."
+  ]
+}

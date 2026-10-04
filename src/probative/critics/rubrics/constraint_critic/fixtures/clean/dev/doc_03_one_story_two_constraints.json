@@ -1,0 +1,13 @@
+{
+  "text": "# Card issuing\n\n## Requirements\n\n- Card numbers must never appear in application logs, under Security Standard 11.\n- Card numbers must be masked on every screen except the one the cardholder sees, per the Display Policy.\n\n## Stories\n\n- As a support agent, I want card numbers hidden on my screen and left out of the logs so that I can help without seeing or leaking them.\n- As a cardholder, I want to request a replacement card so that I can keep paying.\n- As a cardholder, I want to freeze my card so that nobody can use it.\n",
+  "constraints": [
+    "Card numbers must never appear in application logs, under Security Standard 11.",
+    "Card numbers must be masked on every screen except the one the cardholder sees, per the Display Policy."
+  ],
+  "stories": [
+    "As a support agent, I want card numbers hidden on my screen and left out of the logs so that I can help without seeing or leaking them.",
+    "As a cardholder, I want to request a replacement card so that I can keep paying.",
+    "As a cardholder, I want to freeze my card so that nobody can use it."
+  ],
+  "expect_untraced": []
+}

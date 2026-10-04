@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unowned_dependency"
+  ],
+  "allow_also": [],
+  "why": "a noun phrase naming an outside party is a complete statement, not cannot_tell",
+  "text": "# Dependencies\n\n## What we rely on\n\n- The payments team's tokenisation API.\n",
+  "dependencies": [
+    "The payments team's tokenisation API."
+  ]
+}

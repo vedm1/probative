@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_bafb40969c3f\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_c60cb334cf0e\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"provided by GeoCore Ltd\"},{\"candidate_id\":\"cand_dependency_8e522d167bbe\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_4517ea85903a\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"sits with the platform engineering lead\"},{\"candidate_id\":\"cand_dependency_3c692f7b292f\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2411,
+    "completion_tokens": 278
+  }
+}

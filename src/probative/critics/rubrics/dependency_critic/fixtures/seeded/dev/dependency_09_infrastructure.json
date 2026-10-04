@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "infrastructure",
+  "text": "# Dependencies\n\n## What we rely on\n\n- The pilot depends on the infrastructure group provisioning a staging cluster in the EU region.\n",
+  "dependencies": [
+    "The pilot depends on the infrastructure group provisioning a staging cluster in the EU region."
+  ]
+}

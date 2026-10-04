@@ -1,0 +1,12 @@
+{
+  "text": "# Subscription billing\n\n## Requirements\n\n- Customers must receive a renewal reminder at least 14 days before they are charged, under the Consumer Services Contract.\n\n## Stories\n\n- As a subscriber, I want a reminder before I am renewed so that I can cancel in time. Acceptance: the reminder is sent at least 14 days before the charge.\n- As a subscriber, I want to pause my plan so that I am not charged on holiday.\n- As a subscriber, I want to update my card so that renewals do not fail.\n",
+  "constraints": [
+    "Customers must receive a renewal reminder at least 14 days before they are charged, under the Consumer Services Contract."
+  ],
+  "stories": [
+    "As a subscriber, I want a reminder before I am renewed so that I can cancel in time. Acceptance: the reminder is sent at least 14 days before the charge.",
+    "As a subscriber, I want to pause my plan so that I am not charged on holiday.",
+    "As a subscriber, I want to update my card so that renewals do not fail."
+  ],
+  "expect_untraced": []
+}

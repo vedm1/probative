@@ -1,0 +1,12 @@
+{
+  "text": "# Library loans\n\n## Requirements\n\n- Overdue notices must be sent within two days of the due date, under the Lending Policy 4.\n\n## Stories\n\n- As a borrower, I want an overdue notice within two days of the due date so that I can return the book before a fine builds up.\n- As a librarian, I want to scan a book back in so that the shelf stays accurate.\n- As a borrower, I want to renew a loan online so that I avoid a trip.\n",
+  "constraints": [
+    "Overdue notices must be sent within two days of the due date, under the Lending Policy 4."
+  ],
+  "stories": [
+    "As a borrower, I want an overdue notice within two days of the due date so that I can return the book before a fine builds up.",
+    "As a librarian, I want to scan a book back in so that the shelf stays accurate.",
+    "As a borrower, I want to renew a loan online so that I avoid a trip."
+  ],
+  "expect_untraced": []
+}

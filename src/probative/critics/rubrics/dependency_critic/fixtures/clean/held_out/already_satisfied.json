@@ -1,0 +1,8 @@
+{
+  "text": "# RAID log\n\n### Dependencies\n\n* The address lookup contract with GeoCore was signed in January and the service is live.\n* Migration of legacy accounts finished in May, so it no longer gates anything.\n* The regulator's pre-approval was granted in writing and is on file.\n",
+  "dependencies": [
+    "The address lookup contract with GeoCore was signed in January and the service is live.",
+    "Migration of legacy accounts finished in May, so it no longer gates anything.",
+    "The regulator's pre-approval was granted in writing and is on file."
+  ]
+}

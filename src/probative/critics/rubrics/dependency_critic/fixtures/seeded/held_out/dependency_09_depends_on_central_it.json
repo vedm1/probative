@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "depends_on_central_it",
+  "text": "# RAID log\n\n### Dependencies\n\n* Depends on: central IT to open the firewall port for the reporting server.\n",
+  "dependencies": [
+    "Depends on: central IT to open the firewall port for the reporting server."
+  ]
+}

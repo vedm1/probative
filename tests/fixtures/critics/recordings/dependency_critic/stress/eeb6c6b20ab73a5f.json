@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_499007484db5\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"sandbox credentials from the payments processor\"},{\"candidate_id\":\"cand_dependency_e19cc9bde9d6\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_d572c659959a\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"The bank's fraud desk has to approve every new payee flow before we can switch it on\"},{\"candidate_id\":\"cand_dependency_e79056e14054\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_6f7fbcc89190\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"data-sharing agreement with the hospital group, awaiting legal\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2387,
+    "completion_tokens": 540
+  }
+}

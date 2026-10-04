@@ -1,0 +1,16 @@
+{
+  "check": "untraced_obligation",
+  "kind": "self_declared_trace",
+  "text": "# Expense claims\n\n## Requirements\n\n- Receipts must be kept for seven years under Tax Rule 14 (covered by story 3).\n\n## Stories\n\n- As an employee, I want to submit a claim from my phone so that I get paid sooner.\n- As a manager, I want to approve claims in bulk so that I save time.\n- As an employee, I want to see the status of my claim so that I know when I will be paid.\n",
+  "constraints": [
+    "Receipts must be kept for seven years under Tax Rule 14 (covered by story 3)."
+  ],
+  "stories": [
+    "As an employee, I want to submit a claim from my phone so that I get paid sooner.",
+    "As a manager, I want to approve claims in bulk so that I save time.",
+    "As an employee, I want to see the status of my claim so that I know when I will be paid."
+  ],
+  "expect_untraced": [
+    "Receipts must be kept for seven years under Tax Rule 14 (covered by story 3)."
+  ]
+}

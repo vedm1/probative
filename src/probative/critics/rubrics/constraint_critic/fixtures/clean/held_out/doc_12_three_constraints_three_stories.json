@@ -1,0 +1,14 @@
+{
+  "text": "# Clinic lab: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Critical results must be phoned through within thirty minutes, under the Pathology Guidelines. |\n| C2 | Results must be released only to the ordering doctor, per the Confidentiality Code. |\n| C3 | Samples must be labelled with two patient identifiers, under Laboratory Standard 7. |\n\n## Backlog\n\nUS-1 As a phlebotomist, I want the system to print labels carrying two patient identifiers so that no sample is mislabelled.\nUS-2 As a lab technician, I want results sent only to the doctor who ordered the test so that nobody else sees them.\nUS-3 As a doctor, I want a critical result to reach me by phone within thirty minutes so that I can act at once.\n",
+  "constraints": [
+    "Critical results must be phoned through within thirty minutes, under the Pathology Guidelines.",
+    "Results must be released only to the ordering doctor, per the Confidentiality Code.",
+    "Samples must be labelled with two patient identifiers, under Laboratory Standard 7."
+  ],
+  "stories": [
+    "As a phlebotomist, I want the system to print labels carrying two patient identifiers so that no sample is mislabelled.",
+    "As a lab technician, I want results sent only to the doctor who ordered the test so that nobody else sees them.",
+    "As a doctor, I want a critical result to reach me by phone within thirty minutes so that I can act at once."
+  ],
+  "expect_untraced": []
+}

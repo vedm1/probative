@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_d44171fec90f\",\"story_id\":\"cand_story_56f6ea90dfbe\",\"quote\":\"the offer to show the total cost of credit\"},{\"constraint_id\":\"cand_constraint_6ca246f507a2\",\"story_id\":null,\"quote\":null}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2050,
+    "completion_tokens": 161
+  }
+}

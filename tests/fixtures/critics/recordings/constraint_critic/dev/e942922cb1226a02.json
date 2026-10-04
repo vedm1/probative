@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_08c37c5b6d76\",\"story_id\":\"cand_story_e2fed8287b25\",\"quote\":\"sick pay to arrive within five working days of my claim being approved\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1998,
+    "completion_tokens": 99
+  }
+}

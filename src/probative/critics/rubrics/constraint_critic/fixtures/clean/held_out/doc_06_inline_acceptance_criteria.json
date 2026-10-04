@@ -1,0 +1,12 @@
+{
+  "text": "# Pharmacy: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Prescription medicines must only be released after a pharmacist has checked the order, per the Pharmacy Standards 5. |\n\n## Backlog\n\nUS-1 As a pharmacist, I want to check each prescription order before it is handed over so that nothing unsafe leaves. Acceptance: the pickup button stays locked until a pharmacist has approved.\nUS-2 As a customer, I want a text when my order is ready so that I know when to collect.\nUS-3 As a customer, I want to reorder a repeat prescription so that I do not queue.\n",
+  "constraints": [
+    "Prescription medicines must only be released after a pharmacist has checked the order, per the Pharmacy Standards 5."
+  ],
+  "stories": [
+    "As a pharmacist, I want to check each prescription order before it is handed over so that nothing unsafe leaves. Acceptance: the pickup button stays locked until a pharmacist has approved.",
+    "As a customer, I want a text when my order is ready so that I know when to collect.",
+    "As a customer, I want to reorder a repeat prescription so that I do not queue."
+  ],
+  "expect_untraced": []
+}

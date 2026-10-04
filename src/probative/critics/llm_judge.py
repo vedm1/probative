@@ -169,6 +169,9 @@ def _neutralise(text: str) -> str:
     return _DELIMITER.sub(r"\1 \2", text)
 
 
+neutralise = _neutralise  # public name for critics with their own message layout (PB7)
+
+
 def build_user_message(candidates: Sequence[AnyCandidate]) -> str:
     body = "\n".join(
         f'<candidate id="{c.id}">{_neutralise(c.text)}</candidate>' for c in candidates

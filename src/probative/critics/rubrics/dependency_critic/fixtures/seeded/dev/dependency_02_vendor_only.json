@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "vendor_only",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Real-time exchange rates will come from Meridian Data, whose feed we cannot ship without.\n",
+  "dependencies": [
+    "Real-time exchange rates will come from Meridian Data, whose feed we cannot ship without."
+  ]
+}

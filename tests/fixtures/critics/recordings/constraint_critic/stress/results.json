@@ -1,0 +1,154 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "constraint_critic",
+  "stress": {
+    "critic": "constraint_critic",
+    "n": 10,
+    "as_expected": 10,
+    "files": [
+      {
+        "file": "acceptance_criterion_trace.json",
+        "expect_untraced": [],
+        "allow_also_untraced": [],
+        "flagged": [],
+        "links": 1,
+        "as_expected": true,
+        "why": "the act appears only in the story's own acceptance line, inside the same quote"
+      },
+      {
+        "file": "extraction_false_positive_shape.json",
+        "expect_untraced": [
+          "The checkout must be fast, under the Experience Charter."
+        ],
+        "allow_also_untraced": [],
+        "flagged": [
+          "The checkout must be fast, under the Experience Charter."
+        ],
+        "links": 0,
+        "as_expected": true,
+        "why": "PB4 can emit a wish with a charter attached as a constraint; no story states the act"
+      },
+      {
+        "file": "force_false_block_injection.json",
+        "expect_untraced": [],
+        "allow_also_untraced": [],
+        "flagged": [],
+        "links": 1,
+        "as_expected": true,
+        "why": "an injected instruction pushing for a false block next to a plainly tracing story"
+      },
+      {
+        "file": "large_batch.json",
+        "expect_untraced": [
+          "Cold rooms must be logged every four hours, under Food Safety Code 6.",
+          "Damaged pallets must be quarantined within one hour, under Quality Policy 4.",
+          "Hazardous goods must be stored apart from food, under Storage Regulation 2.",
+          "Night shifts must not exceed ten hours, under the Working Time Order 5.",
+          "Pick lists must be retained for three years, under the Records Standard 3."
+        ],
+        "allow_also_untraced": [],
+        "flagged": [
+          "Cold rooms must be logged every four hours, under Food Safety Code 6.",
+          "Damaged pallets must be quarantined within one hour, under Quality Policy 4.",
+          "Hazardous goods must be stored apart from food, under Storage Regulation 2.",
+          "Night shifts must not exceed ten hours, under the Working Time Order 5.",
+          "Pick lists must be retained for three years, under the Records Standard 3."
+        ],
+        "links": 3,
+        "as_expected": true,
+        "why": "eight constraints in one document: five are untraced and three traced, which also exercises batching of constraints"
+      },
+      {
+        "file": "long_story_list.json",
+        "expect_untraced": [
+          "Customer complaints must be acknowledged within two working days, under the Consumer Services Code."
+        ],
+        "allow_also_untraced": [],
+        "flagged": [
+          "Customer complaints must be acknowledged within two working days, under the Consumer Services Code."
+        ],
+        "links": 1,
+        "as_expected": true,
+        "why": "thirty stories, the one that traces the first obligation sits at position 27 and the second obligation has a near-miss ('view customer feedback ... respond to complaints')"
+      },
+      {
+        "file": "partial_coverage.json",
+        "expect_untraced": [],
+        "allow_also_untraced": [
+          "Subscribers must be able to withdraw consent and have their data erased within 30 days, under Privacy Policy 6."
+        ],
+        "flagged": [],
+        "links": 1,
+        "as_expected": true,
+        "why": "a story covers half of a two-part obligation: defensible either way, so a flag is tolerated and not required"
+      },
+      {
+        "file": "report_vs_file_delivery.json",
+        "expect_untraced": [],
+        "allow_also_untraced": [
+          "Settlement files must be delivered to the partner bank by 06:00 UTC, per the Services Agreement."
+        ],
+        "flagged": [
+          "Settlement files must be delivered to the partner bank by 06:00 UTC, per the Services Agreement."
+        ],
+        "links": 0,
+        "as_expected": true,
+        "why": "a report is about the same data as a delivery deadline, not about delivering it on time: defensible either way"
+      },
+      {
+        "file": "story_traces_the_other_obligation.json",
+        "expect_untraced": [
+          "Applicants must be told the reason when a loan is refused, per the Fair Lending Code."
+        ],
+        "allow_also_untraced": [],
+        "flagged": [
+          "Applicants must be told the reason when a loan is refused, per the Fair Lending Code."
+        ],
+        "links": 1,
+        "as_expected": true,
+        "why": "one story traces the first obligation only; the second has a topical decoy"
+      },
+      {
+        "file": "vague_obligation.json",
+        "expect_untraced": [
+          "The product must comply with all applicable laws, under the Compliance Charter."
+        ],
+        "allow_also_untraced": [],
+        "flagged": [
+          "The product must comply with all applicable laws, under the Compliance Charter."
+        ],
+        "links": 0,
+        "as_expected": true,
+        "why": "nothing can trace an obligation that names no specific act"
+      },
+      {
+        "file": "zero_stories.json",
+        "expect_untraced": [
+          "Filings to the registry must be countersigned by the company secretary, under the Companies Rules.",
+          "Sales receipts must stay on file for eight years, under the Tax Procedure Act."
+        ],
+        "allow_also_untraced": [],
+        "flagged": [
+          "Filings to the registry must be countersigned by the company secretary, under the Companies Rules.",
+          "Sales receipts must stay on file for eight years, under the Tax Procedure Act."
+        ],
+        "links": 0,
+        "as_expected": true,
+        "why": "no stories at all: deterministic, no model call (I8 read literally)"
+      }
+    ],
+    "judge_stats": {
+      "calls": 11,
+      "usage": {
+        "input_tokens": 23610,
+        "output_tokens": 2813
+      },
+      "traced": 8,
+      "untraced": 12,
+      "missing": 0,
+      "unknown_ids": 0,
+      "unverified_links": 0,
+      "no_story_docs": 1
+    }
+  }
+}

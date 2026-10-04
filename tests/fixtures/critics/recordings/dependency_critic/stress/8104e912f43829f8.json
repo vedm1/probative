@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_afc8299aa731\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"the vendor\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2160,
+    "completion_tokens": 247
+  }
+}

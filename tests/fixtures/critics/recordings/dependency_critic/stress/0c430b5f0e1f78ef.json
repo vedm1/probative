@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_76ccfb15276e\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"the CRM export is made available by sales operations\"},{\"candidate_id\":\"cand_dependency_f7ac54208964\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_662e4313c622\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"approved by the legal department\"},{\"candidate_id\":\"cand_dependency_8d286f16f4c3\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_bc684e625d79\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"migrated to the new database by the platform group\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2375,
+    "completion_tokens": 569
+  }
+}

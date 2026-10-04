@@ -1,0 +1,12 @@
+{
+  "text": "# Benefits\n\n## Requirements\n\n- Claims for sick pay must be paid within five working days of approval, per the Employment Agreement.\n\n## Stories\n\n- As an employee, I want sick pay to arrive within five working days of my claim being approved so that I can cover my bills.\n- As a manager, I want to see who is absent today so that I can cover shifts.\n- As an employee, I want to submit a sick note so that my absence is recorded.\n",
+  "constraints": [
+    "Claims for sick pay must be paid within five working days of approval, per the Employment Agreement."
+  ],
+  "stories": [
+    "As an employee, I want sick pay to arrive within five working days of my claim being approved so that I can cover my bills.",
+    "As a manager, I want to see who is absent today so that I can cover shifts.",
+    "As an employee, I want to submit a sick note so that my absence is recorded."
+  ],
+  "expect_untraced": []
+}

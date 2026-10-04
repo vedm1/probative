@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_64af56ef9eb5\",\"story_id\":\"cand_story_0263f9d19417\",\"quote\":\"disappear from the server after a week\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1992,
+    "completion_tokens": 70
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_0011ca3c0a41\",\"story_id\":\"cand_story_4e2a69ebe3ed\",\"quote\":\"a booking is released automatically if nobody has checked in 30 minutes after the booked time\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1984,
+    "completion_tokens": 92
+  }
+}

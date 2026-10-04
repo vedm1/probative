@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_b76ee1e44599\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"depends on the infrastructure group provisioning a staging cluster\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2166,
+    "completion_tokens": 84
+  }
+}

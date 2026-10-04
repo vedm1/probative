@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unowned_dependency"
+  ],
+  "allow_also": [],
+  "why": "a name appears but is not stated as responsible for the dependency",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Maria Lopez reviewed the vendor contract, and we still need the vendor's integration team to open the API.\n",
+  "dependencies": [
+    "Maria Lopez reviewed the vendor contract, and we still need the vendor's integration team to open the API."
+  ]
+}

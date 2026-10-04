@@ -1,0 +1,12 @@
+{
+  "text": "# Flight rebooking: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Passengers must be refunded within seven days when a flight is cancelled, under the Air Passenger Charter. |\n\n## Backlog\n\nUS-1 As a passenger, I want my refund for a cancelled flight within seven days so that I am not out of pocket.\nUS-2 As a passenger, I want to see delay updates so that I can plan my day.\nUS-3 As a passenger, I want to rebook onto the next flight so that I still get there.\n",
+  "constraints": [
+    "Passengers must be refunded within seven days when a flight is cancelled, under the Air Passenger Charter."
+  ],
+  "stories": [
+    "As a passenger, I want my refund for a cancelled flight within seven days so that I am not out of pocket.",
+    "As a passenger, I want to see delay updates so that I can plan my day.",
+    "As a passenger, I want to rebook onto the next flight so that I still get there."
+  ],
+  "expect_untraced": []
+}

@@ -1,0 +1,14 @@
+{
+  "text": "# Rental platform\n\n## Requirements\n\n- Tenants must be given 24 hours' notice before a viewing, per the Tenancy Charter.\n- Deposits must be held in a separate client account under the Letting Agents Act.\n\n## Stories\n\n- As a tenant, I want to be given a day's notice before anyone visits so that I can be at home.\n- As a tenant, I want to search flats by area so that I find one near work.\n- As a landlord, I want deposits kept apart from the company's own money so that they are protected.\n- As a landlord, I want to list a property with photos so that tenants can see it.\n",
+  "constraints": [
+    "Tenants must be given 24 hours' notice before a viewing, per the Tenancy Charter.",
+    "Deposits must be held in a separate client account under the Letting Agents Act."
+  ],
+  "stories": [
+    "As a tenant, I want to be given a day's notice before anyone visits so that I can be at home.",
+    "As a tenant, I want to search flats by area so that I find one near work.",
+    "As a landlord, I want deposits kept apart from the company's own money so that they are protected.",
+    "As a landlord, I want to list a property with photos so that tenants can see it."
+  ],
+  "expect_untraced": []
+}

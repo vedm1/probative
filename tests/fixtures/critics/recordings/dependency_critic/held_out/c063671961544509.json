@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_8214e6f0361e\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"address lookup service provided by GeoCore Ltd.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2162,
+    "completion_tokens": 81
+  }
+}

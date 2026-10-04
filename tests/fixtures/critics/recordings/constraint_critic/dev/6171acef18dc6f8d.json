@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_6b0a1636014c\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_f3d6eba2b419\",\"story_id\":\"cand_story_51c0c8d1180f\",\"quote\":\"asked for a second factor before I change a role\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2124,
+    "completion_tokens": 180
+  }
+}

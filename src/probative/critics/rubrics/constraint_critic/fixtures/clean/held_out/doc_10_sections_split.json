@@ -1,0 +1,14 @@
+{
+  "text": "# Co-working space: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Fire evacuation drills must be recorded, per Safety Regulation 9. |\n| C2 | Members' key-card logs must be erased after 30 days, under the Building Privacy Code. |\n\n## Backlog\n\nUS-1 As a member, I want my door-entry history to vanish after a month so that nobody can trace my comings and goings.\nUS-2 As a member, I want to book a meeting room so that I have space for a client.\nUS-3 As a facilities manager, I want a record kept of every evacuation drill so that inspectors can see them.\nUS-4 As a member, I want to invite a guest so that they can enter the building.\n",
+  "constraints": [
+    "Fire evacuation drills must be recorded, per Safety Regulation 9.",
+    "Members' key-card logs must be erased after 30 days, under the Building Privacy Code."
+  ],
+  "stories": [
+    "As a member, I want my door-entry history to vanish after a month so that nobody can trace my comings and goings.",
+    "As a member, I want to book a meeting room so that I have space for a client.",
+    "As a facilities manager, I want a record kept of every evacuation drill so that inspectors can see them.",
+    "As a member, I want to invite a guest so that they can enter the building."
+  ],
+  "expect_untraced": []
+}

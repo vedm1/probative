@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_892a2effc07b\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Real-time exchange rates will come from Meridian Data, whose feed we cannot ship without\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2166,
+    "completion_tokens": 93
+  }
+}

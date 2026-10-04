@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "obligation_approval",
+  "text": "# RAID log\n\n### Dependencies\n\n* The bank's fraud desk has to approve every new payee flow before we can switch it on.\n",
+  "dependencies": [
+    "The bank's fraud desk has to approve every new payee flow before we can switch it on."
+  ]
+}

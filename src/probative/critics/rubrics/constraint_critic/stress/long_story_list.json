@@ -1,0 +1,45 @@
+{
+  "expect_untraced": [
+    "Customer complaints must be acknowledged within two working days, under the Consumer Services Code."
+  ],
+  "allow_also_untraced": [],
+  "why": "thirty stories, the one that traces the first obligation sits at position 27 and the second obligation has a near-miss ('view customer feedback ... respond to complaints')",
+  "text": "# Retail operations\n\n## Requirements\n\n- Staff must be given a rest break after six hours, under the Working Time Order.\n- Customer complaints must be acknowledged within two working days, under the Consumer Services Code.\n\n## Stories\n\n- As a store manager, I want to see today's sales by till so that I can spot a slow hour.\n- As a store manager, I want to print a shelf label so that prices are readable.\n- As a store manager, I want to order stock from the depot so that shelves stay full.\n- As a store manager, I want to report a damaged item so that it is removed from sale.\n- As a store manager, I want to assign a cashier to a till so that queues stay short.\n- As a store manager, I want to see staff holidays so that I can plan cover.\n- As a store manager, I want to approve a price match so that we stay competitive.\n- As a store manager, I want to send a message to all staff so that everyone hears the same thing.\n- As a store manager, I want to check the safe count so that the float is right.\n- As a store manager, I want to view customer feedback so that I can respond to complaints.\n- As a store manager, I want to book a delivery slot so that the lorry can unload.\n- As a store manager, I want to see the promotions calendar so that I can set up displays.\n- As a store manager, I want to scan a returned item so that stock is corrected.\n- As a store manager, I want to check a gift card balance so that I can answer a customer.\n- As a store manager, I want to record a spillage so that the area is made safe.\n- As a store manager, I want to view footfall by hour so that I can schedule staff.\n- As a store manager, I want to transfer stock to another shop so that a customer gets what they want.\n- As a store manager, I want to see the weekly rota so that I know who is in.\n- As a store manager, I want to mark an item as out of stock so that the website is accurate.\n- As a store manager, I want to review the opening checklist so that nothing is missed.\n- As a store manager, I want to print a till receipt copy so that a customer can claim a refund.\n- As a store manager, I want to see supplier delivery times so that I can plan receiving.\n- As a store manager, I want to report a broken fridge so that engineers are alerted.\n- As a store manager, I want to check loyalty points so that I can help a member.\n- As a store manager, I want to view the loss prevention report so that I can act on shrinkage.\n- As a store manager, I want to schedule a stock take so that counts are on time.\n- As a cashier, I want a reminder to take a rest break after six hours on the till so that I am never kept working without one.\n- As a store manager, I want to record a temperature check so that chilled food is safe.\n- As a store manager, I want to log a refund with a reason so that returns are traceable.\n- As a store manager, I want to see which tills are open so that I can balance the floor.\n- As a store manager, I want to approve overtime so that busy days are covered.\n",
+  "constraints": [
+    "Staff must be given a rest break after six hours, under the Working Time Order.",
+    "Customer complaints must be acknowledged within two working days, under the Consumer Services Code."
+  ],
+  "stories": [
+    "As a store manager, I want to see today's sales by till so that I can spot a slow hour.",
+    "As a store manager, I want to print a shelf label so that prices are readable.",
+    "As a store manager, I want to order stock from the depot so that shelves stay full.",
+    "As a store manager, I want to report a damaged item so that it is removed from sale.",
+    "As a store manager, I want to assign a cashier to a till so that queues stay short.",
+    "As a store manager, I want to see staff holidays so that I can plan cover.",
+    "As a store manager, I want to approve a price match so that we stay competitive.",
+    "As a store manager, I want to send a message to all staff so that everyone hears the same thing.",
+    "As a store manager, I want to check the safe count so that the float is right.",
+    "As a store manager, I want to view customer feedback so that I can respond to complaints.",
+    "As a store manager, I want to book a delivery slot so that the lorry can unload.",
+    "As a store manager, I want to see the promotions calendar so that I can set up displays.",
+    "As a store manager, I want to scan a returned item so that stock is corrected.",
+    "As a store manager, I want to check a gift card balance so that I can answer a customer.",
+    "As a store manager, I want to record a spillage so that the area is made safe.",
+    "As a store manager, I want to view footfall by hour so that I can schedule staff.",
+    "As a store manager, I want to transfer stock to another shop so that a customer gets what they want.",
+    "As a store manager, I want to see the weekly rota so that I know who is in.",
+    "As a store manager, I want to mark an item as out of stock so that the website is accurate.",
+    "As a store manager, I want to review the opening checklist so that nothing is missed.",
+    "As a store manager, I want to print a till receipt copy so that a customer can claim a refund.",
+    "As a store manager, I want to see supplier delivery times so that I can plan receiving.",
+    "As a store manager, I want to report a broken fridge so that engineers are alerted.",
+    "As a store manager, I want to check loyalty points so that I can help a member.",
+    "As a store manager, I want to view the loss prevention report so that I can act on shrinkage.",
+    "As a store manager, I want to schedule a stock take so that counts are on time.",
+    "As a cashier, I want a reminder to take a rest break after six hours on the till so that I am never kept working without one.",
+    "As a store manager, I want to record a temperature check so that chilled food is safe.",
+    "As a store manager, I want to log a refund with a reason so that returns are traceable.",
+    "As a store manager, I want to see which tills are open so that I can balance the floor.",
+    "As a store manager, I want to approve overtime so that busy days are covered."
+  ]
+}

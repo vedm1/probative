@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_049f6d85fa94\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"The bank's fraud desk has to approve every new payee flow\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2163,
+    "completion_tokens": 83
+  }
+}

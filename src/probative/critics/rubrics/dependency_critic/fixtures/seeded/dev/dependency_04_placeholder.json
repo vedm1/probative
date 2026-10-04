@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "placeholder",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Delivery depends on the warehouse integration (owner: TBD).\n",
+  "dependencies": [
+    "Delivery depends on the warehouse integration (owner: TBD)."
+  ]
+}

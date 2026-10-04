@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "unnamed_role",
+  "text": "# Dependencies\n\n## What we rely on\n\n- The penetration test has to be approved by the head of security before go-live.\n",
+  "dependencies": [
+    "The penetration test has to be approved by the head of security before go-live."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_fea5e0f65744\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_4930b71c8c95\",\"story_id\":\"cand_story_af92fd49a302\",\"quote\":\"lock its screen while the van is moving\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2062,
+    "completion_tokens": 168
+  }
+}

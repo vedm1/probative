@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_a1df22470e32\",\"story_id\":\"cand_story_671448711735\",\"quote\":\"never passed to ad companies for money\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1993,
+    "completion_tokens": 66
+  }
+}

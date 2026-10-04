@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_a62d8193b81f\",\"story_id\":\"cand_story_ce160c64b049\",\"quote\":\"overtime hours calculated at one and a half times the base rate\"},{\"constraint_id\":\"cand_constraint_d0d052d4319f\",\"story_id\":null,\"quote\":null}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2112,
+    "completion_tokens": 115
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_42778cf79645\",\"story_id\":\"cand_story_74b28f1b8e62\",\"quote\":\"my session to stop at the time I paid for\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2010,
+    "completion_tokens": 205
+  }
+}

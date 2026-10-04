@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unowned_dependency"
+  ],
+  "why": "an obligation that names a counterparty: the carve-out says met, but it reads like a reliance",
+  "text": "# Dependencies\n\n## What we rely on\n\n- Per the master agreement with Acme Bank, settlement files must be delivered by 06:00 UTC.\n",
+  "dependencies": [
+    "Per the master agreement with Acme Bank, settlement files must be delivered by 06:00 UTC."
+  ]
+}

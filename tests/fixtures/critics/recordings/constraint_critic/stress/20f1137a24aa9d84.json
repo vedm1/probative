@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_c7c642a017c6\",\"story_id\":\"cand_story_67407e6d8848\",\"quote\":\"withdraw my consent to marketing\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1951,
+    "completion_tokens": 1281
+  }
+}

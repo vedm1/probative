@@ -1,0 +1,8 @@
+{
+  "text": "# RAID log\n\n### Dependencies\n\n* D-3 | Credit bureau score feed | Owner: Hannah Berg | Q3\n* Dependency: carrier tracking webhooks. Owner: Diego Fuentes.\n* Third-party dependency: address lookup service from GeoCore Ltd, owned by Samira Qureshi.\n",
+  "dependencies": [
+    "D-3 | Credit bureau score feed | Owner: Hannah Berg | Q3",
+    "Dependency: carrier tracking webhooks. Owner: Diego Fuentes.",
+    "Third-party dependency: address lookup service from GeoCore Ltd, owned by Samira Qureshi."
+  ]
+}

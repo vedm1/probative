@@ -1,0 +1,17 @@
+{
+  "text": "# Court filings: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Filings must be acknowledged to the sender within one hour, under the Court Rules 12. |\n\n## Backlog\n\nUS-1 As a clerk, I want to stamp a filing as accepted so that the record is clear.\nUS-2 As a solicitor, I want to search past cases so that I can cite precedent.\nUS-3 As a solicitor, I want an acknowledgement an hour at most after I file so that I know it arrived.\nUS-4 As a solicitor, I want to upload a bundle of documents so that the court has them.\nUS-5 As a solicitor, I want to pay the filing fee online so that I skip the counter.\nUS-6 As a clerk, I want to see new filings in a queue so that I can process them.\nUS-7 As a solicitor, I want to save a draft filing so that I can finish it later.\nUS-8 As a judge, I want to view the case file on a tablet so that I can read it anywhere.\n",
+  "constraints": [
+    "Filings must be acknowledged to the sender within one hour, under the Court Rules 12."
+  ],
+  "stories": [
+    "As a clerk, I want to stamp a filing as accepted so that the record is clear.",
+    "As a solicitor, I want to search past cases so that I can cite precedent.",
+    "As a solicitor, I want an acknowledgement an hour at most after I file so that I know it arrived.",
+    "As a solicitor, I want to upload a bundle of documents so that the court has them.",
+    "As a solicitor, I want to pay the filing fee online so that I skip the counter.",
+    "As a clerk, I want to see new filings in a queue so that I can process them.",
+    "As a solicitor, I want to save a draft filing so that I can finish it later.",
+    "As a judge, I want to view the case file on a tablet so that I can read it anywhere."
+  ],
+  "expect_untraced": []
+}

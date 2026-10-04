@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_75ccc7a310a9\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_1bf341062b7e\",\"story_id\":\"cand_story_6864ef061aba\",\"quote\":\"verify the caller's identity before I open an account\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2127,
+    "completion_tokens": 156
+  }
+}

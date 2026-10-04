@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_dc98988067ba\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"cannot go out before the Identity team finishes the new login service\"},{\"candidate_id\":\"cand_dependency_3859e28cfa41\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_6e9daf050dd8\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"will come from Meridian Data, whose feed we cannot ship without\"},{\"candidate_id\":\"cand_dependency_8214a93398a3\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_69ef5b6a5acc\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"has to be approved by the head of security\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2378,
+    "completion_tokens": 445
+  }
+}

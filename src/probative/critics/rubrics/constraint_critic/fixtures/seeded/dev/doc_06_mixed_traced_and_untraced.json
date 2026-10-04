@@ -1,0 +1,17 @@
+{
+  "check": "untraced_obligation",
+  "kind": "mixed_traced_and_untraced",
+  "text": "# Courier app\n\n## Requirements\n\n- Proof of delivery photos must be deleted after 90 days under the Customer Contract.\n- Drivers must not use the app while the vehicle is moving, as set out in Road Safety Code 12.\n\n## Stories\n\n- As a driver, I want to take a photo of the parcel at the door so that I can prove delivery.\n- As a dispatcher, I want to see where each van is so that I can reassign jobs.\n- As a driver, I want the app to lock its screen while the van is moving so that I stay within the safety code.\n",
+  "constraints": [
+    "Proof of delivery photos must be deleted after 90 days under the Customer Contract.",
+    "Drivers must not use the app while the vehicle is moving, as set out in Road Safety Code 12."
+  ],
+  "stories": [
+    "As a driver, I want to take a photo of the parcel at the door so that I can prove delivery.",
+    "As a dispatcher, I want to see where each van is so that I can reassign jobs.",
+    "As a driver, I want the app to lock its screen while the van is moving so that I stay within the safety code."
+  ],
+  "expect_untraced": [
+    "Proof of delivery photos must be deleted after 90 days under the Customer Contract."
+  ]
+}

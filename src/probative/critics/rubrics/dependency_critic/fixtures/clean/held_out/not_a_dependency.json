@@ -1,0 +1,8 @@
+{
+  "text": "# RAID log\n\n### Dependencies\n\n* Audit records must be retained for seven years, as the Records Act requires.\n* Support tickets must receive a first reply within four business hours.\n* Passwords must be stored only as salted hashes, per Security Standard 4.2.\n",
+  "dependencies": [
+    "Audit records must be retained for seven years, as the Records Act requires.",
+    "Support tickets must receive a first reply within four business hours.",
+    "Passwords must be stored only as salted hashes, per Security Standard 4.2."
+  ]
+}

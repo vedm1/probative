@@ -1,0 +1,17 @@
+{
+  "check": "untraced_obligation",
+  "kind": "no_story_near_subject",
+  "text": "# Clinic booking\n\n## Requirements\n\n- Patient records must be kept for ten years, as required by Clinic Records Policy 3.1.\n- Reminders may only be sent to patients who have opted in, under the Messaging Consent Policy.\n\n## Stories\n\n- As a patient, I want to reschedule a booking so that I can move it when something comes up.\n- As a patient, I want to choose whether I get text reminders so that I am only messaged when I have agreed.\n- As a patient, I want to book an appointment online so that I do not have to phone the clinic.\n",
+  "constraints": [
+    "Patient records must be kept for ten years, as required by Clinic Records Policy 3.1.",
+    "Reminders may only be sent to patients who have opted in, under the Messaging Consent Policy."
+  ],
+  "stories": [
+    "As a patient, I want to reschedule a booking so that I can move it when something comes up.",
+    "As a patient, I want to choose whether I get text reminders so that I am only messaged when I have agreed.",
+    "As a patient, I want to book an appointment online so that I do not have to phone the clinic."
+  ],
+  "expect_untraced": [
+    "Patient records must be kept for ten years, as required by Clinic Records Policy 3.1."
+  ]
+}

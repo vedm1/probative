@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "approval_obligation",
+  "text": "# Pricing tool\n\n## Requirements\n\n- Every change to a pricing rule must be approved by two finance managers under Policy FIN-12.\n- Price changes must be logged with the author's name under Policy FIN-14.\n\n## Stories\n\n- As a pricing analyst, I want to edit a pricing rule so that I can react to a competitor.\n- As a pricing analyst, I want to preview the effect of a rule on the catalogue so that I avoid surprises.\n- As a finance manager, I want to see a list of current rules so that I know what is live.\n- As an auditor, I want each price change recorded with who made it so that I can review them.\n",
+  "constraints": [
+    "Every change to a pricing rule must be approved by two finance managers under Policy FIN-12.",
+    "Price changes must be logged with the author's name under Policy FIN-14."
+  ],
+  "stories": [
+    "As a pricing analyst, I want to edit a pricing rule so that I can react to a competitor.",
+    "As a pricing analyst, I want to preview the effect of a rule on the catalogue so that I avoid surprises.",
+    "As a finance manager, I want to see a list of current rules so that I know what is live.",
+    "As an auditor, I want each price change recorded with who made it so that I can review them."
+  ],
+  "expect_untraced": [
+    "Every change to a pricing rule must be approved by two finance managers under Policy FIN-12."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "role_title",
+  "text": "# RAID log\n\n### Dependencies\n\n* Migration of legacy accounts is a prerequisite and sits with the platform engineering lead.\n",
+  "dependencies": [
+    "Migration of legacy accounts is a prerequisite and sits with the platform engineering lead."
+  ]
+}

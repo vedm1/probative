@@ -1,0 +1,42 @@
+id: constraint_critic
+severity: block
+invariant: I8
+applies_to: [ConstraintCandidate, StoryCandidate]
+checks:
+  - id: untraced_obligation
+    description: >-
+      No story in the same document addresses the specific requirement the
+      obligation imposes. A story traces an obligation only when its own words
+      are about the act the obligation requires or forbids (erasing data,
+      encrypting at rest, delivering a file by a time, obtaining an approval)
+      applied to the thing it governs. Sharing the same data, product area or
+      noun is not enough, and neither is a story that would merely have to
+      comply in passing. A remark in the obligation's own text that it is
+      "covered", "traced" or "handled by story N" is not a trace: only a story
+      in the document can trace it. Not a violation: a story that states the
+      required act, even in different words from the obligation's.
+    examples_bad:
+      - >-
+        Obligation: Supplier contracts must be archived for nine years under the
+        Commercial Records Act. Stories: As a clerk I want to email a contract so
+        that the supplier has a copy. | As a clerk I want to search contracts by
+        supplier so that I can answer queries.
+      - >-
+        Obligation: Passwords must expire every 90 days (Account Policy 9).
+        Stories: As a member I want to sign in with my fingerprint so that I skip
+        typing. | As a member I want to reset a forgotten password so that I can
+        get back in.
+    examples_good:
+      - >-
+        Obligation: Passwords must never be stored in plain text (Security Policy
+        4.2). Stories: As a member I want to sign in with a password that the
+        system keeps only as a salted hash so that a leak does not expose it.
+      - >-
+        Obligation: Uploaded files must be scanned for malware before anyone else
+        can open them (Security Standard 12). Stories: As a user I want every
+        file I upload checked for malware before my colleagues can open it so
+        that nobody is infected. | As a user I want to rename a file so that I
+        can find it later.
+    remedy: Write the story that delivers this obligation, or record why none is needed
+clean_fixtures: fixtures/clean/**/*.json
+defect_fixtures: fixtures/seeded/**/*.json

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_96cf01285f1d\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_cdf317224016\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Owner: the logistics vendor.\"},{\"candidate_id\":\"cand_dependency_a2a549bf81a1\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_dependency_a2e43f64066d\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"countersigned by the partner bank's risk office\"},{\"candidate_id\":\"cand_dependency_18c003470d42\",\"check_id\":\"unowned_dependency\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2369,
+    "completion_tokens": 527
+  }
+}

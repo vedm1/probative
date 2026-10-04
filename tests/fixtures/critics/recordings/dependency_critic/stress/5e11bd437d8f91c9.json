@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_b71542ee20eb\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"The payments team's tokenisation API\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2148,
+    "completion_tokens": 214
+  }
+}

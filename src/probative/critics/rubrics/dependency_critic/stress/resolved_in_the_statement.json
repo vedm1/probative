@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "already satisfied: met on the carve-out",
+  "text": "# Dependencies\n\n## What we rely on\n\n- The tokenisation service shipped last quarter, so nothing is awaited from the payments team.\n",
+  "dependencies": [
+    "The tokenisation service shipped last quarter, so nothing is awaited from the payments team."
+  ]
+}

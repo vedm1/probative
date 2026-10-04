@@ -1,0 +1,8 @@
+{
+  "check": "unowned_dependency",
+  "kind": "third_party_company",
+  "text": "# RAID log\n\n### Dependencies\n\n* Third-party dependency: address lookup service provided by GeoCore Ltd.\n",
+  "dependencies": [
+    "Third-party dependency: address lookup service provided by GeoCore Ltd."
+  ]
+}

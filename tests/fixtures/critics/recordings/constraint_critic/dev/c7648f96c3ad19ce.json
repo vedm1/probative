@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_7e73510d558d\",\"story_id\":\"cand_story_efb698400bc3\",\"quote\":\"a yearly harassment training course assigned to me\"},{\"constraint_id\":\"cand_constraint_a1c15cbd74d6\",\"story_id\":\"cand_story_2949bed05b6a\",\"quote\":\"see all the information the company holds about me\"},{\"constraint_id\":\"cand_constraint_b85706f2a9c5\",\"story_id\":\"cand_story_77ff397a7627\",\"quote\":\"leave records retained for six years\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2090,
+    "completion_tokens": 193
+  }
+}

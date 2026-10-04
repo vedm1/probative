@@ -1,0 +1,12 @@
+{
+  "text": "# Notes app\n\n## Requirements\n\n- Notes must be encrypted on the device before sync, per Security Standard 2.\n\n## Stories\n\n- As a user, I want my notes encrypted on my phone before they are uploaded so that the server never sees them in the clear.\n- As a user, I want to pin a note so that it stays at the top.\n- As a user, I want to search my notes so that I can find old ones.\n",
+  "constraints": [
+    "Notes must be encrypted on the device before sync, per Security Standard 2."
+  ],
+  "stories": [
+    "As a user, I want my notes encrypted on my phone before they are uploaded so that the server never sees them in the clear.",
+    "As a user, I want to pin a note so that it stays at the top.",
+    "As a user, I want to search my notes so that I can find old ones."
+  ],
+  "expect_untraced": []
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_2cf3acd009a3\",\"story_id\":\"cand_story_97fafad608b4\",\"quote\":\"countersign any award above 50,000 before it is released\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2007,
+    "completion_tokens": 100
+  }
+}

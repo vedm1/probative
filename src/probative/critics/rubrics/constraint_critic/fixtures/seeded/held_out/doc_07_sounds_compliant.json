@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "sounds_compliant",
+  "text": "# Bank onboarding: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Customer identity documents must be verified against an official register, per the Anti-Money-Laundering Rules. |\n| C2 | Accounts must not be opened for anyone under 18, under the Banking Code 3. |\n\n## Backlog\n\nUS-1 As a compliance officer, I want to see a list of pending applications so that I can work through them.\nUS-2 As a compliance officer, I want applicants under 18 to be declined automatically so that no minor opens an account.\nUS-3 As a new customer, I want my application checked properly so that the bank can trust who I am.\nUS-4 As a new customer, I want to upload a photo of my passport so that I can open an account.\n",
+  "constraints": [
+    "Customer identity documents must be verified against an official register, per the Anti-Money-Laundering Rules.",
+    "Accounts must not be opened for anyone under 18, under the Banking Code 3."
+  ],
+  "stories": [
+    "As a compliance officer, I want to see a list of pending applications so that I can work through them.",
+    "As a compliance officer, I want applicants under 18 to be declined automatically so that no minor opens an account.",
+    "As a new customer, I want my application checked properly so that the bank can trust who I am.",
+    "As a new customer, I want to upload a photo of my passport so that I can open an account."
+  ],
+  "expect_untraced": [
+    "Customer identity documents must be verified against an official register, per the Anti-Money-Laundering Rules."
+  ]
+}

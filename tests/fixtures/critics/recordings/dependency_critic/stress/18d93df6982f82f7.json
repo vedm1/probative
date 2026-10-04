@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_99dd4acef2c5\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Settlement file feed from the partner bank\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2150,
+    "completion_tokens": 78
+  }
+}

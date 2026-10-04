@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "same_area_decoys",
+  "text": "# Energy billing: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Meter readings must be accepted from customers at any time, under the Supply Licence. |\n| C2 | Customers in arrears must not be disconnected during winter months, under the Utility Customers Code. |\n\n## Backlog\n\nUS-1 As a customer, I want to compare this year's usage with last year's so that I can cut back.\nUS-2 As a customer, I want to pay my bill by direct debit so that it is automatic.\nUS-3 As a customer, I want to set up a payment plan so that I can spread a large bill.\nUS-4 As a customer, I want to submit a meter reading whenever I like so that my bill is accurate.\n",
+  "constraints": [
+    "Meter readings must be accepted from customers at any time, under the Supply Licence.",
+    "Customers in arrears must not be disconnected during winter months, under the Utility Customers Code."
+  ],
+  "stories": [
+    "As a customer, I want to compare this year's usage with last year's so that I can cut back.",
+    "As a customer, I want to pay my bill by direct debit so that it is automatic.",
+    "As a customer, I want to set up a payment plan so that I can spread a large bill.",
+    "As a customer, I want to submit a meter reading whenever I like so that my bill is accurate."
+  ],
+  "expect_untraced": [
+    "Customers in arrears must not be disconnected during winter months, under the Utility Customers Code."
+  ]
+}

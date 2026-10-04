@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_24b3407b225a\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_176305e04286\",\"story_id\":\"cand_story_8b0607da0c04\",\"quote\":\"visitors to sign in and out on a tablet\"},{\"constraint_id\":\"cand_constraint_6a6f10d626d0\",\"story_id\":\"cand_story_aefc725c95bf\",\"quote\":\"a weekly fire exit check to be assigned and ticked off\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2217,
+    "completion_tokens": 263
+  }
+}

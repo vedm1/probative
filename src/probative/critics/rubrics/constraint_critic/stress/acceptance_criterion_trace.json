@@ -1,0 +1,13 @@
+{
+  "expect_untraced": [],
+  "allow_also_untraced": [],
+  "why": "the act appears only in the story's own acceptance line, inside the same quote",
+  "text": "# Workplace booking\n\n## Requirements\n\n- Desks must be released if unused 30 minutes after the booked time, under Facilities Policy 6.\n\n## Stories\n\n- As a colleague, I want to book a desk for a day so that I have somewhere to sit. Acceptance: a booking is released automatically if nobody has checked in 30 minutes after the booked time.\n- As a colleague, I want to see who sits nearby so that I can find a teammate.\n",
+  "constraints": [
+    "Desks must be released if unused 30 minutes after the booked time, under Facilities Policy 6."
+  ],
+  "stories": [
+    "As a colleague, I want to book a desk for a day so that I have somewhere to sit. Acceptance: a booking is released automatically if nobody has checked in 30 minutes after the booked time.",
+    "As a colleague, I want to see who sits nearby so that I can find a teammate."
+  ]
+}

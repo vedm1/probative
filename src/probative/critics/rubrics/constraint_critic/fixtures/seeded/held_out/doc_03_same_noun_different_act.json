@@ -1,0 +1,18 @@
+{
+  "check": "untraced_obligation",
+  "kind": "same_noun_different_act",
+  "text": "# Document signing: compliance and scope\n\n| Ref | Obligation |\n|---|---|\n| C1 | Signed documents must be stored with a timestamp from a trusted authority under the e-Signature Standard. |\n| C2 | Signers must be shown the full text before signing, per the Disclosure Rules. |\n\n## Backlog\n\nUS-1 As a signer, I want to read the whole document before I can press sign so that I know what I am agreeing to.\nUS-2 As a sender, I want to download the signed document so that I can file it.\nUS-3 As a signer, I want to sign a document on my phone so that I do not need a printer.\nUS-4 As a sender, I want to see who has signed a document so that I can chase the rest.\n",
+  "constraints": [
+    "Signed documents must be stored with a timestamp from a trusted authority under the e-Signature Standard.",
+    "Signers must be shown the full text before signing, per the Disclosure Rules."
+  ],
+  "stories": [
+    "As a signer, I want to read the whole document before I can press sign so that I know what I am agreeing to.",
+    "As a sender, I want to download the signed document so that I can file it.",
+    "As a signer, I want to sign a document on my phone so that I do not need a printer.",
+    "As a sender, I want to see who has signed a document so that I can chase the rest."
+  ],
+  "expect_untraced": [
+    "Signed documents must be stored with a timestamp from a trusted authority under the e-Signature Standard."
+  ]
+}

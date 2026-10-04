@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_72e20087f478\",\"story_id\":\"cand_story_19c6f0e666bc\",\"quote\":\"require two quotes on any purchase above 5,000\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2005,
+    "completion_tokens": 75
+  }
+}

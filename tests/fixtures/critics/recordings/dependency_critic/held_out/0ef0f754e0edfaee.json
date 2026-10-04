@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_dependency_d4364400e00a\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"awaiting legal\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2164,
+    "completion_tokens": 69
+  }
+}
