@@ -1,0 +1,58 @@
+[
+  {
+    "kind": "claim",
+    "quote": "Most shoppers abandon checkout at the card entry form."
+  },
+  {
+    "kind": "claim",
+    "quote": "Support tickets about failed card entry doubled between March and June."
+  },
+  {
+    "kind": "claim",
+    "quote": "Competitors let returning shoppers pay in a single tap."
+  },
+  {
+    "kind": "need",
+    "quote": "Shoppers need to pay without retyping their card number on every purchase."
+  },
+  {
+    "kind": "need",
+    "quote": "Users need a dashboard."
+  },
+  {
+    "kind": "need",
+    "quote": "Finance analysts struggle to reconcile settlements against bank statements."
+  },
+  {
+    "kind": "story",
+    "quote": "As a returning shopper, I want to save my card so that I can check out in one tap."
+  },
+  {
+    "kind": "story",
+    "quote": "As a finance analyst, I want a settlement report so that I can reconcile payouts."
+  },
+  {
+    "kind": "constraint",
+    "quote": "Card data must be stored and processed in line with PCI DSS version 4.0."
+  },
+  {
+    "kind": "constraint",
+    "quote": "Customer data of EU residents must be handled in compliance with GDPR, including the right to erasure."
+  },
+  {
+    "kind": "constraint",
+    "quote": "Per the signed Master Services Agreement with Acme Bank, settlement files must be delivered by 06:00 UTC."
+  },
+  {
+    "kind": "dependency",
+    "quote": "Delivery depends on the Fraud team shipping the new risk-scoring API."
+  },
+  {
+    "kind": "dependency",
+    "quote": "The saved-cards launch is blocked until Acme Bank certifies our tokenisation integration."
+  },
+  {
+    "kind": "dependency",
+    "quote": "Once the platform team has finished migrating the ledger to the new database, we can turn on settlement reports."
+  }
+]

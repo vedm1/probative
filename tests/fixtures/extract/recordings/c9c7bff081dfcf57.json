@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"claims\":[{\"quote\":\"Most shoppers abandon checkout at the card entry form.\"},{\"quote\":\"Support tickets about failed card entry\\ndoubled between March and June.\"}],\"needs\":[{\"quote\":\"Shoppers need to pay without retyping their card number on every purchase.\"}],\"stories\":[{\"quote\":\"As a returning shopper, I want to save my card so that I can check out in one tap.\"}],\"dependencies\":[{\"quote\":\"Card data must be stored and processed in line with PCI DSS version 4.0.\"},{\"quote\":\"Settlement files must be\\ndelivered to Acme Bank by 06:00 UTC under the signed Master Services Agreement.\"},{\"quote\":\"Delivery depends on the Fraud team shipping the new risk-scoring API.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1449,
+    "completion_tokens": 492
+  }
+}

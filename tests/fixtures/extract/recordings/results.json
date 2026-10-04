@@ -1,0 +1,277 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "documents": {
+    "prd_payments.md": {
+      "score": {
+        "per_kind": {
+          "claim": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 0,
+            "precision": 0.75,
+            "recall": 1.0
+          },
+          "need": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "story": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "constraint": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "dependency": {
+            "tp": 3,
+            "fp": 3,
+            "fn": 0,
+            "precision": 0.5,
+            "recall": 1.0
+          }
+        },
+        "overall": {
+          "tp": 14,
+          "fp": 4,
+          "fn": 0,
+          "precision": 0.7777777777777778,
+          "recall": 1.0
+        }
+      },
+      "rejected": [],
+      "usage": {
+        "input_tokens": 3082,
+        "output_tokens": 1884
+      },
+      "predicted": [
+        {
+          "kind": "claim",
+          "text": "Most shoppers abandon checkout at the card entry form."
+        },
+        {
+          "kind": "claim",
+          "text": "Support tickets about failed card entry doubled between March and June."
+        },
+        {
+          "kind": "claim",
+          "text": "Competitors let returning shoppers pay in a single tap."
+        },
+        {
+          "kind": "claim",
+          "text": "Checkout speed is our top priority."
+        },
+        {
+          "kind": "need",
+          "text": "Shoppers need to pay without retyping their card number on every purchase."
+        },
+        {
+          "kind": "need",
+          "text": "Users need a dashboard."
+        },
+        {
+          "kind": "need",
+          "text": "Finance analysts struggle to reconcile settlements against bank statements."
+        },
+        {
+          "kind": "story",
+          "text": "- As a returning shopper, I want to save my card so that I can check out in one tap."
+        },
+        {
+          "kind": "story",
+          "text": "- As a finance analyst, I want a settlement report so that I can reconcile payouts."
+        },
+        {
+          "kind": "constraint",
+          "text": "Card data must be stored and processed in line with PCI DSS version 4.0."
+        },
+        {
+          "kind": "dependency",
+          "text": "Card data must be stored and processed in line with PCI DSS version 4.0."
+        },
+        {
+          "kind": "constraint",
+          "text": "Customer data of EU residents must be handled in compliance with GDPR, including the right to erasure."
+        },
+        {
+          "kind": "dependency",
+          "text": "Customer data of EU residents must be handled in compliance with GDPR, including the right to erasure."
+        },
+        {
+          "kind": "constraint",
+          "text": "Per the signed Master Services Agreement with Acme Bank, settlement files must be delivered by 06:00 UTC."
+        },
+        {
+          "kind": "dependency",
+          "text": "Per the signed Master Services Agreement with Acme Bank, settlement files must be delivered by 06:00 UTC."
+        },
+        {
+          "kind": "dependency",
+          "text": "Delivery depends on the Fraud team shipping the new risk-scoring API."
+        },
+        {
+          "kind": "dependency",
+          "text": "The saved-cards launch is blocked until Acme Bank certifies our tokenisation integration."
+        },
+        {
+          "kind": "dependency",
+          "text": "Once the platform team has finished migrating the ledger to the new database, we can turn on settlement reports."
+        }
+      ]
+    },
+    "prd_payments.pdf": {
+      "score": {
+        "per_kind": {
+          "claim": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "need": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "story": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "constraint": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "dependency": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 0,
+            "precision": 0.3333333333333333,
+            "recall": 1.0
+          }
+        },
+        "overall": {
+          "tp": 7,
+          "fp": 2,
+          "fn": 0,
+          "precision": 0.7777777777777778,
+          "recall": 1.0
+        }
+      },
+      "rejected": [],
+      "usage": {
+        "input_tokens": 2466,
+        "output_tokens": 584
+      },
+      "predicted": [
+        {
+          "kind": "claim",
+          "text": "Most shoppers abandon checkout at the card entry form."
+        },
+        {
+          "kind": "claim",
+          "text": "Support tickets about failed card entry\ndoubled between March and June."
+        },
+        {
+          "kind": "need",
+          "text": "Shoppers need to pay without retyping their card number on every purchase."
+        },
+        {
+          "kind": "story",
+          "text": "As a returning shopper, I want to save my card so that I can check out in one tap."
+        },
+        {
+          "kind": "constraint",
+          "text": "Card data must be stored and processed in line with PCI DSS version 4.0."
+        },
+        {
+          "kind": "dependency",
+          "text": "Card data must be stored and processed in line with PCI DSS version 4.0."
+        },
+        {
+          "kind": "constraint",
+          "text": "Settlement files must be\ndelivered to Acme Bank by 06:00 UTC under the signed Master Services Agreement."
+        },
+        {
+          "kind": "dependency",
+          "text": "Settlement files must be\ndelivered to Acme Bank by 06:00 UTC under the signed Master Services Agreement."
+        },
+        {
+          "kind": "dependency",
+          "text": "Delivery depends on the Fraud team shipping the new risk-scoring API."
+        }
+      ]
+    },
+    "memo_logistics.txt": {
+      "score": {
+        "per_kind": {
+          "claim": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "need": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "story": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "constraint": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "dependency": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          }
+        },
+        "overall": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "rejected": [],
+      "usage": {
+        "input_tokens": 2158,
+        "output_tokens": 197
+      },
+      "predicted": []
+    }
+  }
+}

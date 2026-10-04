@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"constraints\":[{\"quote\":\"Card data must be stored and processed in line with PCI DSS version 4.0.\"},{\"quote\":\"Customer data of EU residents must be handled in compliance with GDPR, including the right to erasure.\"},{\"quote\":\"Per the signed Master Services Agreement with Acme Bank, settlement files must be delivered by 06:00 UTC.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1325,
+    "completion_tokens": 455
+  }
+}

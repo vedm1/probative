@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"claims\":[{\"quote\":\"Most shoppers abandon checkout at the card entry form.\"},{\"quote\":\"Support tickets about failed card entry doubled between March and June.\"},{\"quote\":\"Competitors let returning shoppers pay in a single tap.\"},{\"quote\":\"Checkout speed is our top priority.\"}],\"needs\":[{\"quote\":\"Shoppers need to pay without retyping their card number on every purchase.\"},{\"quote\":\"Users need a dashboard.\"},{\"quote\":\"Finance analysts struggle to reconcile settlements against bank statements.\"}],\"stories\":[{\"quote\":\"- As a returning shopper, I want to save my card so that I can check out in one tap.\"},{\"quote\":\"- As a finance analyst, I want a settlement report so that I can reconcile payouts.\"}],\"dependencies\":[{\"quote\":\"Delivery depends on the Fraud team shipping the new risk-scoring API.\"},{\"quote\":\"The saved-cards launch is blocked until Acme Bank certifies our tokenisation integration.\"},{\"quote\":\"Once the platform team has finished migrating the ledger to the new database, we can turn on settlement reports.\"},{\"quote\":\"Per the signed Master Services Agreement with Acme Bank, settlement files must be delivered by 06:00 UTC.\"},{\"quote\":\"Card data must be stored and processed in line with PCI DSS version 4.0.\"},{\"quote\":\"Customer data of EU residents must be handled in compliance with GDPR, including the right to erasure.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1757,
+    "completion_tokens": 1429
+  }
+}

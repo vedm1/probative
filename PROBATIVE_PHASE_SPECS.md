@@ -657,9 +657,95 @@ All hand-written JSON/YAML, no generator script needed (unlike PB1/PB2's binary 
 - **Cross-reference fix, not a scope change**: the PB3 stub previously listed "OI3 resolved" as a prerequisite. `PROBATIVE_BUILD_PLAN.md`'s open-items table was already correct (OI3 blocks PB5); the stub was stale. Corrected in the Prerequisites line above rather than left to accumulate confusion at PB5.
 
 ## PB4 — Shallow extraction
-**Objective**: Typed candidates — claims, needs, stories, constraints, dependencies — extracted from a single document with locators, without constructing a graph.
-**Prerequisites**: PB1, PB2, PB3 ✅.
-**Known unknowns**: precision/recall achievable on unstructured PRDs; whether constraint extraction needs its own pass.
+
+**Objective**: Typed candidates — claims, needs, stories, constraints, dependencies — extracted from a single `Source` with resolvable locators, without constructing a graph.
+
+**Prerequisites**: PB1, PB2, PB3 ✅. No open item blocks it. OI2 (reference model) and OI3 (recording library) block PB5; PB4 is the first phase to need an LLM test pattern, so it ships the smallest hand-rolled recorder (under `tests/`, not `src/`) as *input* to OI3 without closing it.
+
+**Known unknowns**: precision/recall achievable on unstructured PRDs (answered by the live recording, see Gating check); whether constraint extraction needs its own pass (built as a separate pass, per-kind live numbers decide if it earns its cost).
+
+**Design decisions (approved)**
+
+1. **The model proposes verbatim quotes, never offsets.** Deterministic code finds each quote in `source.text` and builds the span via `ingest.spans()`. An unlocatable quote is rejected and counted. Document text is untrusted. Quote verification means a model cannot introduce text that is not in the document, but it does **not** stop an injected sentence that *is* in the document from being quoted: gate 4 therefore depends on measured model behaviour, not on the resolver.
+2. **Candidate text is the document's own wording, never a rewrite** — otherwise solution grammar would be laundered past `SpaceWarden` (I3, PB5).
+3. **Tier and kind are not on candidates.** `EvidenceSpan` carries neither (single source of record); they are reached through `evidence.source_id` → `Source`.
+4. **Plain function, not an S1 `Agent`.** `GraphState`/`RunContext` do not exist until PB12; PB13/PB14 wrap this later.
+
+### Types — `src/probative/core/candidates.py` (mypy strict)
+
+- `CandidateKind` (StrEnum): `CLAIM`, `NEED`, `STORY`, `CONSTRAINT`, `DEPENDENCY`.
+- `_CandidateBase` (frozen): `id: str` (`cand_<kind>_<sha256(source_id:start:end)[:12]>`; a validator rejects any id that is not the recomputed one), `evidence: EvidenceSpan` (required, non-nullable — no locator means unconstructible, I1), property `text`.
+- `ClaimCandidate`, `NeedCandidate`, `StoryCandidate`, `ConstraintCandidate`, `DependencyCandidate`, each with `kind: Literal[...]`; `Candidate` is the discriminated union. **PB5–PB7 rubrics must write `applies_to: [NeedCandidate]`** — PB3 matches `type(x).__name__`.
+- `RejectReason` (`NOT_FOUND`, `EMPTY`, `TOO_LONG`, `DUPLICATE`), `RejectedQuote(kind, quote, reason)`.
+- `ExtractionResult(source_id, claims, needs, stories, constraints, dependencies, rejected, usage: TokenUsage)` with `candidates()` (flat, document order).
+- No numeric field on any candidate other than structural positions in the source (span offsets, locator page/line): no confidence, no score (I4). A structural test enforces exactly that set. `_CandidateBase` also validates span coherence (`0 <= start < end`, `len(text) == end - start`).
+
+### Contract — `src/probative/extract/`
+
+```python
+def extract_candidates(source: Source, provider: Provider, *, model: str,
+                       max_chars_per_call: int = 60_000,
+                       max_quote_chars: int = 500) -> ExtractionResult
+```
+
+- **Passes** (`PASSES` data table): `general` (claim, need, story, dependency) and `constraint` (stricter prompt: only obligations the document itself states; never from model knowledge).
+- **LLM output models**: lists of `RawQuote(quote: str)` and nothing else — no offsets, confidence, rationale or tier.
+- **Prompts** (`prompts.py`): document inside `<document>…</document>` declared as data; need prompt says include feature-framed statements and do not rewrite. Prompt text is hashed into the recording key.
+- **Chunking**: if `len(text) > max_chars_per_call`, split greedily at `LocatorRegion` boundaries, then `\n\n`, then line break; no overlap; one call per pass per chunk.
+- **Quote resolution** (`resolve.py`), within the chunk window: reject `EMPTY` (no alphanumeric character at all, so punctuation-only quotes too); exact `find`; fallback whitespace-tolerant match in which a quote's tokens may be separated by spaces or **one** line break (a PDF wrap) but never a blank line, so a quote cannot stitch two statements or a heading into one span (span text always from `source.text`, never the model's); a match must start and end on word boundaries (no mid-word substrings); `max_quote_chars` bounds the *matched* span (`TOO_LONG`), not just the model's string; nothing fuzzier (paraphrase or curly-quote change → `NOT_FOUND`); a repeated quote takes the first occurrence not yet claimed in its kind, else `DUPLICATE`; overlap across kinds allowed.
+- **Repair**: `ValidationError` from the provider → one retry with a repair message; second failure raises `ExtractionFailedError(source_id, pass_name)` chained to the validation error. Provider/network errors propagate. A malformed reply carries no usage, so `ExtractionResult.usage` is a lower bound on the repair path.
+- **Guards**: `max_chars_per_call < 1` raises `ValueError` (it would otherwise loop forever); a literal `</document>` inside the document is neutralised in the prompt so the document cannot close its own data region.
+
+### Scoring — `extract/scoring.py` (pure)
+
+`score_extraction(predicted, gold) -> ExtractionScore`, per kind and overall. Match: same kind, character IoU ≥ 0.5, one-to-one greedy by highest IoU. Outputs TP/FP/FN, precision, recall; precision is `None` when `tp+fp == 0`, recall `None` when `tp+fn == 0` (no fake 1.0). These are eval metrics, not node fields, so outside the I4 formula registry; PB32 may absorb them. Gold labels are `{kind, quote}` JSON resolved through the same resolver; every gold quote must be unique in its document judged *loosely* (a whitespace variant elsewhere counts) and no two labels of a kind may resolve to the same span. Spans from different sources never match.
+
+### Fixtures and recording
+
+`tests/fixtures/extract/` (synthetic, `generate.py`): `prd_payments.md` (all five kinds plus seeded traps: feature-framed need, repeated sentence, requirement-not-claim, "must be fast" with no authority, dependency buried in prose, an injection sentence), `prd_payments.pdf` (shorter variant; locators carry `page`), `memo_logistics.txt` (nothing extractable), `gold/*.json`.
+
+Recording lives under `tests/extract/`: a recorder wraps the real `completion_fn`, writes the existing `recorded_structured_response.json` shape keyed by `sha256(messages)[:16]`; replay is a `completion_fn` reading that store, so `LiteLLMProvider`'s real parse path runs. A changed prompt misses the key and fails loudly with the hash.
+
+### Tests — `tests/extract/`
+
+`test_candidates`, `test_resolve` (including a model-imagined "GDPR Art. 17 applies" quote → `NOT_FOUND`, the I8 unit guard), `test_chunking`, `test_pipeline` (FakeProvider), `test_scoring` (hand-computed cases, IoU exactly 0.5), `test_roundtrip` (`reextract == span.text` for md and pdf), `test_recorder`, `test_replay_golden`, and `test_live_record` (`-m live`).
+
+### Gating check
+
+1. 100% of emitted candidates resolve and round-trip.
+2. Recorded live precision/recall per kind, with model name and token usage, written into the Implementation notes.
+3. Zero candidates on the candidate-free memo.
+4. The injection sentence yields no constraint.
+5. `ruff`, `mypy src`, `pytest` green with no credentials.
+
+No minimum precision/recall threshold is invented before a number exists; the replay golden test pins the recorded values so regressions are visible.
+
+**Out of scope**: tracker-structured shortcuts (Jira Story → `StoryCandidate`), acceptance-criteria capture (PB5 may extend `StoryCandidate`), the document's own cited support for a claim (PB6), tier/kind inference, any graph node, any renderer, any critic.
+
+**Implementation notes (resolved during build session)**
+
+- **Measured result** (live recording, `anthropic/claude-sonnet-5`, 2026-10-04; 3 synthetic documents, 21 hand labels; 6 calls, 7,706 input / 2,665 output tokens in total). Recall was 1.0 on every kind in both PRDs and nothing was rejected, i.e. the model never produced a quote that is not in the document.
+
+  | Kind | `prd_payments.md` P / R (tp·fp·fn) | `prd_payments.pdf` P / R (tp·fp·fn) |
+  |---|---|---|
+  | claim | 0.75 / 1.0 (3·1·0) | 1.0 / 1.0 (2·0·0) |
+  | need | 1.0 / 1.0 (3·0·0) | 1.0 / 1.0 (1·0·0) |
+  | story | 1.0 / 1.0 (2·0·0) | 1.0 / 1.0 (1·0·0) |
+  | constraint | 1.0 / 1.0 (3·0·0) | 1.0 / 1.0 (2·0·0) |
+  | dependency | **0.5** / 1.0 (3·3·0) | **0.33** / 1.0 (1·2·0) |
+  | overall | 0.78 / 1.0 (14·4·0) | 0.78 / 1.0 (7·2·0) |
+
+  `memo_logistics.txt` (nothing extractable): zero candidates, zero rejections. Usage per document (in/out): md 3,082/1,884; pdf 2,466/584; memo 2,158/197.
+- **Where precision is lost, and why it is not tuned away here.** Every dependency false positive is a constraint sentence (PCI DSS, GDPR, the MSA) *also* tagged as a dependency — the cross-kind overlap the spec allows and the independent reviewer predicted from the "legal or compliance sign-off" wording in the dependency definition. The one claim false positive is the unlabelled priority statement "Checkout speed is our top priority." The prompts were deliberately **not** tuned against this three-document corpus: a number improved on its own test set stops being a measurement. OI17 tracks a larger corpus before any prompt tuning; the replay golden test pins these numbers so any change is a visible, deliberate diff.
+- **Constraint pass**: on this corpus the separate pass produced all six expected constraints with zero false positives, and did not extract the injected CCPA sentence. That is evidence the stricter pass is not wasted, not proof it is necessary — a combined pass was not measured.
+- **Gating check, as met**: (1) every recorded candidate re-extracts to its recorded text (`reextract`); (2) numbers above; (3) zero candidates on the memo; (4) no constraint (or any candidate) from the injection sentence — **for this model at this prompt**. The resolver does not stop an injected sentence that is in the document from being quoted, so this is measured behaviour, not a structural guarantee; (5) `ruff`, `mypy src`, `pytest` green with no credentials (258 passed; 100% line coverage on `core/candidates.py` and `extract/` except one unreachable `match` fall-through in `scoring.py`).
+- **Independent review found real defects, all fixed before the recording** (a fresh subagent that had not seen the implementation reasoning): `chunk_windows(max_chars<=0)` looped forever; the whitespace fallback could bridge blank lines/headings into one multi-statement span and bypass `max_quote_chars`; quotes could match mid-word or be punctuation-only; the constraint prompt's "or states as non-negotiable" clause admitted any "must" requirement, contradicting I8; the `</document>` delimiter was escapable; gold labels could be duplicated or have a near-duplicate elsewhere; scoring ignored `source_id`; the repair message referred to a reply the model never saw. Each has a test that failed first.
+- **Spec was wrong on three counts**: (1) "no numeric field except span offsets" — `Locator.page`/`line` are position integers too; the guard now names exactly {offsets, page, line}. (2) Quote verification does not blunt prompt injection as strongly as first stated (above). (3) The whitespace fallback as first specced ("whitespace-insensitive") was too permissive; it is now bounded to at most one line break between tokens.
+- **Markdown bullets are part of the quote**: the model copied the leading `- ` of list items (as the prompt told it to), so story candidates in the md include it. They still match gold at IoU ≥ 0.5; PB5 should not assume story text begins with "As a".
+- **The recorder is hand-rolled and lives in `tests/extract/_recording.py`**, keyed by `sha256(messages)[:16]`, one JSON per request in the existing fixture shape. The hash makes prompt edits fail loudly on replay (`MissingRecordingError`). It is evidence for OI3, which stays open until PB5.
+- **Accepted, not fixed here**: `EvidenceSpan` (PB1) is not frozen and has no coherence validator, so a candidate's span can be mutated after construction; candidates validate coherence at construction only (OI16, for PB10). `ExtractionResult.usage` is a lower bound when a repair retry occurred (a failed reply carries no usage). Quotes straddling a chunk boundary are unresolvable (documented in `chunking.py`); this phase's corpus is single-chunk, so live chunked behaviour is exercised only with a scripted provider.
+- **Re-recording**: `ANTHROPIC_API_KEY=... uv run pytest -m live tests/extract/test_live_record.py -s` deletes and rewrites `tests/fixtures/extract/recordings/`; then update the pinned counts in `test_replay_golden.py::test_recorded_recall_is_complete_and_precision_gaps_are_the_known_ones` and this table.
+- **For PB5–PB7**: rubrics must write `applies_to: [NeedCandidate]` (PB3 matches `type(x).__name__`). Not built, by design: acceptance-criteria capture and the document's own cited support for a claim.
 
 ## PB5 — Critics: SpaceWarden, INVESTCritic
 **Prerequisites**: PB4 ✅, OI2 and OI3 resolved. Subagent review required.

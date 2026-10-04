@@ -1,0 +1,30 @@
+[
+  {
+    "kind": "claim",
+    "quote": "Most shoppers abandon checkout at the card entry form."
+  },
+  {
+    "kind": "claim",
+    "quote": "Support tickets about failed card entry doubled between March and June."
+  },
+  {
+    "kind": "need",
+    "quote": "Shoppers need to pay without retyping their card number on every purchase."
+  },
+  {
+    "kind": "story",
+    "quote": "As a returning shopper, I want to save my card so that I can check out in one tap."
+  },
+  {
+    "kind": "constraint",
+    "quote": "Card data must be stored and processed in line with PCI DSS version 4.0."
+  },
+  {
+    "kind": "constraint",
+    "quote": "Settlement files must be delivered to Acme Bank by 06:00 UTC under the signed Master Services Agreement."
+  },
+  {
+    "kind": "dependency",
+    "quote": "Delivery depends on the Fraud team shipping the new risk-scoring API."
+  }
+]
