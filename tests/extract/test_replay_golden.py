@@ -48,7 +48,12 @@ def test_recording_names_its_model() -> None:
 @pytest.mark.parametrize(("document", "gold_file"), CORPUS)
 def test_replayed_score_equals_the_recorded_score(document: str, gold_file: str) -> None:
     _, _, score = _run(document, gold_file)
-    assert score.model_dump(mode="json") == RESULTS["documents"][document]["score"]
+    dumped = score.model_dump(mode="json")
+    # PB4 recorded five kinds; PB6-p2 added a sixth, which this corpus has no
+    # segments for (default passes never ask) and so must score all-zero.
+    segment = dumped["per_kind"].pop(CandidateKind.SEGMENT.value)
+    assert (segment["tp"], segment["fp"], segment["fn"]) == (0, 0, 0)
+    assert dumped == RESULTS["documents"][document]["score"]
 
 
 @pytest.mark.parametrize(("document", "gold_file"), CORPUS)
@@ -106,7 +111,9 @@ def test_recorded_recall_is_complete_and_precision_gaps_are_the_known_ones() -> 
     md = RESULTS["documents"]["prd_payments.md"]["score"]["per_kind"]
     pdf = RESULTS["documents"]["prd_payments.pdf"]["score"]["per_kind"]
     for per_kind in (md, pdf):
-        assert all(per_kind[k.value]["fn"] == 0 for k in CandidateKind)
+        # PB4 recorded five kinds; the segment kind (PB6-p2) has its own recording.
+        recorded = [k for k in CandidateKind if k is not CandidateKind.SEGMENT]
+        assert all(per_kind[k.value]["fn"] == 0 for k in recorded)
     assert md[CandidateKind.DEPENDENCY.value]["fp"] == 3
     assert pdf[CandidateKind.DEPENDENCY.value]["fp"] == 2
     assert md[CandidateKind.CLAIM.value]["fp"] == 1

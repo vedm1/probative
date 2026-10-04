@@ -1,0 +1,13 @@
+{
+  "expect_fired": [
+    "demographic_only"
+  ],
+  "allow_also": [
+    "whole_market"
+  ],
+  "why": "large but bounded by size: a bucket (documents the overlap with whole_market)",
+  "text": "# Target customers\n\n## Who we are building for\n\n- All small businesses.\n",
+  "segments": [
+    "All small businesses."
+  ]
+}

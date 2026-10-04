@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "the whole definition is the candidate (what the segment pass is asked to quote), so the stated behaviour is visible",
+  "text": "# Target customers\n\n## Who we are building for\n\n- We are building this for freelancers. They invoice many clients and chase late payment weekly.\n",
+  "segments": [
+    "We are building this for freelancers. They invoice many clients and chase late payment weekly."
+  ]
+}

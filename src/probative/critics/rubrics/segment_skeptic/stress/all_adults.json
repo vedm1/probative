@@ -1,0 +1,13 @@
+{
+  "expect_fired": [
+    "whole_market"
+  ],
+  "allow_also": [
+    "demographic_only"
+  ],
+  "why": "everyone, but also a bare demographic; both readings are defensible, so only whole_market is required",
+  "text": "# Target customers\n\n## Who we are building for\n\n- All adults.\n",
+  "segments": [
+    "All adults."
+  ]
+}

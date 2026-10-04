@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a role plus the task they do is a behaviour",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Bookkeepers who reconcile accounts for several clients.\n",
+  "segments": [
+    "Bookkeepers who reconcile accounts for several clients."
+  ]
+}

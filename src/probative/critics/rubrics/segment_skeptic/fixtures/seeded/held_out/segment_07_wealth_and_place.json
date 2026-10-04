@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "wealth_and_place",
+  "text": "# Target customers\n\n## Who we are building for\n\n- The product serves high-net-worth individuals in Singapore and Hong Kong.\n",
+  "segments": [
+    "The product serves high-net-worth individuals in Singapore and Hong Kong."
+  ]
+}

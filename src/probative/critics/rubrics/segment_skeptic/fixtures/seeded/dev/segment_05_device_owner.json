@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "device_owner",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Owners of a recent iPhone who also have a smartwatch.\n",
+  "segments": [
+    "Owners of a recent iPhone who also have a smartwatch."
+  ]
+}

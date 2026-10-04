@@ -11,6 +11,7 @@ from probative.core.candidates import (
     CandidateKind,
     ClaimCandidate,
     NeedCandidate,
+    SegmentCandidate,
     StoryCandidate,
     candidate_id,
 )
@@ -54,6 +55,17 @@ def stories(text: str, quotes: list[str], *, source_id: str = "src_test") -> lis
     return out
 
 
+def segments(
+    text: str, quotes: list[str], *, source_id: str = "src_test"
+) -> list[SegmentCandidate]:
+    source = make_source(text, source_id=source_id)
+    out = []
+    for quote in quotes:
+        span = _resolve(source, quote)
+        out.append(SegmentCandidate(id=candidate_id(CandidateKind.SEGMENT, span), evidence=span))
+    return out
+
+
 def load_fixture(path: Path) -> dict[str, Any]:
     raw: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
     return raw
@@ -76,3 +88,8 @@ def parse_story_fixture(path: Path) -> list[StoryCandidate]:
 def parse_claim_fixture(path: Path) -> list[ClaimCandidate]:
     data = load_fixture(path)
     return claims(data["text"], data["claims"], source_id=f"src_{path.stem}")
+
+
+def parse_segment_fixture(path: Path) -> list[SegmentCandidate]:
+    data = load_fixture(path)
+    return segments(data["text"], data["segments"], source_id=f"src_{path.stem}")

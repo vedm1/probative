@@ -678,9 +678,9 @@ For the solo case this agent *is* the product's intelligence. It is not a form �
 
 | Critic | Mandate | Severity |
 |---|---|---|
-| `EvidenceAuditor` | I1, I4. Unsourced claims, authored numbers, citations that don't support what they're cited for | block |
+| `EvidenceAuditor` | I1. Factual statements that state no basis, or a basis that cannot carry their scope. *(I4 is enforced by `FormulaValidator`, PB11, not by this text critic; whether a cited source exists or says what is claimed needs a resolvable `Source`, PB13.)* | block |
 | `SpaceWarden` | I3. *"One of the easiest ways to tell that a product team is starting with the solution space is that instead of articulating customer benefits, they list product features"* (p. 39) | block |
-| `SegmentSkeptic` | A segment — differing needs and behaviour — or a demographic bucket? | block |
+| `SegmentSkeptic` | A segment — differing needs and behaviour — or a demographic bucket? Judges the statement's own words only. **Not run in onboarding mode** (I9: it evaluates how a past author defined a segment; enforcement waits for the mode config, OI22) | block (`demographic_only`), warn (`whole_market`). *Measured caveats (PB6 notes): the block also fires on whole-market statements, and on a good segment whose need sits in the next sentence* |
 | `ConstraintCritic` | I8. Untraced obligations at MVP commit | **block at G4** |
 | `DependencyCritic` | Unowned cross-boundary dependencies at MVP commit | **block at G4** |
 | `BiasHunter` | Sampling, survivorship, confirmation bias; leading questions in elicitation | warn → block on sampling |

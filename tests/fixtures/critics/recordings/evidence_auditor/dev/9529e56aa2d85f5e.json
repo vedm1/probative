@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_919e5e92dd4b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"three in four customers leave after a single failed payment\"},{\"candidate_id\":\"cand_claim_919e5e92dd4b\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_919e5e92dd4b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2857,
+    "completion_tokens": 328
+  }
+}

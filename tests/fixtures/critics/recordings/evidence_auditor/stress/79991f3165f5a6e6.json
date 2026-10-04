@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_9cf918f3c21a\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_9cf918f3c21a\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_9cf918f3c21a\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Card networks raised interchange fees across the board this year.\"},{\"candidate_id\":\"cand_claim_b0c30761c8a8\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b0c30761c8a8\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b0c30761c8a8\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a3db9bb4a165\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a3db9bb4a165\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a3db9bb4a165\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Most banks still reconcile payments by hand.\"},{\"candidate_id\":\"cand_claim_36a1f269f41d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_36a1f269f41d\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_36a1f269f41d\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5c8d41f76748\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Half of all returned parcels go back because the size was wrong\"},{\"candidate_id\":\"cand_claim_5c8d41f76748\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5c8d41f76748\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3071,
+    "completion_tokens": 1272
+  }
+}

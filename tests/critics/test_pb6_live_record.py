@@ -41,7 +41,10 @@ pytestmark = pytest.mark.live
 def test_record_split_and_measure() -> None:
     if not os.environ.get("ANTHROPIC_API_KEY"):
         pytest.skip("ANTHROPIC_API_KEY not set")
-    split = os.environ.get("PB6_SPLIT", "dev")
+    split = os.environ.get("PB6_SPLIT")
+    assert split, (
+        "PB6_SPLIT must be set explicitly (a mistyped name must not silently re-record dev)"
+    )
     assert split in (*SPLITS, "stress"), f"PB6_SPLIT must be one of {(*SPLITS, 'stress')}"
 
     corpus = EVIDENCE_AUDITOR

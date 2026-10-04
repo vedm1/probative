@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_c6d0f222e5fe\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"58% of online shoppers abandon at the account-creation step\"},{\"candidate_id\":\"cand_claim_c6d0f222e5fe\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_c6d0f222e5fe\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"guest checkout drives conversion\"},{\"candidate_id\":\"cand_claim_b73547cfa7e6\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b73547cfa7e6\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b73547cfa7e6\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_19990662cba5\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"$9.4 billion by 2029\"},{\"candidate_id\":\"cand_claim_19990662cba5\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_19990662cba5\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b3ab166d2588\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b3ab166d2588\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b3ab166d2588\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_465542756195\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"three in four customers leave after a single failed payment\"},{\"candidate_id\":\"cand_claim_465542756195\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_465542756195\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3061,
+    "completion_tokens": 2268
+  }
+}

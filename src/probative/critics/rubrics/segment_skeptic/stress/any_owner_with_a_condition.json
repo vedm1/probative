@@ -1,0 +1,12 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "whole_market",
+    "demographic_only"
+  ],
+  "why": "near-everyone with a trivial condition: whole_market is defensible, so is a bucket",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Anyone who owns a car and has ever been stuck in traffic.\n",
+  "segments": [
+    "Anyone who owns a car and has ever been stuck in traffic."
+  ]
+}

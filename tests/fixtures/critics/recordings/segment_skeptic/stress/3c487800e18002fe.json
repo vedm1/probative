@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_b4e4cffd173a\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Ambitious, tech-savvy early adopters\"},{\"candidate_id\":\"cand_segment_b4e4cffd173a\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2300,
+    "completion_tokens": 668
+  }
+}

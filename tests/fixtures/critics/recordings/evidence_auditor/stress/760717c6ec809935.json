@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_d2593746e0e8\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_d2593746e0e8\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_d2593746e0e8\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a08e45128425\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a08e45128425\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a08e45128425\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"None of our competitors offer partial refunds.\"},{\"candidate_id\":\"cand_claim_0d5fb3afc54b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_0d5fb3afc54b\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_0d5fb3afc54b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_80d021209efb\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_80d021209efb\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_80d021209efb\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Small merchants rarely open their monthly statements.\"},{\"candidate_id\":\"cand_claim_462b86e63159\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_462b86e63159\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_462b86e63159\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3041,
+    "completion_tokens": 1470
+  }
+}

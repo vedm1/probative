@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_c7cdd916b71b\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_c7cdd916b71b\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"everyone who buys groceries\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2297,
+    "completion_tokens": 114
+  }
+}

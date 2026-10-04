@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_af5ea7d303f2\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"small businesses\"},{\"candidate_id\":\"cand_segment_af5ea7d303f2\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2289,
+    "completion_tokens": 323
+  }
+}

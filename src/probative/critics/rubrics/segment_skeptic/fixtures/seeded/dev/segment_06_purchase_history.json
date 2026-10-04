@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "purchase_history",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Last year's buyers of a treadmill from a partner retailer.\n",
+  "segments": [
+    "Last year's buyers of a treadmill from a partner retailer."
+  ]
+}

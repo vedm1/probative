@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_078ffceee04a\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"high-net-worth individuals in Singapore and Hong Kong\"},{\"candidate_id\":\"cand_segment_078ffceee04a\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2307,
+    "completion_tokens": 212
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"segments\":[{\"quote\":\"Our primary customers are adults aged 28 to 45 with a university degree who live in large cities.\"},{\"quote\":\"Our second market is freelance photographers who invoice ten or more clients a month and wait more than 45 days to be paid.\"},{\"quote\":\"We want to serve everyone who sends an invoice.\"},{\"quote\":\"Our third group is bookkeepers. They reconcile accounts for several small clients and lose hours chasing missing receipts.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1178,
+    "completion_tokens": 471
+  }
+}

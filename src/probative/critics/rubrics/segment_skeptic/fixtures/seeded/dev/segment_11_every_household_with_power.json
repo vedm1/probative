@@ -1,0 +1,8 @@
+{
+  "check": "whole_market",
+  "kind": "every_household_with_power",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Every household that pays for electricity.\n",
+  "segments": [
+    "Every household that pays for electricity."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_31deebea15c3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_31deebea15c3\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_31deebea15c3\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_659aeb88d06b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_659aeb88d06b\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_659aeb88d06b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_7b0bbf8260f3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_7b0bbf8260f3\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_7b0bbf8260f3\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f9867e0debbe\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f9867e0debbe\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f9867e0debbe\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_6e5ccd2025db\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_6e5ccd2025db\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_6e5ccd2025db\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3086,
+    "completion_tokens": 1435
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "our_target_occupation",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Our target is accountants.\n",
+  "segments": [
+    "Our target is accountants."
+  ]
+}

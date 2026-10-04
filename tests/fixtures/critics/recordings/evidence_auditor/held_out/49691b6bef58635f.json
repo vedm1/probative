@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_5b570ed9a1cd\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5b570ed9a1cd\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Parents rarely check the school portal during the week.\"},{\"candidate_id\":\"cand_claim_5b570ed9a1cd\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2850,
+    "completion_tokens": 306
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_9e117ad606ea\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_9e117ad606ea\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_ae1c107427da\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"All consumers, whatever they buy or where they live.\"},{\"candidate_id\":\"cand_segment_ae1c107427da\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"All consumers, whatever they buy or where they live.\"},{\"candidate_id\":\"cand_segment_d65a2253b89c\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_d65a2253b89c\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_1e3d782b23ad\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_1e3d782b23ad\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Anyone who might ever want to book a trip.\"},{\"candidate_id\":\"cand_segment_fe384203de5d\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_fe384203de5d\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2481,
+    "completion_tokens": 1060
+  }
+}

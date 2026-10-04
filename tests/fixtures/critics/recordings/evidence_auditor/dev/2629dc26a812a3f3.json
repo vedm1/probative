@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_fc92a1e793e3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_fc92a1e793e3\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_fc92a1e793e3\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Most banks still reconcile payments by hand\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2867,
+    "completion_tokens": 333
+  }
+}

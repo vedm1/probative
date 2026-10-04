@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "age_and_city",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Our first market is residents of Lisbon and Porto between 18 and 24.\n",
+  "segments": [
+    "Our first market is residents of Lisbon and Porto between 18 and 24."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "whole_market",
+  "kind": "consumers_at_large",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Consumers at large.\n",
+  "segments": [
+    "Consumers at large."
+  ]
+}

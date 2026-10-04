@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "occupation_alone",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Primary-school teachers in the public system.\n",
+  "segments": [
+    "Primary-school teachers in the public system."
+  ]
+}

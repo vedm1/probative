@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "demographic_only"
+  ],
+  "why": "a goal is stated but says nothing that sets accountants apart; either verdict is defensible",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Accountants who want to be more efficient.\n",
+  "segments": [
+    "Accountants who want to be more efficient."
+  ]
+}

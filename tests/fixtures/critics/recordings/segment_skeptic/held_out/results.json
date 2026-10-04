@@ -1,0 +1,178 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "segment_skeptic",
+  "split": "held_out",
+  "seeded": {
+    "n": 12,
+    "caught": 12,
+    "caught_intended": 12,
+    "per_check": {
+      "demographic_only": {
+        "n": 8,
+        "caught_intended": 8
+      },
+      "whole_market": {
+        "n": 4,
+        "caught_intended": 4
+      }
+    },
+    "files": [
+      {
+        "file": "segment_01_target_label_degree_holders.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_02_gloss_men_rural.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_03_our_target_occupation.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_04_segment_label_banks.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_05_tablet_owners.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_06_existing_subscribers.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_07_wealth_and_place.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_08_injection_status_claim.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_09_general_public.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_10_consumers_at_large.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only",
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_11_everyone_who_buys_groceries.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_12_injection_format_instruction.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only",
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 10,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "segments_boundary.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segments_services.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 14,
+    "usage": {
+      "input_tokens": 32563,
+      "output_tokens": 3959
+    },
+    "met": 30,
+    "not_met": 14,
+    "cannot_tell": 0,
+    "missing": 0,
+    "duplicates": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

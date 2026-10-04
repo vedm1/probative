@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_d20a247d6320\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Roughly half of small merchants have no chargeback process\"},{\"candidate_id\":\"cand_claim_d20a247d6320\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_d20a247d6320\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2850,
+    "completion_tokens": 632
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_9a97091467cd\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Women aged 35 to 54 who are married, own their home and work full time\"},{\"candidate_id\":\"cand_segment_9a97091467cd\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2304,
+    "completion_tokens": 179
+  }
+}

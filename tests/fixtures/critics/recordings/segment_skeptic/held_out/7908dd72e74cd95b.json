@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_09868001813a\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_09868001813a\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_94fb91f06535\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_94fb91f06535\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_2e475a580b9d\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_2e475a580b9d\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_4708a95a06eb\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_4708a95a06eb\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_5cf70f667f1e\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_5cf70f667f1e\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2455,
+    "completion_tokens": 850
+  }
+}

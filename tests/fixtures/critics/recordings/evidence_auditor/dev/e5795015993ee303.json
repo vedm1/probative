@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_a8bbf12aecdf\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a8bbf12aecdf\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a8bbf12aecdf\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"None of our competitors offer partial refunds\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2849,
+    "completion_tokens": 308
+  }
+}

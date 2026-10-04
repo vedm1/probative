@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_bc6fee9641ff\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_bc6fee9641ff\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_bc6fee9641ff\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Several large carriers recently moved to dynamic pricing\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2853,
+    "completion_tokens": 329
+  }
+}

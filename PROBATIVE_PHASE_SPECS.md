@@ -109,6 +109,7 @@ Banding is computed, not authored — it derives from the claim's provenance, so
 - Claims are phrased as *what appears to have been decided, and what it rests on*. Never whether it was right.
 - No claim attributes fault, competence or intent to a named person.
 - `RedTeam` does not run in onboarding mode. This is a runtime exclusion in the mode config, not a prompt instruction.
+- `SegmentSkeptic` (PB6-p2) must be excluded too: its verdict is an evaluation of how a past author defined a segment. The same argument arguably covers the other evaluative critics. Nothing enforces this until the mode config exists — OI22.
 - The people map states where knowledge is concentrated and where contributors have become inactive. It never characterises how anyone performed.
 
 **Test the negative.** Each of PB39–PB41 ships with a fixture corpus containing a genuinely bad past decision. The assertion is that the output describes it neutrally and does not evaluate it. An implementation that produces a fair-but-critical assessment has failed the phase.
@@ -824,7 +825,66 @@ Type-check candidates (wrong type → `TypeError`; the same candidate id twice i
 - **Re-recording**: `ANTHROPIC_API_KEY=… PB5_SPLIT=<dev|held_out|stress> uv run pytest -m live tests/critics/test_pb5_live_record.py -s`. Held-out refuses to overwrite without `PB5_RERECORD_HELD_OUT=1`, which demotes it to dev. The replay test pins recorded measurements; when the stress recording exists, add a `stress` replay test.
 
 ## PB6 — Critics: EvidenceAuditor, SegmentSkeptic
-**Prerequisites**: PB4 ✅. Subagent review required.
+
+**Objective**: Two more LLM-backed critics on PB5's `LLMCritic`, each with a measured catch rate and false-positive rate. **PB6-p1 `EvidenceAuditor`** (I1): does a factual statement's own words state a basis, and can a stated basis carry its scope. **PB6-p2 `SegmentSkeptic`**: is a stated "segment" a group with differing needs and behaviour, or a demographic bucket (DESIGN §13). p2 also adds the `SegmentCandidate` kind and an opt-in segment extraction pass.
+
+**Prerequisites**: PB4 ✅, PB5 ✅. Subagent review required — done (see notes).
+
+**Design decisions (approved)**
+
+1. **Judge only what the statement's own words say.** Neither critic judges truth, existence of a source, or whether a segment is real. A fabricated statistic with a plausible citation passes `EvidenceAuditor`; a demographic group that does differ in need elsewhere is still flagged by `SegmentSkeptic`. Both need a resolvable `Source` / graph (PB13+) to do more.
+2. **Absence is the violation.** PB5's judge preamble says missing information is `cannot_tell`; that would have a blocking provenance critic pass the very claims it exists to flag. `LLMCritic.judge_preamble` (a ClassVar defaulting byte-for-byte to PB5's text, pinned by SHA-256 in a test) lets a critic supply its own verdict semantics. A critic is now "a rubric plus two class attributes, plus a third when absence is the finding".
+3. **p2 segment extraction is opt-in.** `extract_candidates(..., passes=None)` runs PB4's two passes unchanged (prompt hashes pinned, so PB4's recordings keep replaying); `passes=[*PASSES, SEGMENT_PASS]` adds segments. Adding a pass to `PASSES` would have broken PB4's pass-count test and every recorded key.
+4. **`demographic_only` blocks** (DESIGN §13); `whole_market` warns; per-check severity via PB5's `RubricCheck.severity`. p2 rubric `invariant` is `null` (DESIGN assigns SegmentSkeptic none; INVEST precedent). **Two caveats travel with that block** (see the notes): it also fires on whole-market statements, with a finding message that is then wrong for them, and the one genuinely harmful false block is a good segment whose need sits in the next sentence (`need_in_next_sentence`, which fires in stress). `EvidenceAuditor` claims I1 only — **not I4**: it emits no number, and I4's mechanism is `FormulaValidator` (PB11); DESIGN's "I1, I4" wording was looser than a text critic can enforce.
+5. **Dev / held-out split (OI17), stress outside the S2 globs**, as PB5. Pre-recording independent reviews ran for both phases (below).
+
+### Types and contract
+
+- p1: `critics/evidence_auditor.py` (`EvidenceAuditor`, checks `unsourced_statistic` block, `basis_overreach` block, `unsourced_assertion` warn; applies to `ClaimCandidate`); rubric `rubrics/evidence_auditor/rubric.yaml`; `LLMCritic.judge_preamble` + `build_system_prompt(..., judge_preamble)`.
+- p2: `CandidateKind.SEGMENT`, `SegmentCandidate` (no new field; id `cand_segment_<12 hex>`), `ExtractionResult.segments`, `Candidate` union; `extract/prompts.py`: `SegmentOutput`, `SEGMENT_PROMPT`, `SEGMENT_PASS`; `extract_candidates(..., passes=)` (an empty list raises `ValueError`); `critics/segment_skeptic.py` (`SegmentSkeptic`, checks `demographic_only` block / `whole_market` warn, own `judge_preamble`); rubric `rubrics/segment_skeptic/rubric.yaml`.
+- Ripple into PB4 code/tests (mechanical): `scoring._make` gained a `match` case; `test_scoring`/`test_replay_golden` iterate every `CandidateKind`, so the recorded-five-kinds assertions were narrowed and the new kind is asserted all-zero on PB4's corpus.
+
+### Rubric policy that the p2 pre-recording review forced (all in `rubric.yaml`, tested)
+
+*Who they are* = age, gender, income, location, job title or occupation, company size, industry, a **status** (married, employed, a homeowner, living alone, a student, a subscriber), a device owned, or having bought or used something **however it is phrased**. A **situation** is a circumstance that creates a need or a task (about to renew a licence), not a status. `whole_market` = everyone, or a condition nearly everyone meets (has worn clothes, has used a phone); common knowledge may be used for that check only. `cannot_tell` only when the text names no group of people at all.
+
+### Fixtures
+
+Synthetic, single-author, generators `tests/fixtures/critics/generate_pb6.py` (p1) and `generate_pb6_p2.py` (p2); shipped under each rubric's `fixtures/` and `stress/` (excluded from the wheel). p1: 12+12 defects (4 per check), 12+12 clean candidates, 14 stress. p2: 12+12 defects (8 `demographic_only`, 4 `whole_market` per split), 10+10 clean candidates, 15 stress. Extraction: `tests/fixtures/extract/prd_segments.md` (4 gold segments plus traps: a story naming a role, a need naming a role, a group size, one person, an injected instruction), PB4's `prd_payments.md` as a zero-gold false-positive probe, and PB4's candidate-free memo. Guards beyond PB5's: token-overlap (Jaccard) against rubric examples and between splits; **p2 adds a four-word-run guard against the whole rendered prompt**, which caught a held-out injection copied from the preamble.
+
+### Gating check
+
+1. `assert_rubric_fixtures` passes **on recorded responses** for both critics over dev + held-out. ✅
+2. Held-out catch/false-positive recorded with model, n and usage. ✅ (below)
+3. Every finding's evidence re-extracts to its recorded text and lies inside its candidate. ✅
+4. Injection fixtures behave correctly — measured for this model at these prompts, not structural. ✅ on the gated splits.
+5. p2 segment extraction recorded and pinned: 4/4 gold found, none of the traps, nothing on the memo or the false-positive probe. ✅ (A pin on a document the pass's two-sentence carve-out was written against, 3 documents and 4 gold labels: not an estimate.)
+6. `ruff`, `mypy src`, `pytest` green with no credentials. ✅
+7. Independent subagent review. ✅ (below)
+
+**Out of scope**: truth or existence of a cited source (PB13), graph-level I1/I2 (PB10), onboarding-mode exclusion mechanism (PB12/PB39, OI22), users-vs-buyers/adoption/personas (PB16), the critique report (PB9), `invest_score` (PB11).
+
+**Implementation notes (resolved during build session)**
+
+- **Measured (reference model `anthropic/claude-sonnet-5`; every recorded response reports `claude-sonnet-5`)**:
+
+  | Critic | Split | Caught | Intended check | False positives | Calls | Tokens in/out | `cannot_tell` |
+  |---|---|---|---|---|---|---|---|
+  | EvidenceAuditor | dev | 12/12 | 12/12 (4/4 per check) | 0/12 | 16 | 46,203 / 8,124 | 0 |
+  | EvidenceAuditor | held-out | 12/12 | 12/12 (4/4 per check) | 0/12 | 16 | 46,187 / 7,952 | 0 |
+  | SegmentSkeptic | dev | 12/12 | 12/12 (8/8, 4/4) | 0/10 | 14 | 32,651 / 4,022 | 0 |
+  | SegmentSkeptic | held-out | 12/12 | 12/12 (8/8, 4/4) | 0/10 | 14 | 32,563 / 3,959 | 0 |
+
+  Stress (never gating, never tuned on; "as labelled" means every `expect_fired` check fired and nothing outside `expect_fired ∪ allow_also` did, so a known false positive labelled as expected counts as expected — **strict** `fired == expect_fired` is 11/14 for EvidenceAuditor and 13/15 for SegmentSkeptic, the differences being the cases labelled lenient): EvidenceAuditor 14/14 as labelled (39,983 / 5,587 tokens); SegmentSkeptic 15/15 as labelled (34,469 / 3,219; 2 `cannot_tell` verdicts, the stress rows do not record which cases). **Mixed batches** (every split's candidates interleaved at the production batch size 5): EvidenceAuditor 24/24 caught, 0/24 false positives over 48 candidates in 10 calls; SegmentSkeptic 24/24 caught, 0/20 over 44 candidates in 9 calls. No unresolved quote, unknown id or omitted judgement in any run.
+- **What those numbers mean — less than they read.** Pooled over both splits each critic caught 24/24 (one-sided 95% lower bound ≈ 0.88) with 0/24 (p1) and 0/20 (p2) false positives (95% upper bounds ≈ 0.12 and ≈ 0.14); per-check n is 8 (p1, each check), 16 and 8 (p2), i.e. lower bounds ≈ 0.69, 0.83, 0.69. **Held-out only** (the only split no prompt was tuned against; p2 dev was tuned and both were reshaped by a pre-recording review): 12/12 caught gives a lower bound ≈ 0.78, and 0/12 (p1) and 0/10 (p2) false positives give upper bounds ≈ 0.22 and ≈ 0.26 — quote these, not the pooled ones. The corpora are synthetic and written by one author; the p2 independent review measured that a three-line regex separated clean from seeded at about 91% on the gated items before it was reshaped, and the reshaped sets are still single-author (OI21 stays open). Perfect scores on the first run left nothing to tune for p1 or p2-dev-before-review, which is itself weak evidence.
+- **Co-firing in p2 (the one real finding in the recordings).** The first p2 dev recording had `demographic_only` — the *blocking* check — also fire on two `whole_market` seeds, although the rubric excludes everyone-ish groups from it. One tuning step followed, on dev only: a sentence in the judge preamble (*"a group that is everyone, … is met on demographic_only: only whole_market applies to it"*). Held-out was then recorded once on that frozen prompt. Result: dev co-firing 2 → 0 (dev is the tuned split, so that shows nothing out of sample) and **held-out co-firing on 2 of 4 `whole_market` seeds** (`consumers_at_large`, the format-instruction injection). **No held-out baseline from before the edit exists, so the tie-break has no demonstrated effect out of sample**: before the edit dev co-fired on 2 of 4, after it held-out co-fires on 2 of 4. A whole-market statement can therefore be blocked as well as warned, and the finding text then reads "defines the group only by who its members are", which is wrong for "everyone who …". Recorded and pinned in `test_pb6_replay.py::PINNED_EXTRAS`, not tuned further — any further prompt edit makes held-out stale and needs fresh held-out fixtures (OI23). p1 had one analogous extra (`unsourced_assertion` also firing on a figure whose sentence also asserts a fact; defensible).
+- **Recording order, disclosed.** p2 held-out was first mistyped (env var name) and ran as dev; p2 stress and mixed were recorded before held-out, so held-out candidates were judged inside the mixed run before the held-out run. No prompt edit followed that, but held-out is therefore not "never seen by the model in any batch". After the tie-break edit, p2 dev and stress were re-recorded; held-out was not re-run.
+- **Known false-positive class, measured not hidden.** One-statement judgement cannot see a basis or a need that sits in a later sentence: EvidenceAuditor `adjacent_source` fires; SegmentSkeptic `need_in_next_sentence` fires (`demographic_only`, a **block**). The p2 extraction pass quotes a two-sentence definition as one candidate and the critic then passes it (`two_sentence_definition`), but a definition in a later paragraph is invisible. A blocking check with this class means the stress number must be quoted beside the catch rate.
+- **Segment extraction (recorded; 3 documents, 4 gold labels, a pin not an estimate).** `prd_segments.md`: 4/4 found including the two-sentence definition, 0 false positives, nothing rejected, none of the traps and not the injected "all humans" line; `prd_payments.md` (PB4's PRD, no target group defined) and the candidate-free memo: 0 segments. Tokens in/out 1,178/471, 1,382/1,013, 920/9.
+- **Independent reviews.** *p1, before recording* (earlier session): three blockers (undefined/approximating words disputing a third of the labels; held-out was dev with the domain swapped and both near-copies of rubric examples; two causation seeds collided with the rubric's own carve-out) — fixed, plus a token-overlap guard. *p2, before recording*: **not safe to record** as built; four blockers — `whole_market` contradicted its own carve-out and "close to everyone" was undefined; `cannot_tell` was an escape hatch for the bare noun-phrase seeds; the held-out injections copied the prompt's wording; "situation" and purchase-versus-behaviour were undefined, leaving labels in dispute — all fixed, each with a test that failed first, and the held-out set was reshaped while still unrecorded. *Post-recording review of the final state* (fresh reader, whole PB6 incl. docs): verified every per-split number, the stress/mixed totals and the segment-extraction results against the committed `results.json` files, the PB4/PB5 prompt SHA pins, the PB4 test edits (mechanical, not weakened), I1/I4/I5, idempotence of both fixture generators, and by mutation that every committed recording matches the current prompt (removing the tie-break sentence fails 14 replay tests incl. both held-out). It found **two blockers** — the docs claimed this review before it existed, and the tie-break was described as having "reduced but not removed" the co-firing when only the tuned split supports that — and fixed in the same session: the claims above are rewritten to say the effect is unmeasured out of sample; plus held-out-only bounds (S1), a definition and strict counts for "as labelled" (S4), the caveats beside the block in DESIGN §13 and decision 4 (S3), SegmentSkeptic named in S5 and pointers added to PB12/PB39 (S2), stale references corrected (S6), and the live recorders now require the split variable explicitly because a mistyped default caused the disclosed incident (S7; PB5's recorder has the same default and is left alone). Not changed: the EvidenceAuditor stress case `form_minutes` ("takes about six minutes") is the judge preamble's own worked example — it is non-gating, rewording it would stale the p1 stress recording, and the four-word-run guard now covers p1's gated splits (it found them clean) with this case documented as the exception. Not verifiable from the repo: the pre-edit p2 dev recording (replaced by the re-record), the exact order of stress vs. held-out, and the "~91%" regex figure (no artifact).
+- **Spec was wrong or silent on**: (1) DESIGN gives `EvidenceAuditor` "I1, I4"; a text critic enforces I1 only. (2) DESIGN §13 says `SegmentSkeptic` blocks while `docs/GETTING-STARTED.md` showed it as WARN — the sample was corrected to BLOCK. (3) PB5's "a critic is a rubric plus two class attributes" held only for open-world critics. (4) `Rubric.invariant` is nullable, which p2 uses.
+- **Accepted, not fixed**: the p2 recordings are n=1 at the provider default (OI19); all-`cannot_tell` reply passes silently (OI21/PB32); onboarding-mode exclusion of `SegmentSkeptic` is documentation only until a mode config exists (**OI22**); the co-firing and single-statement visibility limits (**OI23**).
+- **Re-recording**: `ANTHROPIC_API_KEY=… PB6_SPLIT=<dev|held_out|stress> uv run pytest -m live tests/critics/test_pb6_live_record.py -s` (EvidenceAuditor), `PB6P2_SPLIT=…` with `test_pb6p2_live_record.py` (SegmentSkeptic), `uv run pytest -m live tests/extract/test_live_record_segments.py -s` (segment pass; writes only `recordings_segments/`). Held-out refuses to overwrite without `PB6[P2]_RERECORD_HELD_OUT=1`, which demotes it to dev.
 
 ## PB7 — Critics: ConstraintCritic, DependencyCritic
 **Prerequisites**: PB4 ✅. Subagent review required.
@@ -864,6 +924,7 @@ Type-check candidates (wrong type → `TypeError`; the same candidate id twice i
 ## PB39 — Reconstruction and banding
 **Objective**: Product map, glossary with first appearance and who introduced each term, decision log, contradiction list, absence list. Every claim banded per S5. `NeutralityCritic` implements I9.
 **Prerequisites**: PB37, PB38 ✅, S5. **Subagent review required.**
+**Open item**: OI22 — the mode config must exclude `SegmentSkeptic` (and decide on the other evaluative critics) in onboarding mode; today that is documentation only.
 **Known unknowns**: absence detection needs a notion of what *should* be present — probably a small taxonomy of categories (accessibility, security, performance, a user type with no tickets) rather than open-ended inference.
 
 ## PB40 — People and knowledge map
@@ -894,6 +955,7 @@ Type-check candidates (wrong type → `TypeError`; the same candidate id twice i
 ## PB12 — Runtime
 **Objective**: LangGraph phase machine, propose/dispose patches, `Committer`, critic fan-out and join, repair loop capped at 3 cycles, gates with `interrupt_before`, SQLite checkpointing, per-phase token and wall-clock budgets, `TediumAuditor` interaction counters.
 **Prerequisites**: PB10, PB11 ✅.
+**Open item**: OI22 — the mode config must exclude `SegmentSkeptic` (and decide on the other evaluative critics) in onboarding mode; today that is documentation only.
 
 ## PB13 — Evidence ledger
 **Objective**: Tier and kind classification, dedupe, entity resolution, contradiction detection producing `CONTRADICTS` edges and `Question` nodes, corroboration by independent source, confidence propagation.

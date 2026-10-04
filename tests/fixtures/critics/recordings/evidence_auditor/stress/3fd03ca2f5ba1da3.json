@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_82b4175ac556\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"About 65% of learners drop out of a course within two weeks\"},{\"candidate_id\":\"cand_claim_82b4175ac556\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_82b4175ac556\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_6a6640ac9e89\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_6a6640ac9e89\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_6a6640ac9e89\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_cbdd03a3fe1b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_cbdd03a3fe1b\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"the same rate applies across the entire customer base\"},{\"candidate_id\":\"cand_claim_cbdd03a3fe1b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_047d792e13b2\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_047d792e13b2\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_047d792e13b2\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b0dbda1574b9\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_b0dbda1574b9\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"confirming the new carrier is reliable for the long run\"},{\"candidate_id\":\"cand_claim_b0dbda1574b9\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3093,
+    "completion_tokens": 1312
+  }
+}

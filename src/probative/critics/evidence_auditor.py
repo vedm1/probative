@@ -11,7 +11,8 @@ What this does and does not do, so a catch rate is not read as more than it is:
 - "Sourced elsewhere" (a footnote, a section-level "Source:" line, the next
   sentence) is invisible: the critic sees one statement, so it is expected to
   flag such claims. The stress split includes that case so the rate can be
-  measured once recorded; it is a known false-positive class, not a solved one.
+  measured in the recorded stress split (`adjacent_source` fires); it is a known
+  false-positive class, not a solved one.
 - A statement explicitly marked as a belief or assumption ("we believe",
   "hypothesis") passes the unsourced checks: that is I1's own exemption (a
   claim is evidenced *or* typed Hypothesis). It also means a claim can pass by

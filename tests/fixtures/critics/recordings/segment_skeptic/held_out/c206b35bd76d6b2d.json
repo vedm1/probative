@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_fcc4b27d1517\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Android tablet owners\"},{\"candidate_id\":\"cand_segment_fcc4b27d1517\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2291,
+    "completion_tokens": 112
+  }
+}

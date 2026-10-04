@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_8034f0961e79\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Pensioners in coastal towns\"},{\"candidate_id\":\"cand_segment_8034f0961e79\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2305,
+    "completion_tokens": 227
+  }
+}

@@ -96,3 +96,42 @@ def test_each_clean_split_has_bare_declaratives_with_no_lexical_marker() -> None
     for split in SPLITS:
         bare = [q for q in _quotes(split, ("clean",)) if not marker.search(q)]
         assert len(bare) >= 3, (split, bare)
+
+
+def _four_grams(text: str) -> set[tuple[str, ...]]:
+    words = re.findall(r"[a-z0-9]+", text.lower())
+    return {tuple(words[i : i + 4]) for i in range(len(words) - 3)}
+
+
+def test_no_gated_claim_repeats_a_four_word_run_from_the_rendered_prompt() -> None:
+    """The p2 review found the Jaccard guard blind to a fixture copied from the
+    preamble; the same check on p1's gated splits is clean. Stress is exempt and one
+    case is known to violate it: `stress/form_minutes.json` ("takes about six
+    minutes") is the judge preamble's own worked example. It is non-gating, and
+    rewording it would stale the recorded stress run, so it is documented rather than
+    changed."""
+    from probative.critics.evidence_auditor import EvidenceAuditor
+    from probative.critics.llm_judge import build_system_prompt
+
+    prompt = _four_grams(
+        build_system_prompt(CORPUS.rubric, EvidenceAuditor.preamble, EvidenceAuditor.judge_preamble)
+    )
+    for split in SPLITS:
+        for quote in _quotes(split):
+            assert not _four_grams(quote) & prompt, quote
+
+
+def test_the_known_stress_exception_is_exactly_the_one_documented() -> None:
+    from probative.critics.evidence_auditor import EvidenceAuditor
+    from probative.critics.llm_judge import build_system_prompt
+
+    prompt = _four_grams(
+        build_system_prompt(CORPUS.rubric, EvidenceAuditor.preamble, EvidenceAuditor.judge_preamble)
+    )
+    offenders = {
+        path.stem
+        for path in CORPUS.stress_files()
+        for q in load_fixture(path)["claims"]
+        if _four_grams(q) & prompt
+    }
+    assert offenders == {"form_minutes"}

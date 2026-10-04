@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_2cdc73fdd312\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Card networks raised interchange fees across the board this year.\"},{\"candidate_id\":\"cand_claim_2cdc73fdd312\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_2cdc73fdd312\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2851,
+    "completion_tokens": 173
+  }
+}

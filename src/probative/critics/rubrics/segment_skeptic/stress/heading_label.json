@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a label, not a complete statement: cannot_tell is the correct verdict, so nothing fires",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Primary segment\n",
+  "segments": [
+    "Primary segment"
+  ]
+}

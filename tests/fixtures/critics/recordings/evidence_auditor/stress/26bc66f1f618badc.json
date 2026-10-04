@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_94a1b1d7f66b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_94a1b1d7f66b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Onboarding is too slow.\"},{\"candidate_id\":\"cand_claim_94a1b1d7f66b\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2845,
+    "completion_tokens": 543
+  }
+}

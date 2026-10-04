@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_674ad9f9116e\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Existing subscribers of the premium tier\"},{\"candidate_id\":\"cand_segment_674ad9f9116e\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2296,
+    "completion_tokens": 179
+  }
+}

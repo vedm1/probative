@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_c6d44bc0ee62\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_c6d44bc0ee62\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"All consumers\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2300,
+    "completion_tokens": 291
+  }
+}

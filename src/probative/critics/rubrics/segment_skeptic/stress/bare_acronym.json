@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "demographic_only"
+  ],
+  "allow_also": [],
+  "why": "a firmographic label with no stated need",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Our customers are SMBs.\n",
+  "segments": [
+    "Our customers are SMBs."
+  ]
+}

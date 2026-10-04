@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_e93bcc6e329a\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"general public\"},{\"candidate_id\":\"cand_segment_e93bcc6e329a\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_f94a4e640ac5\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Consumers at large\"},{\"candidate_id\":\"cand_segment_f94a4e640ac5\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_96683ad68149\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"everyone who buys groceries\"},{\"candidate_id\":\"cand_segment_96683ad68149\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_bf4ba9e547e0\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Everyone with an internet connection\"},{\"candidate_id\":\"cand_segment_bf4ba9e547e0\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2423,
+    "completion_tokens": 1264
+  }
+}

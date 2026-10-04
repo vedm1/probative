@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "target_label_degree_holders",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Target customer: degree holders in their late twenties who live in a city and rent.\n",
+  "segments": [
+    "Target customer: degree holders in their late twenties who live in a city and rent."
+  ]
+}

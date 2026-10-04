@@ -6,6 +6,8 @@ builds no graph. It proposes nothing to the Committer; it returns candidates.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
+
 from pydantic import BaseModel, ValidationError
 
 from probative.core.candidates import (
@@ -18,6 +20,7 @@ from probative.core.candidates import (
     NeedCandidate,
     RejectedQuote,
     RejectReason,
+    SegmentCandidate,
     StoryCandidate,
     candidate_id,
 )
@@ -71,7 +74,14 @@ def extract_candidates(
     model: str,
     max_chars_per_call: int = 60_000,
     max_quote_chars: int = 500,
+    passes: Sequence[ExtractionPass] | None = None,
 ) -> ExtractionResult:
+    """`passes=None` runs PB4's two passes. Pass `[*PASSES, SEGMENT_PASS]` to
+    also extract segments (PB6-p2); the default is unchanged so PB4's recorded
+    prompts keep replaying."""
+    chosen = list(PASSES if passes is None else passes)
+    if not chosen:
+        raise ValueError("passes must name at least one extraction pass")
     if max_chars_per_call < 1:
         raise ValueError(f"max_chars_per_call must be at least 1, got {max_chars_per_call}")
     found: dict[CandidateKind, list[EvidenceSpan]] = {kind: [] for kind in CandidateKind}
@@ -81,7 +91,7 @@ def extract_candidates(
 
     for window in chunk_windows(source, max_chars=max_chars_per_call):
         chunk = source.text[window[0] : window[1]]
-        for extraction_pass in PASSES:
+        for extraction_pass in chosen:
             output, usage = _call(
                 provider,
                 extraction_pass,
@@ -131,6 +141,10 @@ def extract_candidates(
         dependencies=[
             DependencyCandidate(id=candidate_id(CandidateKind.DEPENDENCY, s), evidence=s)
             for s in ordered(CandidateKind.DEPENDENCY)
+        ],
+        segments=[
+            SegmentCandidate(id=candidate_id(CandidateKind.SEGMENT, s), evidence=s)
+            for s in ordered(CandidateKind.SEGMENT)
         ],
         rejected=rejected,
         usage=TokenUsage(input_tokens=input_tokens, output_tokens=output_tokens),

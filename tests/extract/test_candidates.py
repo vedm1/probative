@@ -19,6 +19,7 @@ from probative.core.candidates import (
     NeedCandidate,
     RejectedQuote,
     RejectReason,
+    SegmentCandidate,
     StoryCandidate,
     candidate_id,
 )
@@ -79,6 +80,7 @@ def test_candidate_is_frozen() -> None:
         (StoryCandidate, CandidateKind.STORY),
         (ConstraintCandidate, CandidateKind.CONSTRAINT),
         (DependencyCandidate, CandidateKind.DEPENDENCY),
+        (SegmentCandidate, CandidateKind.SEGMENT),
     ],
 )
 def test_each_class_has_its_kind_by_default(cls: type[Any], kind: CandidateKind) -> None:
@@ -123,6 +125,7 @@ def test_no_candidate_carries_a_number_except_position_integers() -> None:
         StoryCandidate,
         ConstraintCandidate,
         DependencyCandidate,
+        SegmentCandidate,
     ):
         assert sorted(_numeric_annotations(cls, set())) == [
             "EvidenceSpan.end",
@@ -160,3 +163,26 @@ def test_candidate_rejects_an_incoherent_span() -> None:
     for bad in (inverted, wrong_length):
         with pytest.raises(ValidationError, match="span"):
             NeedCandidate(id=candidate_id(CandidateKind.NEED, bad), evidence=bad)
+
+
+def test_segment_candidate_id_is_derived_and_prefixed() -> None:
+    span = _span()
+    candidate = SegmentCandidate(id=candidate_id(CandidateKind.SEGMENT, span), evidence=span)
+    assert candidate.id.startswith("cand_segment_")
+    assert candidate.text == "hello"
+    with pytest.raises(ValidationError, match="derived id"):
+        SegmentCandidate(id="cand_segment_handwritten", evidence=span)
+
+
+def test_segment_candidate_is_in_the_union_and_the_result() -> None:
+    adapter: TypeAdapter[Candidate] = TypeAdapter(Candidate)
+    first, second = _span(0, 5), _span(10, 15)
+    segment = SegmentCandidate(id=candidate_id(CandidateKind.SEGMENT, second), evidence=second)
+    assert adapter.validate_json(adapter.dump_json(segment)) == segment
+    result = ExtractionResult(
+        source_id="src_a",
+        needs=[NeedCandidate(id=candidate_id(CandidateKind.NEED, first), evidence=first)],
+        segments=[segment],
+    )
+    assert [c.kind for c in result.candidates()] == [CandidateKind.NEED, CandidateKind.SEGMENT]
+    assert ExtractionResult(source_id="src_a").segments == []

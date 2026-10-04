@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "demographic_only"
+  ],
+  "allow_also": [],
+  "why": "the need sits in the next sentence; one statement cannot show it, so this fires: the known false-positive class of an own-words critic, recorded rather than hidden",
+  "text": "# Target customers\n\n## Who we are building for\n\n- We are building this for freelancers.\n\nThey invoice many clients and chase late payment weekly.\n",
+  "segments": [
+    "We are building this for freelancers."
+  ]
+}

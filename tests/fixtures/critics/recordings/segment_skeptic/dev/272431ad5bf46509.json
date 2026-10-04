@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_a598557fe754\",\"check_id\":\"demographic_only\",\"verdict\":\"met\",\"quote\":null},{\"candidate_id\":\"cand_segment_a598557fe754\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Anyone who might ever want to book a trip\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2295,
+    "completion_tokens": 117
+  }
+}

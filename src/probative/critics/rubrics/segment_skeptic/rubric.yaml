@@ -1,0 +1,47 @@
+id: segment_skeptic
+severity: warn            # whole_market inherits this; demographic_only overrides
+invariant: null           # DESIGN §13 assigns SegmentSkeptic no invariant (cf. invest)
+applies_to: [SegmentCandidate]
+checks:
+  - id: demographic_only
+    severity: block
+    description: >-
+      The statement defines the target group only by who its members are and
+      states no need, behaviour, situation, problem or goal that would set them
+      apart from anyone else. Who they are: age, gender, income, location, job
+      title or occupation, company size, industry, a status (married, employed,
+      a homeowner, living alone, a student, a subscriber), a device owned, or
+      having bought or used something, however it is phrased. A situation is a
+      circumstance that creates a need or a task (about to renew a licence,
+      locked out of an account), not a status. Judged from the statement's own
+      words: if no need, behaviour, situation, problem or goal is stated, the
+      check is not met. A remark about the group's own validity ("validated",
+      "a proven segment") or a note addressed to the reader is not a stated need
+      or behaviour. Not a violation: a group whose words include a behaviour, a
+      situation, a problem or a goal, even alongside demographics; a group that
+      is everyone, or bounded only by a condition nearly everyone meets, which
+      is whole_market's concern.
+    examples_bad:
+      - "Adults aged 30 to 50 with a household income above $80,000"
+      - "Retail businesses with 10 to 50 employees"
+    examples_good:
+      - "Shop owners who reorder stock by phone because their supplier has no online catalogue"
+      - "Tenants in their first year of renting who have never negotiated a lease"
+    remedy: Say what these people need or do differently from everyone else, or drop the segment
+  - id: whole_market
+    description: >-
+      The statement's group is everyone, or is bounded only by a condition that
+      nearly everyone already meets (has worn clothes, has used a phone, has
+      eaten out, has been ill), so it draws no boundary and cannot differ in
+      need from the rest of the market. A group bounded only by who its members
+      are is demographic_only's concern, not this check's. Not a violation: a
+      group bounded by a condition that excludes a substantial share of people,
+      such as a behaviour, a situation or a problem that many people do not have.
+    examples_bad:
+      - "Anyone who pays a bill each month"
+      - "Everyone who shops online"
+    examples_good:
+      - "Teams that onboard contractors every week and chase their documents by email"
+    remedy: Name the subset whose need is sharpest, or state why the whole market behaves alike
+clean_fixtures: fixtures/clean/**/*.json
+defect_fixtures: fixtures/seeded/**/*.json

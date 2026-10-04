@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_960213cd3dc6\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_960213cd3dc6\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_7c8c18b7ba1a\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Logistics firms with 200 to 500 staff headquartered in the Nordics\"},{\"candidate_id\":\"cand_segment_7c8c18b7ba1a\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_067657838260\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_067657838260\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_929e1a809ceb\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Owners of a recent iPhone who also have a smartwatch\"},{\"candidate_id\":\"cand_segment_929e1a809ceb\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_3f1a1f7f9964\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_3f1a1f7f9964\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2497,
+    "completion_tokens": 1441
+  }
+}

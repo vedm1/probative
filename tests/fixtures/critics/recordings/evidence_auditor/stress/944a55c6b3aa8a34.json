@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_76c76ccd01af\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_76c76ccd01af\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so search is the main problem\"},{\"candidate_id\":\"cand_claim_76c76ccd01af\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2873,
+    "completion_tokens": 539
+  }
+}

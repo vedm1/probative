@@ -34,6 +34,10 @@ class ConstraintOutput(BaseModel):
     constraints: list[RawQuote] = Field(default_factory=list)
 
 
+class SegmentOutput(BaseModel):
+    segments: list[RawQuote] = Field(default_factory=list)
+
+
 @dataclass(frozen=True)
 class ExtractionPass:
     name: str
@@ -114,3 +118,33 @@ PASSES: list[ExtractionPass] = [
         fields={"constraints": CandidateKind.CONSTRAINT},
     ),
 ]
+
+
+SEGMENT_PROMPT = (
+    _COMMON
+    + """
+Category:
+- segments: statements in which the document names or defines the group of \
+customers or users the product is aimed at: who the target customer is. \
+Include a statement even if it defines the group only by who they are (age, \
+role, location, company size, industry); do not exclude it and do not reword \
+it into something better. Quote the whole statement that defines the group. If \
+the document defines one group across two adjacent sentences in the same \
+paragraph, quote both sentences as a single quote (an exception to the \
+one-statement rule above). A user story ("As a ... I \
+want ...") is not a segment definition, and neither is a statement of what \
+customers need, a market-size figure, or a description of a single person. \
+Never add a group from your own knowledge of the market; return only groups \
+the document itself names or defines.
+"""
+)
+
+# Opt-in (PB6-p2): `PASSES` stays exactly the two PB4 passes, because PB4's
+# recordings are keyed by prompt hash. A caller wanting segments passes
+# `passes=[*PASSES, SEGMENT_PASS]` to `extract_candidates`.
+SEGMENT_PASS = ExtractionPass(
+    name="segment",
+    output_model=SegmentOutput,
+    system_prompt=SEGMENT_PROMPT,
+    fields={"segments": CandidateKind.SEGMENT},
+)

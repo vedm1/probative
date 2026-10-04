@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "existing_subscribers",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Existing subscribers of the premium tier.\n",
+  "segments": [
+    "Existing subscribers of the premium tier."
+  ]
+}

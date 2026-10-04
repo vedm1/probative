@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "tablet_owners",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Android tablet owners.\n",
+  "segments": [
+    "Android tablet owners."
+  ]
+}

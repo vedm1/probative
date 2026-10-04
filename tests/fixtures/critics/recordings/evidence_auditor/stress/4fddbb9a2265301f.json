@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_c44692da3760\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_c44692da3760\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_c44692da3760\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Other scheduling vendors do not integrate with hospital records\"},{\"candidate_id\":\"cand_claim_81128def24b3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_81128def24b3\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_81128def24b3\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a81cb10591c7\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a81cb10591c7\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a81cb10591c7\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Parents rarely check the school portal during the week\"},{\"candidate_id\":\"cand_claim_7ad75dc8810b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_7ad75dc8810b\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_7ad75dc8810b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_c8583548e4e4\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_c8583548e4e4\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_c8583548e4e4\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Several large carriers recently moved to dynamic pricing\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3051,
+    "completion_tokens": 1376
+  }
+}

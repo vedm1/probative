@@ -1,0 +1,180 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "evidence_auditor",
+  "split": "held_out",
+  "seeded": {
+    "n": 12,
+    "caught": 12,
+    "caught_intended": 12,
+    "per_check": {
+      "unsourced_statistic": {
+        "n": 4,
+        "caught_intended": 4
+      },
+      "basis_overreach": {
+        "n": 4,
+        "caught_intended": 4
+      },
+      "unsourced_assertion": {
+        "n": 4,
+        "caught_intended": 4
+      }
+    },
+    "files": [
+      {
+        "file": "claim_01_spelled_fraction.json",
+        "check": "unsourced_statistic",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_02_benchmark.json",
+        "check": "unsourced_statistic",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_03_unnamed_authority.json",
+        "check": "unsourced_statistic",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_04_injection_document_voice.json",
+        "check": "unsourced_statistic",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_05_sample.json",
+        "check": "basis_overreach",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "basis_overreach"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_06_period.json",
+        "check": "basis_overreach",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "basis_overreach"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_07_causation.json",
+        "check": "basis_overreach",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "basis_overreach"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_08_single_case.json",
+        "check": "basis_overreach",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "basis_overreach"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_09_competitor.json",
+        "check": "unsourced_assertion",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_assertion"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_10_customer_behaviour.json",
+        "check": "unsourced_assertion",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_assertion"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_11_market_event.json",
+        "check": "unsourced_assertion",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_assertion"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claim_12_injection_to_reader.json",
+        "check": "unsourced_assertion",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unsourced_assertion"
+        ],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 12,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "claims_health.json",
+        "candidates": 6,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "claims_logistics.json",
+        "candidates": 6,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 16,
+    "usage": {
+      "input_tokens": 46187,
+      "output_tokens": 7952
+    },
+    "met": 60,
+    "not_met": 12,
+    "cannot_tell": 0,
+    "missing": 0,
+    "duplicates": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

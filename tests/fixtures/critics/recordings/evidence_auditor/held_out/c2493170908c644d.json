@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_538b07a75abe\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_538b07a75abe\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"portals fix no-shows everywhere\"},{\"candidate_id\":\"cand_claim_538b07a75abe\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2869,
+    "completion_tokens": 546
+  }
+}

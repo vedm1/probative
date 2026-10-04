@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_35ecb6aacea7\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_35ecb6aacea7\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Every household that pays for electricity\"},{\"candidate_id\":\"cand_segment_f714c001bdc6\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_f714c001bdc6\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_25794ba5b94d\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_25794ba5b94d\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Everyone who pays taxes\"},{\"candidate_id\":\"cand_segment_74b68ef4b32c\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_74b68ef4b32c\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_dc08fa15b49f\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"degree holders in their late twenties who live in a city and rent\"},{\"candidate_id\":\"cand_segment_dc08fa15b49f\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2483,
+    "completion_tokens": 1292
+  }
+}

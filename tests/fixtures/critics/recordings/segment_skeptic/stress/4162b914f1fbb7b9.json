@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_14832676d14a\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Homeowners aged 40 to 65\"},{\"candidate_id\":\"cand_segment_14832676d14a\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2309,
+    "completion_tokens": 237
+  }
+}

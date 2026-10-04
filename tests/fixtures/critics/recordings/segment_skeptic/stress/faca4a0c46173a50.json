@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_21d301153217\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"freelancers\"},{\"candidate_id\":\"cand_segment_21d301153217\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2289,
+    "completion_tokens": 165
+  }
+}

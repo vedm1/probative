@@ -32,6 +32,7 @@ from probative.core.candidates import (
     ConstraintCandidate,
     DependencyCandidate,
     NeedCandidate,
+    SegmentCandidate,
     StoryCandidate,
 )
 from probative.core.critic import Finding, Rubric
@@ -43,7 +44,12 @@ from probative.llm.structured import complete_with_repair
 from probative.llm.types import Message
 
 AnyCandidate = (
-    ClaimCandidate | NeedCandidate | StoryCandidate | ConstraintCandidate | DependencyCandidate
+    ClaimCandidate
+    | NeedCandidate
+    | StoryCandidate
+    | ConstraintCandidate
+    | DependencyCandidate
+    | SegmentCandidate
 )
 
 

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_131b4960c33b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_131b4960c33b\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_131b4960c33b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Small merchants rarely open their monthly statements\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2848,
+    "completion_tokens": 320
+  }
+}

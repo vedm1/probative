@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_2019287a4537\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_2019287a4537\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_7a87440230b4\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"high-net-worth individuals in Singapore and Hong Kong\"},{\"candidate_id\":\"cand_segment_7a87440230b4\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_d830151de32d\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_d830151de32d\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_7701e569860d\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Pensioners in coastal towns\"},{\"candidate_id\":\"cand_segment_7701e569860d\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_f24ee27712b3\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_f24ee27712b3\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2512,
+    "completion_tokens": 1062
+  }
+}

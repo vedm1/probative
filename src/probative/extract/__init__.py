@@ -7,6 +7,7 @@ Public API: `extract_candidates`, `score_extraction`, `gold_candidates`.
 from __future__ import annotations
 
 from probative.extract.pipeline import extract_candidates
+from probative.extract.prompts import PASSES, SEGMENT_PASS
 from probative.extract.scoring import (
     ExtractionScore,
     GoldLabel,
@@ -18,6 +19,8 @@ from probative.extract.scoring import (
 )
 
 __all__ = [
+    "PASSES",
+    "SEGMENT_PASS",
     "ExtractionScore",
     "GoldLabel",
     "GoldLabelError",

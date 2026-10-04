@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_1d604fff5c30\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"People who use our competitor's app\"},{\"candidate_id\":\"cand_segment_1d604fff5c30\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2292,
+    "completion_tokens": 112
+  }
+}

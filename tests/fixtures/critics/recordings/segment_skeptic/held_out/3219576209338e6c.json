@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_fc36776be7c9\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Everyone with an internet connection\"},{\"candidate_id\":\"cand_segment_fc36776be7c9\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Everyone with an internet connection\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2311,
+    "completion_tokens": 446
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_10e82765810a\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_10e82765810a\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_695fb1310a0b\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"men over sixty living in rural Ontario\"},{\"candidate_id\":\"cand_segment_695fb1310a0b\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_2fad7aff2808\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_2fad7aff2808\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_cd9922eb935d\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"accountants\"},{\"candidate_id\":\"cand_segment_cd9922eb935d\",\"check_id\":\"whole_market\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_476431e40c71\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_476431e40c71\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2460,
+    "completion_tokens": 884
+  }
+}

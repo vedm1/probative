@@ -9,14 +9,16 @@ from pathlib import Path
 from pydantic import BaseModel
 
 from probative.core.critic import Rubric
-from probative.critics import evidence_auditor, invest, space_warden
+from probative.critics import evidence_auditor, invest, segment_skeptic, space_warden
 from probative.critics.rubric import load_rubric
 from tests.critics._candidates import (
     claims,
     needs,
     parse_claim_fixture,
     parse_need_fixture,
+    parse_segment_fixture,
     parse_story_fixture,
+    segments,
     stories,
 )
 
@@ -50,5 +52,8 @@ INVEST = Corpus("invest", invest.RUBRIC_PATH, "stories", parse_story_fixture, st
 EVIDENCE_AUDITOR = Corpus(
     "evidence_auditor", evidence_auditor.RUBRIC_PATH, "claims", parse_claim_fixture, claims
 )
-CORPORA = [SPACE_WARDEN, INVEST, EVIDENCE_AUDITOR]
+SEGMENT_SKEPTIC = Corpus(
+    "segment_skeptic", segment_skeptic.RUBRIC_PATH, "segments", parse_segment_fixture, segments
+)
+CORPORA = [SPACE_WARDEN, INVEST, EVIDENCE_AUDITOR, SEGMENT_SKEPTIC]
 SPLITS = ("dev", "held_out")

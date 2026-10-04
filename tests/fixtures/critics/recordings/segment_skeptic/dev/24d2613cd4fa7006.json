@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_9580d35b964c\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"residents of Lisbon and Porto between 18 and 24\"},{\"candidate_id\":\"cand_segment_9580d35b964c\",\"check_id\":\"whole_market\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2306,
+    "completion_tokens": 172
+  }
+}

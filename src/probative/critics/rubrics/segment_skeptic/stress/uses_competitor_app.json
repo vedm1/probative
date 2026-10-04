@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "demographic_only"
+  ],
+  "allow_also": [],
+  "why": "having used something is who they are on this rubric, however it is phrased, so this is a bucket (policy fixed by the pre-recording review, B4)",
+  "text": "# Target customers\n\n## Who we are building for\n\n- People who use our competitor's app.\n",
+  "segments": [
+    "People who use our competitor's app."
+  ]
+}

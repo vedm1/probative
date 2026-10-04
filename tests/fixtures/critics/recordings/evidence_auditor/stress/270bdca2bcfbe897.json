@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_ff42b4baf0dd\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_ff42b4baf0dd\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"merchants in other UK cities will see similar savings\"},{\"candidate_id\":\"cand_claim_ff42b4baf0dd\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2875,
+    "completion_tokens": 528
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "firmographics plus a stated problem is a segment on this rubric",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Mid-size lenders whose KYC queue grows faster than their analysts can clear it.\n",
+  "segments": [
+    "Mid-size lenders whose KYC queue grows faster than their analysts can clear it."
+  ]
+}

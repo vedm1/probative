@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "firmographic",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Logistics firms with 200 to 500 staff headquartered in the Nordics.\n",
+  "segments": [
+    "Logistics firms with 200 to 500 staff headquartered in the Nordics."
+  ]
+}

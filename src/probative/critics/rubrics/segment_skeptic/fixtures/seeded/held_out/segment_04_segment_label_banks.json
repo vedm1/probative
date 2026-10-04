@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "segment_label_banks",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Segment: credit unions holding under two billion euros in assets.\n",
+  "segments": [
+    "Segment: credit unions holding under two billion euros in assets."
+  ]
+}

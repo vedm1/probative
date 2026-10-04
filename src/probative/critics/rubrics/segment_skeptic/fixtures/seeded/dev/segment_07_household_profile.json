@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "household_profile",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Women aged 35 to 54 who are married, own their home and work full time.\n",
+  "segments": [
+    "Women aged 35 to 54 who are married, own their home and work full time."
+  ]
+}

@@ -27,6 +27,7 @@ class CandidateKind(StrEnum):
     STORY = "story"
     CONSTRAINT = "constraint"
     DEPENDENCY = "dependency"
+    SEGMENT = "segment"
 
 
 def candidate_id(kind: CandidateKind, span: EvidenceSpan) -> str:
@@ -82,8 +83,21 @@ class DependencyCandidate(_CandidateBase):
     kind: Literal[CandidateKind.DEPENDENCY] = CandidateKind.DEPENDENCY
 
 
+class SegmentCandidate(_CandidateBase):
+    """A statement that names or defines the group of customers the document
+    says the product is for, in the document's own words (PB6-p2). It makes no
+    claim that the group is a real segment; `SegmentSkeptic` asks that."""
+
+    kind: Literal[CandidateKind.SEGMENT] = CandidateKind.SEGMENT
+
+
 Candidate = Annotated[
-    ClaimCandidate | NeedCandidate | StoryCandidate | ConstraintCandidate | DependencyCandidate,
+    ClaimCandidate
+    | NeedCandidate
+    | StoryCandidate
+    | ConstraintCandidate
+    | DependencyCandidate
+    | SegmentCandidate,
     Field(discriminator="kind"),
 ]
 
@@ -110,6 +124,7 @@ class ExtractionResult(BaseModel):
     stories: list[StoryCandidate] = Field(default_factory=list)
     constraints: list[ConstraintCandidate] = Field(default_factory=list)
     dependencies: list[DependencyCandidate] = Field(default_factory=list)
+    segments: list[SegmentCandidate] = Field(default_factory=list)
     rejected: list[RejectedQuote] = Field(default_factory=list)
     usage: TokenUsage = Field(default_factory=lambda: TokenUsage(input_tokens=0, output_tokens=0))
 
@@ -121,6 +136,7 @@ class ExtractionResult(BaseModel):
             *self.stories,
             *self.constraints,
             *self.dependencies,
+            *self.segments,
         ]
         return sorted(flat, key=lambda c: (c.evidence.start, c.evidence.end, c.kind.value))
 

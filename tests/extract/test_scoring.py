@@ -140,12 +140,21 @@ def test_gold_labels_build_every_candidate_kind() -> None:
     from probative.extract import GoldLabel, gold_candidates
     from tests.extract._helpers import make_source
 
-    source = make_source("Claim one. Need two. Story three. Constraint four. Dependency five.\n")
+    source = make_source(
+        "Claim one. Need two. Story three. Constraint four. Dependency five. Segment six.\n"
+    )
     labels = [
         GoldLabel(kind=kind, quote=quote)
         for kind, quote in zip(
             CandidateKind,
-            ["Claim one.", "Need two.", "Story three.", "Constraint four.", "Dependency five."],
+            [
+                "Claim one.",
+                "Need two.",
+                "Story three.",
+                "Constraint four.",
+                "Dependency five.",
+                "Segment six.",
+            ],
             strict=True,
         )
     ]

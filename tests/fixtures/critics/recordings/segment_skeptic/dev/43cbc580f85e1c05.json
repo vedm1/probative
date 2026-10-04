@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_bf84c212ff42\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_bf84c212ff42\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Every household that pays for electricity\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2293,
+    "completion_tokens": 395
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_1ac68c23c0ae\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_1ac68c23c0ae\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_1ac68c23c0ae\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Other scheduling vendors do not integrate with hospital records.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2855,
+    "completion_tokens": 309
+  }
+}

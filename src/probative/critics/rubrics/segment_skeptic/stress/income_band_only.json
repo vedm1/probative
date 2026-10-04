@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "demographic_only"
+  ],
+  "allow_also": [],
+  "why": "a numeric band is still only who they are",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Households earning between $40,000 and $60,000 a year.\n",
+  "segments": [
+    "Households earning between $40,000 and $60,000 a year."
+  ]
+}

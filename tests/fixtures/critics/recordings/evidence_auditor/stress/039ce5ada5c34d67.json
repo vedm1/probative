@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_c399f43f41b4\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_c399f43f41b4\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the policy has permanently fixed trust\"},{\"candidate_id\":\"cand_claim_c399f43f41b4\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_9fe2aa03a6e5\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_9fe2aa03a6e5\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_9fe2aa03a6e5\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_dc3acf7140bf\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_dc3acf7140bf\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so alerts reduce churn\"},{\"candidate_id\":\"cand_claim_dc3acf7140bf\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_e38fd45b20c7\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_e38fd45b20c7\",\"check_id\":\"basis_overreach\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_e38fd45b20c7\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_0202084e5a89\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_0202084e5a89\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"which tells us customers cannot use exports\"},{\"candidate_id\":\"cand_claim_0202084e5a89\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3092,
+    "completion_tokens": 1736
+  }
+}

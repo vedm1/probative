@@ -54,7 +54,7 @@ Probative · critique · checkout-redesign-prd.pdf · 18 pages · 41s
   Dependencies        —         none declared
   Constraints         —         none found
 
-  4 blocking · 11 warnings · 6 notes
+  5 blocking · 10 warnings · 6 notes
 
   ✗ BLOCK   Problem framing — 9 of 12 stated "user needs" name a solution
             "Users need a one-click checkout button"            p.4 ¶2
@@ -68,7 +68,7 @@ Probative · critique · checkout-redesign-prd.pdf · 18 pages · 41s
             → Neither appears in any cited document. If these came
               from analytics, say which query and when.
 
-  ⚠ WARN    Segment — "users aged 25-45 who shop online" is a
+  ✗ BLOCK   Segment — "users aged 25-45 who shop online" is a
             demographic bucket, not a segment. Nothing here says
             these people have different needs from anyone else.
 

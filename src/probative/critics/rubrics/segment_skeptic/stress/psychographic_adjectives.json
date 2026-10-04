@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "demographic_only"
+  ],
+  "why": "traits rather than a need or behaviour; the rubric does not list psychographics, so either verdict is defensible",
+  "text": "# Target customers\n\n## Who we are building for\n\n- Ambitious, tech-savvy early adopters.\n",
+  "segments": [
+    "Ambitious, tech-savvy early adopters."
+  ]
+}

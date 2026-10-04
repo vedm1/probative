@@ -1,0 +1,8 @@
+{
+  "check": "demographic_only",
+  "kind": "age_income_place",
+  "text": "# Target customers\n\n## Who we are building for\n\n- The product is for urban professionals in their thirties earning above the regional median.\n",
+  "segments": [
+    "The product is for urban professionals in their thirties earning above the regional median."
+  ]
+}

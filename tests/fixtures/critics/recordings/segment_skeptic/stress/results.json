@@ -1,0 +1,214 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "segment_skeptic",
+  "stress": {
+    "critic": "segment_skeptic",
+    "n": 15,
+    "as_expected": 15,
+    "files": [
+      {
+        "file": "all_adults.json",
+        "expect_fired": [
+          "whole_market"
+        ],
+        "allow_also": [
+          "demographic_only"
+        ],
+        "fired": [
+          "demographic_only",
+          "whole_market"
+        ],
+        "as_expected": true,
+        "why": "everyone, but also a bare demographic; both readings are defensible, so only whole_market is required"
+      },
+      {
+        "file": "all_small_businesses.json",
+        "expect_fired": [
+          "demographic_only"
+        ],
+        "allow_also": [
+          "whole_market"
+        ],
+        "fired": [
+          "demographic_only"
+        ],
+        "as_expected": true,
+        "why": "large but bounded by size: a bucket (documents the overlap with whole_market)"
+      },
+      {
+        "file": "any_owner_with_a_condition.json",
+        "expect_fired": [],
+        "allow_also": [
+          "demographic_only",
+          "whole_market"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "near-everyone with a trivial condition: whole_market is defensible, so is a bucket"
+      },
+      {
+        "file": "bare_acronym.json",
+        "expect_fired": [
+          "demographic_only"
+        ],
+        "allow_also": [],
+        "fired": [
+          "demographic_only"
+        ],
+        "as_expected": true,
+        "why": "a firmographic label with no stated need"
+      },
+      {
+        "file": "doc_voice_injection.json",
+        "expect_fired": [
+          "demographic_only"
+        ],
+        "allow_also": [],
+        "fired": [
+          "demographic_only"
+        ],
+        "as_expected": true,
+        "why": "an injection in the document's own voice; a remark about the segment's own status is not a stated need"
+      },
+      {
+        "file": "firmographic_with_pain.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "firmographics plus a stated problem is a segment on this rubric"
+      },
+      {
+        "file": "heading_label.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a label, not a complete statement: cannot_tell is the correct verdict, so nothing fires"
+      },
+      {
+        "file": "income_band_only.json",
+        "expect_fired": [
+          "demographic_only"
+        ],
+        "allow_also": [],
+        "fired": [
+          "demographic_only"
+        ],
+        "as_expected": true,
+        "why": "a numeric band is still only who they are"
+      },
+      {
+        "file": "need_in_next_sentence.json",
+        "expect_fired": [
+          "demographic_only"
+        ],
+        "allow_also": [],
+        "fired": [
+          "demographic_only"
+        ],
+        "as_expected": true,
+        "why": "the need sits in the next sentence; one statement cannot show it, so this fires: the known false-positive class of an own-words critic, recorded rather than hidden"
+      },
+      {
+        "file": "occupation_plus_vague_goal.json",
+        "expect_fired": [],
+        "allow_also": [
+          "demographic_only"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "a goal is stated but says nothing that sets accountants apart; either verdict is defensible"
+      },
+      {
+        "file": "psychographic_adjectives.json",
+        "expect_fired": [],
+        "allow_also": [
+          "demographic_only"
+        ],
+        "fired": [
+          "demographic_only"
+        ],
+        "as_expected": true,
+        "why": "traits rather than a need or behaviour; the rubric does not list psychographics, so either verdict is defensible"
+      },
+      {
+        "file": "role_with_task.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a role plus the task they do is a behaviour"
+      },
+      {
+        "file": "size_with_behaviour.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "firmographics plus a stated practice"
+      },
+      {
+        "file": "two_sentence_definition.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "the whole definition is the candidate (what the segment pass is asked to quote), so the stated behaviour is visible"
+      },
+      {
+        "file": "uses_competitor_app.json",
+        "expect_fired": [
+          "demographic_only"
+        ],
+        "allow_also": [],
+        "fired": [
+          "demographic_only"
+        ],
+        "as_expected": true,
+        "why": "having used something is who they are on this rubric, however it is phrased, so this is a bucket (policy fixed by the pre-recording review, B4)"
+      }
+    ],
+    "judge_stats": {
+      "calls": 15,
+      "usage": {
+        "input_tokens": 34469,
+        "output_tokens": 3219
+      },
+      "met": 19,
+      "not_met": 9,
+      "cannot_tell": 2,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  },
+  "mixed": {
+    "critic": "segment_skeptic",
+    "candidates": 44,
+    "seeded": {
+      "n": 24,
+      "caught": 24,
+      "caught_intended": 24
+    },
+    "clean": {
+      "candidates": 20,
+      "flagged_candidates": 0
+    },
+    "judge_stats": {
+      "calls": 9,
+      "usage": {
+        "input_tokens": 22354,
+        "output_tokens": 9553
+      },
+      "met": 63,
+      "not_met": 25,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_a54265eaf4b8\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_a54265eaf4b8\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"90% of the whole market will pay for this\"},{\"candidate_id\":\"cand_claim_a54265eaf4b8\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2859,
+    "completion_tokens": 327
+  }
+}

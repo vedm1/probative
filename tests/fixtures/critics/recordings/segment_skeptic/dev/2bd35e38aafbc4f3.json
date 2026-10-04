@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_segment_1c3419b11caf\",\"check_id\":\"demographic_only\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_segment_1c3419b11caf\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Everyone who pays taxes\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2311,
+    "completion_tokens": 303
+  }
+}
