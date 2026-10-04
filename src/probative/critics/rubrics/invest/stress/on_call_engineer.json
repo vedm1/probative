@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "an internal persona with real benefit: judge the benefit, not the persona word",
+  "text": "# Backlog\n\n## Stories\n\n- As an on-call engineer, I want alerts to include the failing service's runbook link so that I can resolve incidents faster.\n",
+  "stories": [
+    "As an on-call engineer, I want alerts to include the failing service's runbook link so that I can resolve incidents faster."
+  ]
+}

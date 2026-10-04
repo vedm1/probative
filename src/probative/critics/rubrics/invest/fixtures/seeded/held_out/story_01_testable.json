@@ -1,0 +1,7 @@
+{
+  "check": "testable",
+  "text": "# Backlog\n\n## Stories\n\n- As a clinician, I want the patient search to be responsive and user-friendly so that I am happy to use it.\n",
+  "stories": [
+    "As a clinician, I want the patient search to be responsive and user-friendly so that I am happy to use it."
+  ]
+}

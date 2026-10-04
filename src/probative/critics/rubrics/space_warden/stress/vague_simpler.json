@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "vague, but contains no solution grammar: not SpaceWarden's concern",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Customers want things to be simpler.\n",
+  "needs": [
+    "Customers want things to be simpler."
+  ]
+}

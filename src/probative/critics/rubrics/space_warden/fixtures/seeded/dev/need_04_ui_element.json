@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "ui_element",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Users need a button to download their invoices.\n",
+  "needs": [
+    "Users need a button to download their invoices."
+  ]
+}

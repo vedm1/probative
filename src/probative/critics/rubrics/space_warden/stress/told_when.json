@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "'told' is the benefit; no notification feature is named",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Staff need to be told when stock runs low.\n",
+  "needs": [
+    "Staff need to be told when stock runs low."
+  ]
+}

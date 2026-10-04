@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a measurable outcome exists despite 'feel instant'; testable is met",
+  "text": "# Backlog\n\n## Stories\n\n- As a user, I want search results to appear in under 2 seconds and feel instant.\n",
+  "stories": [
+    "As a user, I want search results to appear in under 2 seconds and feel instant."
+  ]
+}

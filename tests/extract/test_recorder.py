@@ -13,7 +13,7 @@ import pytest
 
 from probative.extract.prompts import GeneralOutput, RawQuote
 from probative.llm import LiteLLMProvider, Message
-from tests.extract._recording import MissingRecordingError, Recorder, recording_key, replay
+from tests._recording import MissingRecordingError, Recorder, recording_key, replay
 
 OUTPUT = GeneralOutput(needs=[RawQuote(quote="Users need a dashboard.")])
 

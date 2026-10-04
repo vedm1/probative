@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "testable"
+  ],
+  "allow_also": [],
+  "why": "vague outcome and nothing else wrong",
+  "text": "# Backlog\n\n## Stories\n\n- As a user, I want the app to feel snappy so that I stay engaged.\n",
+  "stories": [
+    "As a user, I want the app to feel snappy so that I stay engaged."
+  ]
+}

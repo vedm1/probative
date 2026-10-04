@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "PRD register ('the system shall') with a customer benefit and no solution named",
+  "text": "# Product requirements\n\n## Customer needs\n\n- The system shall let shoppers see the delivery date before they pay.\n",
+  "needs": [
+    "The system shall let shoppers see the delivery date before they pay."
+  ]
+}

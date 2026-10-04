@@ -26,11 +26,7 @@ from probative.extract.chunking import chunk_windows
 from probative.extract.prompts import PASSES, ExtractionPass, RawQuote
 from probative.extract.resolve import resolve_quote
 from probative.llm import Message, Provider, TokenUsage
-
-_REPAIR = (
-    "The output must be only valid JSON that matches the required schema exactly. "
-    "Reply again with only that JSON."
-)
+from probative.llm.structured import complete_with_repair
 
 
 def _neutralise(chunk: str) -> str:
@@ -60,18 +56,11 @@ def _call(
     `ExtractionResult.usage` is a lower bound.
     """
     try:
-        result = provider.complete_structured(
-            messages, output_model=extraction_pass.output_model, model=model
+        result = complete_with_repair(
+            provider, messages, output_model=extraction_pass.output_model, model=model
         )
-    except ValidationError:
-        try:
-            result = provider.complete_structured(
-                [*messages, Message(role="user", content=_REPAIR)],
-                output_model=extraction_pass.output_model,
-                model=model,
-            )
-        except ValidationError as error:
-            raise ExtractionFailedError(source_id, extraction_pass.name) from error
+    except ValidationError as error:
+        raise ExtractionFailedError(source_id, extraction_pass.name) from error
     return result.output, result.usage
 
 

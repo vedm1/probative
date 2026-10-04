@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "implementation",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Developers need the pipeline to cache results in Redis.\n",
+  "needs": [
+    "Developers need the pipeline to cache results in Redis."
+  ]
+}

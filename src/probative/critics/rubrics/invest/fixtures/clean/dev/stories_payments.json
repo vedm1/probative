@@ -1,0 +1,10 @@
+{
+  "text": "# Backlog\n\n## Stories\n\n- As a returning shopper, I want to save my card so that I can check out in one tap.\n- As a finance analyst, I want a settlement report so that I can reconcile payouts.\n- As a merchant, I want to be emailed when a payout is sent, so that I know when to expect the money.\n- As a traveller, I want to change my booking date once for free, so that I can rearrange without losing the fare.\n- As a support agent, I want to see a customer's last five orders on the ticket, so that I can answer without asking them to repeat details.\n",
+  "stories": [
+    "- As a returning shopper, I want to save my card so that I can check out in one tap.",
+    "- As a finance analyst, I want a settlement report so that I can reconcile payouts.",
+    "As a merchant, I want to be emailed when a payout is sent, so that I know when to expect the money.",
+    "As a traveller, I want to change my booking date once for free, so that I can rearrange without losing the fare.",
+    "As a support agent, I want to see a customer's last five orders on the ticket, so that I can answer without asking them to repeat details."
+  ]
+}

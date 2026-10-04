@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_bf5520e06ca4\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"export-to-Excel button\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1388,
+    "completion_tokens": 119
+  }
+}

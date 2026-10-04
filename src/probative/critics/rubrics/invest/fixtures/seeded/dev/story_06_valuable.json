@@ -1,0 +1,7 @@
+{
+  "check": "valuable",
+  "text": "# Backlog\n\n## Stories\n\n- As the system, I want to write audit rows to the database.\n",
+  "stories": [
+    "As the system, I want to write audit rows to the database."
+  ]
+}

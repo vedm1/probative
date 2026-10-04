@@ -44,6 +44,9 @@ class Critic(ABC):
         """Construct a Finding against one of this critic's own declared
         checks, filling `critic_id`/`invariant`/`remedy` from the rubric.
 
+        Severity resolves as: the `severity` argument, else the check's own
+        `severity`, else the rubric's.
+
         Raises `UnknownCheckError` if `check_id` is not declared in this
         critic's rubric — a typo here must fail loudly, not silently
         produce an undocumented finding.
@@ -54,7 +57,7 @@ class Critic(ABC):
         return Finding(
             critic_id=self.rubric.id,
             check_id=check_id,
-            severity=severity or self.rubric.severity,
+            severity=severity or matched.severity or self.rubric.severity,
             invariant=self.rubric.invariant,
             message=message,
             remedy=matched.remedy,

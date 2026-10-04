@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "the benefit SSO would serve, with no mechanism named (minimal pair)",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Users need to sign in once and reach every product we offer.\n",
+  "needs": [
+    "Users need to sign in once and reach every product we offer."
+  ]
+}

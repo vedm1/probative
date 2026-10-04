@@ -1,0 +1,10 @@
+{
+  "text": "# Product requirements\n\n## Customer needs\n\n- Sellers need to know their stock level before promising a delivery date.\n- Riders want to be paid for the time they wait at a pickup.\n- Hospital staff need to find a patient's allergy history in seconds during an emergency.\n- Buyers need to compare the total cost of two offers before committing.\n- Support agents need to resolve a repeat complaint without asking the customer to explain it again.\n",
+  "needs": [
+    "Sellers need to know their stock level before promising a delivery date.",
+    "Riders want to be paid for the time they wait at a pickup.",
+    "Hospital staff need to find a patient's allergy history in seconds during an emergency.",
+    "Buyers need to compare the total cost of two offers before committing.",
+    "Support agents need to resolve a repeat complaint without asking the customer to explain it again."
+  ]
+}

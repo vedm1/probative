@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "solution_grammar"
+  ],
+  "allow_also": [],
+  "why": "a real benefit with a solution smuggled into the tail",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Customers need to find items faster, ideally with filters and sorting.\n",
+  "needs": [
+    "Customers need to find items faster, ideally with filters and sorting."
+  ]
+}

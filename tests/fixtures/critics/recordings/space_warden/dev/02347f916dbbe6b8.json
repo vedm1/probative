@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_a420ae153207\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a toggle on the settings page\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1370,
+    "completion_tokens": 68
+  }
+}

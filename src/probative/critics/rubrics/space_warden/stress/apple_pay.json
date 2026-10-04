@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a named technology that is also what the market demands; must not be a confident block",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Small shops need to accept Apple Pay.\n",
+  "needs": [
+    "Small shops need to accept Apple Pay."
+  ]
+}

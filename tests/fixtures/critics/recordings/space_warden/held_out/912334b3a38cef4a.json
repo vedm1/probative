@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_cea28b5a0137\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"stored on a blockchain ledger\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1371,
+    "completion_tokens": 72
+  }
+}

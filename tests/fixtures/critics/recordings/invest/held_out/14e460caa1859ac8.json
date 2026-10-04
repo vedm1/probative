@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_story_1460a1dfaffd\",\"check_id\":\"testable\",\"verdict\":\"cannot_tell\"},{\"candidate_id\":\"cand_story_1460a1dfaffd\",\"check_id\":\"independent\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_1460a1dfaffd\",\"check_id\":\"negotiable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_1460a1dfaffd\",\"check_id\":\"valuable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_1460a1dfaffd\",\"check_id\":\"estimable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_1460a1dfaffd\",\"check_id\":\"small\",\"verdict\":\"not_met\",\"quote\":\"admission, billing, pharmacy, scheduling, discharge and insurance claims\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1873,
+    "completion_tokens": 720
+  }
+}

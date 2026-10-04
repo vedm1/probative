@@ -6,7 +6,7 @@ no other field. There is nowhere to put an offset, a score or a confidence
 says, in the document's words.
 
 The prompt text is hashed into the test recording key
-(tests/extract/_recording.py), so editing a prompt invalidates its recording
+(tests/_recording.py), so editing a prompt invalidates its recording
 loudly rather than replaying a stale answer.
 """
 

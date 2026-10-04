@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_c438bc22ff37\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"an inventory management system\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1363,
+    "completion_tokens": 67
+  }
+}

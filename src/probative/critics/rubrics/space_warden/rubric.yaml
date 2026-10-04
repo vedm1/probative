@@ -1,0 +1,24 @@
+id: space_warden
+severity: block
+invariant: I3
+applies_to: [NeedCandidate]
+checks:
+  - id: solution_grammar
+    description: >-
+      The need names a feature, a screen or UI element, an implementation, or a
+      named technology instead of the customer benefit. Includes a benefit
+      statement that smuggles a solution in ("a mobile app so I can see my
+      balance"). Not a violation: words the customer uses for their own world
+      (a settlement, a bank statement, an order, a payout), or a need that is
+      merely vague or has no measurable target.
+    examples_bad:
+      - "users need a dashboard"
+      - "provide an API for reconciliation"
+      - "give shoppers a one-tap checkout button"
+      - "the system should use machine learning to recommend products"
+    examples_good:
+      - "help me see where my money went this month"
+      - "know whether a payment reached my account without calling anyone"
+    remedy: Restate as a customer benefit — verb first, customer voice
+clean_fixtures: fixtures/clean/**/*.json
+defect_fixtures: fixtures/seeded/**/*.json

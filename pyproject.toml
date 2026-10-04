@@ -54,6 +54,11 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/probative"]
+# Rubrics ship (probative critique loads them); their test fixtures and stress cases do not.
+exclude = [
+  "src/probative/critics/rubrics/*/fixtures",
+  "src/probative/critics/rubrics/*/stress",
+]
 
 # ---------------------------------------------------------------------------
 # ruff

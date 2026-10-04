@@ -1,0 +1,7 @@
+{
+  "check": "small",
+  "text": "# Backlog\n\n## Stories\n\n- As a retailer, I want a complete end-to-end returns, refunds, restocking and supplier-claims workflow so that returns are handled.\n",
+  "stories": [
+    "As a retailer, I want a complete end-to-end returns, refunds, restocking and supplier-claims workflow so that returns are handled."
+  ]
+}

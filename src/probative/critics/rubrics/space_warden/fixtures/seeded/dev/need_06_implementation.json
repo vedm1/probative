@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "implementation",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Partners need the platform to expose a REST endpoint for order status.\n",
+  "needs": [
+    "Partners need the platform to expose a REST endpoint for order status."
+  ]
+}

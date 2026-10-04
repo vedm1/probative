@@ -1,0 +1,7 @@
+{
+  "check": "small",
+  "text": "# Backlog\n\n## Stories\n\n- As a hospital, I want the whole patient lifecycle — admission, billing, pharmacy, scheduling, discharge and insurance claims — handled in the system so that paperwork disappears.\n",
+  "stories": [
+    "As a hospital, I want the whole patient lifecycle — admission, billing, pharmacy, scheduling, discharge and insurance claims — handled in the system so that paperwork disappears."
+  ]
+}

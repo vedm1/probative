@@ -16,6 +16,10 @@ from probative.core.evidence import (
 )
 
 FIXTURES = Path(__file__).parent.parent / "fixtures" / "extract"
+RECORDINGS = FIXTURES / "recordings"
+RERECORD_HINT = (
+    "Re-record with `ANTHROPIC_API_KEY=... uv run pytest -m live tests/extract/test_live_record.py`"
+)
 
 
 def make_source(

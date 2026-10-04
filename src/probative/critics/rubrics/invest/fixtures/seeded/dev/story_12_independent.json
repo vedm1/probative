@@ -1,0 +1,7 @@
+{
+  "check": "independent",
+  "text": "# Backlog\n\n## Stories\n\n- As an analyst, I want to download the settlement report, which only works after stories PAY-42 and PAY-57 are complete, so that I can reconcile.\n",
+  "stories": [
+    "As an analyst, I want to download the settlement report, which only works after stories PAY-42 and PAY-57 are complete, so that I can reconcile."
+  ]
+}

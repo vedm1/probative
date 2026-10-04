@@ -26,16 +26,16 @@ from probative.extract import (
 )
 from probative.ingest import ingest, reextract
 from probative.llm import LiteLLMProvider
-from tests.extract._helpers import FIXTURES
+from tests._recording import replay
+from tests.extract._helpers import FIXTURES, RECORDINGS, RERECORD_HINT
 from tests.extract._paths import CORPUS, GOLD
-from tests.extract._recording import RECORDINGS, replay
 
 RESULTS: dict[str, Any] = json.loads((RECORDINGS / "results.json").read_text())
 
 
 def _run(document: str, gold_file: str) -> tuple[Source, ExtractionResult, ExtractionScore]:
     source = ingest(FIXTURES / document, tier=Tier.T1, kind=EvidenceKind.DOCUMENTARY)
-    provider = LiteLLMProvider(completion_fn=replay())
+    provider = LiteLLMProvider(completion_fn=replay(RECORDINGS, RERECORD_HINT))
     result = extract_candidates(source, provider, model=RESULTS["model"])
     gold = gold_candidates(source, load_gold_labels(GOLD / gold_file))
     return source, result, score_extraction(result.candidates(), gold)

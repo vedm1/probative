@@ -1,0 +1,7 @@
+{
+  "check": "estimable",
+  "text": "# Backlog\n\n## Stories\n\n- As an operator, I want the system to integrate with the legacy mainframe, whatever that turns out to involve, so that data flows.\n",
+  "stories": [
+    "As an operator, I want the system to integrate with the legacy mainframe, whatever that turns out to involve, so that data flows."
+  ]
+}

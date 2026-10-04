@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_b945d3043c63\",\"check_id\":\"solution_grammar\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_need_563f0cf5087a\",\"check_id\":\"solution_grammar\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_need_d8bd232734e5\",\"check_id\":\"solution_grammar\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_need_6a6e1ab9bd33\",\"check_id\":\"solution_grammar\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_need_3d30489c4a09\",\"check_id\":\"solution_grammar\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1561,
+    "completion_tokens": 440
+  }
+}

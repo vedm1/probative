@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_story_90dc282ff2c4\",\"check_id\":\"testable\",\"verdict\":\"cannot_tell\"},{\"candidate_id\":\"cand_story_90dc282ff2c4\",\"check_id\":\"independent\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_90dc282ff2c4\",\"check_id\":\"negotiable\",\"verdict\":\"not_met\",\"quote\":\"stored in MongoDB and shown in an Angular data grid\"},{\"candidate_id\":\"cand_story_90dc282ff2c4\",\"check_id\":\"valuable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_90dc282ff2c4\",\"check_id\":\"estimable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_90dc282ff2c4\",\"check_id\":\"small\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1849,
+    "completion_tokens": 624
+  }
+}

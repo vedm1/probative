@@ -1,0 +1,7 @@
+{
+  "check": "testable",
+  "text": "# Backlog\n\n## Stories\n\n- As a traveller, I want the booking flow to feel seamless so that I trust the app.\n",
+  "stories": [
+    "As a traveller, I want the booking flow to feel seamless so that I trust the app."
+  ]
+}

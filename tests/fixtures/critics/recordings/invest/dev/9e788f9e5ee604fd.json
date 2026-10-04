@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_story_6ded2c30cd86\",\"check_id\":\"testable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_6ded2c30cd86\",\"check_id\":\"independent\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_6ded2c30cd86\",\"check_id\":\"negotiable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_6ded2c30cd86\",\"check_id\":\"valuable\",\"verdict\":\"not_met\",\"quote\":\"As a developer, I want to rename the OrderManager class to OrderService.\"},{\"candidate_id\":\"cand_story_6ded2c30cd86\",\"check_id\":\"estimable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_6ded2c30cd86\",\"check_id\":\"small\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1835,
+    "completion_tokens": 746
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "check": "small",
+  "text": "# Backlog\n\n## Stories\n\n- As a seller, I want a full marketplace with listings, bidding, payments, shipping, disputes and seller analytics so that I can run my business.\n",
+  "stories": [
+    "As a seller, I want a full marketplace with listings, bidding, payments, shipping, disputes and seller analytics so that I can run my business."
+  ]
+}

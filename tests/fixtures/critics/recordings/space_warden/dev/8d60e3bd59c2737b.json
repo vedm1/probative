@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_8e5f3bb77955\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"Users need a leaderboard for refunds\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1386,
+    "completion_tokens": 103
+  }
+}

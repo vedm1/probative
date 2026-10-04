@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "smuggled",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Parents need a dashboard widget so they can see their child's attendance at a glance.\n",
+  "needs": [
+    "Parents need a dashboard widget so they can see their child's attendance at a glance."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "feature_name",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Shoppers need a wishlist.\n",
+  "needs": [
+    "Shoppers need a wishlist."
+  ]
+}

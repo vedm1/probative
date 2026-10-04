@@ -1,0 +1,7 @@
+{
+  "check": "estimable",
+  "text": "# Backlog\n\n## Stories\n\n- As a user, I want support for all the countries we might expand to, details to be decided later, so that I can use the product anywhere.\n",
+  "stories": [
+    "As a user, I want support for all the countries we might expand to, details to be decided later, so that I can use the product anywhere."
+  ]
+}

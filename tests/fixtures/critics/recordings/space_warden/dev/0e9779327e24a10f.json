@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_483b459b80b9\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a button to download their invoices\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1362,
+    "completion_tokens": 84
+  }
+}

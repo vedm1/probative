@@ -1,0 +1,7 @@
+{
+  "check": "estimable",
+  "text": "# Backlog\n\n## Stories\n\n- As a manager, I want the system to be integrated with our existing tools, as many as possible, so that everything is in one place.\n",
+  "stories": [
+    "As a manager, I want the system to be integrated with our existing tools, as many as possible, so that everything is in one place."
+  ]
+}

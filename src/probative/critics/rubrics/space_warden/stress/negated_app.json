@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "an app is named only to be refused; no solution is proposed",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Customers do not want to install another app to track a delivery.\n",
+  "needs": [
+    "Customers do not want to install another app to track a delivery."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "one capability with two outcomes is not an epic",
+  "text": "# Backlog\n\n## Stories\n\n- As a manager, I want to approve or reject a leave request so that the employee knows the outcome.\n",
+  "stories": [
+    "As a manager, I want to approve or reject a leave request so that the employee knows the outcome."
+  ]
+}

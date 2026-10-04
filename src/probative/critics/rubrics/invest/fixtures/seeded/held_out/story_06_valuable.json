@@ -1,0 +1,7 @@
+{
+  "check": "valuable",
+  "text": "# Backlog\n\n## Stories\n\n- As the scheduler, I want to run the cleanup job every night at 02:00.\n",
+  "stories": [
+    "As the scheduler, I want to run the cleanup job every night at 02:00."
+  ]
+}

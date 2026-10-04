@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\": [{\"candidate_id\": \"cand_story_f883f18254a6\", \"check_id\": \"testable\", \"verdict\": \"met\"}, {\"candidate_id\": \"cand_story_f883f18254a6\", \"check_id\": \"independent\", \"verdict\": \"met\"}, {\"candidate_id\": \"cand_story_f883f18254a6\", \"check_id\": \"negotiable\", \"verdict\": \"met\"}, {\"candidate_id\": \"cand_story_f883f18254a6\", \"check_id\": \"valuable\", \"verdict\": \"not_met\", \"quote\": \"As the system, I want to write audit rows to the database.\"}, {\"candidate_id\": \"cand_story_f883f18254a6\", \"check_id\": \"estimable\", \"verdict\": \"met\"}, {\"candidate_id\": \"cand_story_f883f18254a6\", \"check_id\": \"small\", \"verdict\": \"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1826,
+    "completion_tokens": 798
+  }
+}

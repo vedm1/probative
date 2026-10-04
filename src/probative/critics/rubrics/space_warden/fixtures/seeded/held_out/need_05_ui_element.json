@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "ui_element",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Users need a progress bar during upload.\n",
+  "needs": [
+    "Users need a progress bar during upload."
+  ]
+}

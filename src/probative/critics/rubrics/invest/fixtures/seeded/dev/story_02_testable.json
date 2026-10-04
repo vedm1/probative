@@ -1,0 +1,7 @@
+{
+  "check": "testable",
+  "text": "# Backlog\n\n## Stories\n\n- As an analyst, I want the reports to load quickly and look better so that I can work efficiently.\n",
+  "stories": [
+    "As an analyst, I want the reports to load quickly and look better so that I can work efficiently."
+  ]
+}

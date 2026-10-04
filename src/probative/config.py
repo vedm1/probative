@@ -8,8 +8,17 @@ what lets the default test suite run with zero LLM credentials present (S3).
 
 from __future__ import annotations
 
+from typing import Final
+
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+# OI2 (resolved in PB5): the model every *published* eval number is measured on,
+# so catch rate and false-positive rate are comparable across releases. A module
+# constant, deliberately not a `Settings` field: an env var or a change to the
+# `Settings.model` default must not silently move a published number. Per-provider
+# variance against this reference is reported by PB32.
+REFERENCE_MODEL: Final = "anthropic/claude-sonnet-5"
 
 
 class MissingCredentialsError(Exception):

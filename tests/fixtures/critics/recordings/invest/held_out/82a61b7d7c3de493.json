@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_story_0cf4645a2c95\",\"check_id\":\"testable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_0cf4645a2c95\",\"check_id\":\"independent\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_0cf4645a2c95\",\"check_id\":\"negotiable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_0cf4645a2c95\",\"check_id\":\"valuable\",\"verdict\":\"not_met\",\"quote\":\"As a developer, I want to upgrade the logging library to the latest version.\"},{\"candidate_id\":\"cand_story_0cf4645a2c95\",\"check_id\":\"estimable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_0cf4645a2c95\",\"check_id\":\"small\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1834,
+    "completion_tokens": 713
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "technology",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Analysts need machine learning to predict churn.\n",
+  "needs": [
+    "Analysts need machine learning to predict churn."
+  ]
+}

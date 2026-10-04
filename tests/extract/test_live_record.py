@@ -26,9 +26,9 @@ from probative.extract import (
 )
 from probative.ingest import ingest
 from probative.llm import LiteLLMProvider
-from tests.extract._helpers import FIXTURES
+from tests._recording import Recorder
+from tests.extract._helpers import FIXTURES, RECORDINGS
 from tests.extract._paths import CORPUS, GOLD
-from tests.extract._recording import RECORDINGS, Recorder
 
 pytestmark = pytest.mark.live
 
@@ -45,7 +45,7 @@ def test_record_corpus_and_measure() -> None:
     if RECORDINGS.exists():
         for stale in RECORDINGS.glob("*.json"):
             stale.unlink()
-    provider = LiteLLMProvider(completion_fn=Recorder(real))
+    provider = LiteLLMProvider(completion_fn=Recorder(real, RECORDINGS))
 
     results: dict[str, object] = {"model": model, "documents": {}}
     documents: dict[str, object] = {}

@@ -1,0 +1,7 @@
+{
+  "check": "negotiable",
+  "text": "# Backlog\n\n## Stories\n\n- As a user, I want the profile page built in React with Redux so that I can edit my details.\n",
+  "stories": [
+    "As a user, I want the profile page built in React with Redux so that I can edit my details."
+  ]
+}

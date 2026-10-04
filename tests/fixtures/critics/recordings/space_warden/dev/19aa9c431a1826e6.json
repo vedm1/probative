@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_6ab0b20e83c1\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"use blockchain for receipts\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1370,
+    "completion_tokens": 72
+  }
+}

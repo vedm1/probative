@@ -40,22 +40,25 @@ class AgentResult(BaseModel):
 
 ## S2 — Rubric file format
 
-Critics are configured by data, not by prose buried in a prompt. A contributor adds a critic by writing a rubric and a class with one method.
+Critics are configured by data, not by prose buried in a prompt. A contributor adds a critic by writing a rubric and a class with one method — or, for an LLM-backed critic (PB5), a rubric and two class attributes (`candidate_type`, `preamble`) on `LLMCritic`.
 
 ```yaml
 id: space_warden
 severity: block
 invariant: I3
-applies_to: [Need, FeatureIdea]
+applies_to: [NeedCandidate]          # candidate class names, matched by type(x).__name__ (PB3/PB4)
 checks:
   - id: solution_grammar
     description: A Need that names a feature, a UI element, or an implementation
     examples_bad: ["users need a dashboard", "provide an API for reconciliation"]
     examples_good: ["help me see where my money went this month"]
     remedy: Restate as a customer benefit — verb first, customer voice
-clean_fixtures: fixtures/clean/needs_*.json    # must raise nothing on these
-defect_fixtures: fixtures/seeded/space_*.json  # must catch every one
+    # severity: block                  # optional (PB5): overrides the rubric's severity for this check
+clean_fixtures: fixtures/clean/**/*.json    # must raise nothing on these
+defect_fixtures: fixtures/seeded/**/*.json  # must catch every one
 ```
+
+*(PB5 reconciled this sample with reality: `applies_to` names candidate classes, not graph node types, which do not exist until PB10; `RubricCheck.severity` is a new optional field; real rubrics live at `src/probative/critics/rubrics/<id>/rubric.yaml` with fixtures beside them, split `dev`/`held_out` — see PB5.)*
 
 Every rubric names both a defect fixture set it must catch and a clean set on which it must raise nothing. **The false-positive requirement is not optional** — a critic that fires on clean input is worse than no critic.
 
@@ -656,6 +659,8 @@ All hand-written JSON/YAML, no generator script needed (unlike PB1/PB2's binary 
 - **Coverage**: 100% line+branch on every new module except one line in `Critic`'s abstract `check` method (`raise NotImplementedError` in its body) — unreachable because Python's `ABC` machinery already prevents instantiating a `Critic` subclass that doesn't override it; `test_base.py::test_critic_is_abstract` proves that enforcement directly instead. Same class of documented, intentional gap as PB1's own unreachable defensive branches.
 - **Cross-reference fix, not a scope change**: the PB3 stub previously listed "OI3 resolved" as a prerequisite. `PROBATIVE_BUILD_PLAN.md`'s open-items table was already correct (OI3 blocks PB5); the stub was stale. Corrected in the Prerequisites line above rather than left to accumulate confusion at PB5.
 
+- **PB5 addendum**: `RubricCheck` gained an optional `severity` (unset → inherits the rubric's); `Critic._finding` resolves explicit argument > check > rubric. This is the one change PB5 made to PB3's types, additive and backward compatible. The "LLM-backed `check()` is unexercised" assumption above is now exercised end-to-end by PB5 (`LLMCritic`).
+
 ## PB4 — Shallow extraction
 
 **Objective**: Typed candidates — claims, needs, stories, constraints, dependencies — extracted from a single `Source` with resolvable locators, without constructing a graph.
@@ -742,13 +747,81 @@ No minimum precision/recall threshold is invented before a number exists; the re
 - **Independent review found real defects, all fixed before the recording** (a fresh subagent that had not seen the implementation reasoning): `chunk_windows(max_chars<=0)` looped forever; the whitespace fallback could bridge blank lines/headings into one multi-statement span and bypass `max_quote_chars`; quotes could match mid-word or be punctuation-only; the constraint prompt's "or states as non-negotiable" clause admitted any "must" requirement, contradicting I8; the `</document>` delimiter was escapable; gold labels could be duplicated or have a near-duplicate elsewhere; scoring ignored `source_id`; the repair message referred to a reply the model never saw. Each has a test that failed first.
 - **Spec was wrong on three counts**: (1) "no numeric field except span offsets" — `Locator.page`/`line` are position integers too; the guard now names exactly {offsets, page, line}. (2) Quote verification does not blunt prompt injection as strongly as first stated (above). (3) The whitespace fallback as first specced ("whitespace-insensitive") was too permissive; it is now bounded to at most one line break between tokens.
 - **Markdown bullets are part of the quote**: the model copied the leading `- ` of list items (as the prompt told it to), so story candidates in the md include it. They still match gold at IoU ≥ 0.5; PB5 should not assume story text begins with "As a".
-- **The recorder is hand-rolled and lives in `tests/extract/_recording.py`**, keyed by `sha256(messages)[:16]`, one JSON per request in the existing fixture shape. The hash makes prompt edits fail loudly on replay (`MissingRecordingError`). It is evidence for OI3, which stays open until PB5.
+- **The recorder is hand-rolled and lives in `tests/extract/_recording.py`** *(PB5 later moved it to `tests/_recording.py` and decided OI3 in its favour)*, keyed by `sha256(messages)[:16]`, one JSON per request in the existing fixture shape. The hash makes prompt edits fail loudly on replay (`MissingRecordingError`). It is evidence for OI3, which stays open until PB5.
 - **Accepted, not fixed here**: `EvidenceSpan` (PB1) is not frozen and has no coherence validator, so a candidate's span can be mutated after construction; candidates validate coherence at construction only (OI16, for PB10). `ExtractionResult.usage` is a lower bound when a repair retry occurred (a failed reply carries no usage). Quotes straddling a chunk boundary are unresolvable (documented in `chunking.py`); this phase's corpus is single-chunk, so live chunked behaviour is exercised only with a scripted provider.
 - **Re-recording**: `ANTHROPIC_API_KEY=... uv run pytest -m live tests/extract/test_live_record.py -s` deletes and rewrites `tests/fixtures/extract/recordings/`; then update the pinned counts in `test_replay_golden.py::test_recorded_recall_is_complete_and_precision_gaps_are_the_known_ones` and this table.
 - **For PB5–PB7**: rubrics must write `applies_to: [NeedCandidate]` (PB3 matches `type(x).__name__`). Not built, by design: acceptance-criteria capture and the document's own cited support for a claim.
 
 ## PB5 — Critics: SpaceWarden, INVESTCritic
-**Prerequisites**: PB4 ✅, OI2 and OI3 resolved. Subagent review required.
+
+**Objective**: Two LLM-backed critics built on PB3's framework — `SpaceWarden` (I3: a `NeedCandidate` that names a feature, UI element, implementation or technology instead of a customer benefit, Olsen p. 39) and `INVESTCritic` (a `StoryCandidate` against the six INVEST properties, p. 78; blocks only on `testable`) — each a rubric file plus a class with two attributes, each with a measured catch rate on seeded defects and a measured false-positive rate on clean input.
+
+**Prerequisites**: PB4 ✅. OI2 (reference model) and OI3 (recording library) resolved in this phase (see Implementation notes). Subagent review required — done twice.
+
+**Design decisions (approved)**
+
+1. **The model returns only `(candidate_id, check_id, verdict, quote)`** — verdict is `met | not_met | cannot_tell`. No score (I4), no prose (I5). A finding's message, remedy, severity and invariant are built from the rubric; its evidence span is built by deterministic code from the candidate's own span.
+2. **Fail closed.** A blocking critic must never return "no findings" for candidates it did not manage to judge.
+3. **No INVEST number is produced.** `invest_score` (DESIGN §8) is a formula and waits for PB11; the dimension score is PB3's `score_dimension` over the findings.
+4. **Dev / held-out split (OI17 discipline).** Prompts are tuned only against `dev`; `held_out` is recorded once, after the prompts are frozen; any prompt or rubric edit afterwards demotes held-out to dev.
+5. **One PR for both critics** (user's call), with the shared scaffolding reviewed separately from the two calibrations.
+
+### Types and contract
+
+- `core/critic.py`: `RubricCheck.severity: Severity | None = None` (optional; unset → the rubric's). `Critic._finding` severity precedence: explicit argument > check > rubric.
+- `config.REFERENCE_MODEL: Final = "anthropic/claude-sonnet-5"` — a module constant, deliberately **not** a `Settings` field, so an env var or a `Settings.model` default change cannot silently move a published number.
+- `llm/structured.py: complete_with_repair(provider, messages, *, output_model, model)` — one call, one repair retry on `ValidationError`, extracted from PB4's pipeline (which now uses it; behaviour identical).
+- `critics/llm_judge.py`: `Verdict`, `CheckJudgement`, `JudgementBatch`, `JudgeStats`, `CriticJudgementError(critic_id, missing)` (with `.partial_findings`), `build_system_prompt(rubric, preamble)`, `build_user_message`, `locate_phrase`, `first_sentence`, `DEFAULT_BATCH_SIZE = 5`, and the abstract `LLMCritic(rubric, provider, *, model, batch_size=5)` with class attributes `candidate_type` and `preamble`, and `stats`.
+- `critics/space_warden.py`, `critics/invest.py`: `SpaceWarden`, `INVESTCritic` (each with `from_builtin_rubric(provider, *, model, batch_size)`), rubrics at `src/probative/critics/rubrics/{space_warden,invest}/rubric.yaml`.
+
+### Algorithm (`LLMCritic.check`)
+
+Type-check candidates (wrong type → `TypeError`; the same candidate id twice is judged once), batch `batch_size` at a time, preserving order. Per batch: a system prompt rendered from the rubric's own `description`/`examples_bad`/`examples_good` plus the critic's `preamble`; candidates in a `<candidates>` data region (any `<candidate`/`</candidate` — case-insensitive, with spacing, zero-width or fullwidth variants — is neutralised). Verdict mapping:
+
+- Unknown candidate/check ids: ignored and counted (a model typo is data, not an authoring bug).
+- Repeats within one reply: counted; `not_met` beats anything else, and among two `not_met`s one whose quote resolves wins.
+- **Omitted (candidate, check) pairs are re-asked once**, naming the pairs; still missing → `CriticJudgementError` (never a silent pass). Malformed output → one repair retry, then `CriticJudgementError`.
+- `met`/`cannot_tell` → no finding. `not_met` → a `Finding` whose evidence is the first verbatim match of the quote inside the candidate (PB4's `occurrences`, word-boundary, whitespace-tolerant; at least 2 alphanumeric characters), offsets = candidate offset + position; a quote that does not resolve falls back to the whole candidate span (`unresolved_quotes` counted) — a block is never dropped for lack of a locatable phrase. Message: `check_id: “phrase” — <first sentence of the check description>`.
+
+### Rubrics
+
+- **SpaceWarden** (`NeedCandidate`, I3, `block`): one check, `solution_grammar`. Checks only solution grammar — not vagueness, not verb-first-ness. Domain words the customer uses for their own world are not violations.
+- **INVEST** (`StoryCandidate`, rubric `warn`): `testable` (check severity **block**), `independent`, `negotiable`, `valuable`, `estimable`, `small` (warn). Judged from the story's own words only; a story with no acceptance criteria is `cannot_tell`, never `untestable`.
+
+### Fixtures and calibration
+
+`src/probative/critics/rubrics/<id>/fixtures/{clean,seeded}/{dev,held_out}/*.json` (synthetic, regenerated by `tests/fixtures/critics/generate_pb5.py`; excluded from the wheel, the rubrics ship). Defect files hold exactly one candidate (so each is individually caught); clean files hold five. Per critic: 12 + 12 defects, 10 + 10 clean candidates. SpaceWarden defect kinds: feature name, UI element, implementation, technology, solution smuggled into a benefit, injection. INVEST: two defects per property per split. Outside the S2 globs, `stress/*.json` holds hard cases (10 SpaceWarden, 9 INVEST), each with `expect_fired`, optional `allow_also` and a `why` — reported, never gating, never tuned on. `measure_mixed` judges every split's candidates interleaved at the production batch size.
+
+### Gating check
+
+1. `assert_rubric_fixtures` passes on replay for both critics over the whole corpus. ✅
+2. Held-out catch and false-positive counts recorded with model and usage. ✅ (below)
+3. Every finding's evidence re-extracts to its recorded text and lies inside its candidate. ✅
+4. The injection fixtures behave correctly — measured for this model at this prompt, not structural. ✅ on the gated splits.
+5. `ruff`, `mypy src`, `pytest` green with no credentials. ✅
+6. Independent subagent review, twice. ✅
+
+**Out of scope**: graph-level I3 (a Need may never reference a FeatureIdea — PB10), acceptance-criteria capture (PB26), the critique report and dimension normalisation (PB9), `invest_score` (PB11), the other critics (PB6–PB8).
+
+**Implementation notes (resolved during build session)**
+
+- **Measured (reference model `anthropic/claude-sonnet-5`; every recorded API response reports `claude-sonnet-5`)**:
+
+  | Critic | Split | Caught | Intended check | False positives | Calls | Tokens in/out | `cannot_tell` |
+  |---|---|---|---|---|---|---|---|
+  | SpaceWarden | dev | 12/12 | 12/12 | 0/10 | 14 | 19,569 / 1,719 | 0 |
+  | SpaceWarden | held-out | 12/12 | 12/12 | 0/10 | 14 | 19,590 / 1,472 | 0 |
+  | INVEST | dev | 12/12 | 12/12 (2/2 per property) | 0/10 | 14 | 26,353 / 10,710 | 5 |
+  | INVEST | held-out | 12/12 | 12/12 (2/2 per property) | 0/10 | 14 | 26,414 / 10,258 | 9 |
+
+  No unresolved quotes, unknown ids or omitted judgements in any run. Prompts were **not tuned** — dev was perfect on its first run, so held-out was recorded against the prompts exactly as first written.
+- **How much that number means — less than it looks.** Pooled over both splits, 24/24 caught (one-sided 95% lower bound ≈ 0.88) and 0/20 false positives (95% upper bound ≈ 0.14); per-check INVEST n=2 is not a catch rate. The corpus is synthetic and written by one author in one sitting: defects read "need a NOUN", clean needs read "need to VERB" (stylistically separable); every INVEST defect has exactly one flaw signposted by words from the rubric; **no clean item ever drew `cannot_tell`** (all 14 `cannot_tell` verdicts are on defect files), so nothing sat near a boundary. **Held-out is not independent of the rubric text**: "as many as possible" and "seamless" appear in a rubric description and in a held-out story; several dev defects are near-copies of rubric examples (a mobile app so I can see my balance, machine learning to recommend products); the dev clean set uses the very domain nouns the SpaceWarden preamble protects, so dev's 0/10 is partly by construction. Injection fixtures are parentheticals addressed to "the critic" — the exact attack the preamble lists; INVEST has no pass-injection in the gated splits. Conditions differ from production: n=1 per fixture at the provider's default temperature (no repeat runs), defects judged one per call whereas production batches up to 5. The `stress` split and `measure_mixed` were built to test these; **at the time of writing they are implemented and unit-tested but NOT recorded** (needs a developer run: `PB5_SPLIT=stress`), so hard-case and batched behaviour are unmeasured.
+- **Spec was wrong or silent on**: (1) S2's sample `applies_to: [Need, FeatureIdea]` — rubrics name candidate classes (corrected above); (2) S2 had one severity per rubric, but DESIGN says INVEST blocks only on untestable → optional `RubricCheck.severity`; (3) `Critic.check` returning only findings leaves nowhere to put incompleteness — resolved by raising, not by widening PB3's contract; (4) the PB4 spec's INVEST expectation that `independent`/`estimable`/`small` would often be `cannot_tell` was not observed on this corpus (kept as a documented, unconfirmed expectation).
+- **Independent review #1 found, all fixed with a test that failed first**: **fail-open** — a reply of `{"judgements": []}` returned `[]` from a *blocking* critic with only a counter to show for it (now re-ask once, then raise); conflicting duplicates resolved by first-wins (now `not_met` wins); the default `batch_size=20` was unmeasured and the built-in critics' own entry points still carried it after the base default changed (now 5, the largest size actually recorded, tested on the real entry points); finding messages embedded the rubric's "Not a violation: …" carve-out and read self-contradictory (first sentence only); one-character quotes accepted as evidence; the delimiter neutraliser was exact-prefix and case-sensitive; a model-pin test that was tautological (it compared a constant to a file written from that constant — now checks each recorded response's own `model` field); `invest.py` docstring predicted `cannot_tell` behaviour the recordings do not show; the live-record test deleted recordings before the API call succeeded. **Review #2 (of the fixes)** found no blocker; fixed: evidence quality among duplicate `not_met`s, a `duplicates` counter polluted by the re-ask, partial findings lost when a later batch raises (now `CriticJudgementError.partial_findings`), more invisible-character delimiter variants, an ambiguous stress label (OAuth under `negotiable`, now `allow_also`), and the live-record swap (both corpora staged, swapped together, old kept aside — `_swap.py`, unit-tested).
+- **Accepted, not fixed**: an all-`cannot_tell` reply returns no findings silently (fail-open for the blocking checks; a ratio guard would be an invented threshold — PB32); remaining delimiter lookalikes (`‹`, `〈`, `&lt;`, homoglyphs) are untested against a model; a quote copied from neutralised text falls back to the whole candidate span (coarser evidence, never wrong); a sub-span's locator inherits the candidate's (a quote on page 2 of a page-spanning candidate reports page 1); `stats.calls`/`usage` are not updated on failure paths; `LiteLLMProvider` passes no `max_tokens` or `temperature` (truncation and run-to-run variance unmeasured); `check` is all-or-nothing per call; the `"- "` list-marker clause in INVEST's preamble reflects PB4's measured bullet behaviour, not this corpus.
+- **OI3 decided**: the hand-rolled recorder is kept and shared (`tests/_recording.py`, moved from `tests/extract/`; the directory and re-record hint are now parameters, and PB4's tests were updated for the move). It records at the `completion_fn` seam so `LiteLLMProvider`'s real parse path runs, and a prompt/rubric edit fails replay loudly by key. A vcr-style cassette records HTTP, which couples to litellm internals and puts request headers on a public repo.
+- **Coverage**: 100% line+branch on `llm_judge`, `space_warden`, `invest`, `llm/structured`, `core/critic`; `base.py` 95% (the one uncovered line is PB3's unreachable abstract body). 379 tests in the default suite (258 before), all key-free.
+- **Re-recording**: `ANTHROPIC_API_KEY=… PB5_SPLIT=<dev|held_out|stress> uv run pytest -m live tests/critics/test_pb5_live_record.py -s`. Held-out refuses to overwrite without `PB5_RERECORD_HELD_OUT=1`, which demotes it to dev. The replay test pins recorded measurements; when the stress recording exists, add a `stress` replay test.
 
 ## PB6 — Critics: EvidenceAuditor, SegmentSkeptic
 **Prerequisites**: PB4 ✅. Subagent review required.

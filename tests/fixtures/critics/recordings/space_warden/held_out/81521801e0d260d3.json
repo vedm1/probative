@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_1ca119ae04a8\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a GraphQL layer over the orders data\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1371,
+    "completion_tokens": 75
+  }
+}

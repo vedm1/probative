@@ -1,0 +1,7 @@
+{
+  "check": "valuable",
+  "text": "# Backlog\n\n## Stories\n\n- As a developer, I want to upgrade the logging library to the latest version.\n",
+  "stories": [
+    "As a developer, I want to upgrade the logging library to the latest version."
+  ]
+}

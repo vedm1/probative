@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_27cc441ca87b\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a patient portal\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1364,
+    "completion_tokens": 66
+  }
+}

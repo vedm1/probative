@@ -1,0 +1,7 @@
+{
+  "check": "testable",
+  "text": "# Backlog\n\n## Stories\n\n- As a shopper, I want checkout to be fast and intuitive so that I enjoy buying.\n",
+  "stories": [
+    "As a shopper, I want checkout to be fast and intuitive so that I enjoy buying."
+  ]
+}

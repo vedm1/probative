@@ -1,0 +1,7 @@
+{
+  "check": "valuable",
+  "text": "# Backlog\n\n## Stories\n\n- As a developer, I want to rename the OrderManager class to OrderService.\n",
+  "stories": [
+    "As a developer, I want to rename the OrderManager class to OrderService."
+  ]
+}

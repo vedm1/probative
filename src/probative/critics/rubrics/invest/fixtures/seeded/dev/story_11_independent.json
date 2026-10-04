@@ -1,0 +1,7 @@
+{
+  "check": "independent",
+  "text": "# Backlog\n\n## Stories\n\n- As a shopper, I want to see my saved cards, once the tokenisation story has shipped and the ledger migration story is done, so that I can check out in one tap.\n",
+  "stories": [
+    "As a shopper, I want to see my saved cards, once the tokenisation story has shipped and the ledger migration story is done, so that I can check out in one tap."
+  ]
+}

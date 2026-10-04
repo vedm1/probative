@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_need_cf059fd48226\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"machine learning to predict churn\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1365,
+    "completion_tokens": 69
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "negotiable"
+  ],
+  "why": "the technology comes from the user's own world; the rubric also lists protocols under negotiable, so that firing is defensible",
+  "text": "# Backlog\n\n## Stories\n\n- As an API consumer, I want to authenticate with OAuth tokens so that my integration needs no password.\n",
+  "stories": [
+    "As an API consumer, I want to authenticate with OAuth tokens so that my integration needs no password."
+  ]
+}

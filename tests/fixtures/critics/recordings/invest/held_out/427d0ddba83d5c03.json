@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_story_8768895369b8\",\"check_id\":\"testable\",\"verdict\":\"not_met\",\"quote\":\"responsive and user-friendly\"},{\"candidate_id\":\"cand_story_8768895369b8\",\"check_id\":\"independent\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_8768895369b8\",\"check_id\":\"negotiable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_8768895369b8\",\"check_id\":\"valuable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_8768895369b8\",\"check_id\":\"estimable\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_story_8768895369b8\",\"check_id\":\"small\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1842,
+    "completion_tokens": 397
+  }
+}

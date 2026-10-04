@@ -1,0 +1,67 @@
+id: invest
+severity: warn
+invariant: null
+applies_to: [StoryCandidate]
+checks:
+  - id: testable
+    severity: block
+    description: >-
+      The story's outcome is stated in vague, unmeasurable terms ("fast",
+      "intuitive", "better", "seamless") with no observable result a test could
+      check. A story that merely has no acceptance criteria written yet is not
+      a violation: say cannot_tell.
+    examples_bad:
+      - "I want the app to be fast and easy to use"
+      - "I want the dashboard to look better so that I am happy"
+    examples_good:
+      - "I want an SMS the evening before a delivery arrives"
+      - "I want to be told by email within a minute when a refund is issued"
+    remedy: State an observable outcome a test could pass or fail
+  - id: independent
+    description: >-
+      The story says in its own words that it can only be done after, or
+      together with, another named story or piece of work.
+    examples_bad:
+      - "I want to see my saved cards, once story PAY-9 has shipped"
+    examples_good:
+      - "I want to filter my orders by status"
+    remedy: Reorder or split the stories so this one stands alone
+  - id: negotiable
+    description: >-
+      The story prescribes how it must be built — a framework, datastore,
+      protocol or other implementation — instead of what the user needs.
+    examples_bad:
+      - "I want the list stored in PostgreSQL and rendered with Vue"
+    examples_good:
+      - "I want to find an order by its number"
+    remedy: Remove the implementation detail; state the user need
+  - id: valuable
+    description: >-
+      The story has no user or customer who benefits, or no benefit at all —
+      it is a task for the system or the team, not value to someone.
+    examples_bad:
+      - "As the system, I want to write rows to a log table"
+      - "As a developer, I want to move the helpers into a new folder"
+    examples_good:
+      - "As a merchant, I want to see unpaid invoices so that I can chase them"
+    remedy: Name who benefits and why, or fold the task into a story that has value
+  - id: estimable
+    description: >-
+      The story's own words leave its scope open-ended or explicitly undecided
+      ("whatever it takes", "details to be decided", "as many as possible").
+    examples_bad:
+      - "I want every system we might ever use to be connected, details later"
+    examples_good:
+      - "I want to import my contacts from a CSV file"
+    remedy: Pin down the scope, or split off the unknown as a research task
+  - id: small
+    description: >-
+      The story is epic-sized: it bundles several distinct capabilities (an
+      end-to-end workflow, a whole area of the product) into one story.
+    examples_bad:
+      - "I want a complete system for ordering, billing, shipping and returns"
+    examples_good:
+      - "I want to reorder a previous purchase in one click"
+    remedy: Split into stories that each fit in a single iteration
+clean_fixtures: fixtures/clean/**/*.json
+defect_fixtures: fixtures/seeded/**/*.json

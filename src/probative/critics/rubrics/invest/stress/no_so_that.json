@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "no 'so that' clause is common in real backlogs; not a violation",
+  "text": "# Backlog\n\n## Stories\n\n- As a patient, I want to see my test results online.\n",
+  "stories": [
+    "As a patient, I want to see my test results online."
+  ]
+}

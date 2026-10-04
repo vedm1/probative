@@ -26,13 +26,19 @@ class Severity(StrEnum):
 
 
 class RubricCheck(BaseModel):
-    """One named check within a rubric (S2)."""
+    """One named check within a rubric (S2).
+
+    `severity` is optional (added in PB5): unset, the check inherits the
+    rubric's severity; set, it overrides it, so a rubric can say "block on
+    this check, warn on the rest" as data rather than in critic code.
+    """
 
     id: str = Field(min_length=1)
     description: str = Field(min_length=1)
     examples_bad: list[str] = Field(default_factory=list)
     examples_good: list[str] = Field(default_factory=list)
     remedy: str = Field(min_length=1)
+    severity: Severity | None = None
 
 
 class Rubric(BaseModel):

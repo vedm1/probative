@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "smuggled",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Managers need a weekly emailed PDF to see how the team is doing.\n",
+  "needs": [
+    "Managers need a weekly emailed PDF to see how the team is doing."
+  ]
+}

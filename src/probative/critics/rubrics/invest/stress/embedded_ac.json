@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "acceptance criteria are embedded; every property holds",
+  "text": "# Backlog\n\n## Stories\n\n- As a shopper, I want to reset my password so that I can regain access. Acceptance criteria: the reset link is emailed within 60 seconds and expires after 24 hours.\n",
+  "stories": [
+    "As a shopper, I want to reset my password so that I can regain access. Acceptance criteria: the reset link is emailed within 60 seconds and expires after 24 hours."
+  ]
+}

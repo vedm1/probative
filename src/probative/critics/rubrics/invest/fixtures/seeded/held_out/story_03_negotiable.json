@@ -1,0 +1,7 @@
+{
+  "check": "negotiable",
+  "text": "# Backlog\n\n## Stories\n\n- As a partner, I want order updates delivered through a Kafka topic with Avro schemas so that I stay informed.\n",
+  "stories": [
+    "As a partner, I want order updates delivered through a Kafka topic with Avro schemas so that I stay informed."
+  ]
+}

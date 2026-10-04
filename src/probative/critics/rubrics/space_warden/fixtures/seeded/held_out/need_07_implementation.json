@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "implementation",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Partners need webhooks fired on every status change.\n",
+  "needs": [
+    "Partners need webhooks fired on every status change."
+  ]
+}

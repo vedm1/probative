@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "solution_grammar"
+  ],
+  "allow_also": [],
+  "why": "names a mechanism (minimal pair with sso_benefit)",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Users need single sign-on.\n",
+  "needs": [
+    "Users need single sign-on."
+  ]
+}

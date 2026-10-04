@@ -1,0 +1,7 @@
+{
+  "check": "small",
+  "text": "# Backlog\n\n## Stories\n\n- As a customer, I want to manage my entire account — profile, payments, subscriptions, invoices, support and reporting — so that I never need to call anyone.\n",
+  "stories": [
+    "As a customer, I want to manage my entire account — profile, payments, subscriptions, invoices, support and reporting — so that I never need to call anyone."
+  ]
+}

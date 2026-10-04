@@ -1,0 +1,7 @@
+{
+  "check": "negotiable",
+  "text": "# Backlog\n\n## Stories\n\n- As an admin, I want the user list stored in MongoDB and shown in an Angular data grid so that I can manage users.\n",
+  "stories": [
+    "As an admin, I want the user list stored in MongoDB and shown in an Angular data grid so that I can manage users."
+  ]
+}

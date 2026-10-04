@@ -1,0 +1,10 @@
+{
+  "text": "# Product requirements\n\n## Customer needs\n\n- Shoppers need to pay without retyping their card number on every purchase.\n- Finance analysts struggle to reconcile settlements against bank statements.\n- Merchants need to know when a payout will reach their bank.\n- Customers want to find out why a payment was declined without calling support.\n- Operations staff need to correct a wrongly booked refund before month end.\n",
+  "needs": [
+    "Shoppers need to pay without retyping their card number on every purchase.",
+    "Finance analysts struggle to reconcile settlements against bank statements.",
+    "Merchants need to know when a payout will reach their bank.",
+    "Customers want to find out why a payment was declined without calling support.",
+    "Operations staff need to correct a wrongly booked refund before month end."
+  ]
+}

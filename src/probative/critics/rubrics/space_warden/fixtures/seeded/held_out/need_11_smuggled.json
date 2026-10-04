@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "smuggled",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Buyers need a chat feature to negotiate prices with sellers.\n",
+  "needs": [
+    "Buyers need a chat feature to negotiate prices with sellers."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "implementation",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Support agents need tickets to be routed by a nightly batch job.\n",
+  "needs": [
+    "Support agents need tickets to be routed by a nightly batch job."
+  ]
+}

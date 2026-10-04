@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "ui_element",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Customers need a dropdown that lets them pick a delivery slot.\n",
+  "needs": [
+    "Customers need a dropdown that lets them pick a delivery slot."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "solution_grammar"
+  ],
+  "allow_also": [],
+  "why": "names a mechanism for how to prioritise",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Support agents need the ticket queue sorted by a weighted priority score.\n",
+  "needs": [
+    "Support agents need the ticket queue sorted by a weighted priority score."
+  ]
+}

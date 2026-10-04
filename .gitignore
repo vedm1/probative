@@ -224,3 +224,7 @@ runs/
 .claude/settings.local.json
 # macOS
 .DS_Store
+
+# PB5 live-record staging directories (swapped into place on success)
+tests/fixtures/critics/recordings/*/*.recording/
+tests/fixtures/critics/recordings/*/*.previous/

@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "smuggled",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Travellers need a mobile app so they can see their booking status.\n",
+  "needs": [
+    "Travellers need a mobile app so they can see their booking status."
+  ]
+}

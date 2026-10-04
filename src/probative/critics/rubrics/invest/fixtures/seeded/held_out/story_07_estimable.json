@@ -1,0 +1,7 @@
+{
+  "check": "estimable",
+  "text": "# Backlog\n\n## Stories\n\n- As a buyer, I want the platform to handle whatever payment methods customers might want in future so that nobody is turned away.\n",
+  "stories": [
+    "As a buyer, I want the platform to handle whatever payment methods customers might want in future so that nobody is turned away."
+  ]
+}

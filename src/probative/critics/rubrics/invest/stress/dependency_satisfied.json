@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "the named dependency is already done: independent holds",
+  "text": "# Backlog\n\n## Stories\n\n- As an analyst, I want to export the report to the existing data warehouse; story PAY-9 shipped last quarter.\n",
+  "stories": [
+    "As an analyst, I want to export the report to the existing data warehouse; story PAY-9 shipped last quarter."
+  ]
+}

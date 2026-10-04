@@ -1,0 +1,8 @@
+{
+  "check": "solution_grammar",
+  "defect": "ui_element",
+  "text": "# Product requirements\n\n## Customer needs\n\n- Staff need a toggle on the settings page to hide archived orders.\n",
+  "needs": [
+    "Staff need a toggle on the settings page to hide archived orders."
+  ]
+}

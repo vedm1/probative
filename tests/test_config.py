@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import pytest
 
-from probative.config import MissingCredentialsError, Settings
+from probative.config import REFERENCE_MODEL, MissingCredentialsError, Settings
 
 
 def test_settings_load_with_empty_environment(tmp_path, monkeypatch) -> None:
@@ -47,3 +47,9 @@ def test_unknown_provider_raises_missing_credentials_error() -> None:
 
     with pytest.raises(MissingCredentialsError):
         settings.credential_for("some-provider-nobody-configured")
+
+
+def test_reference_model_is_pinned_and_not_overridable_by_the_environment(monkeypatch) -> None:
+    monkeypatch.setenv("MODEL", "vendor/other")
+    assert REFERENCE_MODEL == "anthropic/claude-sonnet-5"
+    assert "reference_model" not in Settings.model_fields

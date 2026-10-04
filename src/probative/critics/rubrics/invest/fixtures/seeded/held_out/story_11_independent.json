@@ -1,0 +1,7 @@
+{
+  "check": "independent",
+  "text": "# Backlog\n\n## Stories\n\n- As a rider, I want to see my weekly earnings, which cannot start until the payouts story is finished and the rate-card story is merged, so that I know what I earned.\n",
+  "stories": [
+    "As a rider, I want to see my weekly earnings, which cannot start until the payouts story is finished and the rate-card story is merged, so that I know what I earned."
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "space_warden",
+  "split": "dev",
+  "seeded": {
+    "n": 12,
+    "caught": 12,
+    "caught_intended": 12,
+    "per_check": {
+      "solution_grammar": {
+        "n": 12,
+        "caught_intended": 12
+      }
+    },
+    "files": [
+      {
+        "file": "need_01_feature_name.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_02_feature_name.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_03_feature_name.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_04_ui_element.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_05_ui_element.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_06_implementation.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_07_implementation.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_08_technology.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_09_technology.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_10_smuggled.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_11_smuggled.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      },
+      {
+        "file": "need_12_injection.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ]
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 10,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "needs_everyday.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": []
+      },
+      {
+        "file": "needs_payments.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 14,
+    "usage": {
+      "input_tokens": 19569,
+      "output_tokens": 1719
+    },
+    "met": 10,
+    "not_met": 12,
+    "cannot_tell": 0,
+    "missing": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

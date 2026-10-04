@@ -1,0 +1,7 @@
+{
+  "check": "independent",
+  "text": "# Backlog\n\n## Stories\n\n- As a buyer, I want to filter results by seller rating, built only after the ranking story BUY-12 ships, so that I find trusted sellers.\n",
+  "stories": [
+    "As a buyer, I want to filter results by seller rating, built only after the ranking story BUY-12 ships, so that I find trusted sellers."
+  ]
+}

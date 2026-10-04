@@ -1,0 +1,10 @@
+{
+  "text": "# Backlog\n\n## Stories\n\n- As a seller, I want to see my remaining stock for each listing, so that I do not promise stock I do not have.\n- As a rider, I want to be paid a waiting fee after 10 minutes at a pickup, so that waiting time is not unpaid.\n- As an auditor, I want each change record to show the approver and the approval time, so that I can verify who signed off.\n- As a buyer, I want to see the total price including delivery for two offers side by side, so that I can compare them before committing.\n- As a small shop owner, I want to accept contactless card payments, so that I do not need to buy a terminal.\n",
+  "stories": [
+    "As a seller, I want to see my remaining stock for each listing, so that I do not promise stock I do not have.",
+    "As a rider, I want to be paid a waiting fee after 10 minutes at a pickup, so that waiting time is not unpaid.",
+    "As an auditor, I want each change record to show the approver and the approval time, so that I can verify who signed off.",
+    "As a buyer, I want to see the total price including delivery for two offers side by side, so that I can compare them before committing.",
+    "As a small shop owner, I want to accept contactless card payments, so that I do not need to buy a terminal."
+  ]
+}
