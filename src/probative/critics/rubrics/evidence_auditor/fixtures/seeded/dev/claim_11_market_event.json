@@ -1,0 +1,8 @@
+{
+  "check": "unsourced_assertion",
+  "kind": "market_event",
+  "text": "# Market context\n\n## Findings\n\n- Card networks raised interchange fees across the board this year.\n",
+  "claims": [
+    "Card networks raised interchange fees across the board this year."
+  ]
+}

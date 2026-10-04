@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unsourced_statistic"
+  ],
+  "allow_also": [],
+  "why": "a fraction is a figure, and 'roughly' softens it without being a basis or a hedge",
+  "text": "# Market context\n\n## Findings\n\n- Roughly half of small merchants have no chargeback process.\n",
+  "claims": [
+    "Roughly half of small merchants have no chargeback process."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "unsourced_statistic",
+  "kind": "benchmark",
+  "text": "# Market context\n\n## Findings\n\n- Top-quartile marketplaces keep seller response times under two hours.\n",
+  "claims": [
+    "Top-quartile marketplaces keep seller response times under two hours."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "basis_overreach",
+  "kind": "period",
+  "text": "# Market context\n\n## Findings\n\n- Refund requests fell in the month after the policy change, so the policy has permanently fixed trust.\n",
+  "claims": [
+    "Refund requests fell in the month after the policy change, so the policy has permanently fixed trust."
+  ]
+}

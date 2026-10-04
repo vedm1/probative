@@ -21,7 +21,6 @@ is in place), so a failure mid-run cannot destroy a good recording.
 
 from __future__ import annotations
 
-import json
 import os
 import shutil
 from pathlib import Path
@@ -38,53 +37,10 @@ from tests._recording import Recorder
 from tests.critics._corpus import INVEST, SPACE_WARDEN, SPLITS, Corpus
 from tests.critics._measure import measure, measure_mixed, measure_stress
 from tests.critics._replay import recording_dir
+from tests.critics._report import print_split, print_stress, stage
 from tests.critics._swap import swap_in
 
 pytestmark = pytest.mark.live
-
-
-def _print_split(name: str, split: str, result: dict[str, Any]) -> None:
-    seeded, clean = result["seeded"], result["clean"]
-    print(f"\n== {name} [{split}]")
-    print(
-        f"   caught {seeded['caught']}/{seeded['n']} "
-        f"(intended check {seeded['caught_intended']}/{seeded['n']}); "
-        f"false positives {clean['flagged_candidates']}/{clean['candidates']}"
-    )
-    print(f"   per check: {seeded['per_check']}")
-    rows = seeded["files"]
-    print(f"   missed: {[r['file'] for r in rows if not r['caught']]}")
-    wrong = [r["file"] for r in rows if r["caught"] and not r["caught_intended"]]
-    print(f"   wrong-check: {wrong}")
-    flagged = [(r["file"], r["fired"]) for r in clean["files"] if r["flagged_candidates"]]
-    print(f"   flagged clean: {flagged}")
-    print(f"   judge stats: {result['judge_stats']}")
-
-
-def _print_stress(name: str, stress: dict[str, Any], mixed: dict[str, Any]) -> None:
-    print(f"\n== {name} [stress]")
-    print(f"   hard cases as expected: {stress['as_expected']}/{stress['n']}")
-    for row in stress["files"]:
-        if not row["as_expected"]:
-            print(
-                f"   UNEXPECTED {row['file']}: expected {row['expect_fired']}, fired {row['fired']}"
-            )
-            print(f"      why the label: {row['why']}")
-    print(f"   stress judge stats: {stress['judge_stats']}")
-    seeded, clean = mixed["seeded"], mixed["clean"]
-    print(
-        f"   MIXED batches ({mixed['judge_stats']['calls']} calls over {mixed['candidates']} "
-        f"candidates): caught {seeded['caught']}/{seeded['n']} "
-        f"(intended {seeded['caught_intended']}/{seeded['n']}); "
-        f"false positives {clean['flagged_candidates']}/{clean['candidates']}"
-    )
-    print(f"   mixed judge stats: {mixed['judge_stats']}")
-
-
-def _stage(staging: Path, result: dict[str, Any]) -> None:
-    (staging / "results.json").write_text(
-        json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
 
 
 def test_record_split_and_measure() -> None:
@@ -124,14 +80,14 @@ def test_record_split_and_measure() -> None:
         if split == "stress":
             stress = measure_stress(corpus, new_critic())
             mixed = measure_mixed(corpus, new_critic())
-            _stage(
+            stage(
                 staging,
                 {"model": REFERENCE_MODEL, "critic": corpus.name, "stress": stress, "mixed": mixed},
             )
             reports.append((corpus.name, stress, mixed))
         else:
             result = {"model": REFERENCE_MODEL, **measure(corpus, split, new_critic())}
-            _stage(staging, result)
+            stage(staging, result)
             reports.append((corpus.name, result, None))
         staged.append((staging, directory))
 
@@ -139,6 +95,6 @@ def test_record_split_and_measure() -> None:
     swap_in(staged)
     for name, first, second in reports:
         if second is None:
-            _print_split(name, split, first)
+            print_split(name, split, first)
         else:
-            _print_stress(name, first, second)
+            print_stress(name, first, second)

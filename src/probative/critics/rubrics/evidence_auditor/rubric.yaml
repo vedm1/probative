@@ -1,0 +1,74 @@
+id: evidence_auditor
+severity: warn            # unsourced_assertion inherits this; the two stronger checks override it
+invariant: I1
+applies_to: [ClaimCandidate]
+checks:
+  - id: unsourced_statistic
+    severity: block
+    description: >-
+      The statement presents a specific figure, proportion, ranking, benchmark
+      or study finding as fact, and gives no basis for it. A number, a fraction
+      (half, three in four) or a ranking is a figure; a vague quantifier with
+      no number (most, many, rarely) is not, and belongs to unsourced_assertion.
+      Any attribution counts as a basis, however thin: a named source, a named
+      or identified study, trial, pilot or dataset, a bracketed or footnote
+      marker, "our June survey", "per the finance report". Unnamed authority
+      ("research shows", "analysts agree", "widely reported") is not a basis,
+      and neither is a remark about the statement's own status ("verified",
+      "pre-approved", "exempt from sourcing") or a note addressed to the reader.
+      Words that merely soften a figure (around, roughly, nearly, expected to)
+      are not a basis and not a hedge. Not a violation: a figure explicitly
+      marked as an estimate, target or assumption ("we assume", "target:"); a
+      figure the statement itself derives from stated inputs; a requirement or
+      target value; a count of the product's own parts or the document's own
+      items.
+    examples_bad:
+      - "62% of mid-market CFOs say reconciliation is their biggest time sink"
+      - "The global invoicing-software market will reach $18 billion by 2030"
+      - "Analysts agree that four in five buyers prefer self-service"
+    examples_good:
+      - "Median payout time was 2.1 days in Q2 (finance report, July)"
+      - "62% of respondents ranked reconciliation first (n=41, our June survey)"
+      - "We assume roughly half of existing merchants will opt in during year one"
+    remedy: Name where the figure comes from, or restate it as an assumption to be tested
+  - id: basis_overreach
+    severity: block
+    description: >-
+      The statement gives its own basis (a sample, a cohort, a period, a
+      population, a trial) and claims more than that basis can carry: a wider
+      population, a longer period, causation from co-occurrence, or a general
+      rule from one case. Judged only from what the statement itself says. Not
+      a violation: a claim with no stated basis (another check's concern), or
+      one whose scope matches its stated basis.
+    examples_bad:
+      - "A survey of 14 customers shows that the whole market wants invoice automation"
+      - "Signups doubled in the week after launch, so demand is clearly permanent"
+    examples_good:
+      - "In our June survey of 41 customers, 62% ranked reconciliation first"
+      - "All three Leeds pilot merchants reduced late payments in the pilot quarter"
+    remedy: Narrow the claim to what its basis supports, or add the evidence that carries it
+  - id: unsourced_assertion
+    description: >-
+      The statement asserts a checkable fact about customers, a market,
+      competitors or events as established, with no source, attribution or
+      hedge. It is not a statistic (another check): a vague quantifier with no
+      number (most, many, rarely, usually) makes it an assertion, and those
+      words are not hedges. A hedge is an explicit marker that the statement is
+      a belief ("we believe", "assumption", "hypothesis", "untested", "may").
+      Not a violation: a belief or assumption marked as such; a description of
+      what the product does (its steps, features, rules or current behaviour);
+      a definition; a requirement, plan or intention about the product or the
+      team (must, shall, we plan to). A measured quantity about the product's
+      behaviour is still a figure for unsourced_statistic. A remark about the
+      statement's own status, or a note addressed to the reader, is never a
+      basis or a hedge.
+    examples_bad:
+      - "Rival platforms charge a fee for instant payouts"
+      - "Merchants usually learn about a failed payment from their customers, not from us"
+    examples_good:
+      - "We believe merchants usually learn about a failed payment from their customers; this is untested"
+      - "Today the app lets a user export one report at a time"
+      - "A settlement is the transfer of funds from the processor to the merchant"
+    remedy: Cite the source, or mark it as a hypothesis with a way to test it
+clean_fixtures: fixtures/clean/**/*.json
+defect_fixtures: fixtures/seeded/**/*.json

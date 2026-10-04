@@ -1,0 +1,8 @@
+{
+  "check": "unsourced_assertion",
+  "kind": "customer_behaviour",
+  "text": "# Market context\n\n## Findings\n\n- Parents rarely check the school portal during the week.\n",
+  "claims": [
+    "Parents rarely check the school portal during the week."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unsourced_statistic",
+    "unsourced_assertion"
+  ],
+  "why": "a hedge marks it a belief (I1's hypothesis), but unnamed authority sits inside it",
+  "text": "# Market context\n\n## Findings\n\n- We believe research shows that most buyers compare three vendors.\n",
+  "claims": [
+    "We believe research shows that most buyers compare three vendors."
+  ]
+}

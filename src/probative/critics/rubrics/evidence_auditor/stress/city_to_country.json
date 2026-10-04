@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "basis_overreach"
+  ],
+  "allow_also": [],
+  "why": "a stated basis stretched from one city to others",
+  "text": "# Market context\n\n## Findings\n\n- Across our 12 Bristol merchants, late payments fell 30%, so merchants in other UK cities will see similar savings.\n",
+  "claims": [
+    "Across our 12 Bristol merchants, late payments fell 30%, so merchants in other UK cities will see similar savings."
+  ]
+}

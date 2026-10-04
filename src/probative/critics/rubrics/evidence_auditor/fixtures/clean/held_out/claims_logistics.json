@@ -1,0 +1,11 @@
+{
+  "text": "# Market context\n\n## Findings\n\n- Across our 40 depots, mean dwell time rose from 2.6 to 3.1 hours between January and March (depot operations log).\n- Pickup windows must be configurable in 15-minute steps.\n- In the Rotterdam trial, 11 of 14 drivers completed the new handover flow without help.\n- Hypothesis: shippers who see live tracking will contact support less; this is untested.\n- Carrier on-time delivery was 91% last quarter (carrier scorecard, Q3).\n- A booking can hold up to ten parcels.\n",
+  "claims": [
+    "Across our 40 depots, mean dwell time rose from 2.6 to 3.1 hours between January and March (depot operations log).",
+    "Pickup windows must be configurable in 15-minute steps.",
+    "In the Rotterdam trial, 11 of 14 drivers completed the new handover flow without help.",
+    "Hypothesis: shippers who see live tracking will contact support less; this is untested.",
+    "Carrier on-time delivery was 91% last quarter (carrier scorecard, Q3).",
+    "A booking can hold up to ten parcels."
+  ]
+}

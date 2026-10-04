@@ -1,0 +1,8 @@
+{
+  "check": "basis_overreach",
+  "kind": "causation",
+  "text": "# Market context\n\n## Findings\n\n- In the spring term's 4,000 student records, daily app users scored higher, which means the app lifts grades.\n",
+  "claims": [
+    "In the spring term's 4,000 student records, daily app users scored higher, which means the app lifts grades."
+  ]
+}

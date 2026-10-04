@@ -1,0 +1,13 @@
+{
+  "expect_fired": [
+    "basis_overreach"
+  ],
+  "allow_also": [
+    "unsourced_statistic"
+  ],
+  "why": "stated basis (9 users) stretched to the whole market; the figure's own basis is the survey, so unsourced_statistic is a defensible second reading",
+  "text": "# Market context\n\n## Findings\n\n- A survey of 9 users proves that 90% of the whole market will pay for this.\n",
+  "claims": [
+    "A survey of 9 users proves that 90% of the whole market will pay for this."
+  ]
+}

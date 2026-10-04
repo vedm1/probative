@@ -9,6 +9,7 @@ from typing import Any
 
 from probative.core.candidates import (
     CandidateKind,
+    ClaimCandidate,
     NeedCandidate,
     StoryCandidate,
     candidate_id,
@@ -32,6 +33,15 @@ def needs(text: str, quotes: list[str], *, source_id: str = "src_test") -> list[
     for quote in quotes:
         span = _resolve(source, quote)
         out.append(NeedCandidate(id=candidate_id(CandidateKind.NEED, span), evidence=span))
+    return out
+
+
+def claims(text: str, quotes: list[str], *, source_id: str = "src_test") -> list[ClaimCandidate]:
+    source = make_source(text, source_id=source_id)
+    out = []
+    for quote in quotes:
+        span = _resolve(source, quote)
+        out.append(ClaimCandidate(id=candidate_id(CandidateKind.CLAIM, span), evidence=span))
     return out
 
 
@@ -61,3 +71,8 @@ def parse_need_fixture(path: Path) -> list[NeedCandidate]:
 def parse_story_fixture(path: Path) -> list[StoryCandidate]:
     data = load_fixture(path)
     return stories(data["text"], data["stories"], source_id=f"src_{path.stem}")
+
+
+def parse_claim_fixture(path: Path) -> list[ClaimCandidate]:
+    data = load_fixture(path)
+    return claims(data["text"], data["claims"], source_id=f"src_{path.stem}")

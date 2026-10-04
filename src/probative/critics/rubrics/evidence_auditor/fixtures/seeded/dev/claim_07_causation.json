@@ -1,0 +1,8 @@
+{
+  "check": "basis_overreach",
+  "kind": "causation",
+  "text": "# Market context\n\n## Findings\n\n- Among the 300 accounts in last quarter's cohort, those that enabled alerts churned less, so alerts reduce churn.\n",
+  "claims": [
+    "Among the 300 accounts in last quarter's cohort, those that enabled alerts churned less, so alerts reduce churn."
+  ]
+}

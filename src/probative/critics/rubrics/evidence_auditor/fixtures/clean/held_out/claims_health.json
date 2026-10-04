@@ -1,0 +1,11 @@
+{
+  "text": "# Market context\n\n## Findings\n\n- According to the 2023 Meridian Patient Access Report, 27% of first appointments are booked online.\n- Roughly 1 in 5 clinic bookings is rescheduled at least once (practice management export, May).\n- Our bet is that clinics with fewer than five staff will adopt first; the pilot is designed to test it.\n- Appointment reminders are currently sent by email only.\n- No-show rate means the share of booked appointments a patient neither attends nor cancels.\n- Rescheduling is limited to two changes per booking.\n",
+  "claims": [
+    "According to the 2023 Meridian Patient Access Report, 27% of first appointments are booked online.",
+    "Roughly 1 in 5 clinic bookings is rescheduled at least once (practice management export, May).",
+    "Our bet is that clinics with fewer than five staff will adopt first; the pilot is designed to test it.",
+    "Appointment reminders are currently sent by email only.",
+    "No-show rate means the share of booked appointments a patient neither attends nor cancels.",
+    "Rescheduling is limited to two changes per booking."
+  ]
+}

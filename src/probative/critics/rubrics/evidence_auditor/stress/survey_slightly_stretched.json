@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "basis_overreach"
+  ],
+  "why": "borderline: 7 of 18 read as 'the main problem'; either verdict is defensible, and only an unexpected unsourced fire would be wrong",
+  "text": "# Market context\n\n## Findings\n\n- Of the 18 accounts we polled after the redesign, 7 named search as their biggest frustration, so search is the main problem.\n",
+  "claims": [
+    "Of the 18 accounts we polled after the redesign, 7 named search as their biggest frustration, so search is the main problem."
+  ]
+}

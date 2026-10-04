@@ -1,0 +1,8 @@
+{
+  "check": "basis_overreach",
+  "kind": "anecdote",
+  "text": "# Market context\n\n## Findings\n\n- One merchant told us the export is unusable, which tells us customers cannot use exports.\n",
+  "claims": [
+    "One merchant told us the export is unusable, which tells us customers cannot use exports."
+  ]
+}

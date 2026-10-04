@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unsourced_statistic"
+  ],
+  "why": "a footnote mark flattened into the digits by PDF extraction: indistinguishable from no source, so firing is defensible",
+  "text": "# Market context\n\n## Findings\n\n- Median onboarding time was 11 days3\n",
+  "claims": [
+    "Median onboarding time was 11 days3"
+  ]
+}

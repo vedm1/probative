@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unsourced_assertion"
+  ],
+  "why": "a truism with no marker; a strict closed-world reading may flag it as an assertion",
+  "text": "# Market context\n\n## Findings\n\n- Customers prefer simple pricing.\n",
+  "claims": [
+    "Customers prefer simple pricing."
+  ]
+}

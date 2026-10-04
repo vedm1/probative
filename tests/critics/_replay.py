@@ -22,10 +22,12 @@ def recording_dir(critic: str, split: str) -> Path:
     return RECORDINGS / critic / split
 
 
-def replay_all_splits(critic: str, splits: tuple[str, ...]) -> Callable[..., Any]:
+def replay_all_splits(
+    critic: str, splits: tuple[str, ...], hint: str = RERECORD_HINT
+) -> Callable[..., Any]:
     """A `completion_fn` that answers from any of a critic's split recordings.
     The prompt hash includes the candidate text, so splits cannot collide."""
-    fns = [replay(recording_dir(critic, s), RERECORD_HINT) for s in splits]
+    fns = [replay(recording_dir(critic, s), hint) for s in splits]
 
     def completion(**kwargs: Any) -> Any:
         for fn in fns:
@@ -33,6 +35,6 @@ def replay_all_splits(critic: str, splits: tuple[str, ...]) -> Callable[..., Any
                 return fn(**kwargs)
             except MissingRecordingError:
                 continue
-        raise MissingRecordingError(recording_key(kwargs["messages"]), RERECORD_HINT)
+        raise MissingRecordingError(recording_key(kwargs["messages"]), hint)
 
     return completion

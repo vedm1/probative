@@ -1,0 +1,8 @@
+{
+  "check": "unsourced_statistic",
+  "kind": "figure_mid_sentence",
+  "text": "# Market context\n\n## Findings\n\n- Because 58% of online shoppers abandon at the account-creation step, guest checkout drives conversion.\n",
+  "claims": [
+    "Because 58% of online shoppers abandon at the account-creation step, guest checkout drives conversion."
+  ]
+}

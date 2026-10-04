@@ -1,0 +1,8 @@
+{
+  "check": "basis_overreach",
+  "kind": "sample",
+  "text": "# Market context\n\n## Findings\n\n- Our six design partners all rejected the dark theme, so the market has no appetite for it.\n",
+  "claims": [
+    "Our six design partners all rejected the dark theme, so the market has no appetite for it."
+  ]
+}

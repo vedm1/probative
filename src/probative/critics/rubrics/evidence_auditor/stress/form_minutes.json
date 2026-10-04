@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unsourced_statistic"
+  ],
+  "allow_also": [],
+  "why": "a measured quantity about the product's behaviour is still a figure that needs a basis",
+  "text": "# Market context\n\n## Findings\n\n- Completing the current form takes about six minutes.\n",
+  "claims": [
+    "Completing the current form takes about six minutes."
+  ]
+}

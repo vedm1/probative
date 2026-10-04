@@ -1,0 +1,8 @@
+{
+  "check": "basis_overreach",
+  "kind": "sample",
+  "text": "# Market context\n\n## Findings\n\n- The 20-account pilot reached 80% adoption; the same rate applies across the entire customer base.\n",
+  "claims": [
+    "The 20-account pilot reached 80% adoption; the same rate applies across the entire customer base."
+  ]
+}

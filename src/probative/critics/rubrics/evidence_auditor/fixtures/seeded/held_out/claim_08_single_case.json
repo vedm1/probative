@@ -1,0 +1,8 @@
+{
+  "check": "basis_overreach",
+  "kind": "single_case",
+  "text": "# Market context\n\n## Findings\n\n- A single hospital trust adopted the portal and saw no-shows fall, so portals fix no-shows everywhere.\n",
+  "claims": [
+    "A single hospital trust adopted the portal and saw no-shows fall, so portals fix no-shows everywhere."
+  ]
+}

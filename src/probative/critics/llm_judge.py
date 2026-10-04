@@ -128,10 +128,16 @@ severities or explanations of any kind.
 """
 
 
-def build_system_prompt(rubric: Rubric, preamble: str) -> str:
+def build_system_prompt(
+    rubric: Rubric, preamble: str, judge_preamble: str = _JUDGE_PREAMBLE
+) -> str:
     """The judge prompt, built from the rubric's own data — adding or editing
-    a check changes the prompt, and (in tests) the recording key, loudly."""
-    parts = [_JUDGE_PREAMBLE, f"Your mandate:\n{preamble.strip()}\n", "Checks:"]
+    a check changes the prompt, and (in tests) the recording key, loudly.
+
+    `judge_preamble` is the verdict semantics. The default is PB5's, which
+    treats missing information as `cannot_tell`; a critic for whom absence is
+    itself the finding supplies its own (PB6)."""
+    parts = [judge_preamble, f"Your mandate:\n{preamble.strip()}\n", "Checks:"]
     for check in rubric.checks:
         parts.append(f"\n[{check.id}] {check.description}")
         if check.examples_bad:
@@ -218,6 +224,10 @@ class LLMCritic(Critic, ABC):
 
     candidate_type: ClassVar[type[AnyCandidate]]
     preamble: ClassVar[str]
+    # Optional third attribute (PB6): the verdict semantics. Override only when the
+    # generic open-world rule ("missing information is cannot_tell") is wrong for
+    # the critic's mandate.
+    judge_preamble: ClassVar[str] = _JUDGE_PREAMBLE
 
     def __init__(
         self,
@@ -311,7 +321,10 @@ class LLMCritic(Critic, ABC):
 
     def _judge(self, batch: Sequence[AnyCandidate]) -> list[Finding]:
         messages = [
-            Message(role="system", content=build_system_prompt(self.rubric, self.preamble)),
+            Message(
+                role="system",
+                content=build_system_prompt(self.rubric, self.preamble, self.judge_preamble),
+            ),
             Message(role="user", content=build_user_message(batch)),
         ]
         by_id = {c.id: c for c in batch}

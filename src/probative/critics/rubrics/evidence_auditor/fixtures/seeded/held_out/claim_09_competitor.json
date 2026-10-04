@@ -1,0 +1,8 @@
+{
+  "check": "unsourced_assertion",
+  "kind": "competitor",
+  "text": "# Market context\n\n## Findings\n\n- Other scheduling vendors do not integrate with hospital records.\n",
+  "claims": [
+    "Other scheduling vendors do not integrate with hospital records."
+  ]
+}

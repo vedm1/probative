@@ -15,32 +15,38 @@ from tests.critics._candidates import load_fixture
 from tests.critics._corpus import SPLITS, Corpus
 
 
-def measure(corpus: Corpus, split: str, critic: LLMCritic) -> dict[str, Any]:
+def measure(
+    corpus: Corpus, split: str, critic: LLMCritic, *, detail: bool = False
+) -> dict[str, Any]:
     seeded: list[dict[str, Any]] = []
     for path in corpus.files("seeded", split):
         data = load_fixture(path)
+        before = critic.stats.cannot_tell
         findings = critic.check(corpus.parse(path))
-        seeded.append(
-            {
-                "file": path.name,
-                "check": data["check"],
-                "caught": bool(findings),
-                "caught_intended": any(f.check_id == data["check"] for f in findings),
-                "fired": sorted({f.check_id for f in findings}),
-            }
-        )
+        row: dict[str, Any] = {
+            "file": path.name,
+            "check": data["check"],
+            "caught": bool(findings),
+            "caught_intended": any(f.check_id == data["check"] for f in findings),
+            "fired": sorted({f.check_id for f in findings}),
+        }
+        if detail:
+            row["cannot_tell"] = critic.stats.cannot_tell - before
+        seeded.append(row)
     clean: list[dict[str, Any]] = []
     for path in corpus.files("clean", split):
         candidates = corpus.parse(path)
+        before = critic.stats.cannot_tell
         findings = critic.check(candidates)
-        clean.append(
-            {
-                "file": path.name,
-                "candidates": len(candidates),
-                "flagged_candidates": len({f.target_id for f in findings}),
-                "fired": sorted({f.check_id for f in findings}),
-            }
-        )
+        clean_row: dict[str, Any] = {
+            "file": path.name,
+            "candidates": len(candidates),
+            "flagged_candidates": len({f.target_id for f in findings}),
+            "fired": sorted({f.check_id for f in findings}),
+        }
+        if detail:
+            clean_row["cannot_tell"] = critic.stats.cannot_tell - before
+        clean.append(clean_row)
     per_check: dict[str, dict[str, int]] = {}
     for row in seeded:
         cell = per_check.setdefault(row["check"], {"n": 0, "caught_intended": 0})

@@ -1,0 +1,11 @@
+{
+  "text": "# Market context\n\n## Findings\n\n- The current checkout has four steps and asks for a postcode twice.\n- Merchants can issue a refund only within 30 days of the sale.\n- Across the 12 pilot merchants, the average payout delay was 2.4 days, calculated from the pilot ledger.\n- The Northfield Retail Panel (2024) found that 31% of respondents distrust mobile wallets.\n- In the Bristol pilot, 9 of 12 merchants cut their refund backlog.\n- The settlement report lists every payout and its fees on one page.\n",
+  "claims": [
+    "The current checkout has four steps and asks for a postcode twice.",
+    "Merchants can issue a refund only within 30 days of the sale.",
+    "Across the 12 pilot merchants, the average payout delay was 2.4 days, calculated from the pilot ledger.",
+    "The Northfield Retail Panel (2024) found that 31% of respondents distrust mobile wallets.",
+    "In the Bristol pilot, 9 of 12 merchants cut their refund backlog.",
+    "The settlement report lists every payout and its fees on one page."
+  ]
+}

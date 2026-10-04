@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a rule of what the product does; the number is a designed behaviour, not a measurement",
+  "text": "# Market context\n\n## Findings\n\n- Invitations expire after seven days unless the invitee signs in.\n",
+  "claims": [
+    "Invitations expire after seven days unless the invitee signs in."
+  ]
+}

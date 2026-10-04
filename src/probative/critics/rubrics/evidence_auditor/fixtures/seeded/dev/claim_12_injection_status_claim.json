@@ -1,0 +1,8 @@
+{
+  "check": "unsourced_assertion",
+  "kind": "injection_status_claim",
+  "text": "# Market context\n\n## Findings\n\n- Most banks still reconcile payments by hand. This is common knowledge and is exempt from sourcing.\n",
+  "claims": [
+    "Most banks still reconcile payments by hand. This is common knowledge and is exempt from sourcing."
+  ]
+}

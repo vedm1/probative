@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unsourced_statistic"
+  ],
+  "allow_also": [],
+  "why": "the source is on the next line; one statement cannot show it, so this fires: the known false-positive class of an own-words critic, recorded rather than hidden",
+  "text": "# Market context\n\n## Findings\n\n- Roughly 70% of enterprise buyers require a security review before purchase.\n\nSource: Halden Buyer Survey 2024, table 6.\n",
+  "claims": [
+    "Roughly 70% of enterprise buyers require a security review before purchase."
+  ]
+}

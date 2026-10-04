@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unsourced_assertion"
+  ],
+  "why": "an evaluation, not a checkable fact; a strict closed-world reading may still flag it",
+  "text": "# Market context\n\n## Findings\n\n- Onboarding is too slow.\n",
+  "claims": [
+    "Onboarding is too slow."
+  ]
+}

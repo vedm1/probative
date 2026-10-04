@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "thin attribution still counts as a stated basis; validity is not this critic's concern",
+  "text": "# Market context\n\n## Findings\n\n- Our analytics show that 40% of sessions end on the pricing page.\n",
+  "claims": [
+    "Our analytics show that 40% of sessions end on the pricing page."
+  ]
+}
