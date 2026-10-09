@@ -53,6 +53,8 @@ def test_replayed_score_equals_the_recorded_score(document: str, gold_file: str)
     # segments for (default passes never ask) and so must score all-zero.
     segment = dumped["per_kind"].pop(CandidateKind.SEGMENT.value)
     assert (segment["tp"], segment["fp"], segment["fn"]) == (0, 0, 0)
+    forecast = dumped["per_kind"].pop(CandidateKind.FORECAST.value)  # PB8: likewise
+    assert (forecast["tp"], forecast["fp"], forecast["fn"]) == (0, 0, 0)
     assert dumped == RESULTS["documents"][document]["score"]
 
 
@@ -111,8 +113,10 @@ def test_recorded_recall_is_complete_and_precision_gaps_are_the_known_ones() -> 
     md = RESULTS["documents"]["prd_payments.md"]["score"]["per_kind"]
     pdf = RESULTS["documents"]["prd_payments.pdf"]["score"]["per_kind"]
     for per_kind in (md, pdf):
-        # PB4 recorded five kinds; the segment kind (PB6-p2) has its own recording.
-        recorded = [k for k in CandidateKind if k is not CandidateKind.SEGMENT]
+        # PB4 recorded five kinds; segment (PB6-p2) and forecast (PB8) have their own recordings.
+        recorded = [
+            k for k in CandidateKind if k not in (CandidateKind.SEGMENT, CandidateKind.FORECAST)
+        ]
         assert all(per_kind[k.value]["fn"] == 0 for k in recorded)
     assert md[CandidateKind.DEPENDENCY.value]["fp"] == 3
     assert pdf[CandidateKind.DEPENDENCY.value]["fp"] == 2

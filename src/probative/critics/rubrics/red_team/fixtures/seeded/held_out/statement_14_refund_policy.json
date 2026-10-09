@@ -1,0 +1,8 @@
+{
+  "check": "no_adaptive_response",
+  "kind": "refund_policy",
+  "text": "# Operations review\n\n## Observations\n\n- A stricter refund policy will end bad-faith claims; claim volume will halve within two quarters.\n",
+  "forecasts": [
+    "A stricter refund policy will end bad-faith claims; claim volume will halve within two quarters."
+  ]
+}

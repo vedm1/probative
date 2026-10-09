@@ -1,0 +1,8 @@
+{
+  "check": "rival_explanation",
+  "kind": "after_timetable_change",
+  "text": "# Operations review\n\n## Observations\n\n- Late parcels became more frequent once the courier changed in March, and the courier change explains why.\n",
+  "claims": [
+    "Late parcels became more frequent once the courier changed in March, and the courier change explains why."
+  ]
+}

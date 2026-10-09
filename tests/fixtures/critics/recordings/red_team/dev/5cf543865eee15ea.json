@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_5dd003a730bd\",\"check_id\":\"rival_explanation\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5dd003a730bd\",\"check_id\":\"unstated_denominator\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5dd003a730bd\",\"check_id\":\"definition_drift\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5dd003a730bd\",\"check_id\":\"unstated_precondition\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5dd003a730bd\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_5dd003a730bd\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f18d32e02cf2\",\"check_id\":\"rival_explanation\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f18d32e02cf2\",\"check_id\":\"unstated_denominator\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f18d32e02cf2\",\"check_id\":\"definition_drift\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f18d32e02cf2\",\"check_id\":\"unstated_precondition\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f18d32e02cf2\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f18d32e02cf2\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f8a1a07f8e45\",\"check_id\":\"rival_explanation\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f8a1a07f8e45\",\"check_id\":\"unstated_denominator\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f8a1a07f8e45\",\"check_id\":\"definition_drift\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f8a1a07f8e45\",\"check_id\":\"unstated_precondition\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f8a1a07f8e45\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_f8a1a07f8e45\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3317,
+    "completion_tokens": 1106
+  }
+}

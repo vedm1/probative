@@ -31,6 +31,7 @@ from probative.core.candidates import (
     ClaimCandidate,
     ConstraintCandidate,
     DependencyCandidate,
+    ForecastCandidate,
     NeedCandidate,
     SegmentCandidate,
     StoryCandidate,
@@ -50,6 +51,7 @@ AnyCandidate = (
     | ConstraintCandidate
     | DependencyCandidate
     | SegmentCandidate
+    | ForecastCandidate
 )
 
 
@@ -231,7 +233,7 @@ class LLMCritic(Critic, ABC):
     proposes no patch and touches no graph, it only returns `Finding`s.
     """
 
-    candidate_type: ClassVar[type[AnyCandidate]]
+    candidate_type: ClassVar[type[AnyCandidate] | tuple[type[AnyCandidate], ...]]
     preamble: ClassVar[str]
     # Optional third attribute (PB6): the verdict semantics. Override only when the
     # generic open-world rule ("missing information is cannot_tell") is wrong for
@@ -262,8 +264,13 @@ class LLMCritic(Critic, ABC):
         seen: set[str] = set()
         for candidate in candidates:
             if not isinstance(candidate, self.candidate_type):
+                accepted = (
+                    self.candidate_type
+                    if isinstance(self.candidate_type, tuple)
+                    else (self.candidate_type,)
+                )
                 raise TypeError(
-                    f"{self.rubric.id} checks {self.candidate_type.__name__}, "
+                    f"{self.rubric.id} checks {' or '.join(t.__name__ for t in accepted)}, "
                     f"got {type(candidate).__name__}"
                 )
             if candidate.id not in seen:  # the same candidate twice is judged once
@@ -376,9 +383,14 @@ class LLMCritic(Critic, ABC):
         if evidence is None:
             self.stats.unresolved_quotes += 1
             evidence = candidate.evidence
+        message = f"{check_id}: “{evidence.text}” — {first_sentence(check.description)}"
+        if check.must_be_true:  # literal substitution: a quote's braces are not format syntax
+            message += (
+                f" Would have to be true: {check.must_be_true.replace('{quote}', evidence.text)}"
+            )
         return self._finding(
             check_id=check_id,
-            message=f"{check_id}: “{evidence.text}” — {first_sentence(check.description)}",
+            message=message,
             target_id=candidate.id,
             evidence=evidence,
         )

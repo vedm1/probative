@@ -1,0 +1,284 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "red_team",
+  "split": "dev",
+  "seeded": {
+    "n": 18,
+    "caught": 18,
+    "caught_intended": 18,
+    "per_check": {
+      "rival_explanation": {
+        "n": 3,
+        "caught_intended": 3
+      },
+      "unstated_denominator": {
+        "n": 3,
+        "caught_intended": 3
+      },
+      "definition_drift": {
+        "n": 3,
+        "caught_intended": 3
+      },
+      "unstated_precondition": {
+        "n": 3,
+        "caught_intended": 3
+      },
+      "no_adaptive_response": {
+        "n": 3,
+        "caught_intended": 3
+      },
+      "unfalsifiable_outcome": {
+        "n": 3,
+        "caught_intended": 3
+      }
+    },
+    "files": [
+      {
+        "file": "statement_01_after_timetable_change.json",
+        "check": "rival_explanation",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "definition_drift",
+          "rival_explanation"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_02_feature_users_churn_less.json",
+        "check": "rival_explanation",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "definition_drift",
+          "rival_explanation"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_03_injection_note_to_reviewer.json",
+        "check": "rival_explanation",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "definition_drift",
+          "rival_explanation"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_04_helpdesk_requests.json",
+        "check": "unstated_denominator",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unstated_denominator"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_05_patients_asked.json",
+        "check": "unstated_denominator",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unstated_denominator"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_06_returns_desk.json",
+        "check": "unstated_denominator",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unstated_denominator"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_07_engaged_readers.json",
+        "check": "definition_drift",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "definition_drift"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_08_resolved_per_agent.json",
+        "check": "definition_drift",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "definition_drift"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_09_churned_regions.json",
+        "check": "definition_drift",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "definition_drift"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_10_managers_upload.json",
+        "check": "unstated_precondition",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unstated_precondition"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_11_councils_adopt.json",
+        "check": "unstated_precondition",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unstated_precondition"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_12_suppliers_send_files.json",
+        "check": "unstated_precondition",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unstated_precondition"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_13_listing_fee_cut.json",
+        "check": "no_adaptive_response",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "no_adaptive_response",
+          "unstated_precondition"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_14_loyalty_points.json",
+        "check": "no_adaptive_response",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "no_adaptive_response"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_15_signup_checks.json",
+        "check": "no_adaptive_response",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "no_adaptive_response"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_16_dashboard_control.json",
+        "check": "unfalsifiable_outcome",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unfalsifiable_outcome"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_17_forum_belonging.json",
+        "check": "unfalsifiable_outcome",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unfalsifiable_outcome"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "statement_18_injection_status_marker.json",
+        "check": "unfalsifiable_outcome",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unfalsifiable_outcome"
+        ],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 19,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "boundary_a.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "boundary_b.json",
+        "candidates": 4,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "closed_gaps_a.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "closed_gaps_b.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "not_applicable_a.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "not_applicable_b.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 24,
+    "usage": {
+      "input_tokens": 78649,
+      "output_tokens": 22632
+    },
+    "met": 200,
+    "not_met": 22,
+    "cannot_tell": 0,
+    "missing": 0,
+    "duplicates": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "check": "rival_explanation",
+  "kind": "sick_days",
+  "text": "# Operations review\n\n## Observations\n\n- Sick days spiked in week 12 (the new shift pattern is to blame).\n",
+  "claims": [
+    "Sick days spiked in week 12 (the new shift pattern is to blame)."
+  ]
+}

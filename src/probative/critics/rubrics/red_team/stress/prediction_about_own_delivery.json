@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "an outcome that depends only on the team",
+  "text": "# Operations review\n\n## Observations\n\n- The data migration will finish before the end of June.\n",
+  "forecasts": [
+    "The data migration will finish before the end of June."
+  ]
+}

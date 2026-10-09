@@ -1,0 +1,13 @@
+{
+  "expect_fired": [
+    "unstated_precondition"
+  ],
+  "allow_also": [
+    "no_adaptive_response"
+  ],
+  "why": "a hedge marks a belief; it does not state what customers must do",
+  "text": "# Operations review\n\n## Observations\n\n- Customers may take up the add-on, which could lift revenue by a tenth.\n",
+  "forecasts": [
+    "Customers may take up the add-on, which could lift revenue by a tenth."
+  ]
+}

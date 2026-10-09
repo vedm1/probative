@@ -1,0 +1,8 @@
+{
+  "check": "unstated_precondition",
+  "kind": "teachers_mark",
+  "text": "# Operations review\n\n## Observations\n\n- Teachers will mark attendance in the tool within the first ten minutes of class, giving us same-day truancy figures.\n",
+  "forecasts": [
+    "Teachers will mark attendance in the tool within the first ten minutes of class, giving us same-day truancy figures."
+  ]
+}

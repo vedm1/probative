@@ -1,0 +1,8 @@
+{
+  "text": "# Operations review\n\n## Observations\n\n- Lease signing should take under a day by the end of the pilot, on the condition that landlords accept digital signatures.\n- Cutting the courier fee should lift orders by a tenth by June even if the rival matches it, because our base fee would still be lower.\n- Moving the batch job to the new server will bring its runtime under 20 minutes by Friday.\n",
+  "forecasts": [
+    "Lease signing should take under a day by the end of the pilot, on the condition that landlords accept digital signatures.",
+    "Cutting the courier fee should lift orders by a tenth by June even if the rival matches it, because our base fee would still be lower.",
+    "Moving the batch job to the new server will bring its runtime under 20 minutes by Friday."
+  ]
+}

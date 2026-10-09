@@ -1,0 +1,8 @@
+{
+  "check": "rival_explanation",
+  "kind": "feature_users_churn_less",
+  "text": "# Operations review\n\n## Observations\n\n- Subscribers who set a savings goal stay for longer, which is why goals hold the base together.\n",
+  "claims": [
+    "Subscribers who set a savings goal stay for longer, which is why goals hold the base together."
+  ]
+}

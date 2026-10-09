@@ -1,0 +1,8 @@
+{
+  "check": "unstated_denominator",
+  "kind": "warranty_claims",
+  "text": "# Operations review\n\n## Observations\n\n- Warranty claims reached 5,800 this year, an alarming figure.\n",
+  "claims": [
+    "Warranty claims reached 5,800 this year, an alarming figure."
+  ]
+}

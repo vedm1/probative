@@ -1,0 +1,8 @@
+{
+  "check": "unstated_denominator",
+  "kind": "patients_asked",
+  "text": "# Operations review\n\n## Observations\n\n- Evening appointments were requested by upwards of 800 patients, so the clinic has a real shortfall.\n",
+  "claims": [
+    "Evening appointments were requested by upwards of 800 patients, so the clinic has a real shortfall."
+  ]
+}

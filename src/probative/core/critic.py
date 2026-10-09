@@ -39,6 +39,10 @@ class RubricCheck(BaseModel):
     examples_good: list[str] = Field(default_factory=list)
     remedy: str = Field(min_length=1)
     severity: Severity | None = None
+    # Optional (PB8): the rubric's own sentence for what would have to be true for the
+    # statement to hold, with a literal `{quote}` placeholder. Rubric data, not model
+    # output (I4/I5); never shown to the model.
+    must_be_true: str | None = None
 
 
 class Rubric(BaseModel):

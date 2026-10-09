@@ -23,6 +23,7 @@ from probative.core.candidates import (
     ClaimCandidate,
     ConstraintCandidate,
     DependencyCandidate,
+    ForecastCandidate,
     NeedCandidate,
     RejectReason,
     SegmentCandidate,
@@ -147,6 +148,8 @@ def _make(kind: CandidateKind, span: EvidenceSpan) -> Candidate:
             return DependencyCandidate(id=cid, evidence=span)
         case CandidateKind.SEGMENT:
             return SegmentCandidate(id=cid, evidence=span)
+        case CandidateKind.FORECAST:
+            return ForecastCandidate(id=cid, evidence=span)
 
 
 def load_gold_labels(path: Path) -> list[GoldLabel]:

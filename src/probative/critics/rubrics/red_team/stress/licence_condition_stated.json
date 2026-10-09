@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "the outside condition is named in the statement",
+  "text": "# Operations review\n\n## Observations\n\n- We will open in Spain once the regulator grants the licence.\n",
+  "forecasts": [
+    "We will open in Spain once the regulator grants the licence."
+  ]
+}

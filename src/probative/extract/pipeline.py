@@ -17,6 +17,7 @@ from probative.core.candidates import (
     DependencyCandidate,
     ExtractionFailedError,
     ExtractionResult,
+    ForecastCandidate,
     NeedCandidate,
     RejectedQuote,
     RejectReason,
@@ -77,8 +78,8 @@ def extract_candidates(
     passes: Sequence[ExtractionPass] | None = None,
 ) -> ExtractionResult:
     """`passes=None` runs PB4's two passes. Pass `[*PASSES, SEGMENT_PASS]` to
-    also extract segments (PB6-p2); the default is unchanged so PB4's recorded
-    prompts keep replaying."""
+    also extract segments (PB6-p2), or add `FORECAST_PASS` for forecasts (PB8);
+    the default is unchanged so PB4's recorded prompts keep replaying."""
     chosen = list(PASSES if passes is None else passes)
     if not chosen:
         raise ValueError("passes must name at least one extraction pass")
@@ -145,6 +146,10 @@ def extract_candidates(
         segments=[
             SegmentCandidate(id=candidate_id(CandidateKind.SEGMENT, s), evidence=s)
             for s in ordered(CandidateKind.SEGMENT)
+        ],
+        forecasts=[
+            ForecastCandidate(id=candidate_id(CandidateKind.FORECAST, s), evidence=s)
+            for s in ordered(CandidateKind.FORECAST)
         ],
         rejected=rejected,
         usage=TokenUsage(input_tokens=input_tokens, output_tokens=output_tokens),

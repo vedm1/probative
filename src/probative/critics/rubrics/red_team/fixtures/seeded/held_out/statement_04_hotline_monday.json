@@ -1,0 +1,8 @@
+{
+  "check": "unstated_denominator",
+  "kind": "hotline_monday",
+  "text": "# Operations review\n\n## Observations\n\n- Some 650 engineers called the hotline on Monday alone. The hotline is swamped.\n",
+  "claims": [
+    "Some 650 engineers called the hotline on Monday alone. The hotline is swamped."
+  ]
+}

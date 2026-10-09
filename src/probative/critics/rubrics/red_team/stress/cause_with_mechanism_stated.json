@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "rival_explanation"
+  ],
+  "why": "names a mechanism and says the other routes were unchanged: defensible either way",
+  "text": "# Operations review\n\n## Observations\n\n- Complaints rose after the timetable change because the 07:40 service was removed, and every other route kept its times.\n",
+  "claims": [
+    "Complaints rose after the timetable change because the 07:40 service was removed, and every other route kept its times."
+  ]
+}

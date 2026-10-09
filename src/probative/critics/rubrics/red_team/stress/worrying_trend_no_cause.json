@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "rival_explanation"
+  ],
+  "why": "an evaluation, not a stated cause: defensible either way",
+  "text": "# Operations review\n\n## Observations\n\n- Complaints rose sharply in March, a worrying trend.\n",
+  "claims": [
+    "Complaints rose sharply in March, a worrying trend."
+  ]
+}

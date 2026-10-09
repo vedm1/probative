@@ -1,0 +1,8 @@
+{
+  "check": "definition_drift",
+  "kind": "defect_rates",
+  "text": "# Operations review\n\n## Observations\n\n- Defect rates: 3.2% (Q1) vs 1.9% (Q3).\n",
+  "claims": [
+    "Defect rates: 3.2% (Q1) vs 1.9% (Q3)."
+  ]
+}

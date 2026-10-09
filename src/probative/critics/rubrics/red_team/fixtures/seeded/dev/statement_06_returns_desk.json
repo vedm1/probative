@@ -1,0 +1,8 @@
+{
+  "check": "unstated_denominator",
+  "kind": "returns_desk",
+  "text": "# Operations review\n\n## Observations\n\n- Our returns desk processed 4,100 parcels last month, showing how common returns are.\n",
+  "claims": [
+    "Our returns desk processed 4,100 parcels last month, showing how common returns are."
+  ]
+}

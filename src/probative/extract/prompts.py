@@ -38,6 +38,10 @@ class SegmentOutput(BaseModel):
     segments: list[RawQuote] = Field(default_factory=list)
 
 
+class ForecastOutput(BaseModel):
+    forecasts: list[RawQuote] = Field(default_factory=list)
+
+
 @dataclass(frozen=True)
 class ExtractionPass:
     name: str
@@ -147,4 +151,33 @@ SEGMENT_PASS = ExtractionPass(
     output_model=SegmentOutput,
     system_prompt=SEGMENT_PROMPT,
     fields={"segments": CandidateKind.SEGMENT},
+)
+
+
+FORECAST_PROMPT = (
+    _COMMON
+    + """
+Category:
+- forecasts: statements in which the document predicts what will happen to \
+customers, the market or competitors, or what an action or release will cause \
+or lead to ("will", "is expected to", "should result in", "so that"-style \
+outcomes stated as expected results). Include a prediction even if it looks \
+optimistic, unsupported or poorly argued; do not exclude it and do not reword \
+it into something better. Quote the whole statement that carries the \
+prediction. Not forecasts: a statement of what the team itself will build or \
+do (a plan), including the order or conditions of that work ("once we have \
+finished X, we can do Y"), a requirement ("must", "shall"), a target or goal value, a \
+statement of present or past fact (even one that contains the word "will"), \
+and a user story. Never add a prediction from your own knowledge of the \
+market; return only predictions the document itself makes.
+"""
+)
+
+# Opt-in (PB8): `PASSES` stays exactly the two PB4 passes. A caller wanting
+# forecasts passes `passes=[*PASSES, FORECAST_PASS]` to `extract_candidates`.
+FORECAST_PASS = ExtractionPass(
+    name="forecast",
+    output_model=ForecastOutput,
+    system_prompt=FORECAST_PROMPT,
+    fields={"forecasts": CandidateKind.FORECAST},
 )

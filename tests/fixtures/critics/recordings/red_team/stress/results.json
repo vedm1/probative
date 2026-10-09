@@ -1,0 +1,229 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "red_team",
+  "stress": {
+    "critic": "red_team",
+    "n": 16,
+    "as_expected": 14,
+    "files": [
+      {
+        "file": "base_in_next_sentence.json",
+        "expect_fired": [
+          "unstated_denominator"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unstated_denominator"
+        ],
+        "as_expected": true,
+        "why": "the total is on the next line; one statement cannot show it, so this fires"
+      },
+      {
+        "file": "cause_with_mechanism_stated.json",
+        "expect_fired": [],
+        "allow_also": [
+          "rival_explanation"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "names a mechanism and says the other routes were unchanged: defensible either way"
+      },
+      {
+        "file": "count_of_own_parts.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a count of the product's own parts"
+      },
+      {
+        "file": "definition_in_next_sentence.json",
+        "expect_fired": [
+          "definition_drift"
+        ],
+        "allow_also": [],
+        "fired": [
+          "definition_drift"
+        ],
+        "as_expected": true,
+        "why": "the definition is on the next line; one statement cannot show it, so this fires"
+      },
+      {
+        "file": "definition_pointer.json",
+        "expect_fired": [],
+        "allow_also": [
+          "definition_drift"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "points to a definition elsewhere; a one-statement critic cannot follow it: defensible either way"
+      },
+      {
+        "file": "doc_voice_injection.json",
+        "expect_fired": [
+          "rival_explanation"
+        ],
+        "allow_also": [],
+        "fired": [
+          "rival_explanation"
+        ],
+        "as_expected": true,
+        "why": "an instruction inside the statement's own span; injection resistance is measured behaviour, not a guarantee"
+      },
+      {
+        "file": "figureless_doubled.json",
+        "expect_fired": [
+          "rival_explanation"
+        ],
+        "allow_also": [],
+        "fired": [
+          "definition_drift",
+          "rival_explanation"
+        ],
+        "as_expected": false,
+        "why": "also trips EvidenceAuditor's unsourced_statistic; both critics may legitimately fire"
+      },
+      {
+        "file": "hedge_is_not_a_condition.json",
+        "expect_fired": [
+          "unstated_precondition"
+        ],
+        "allow_also": [
+          "no_adaptive_response"
+        ],
+        "fired": [
+          "unstated_precondition"
+        ],
+        "as_expected": true,
+        "why": "a hedge marks a belief; it does not state what customers must do"
+      },
+      {
+        "file": "licence_condition_stated.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "the outside condition is named in the statement"
+      },
+      {
+        "file": "metric_named_but_vague.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unfalsifiable_outcome"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "a metric is named, so an observation could show it wrong: defensible either way"
+      },
+      {
+        "file": "precondition_in_next_sentence.json",
+        "expect_fired": [
+          "unstated_precondition"
+        ],
+        "allow_also": [
+          "no_adaptive_response"
+        ],
+        "fired": [
+          "unstated_precondition"
+        ],
+        "as_expected": true,
+        "why": "the assumption is on the next line; one statement cannot show it, so this fires: the known false-positive class"
+      },
+      {
+        "file": "prediction_about_own_delivery.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "an outcome that depends only on the team"
+      },
+      {
+        "file": "prediction_of_the_reaction.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unfalsifiable_outcome",
+          "unstated_precondition"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "the prediction is itself about others' reaction"
+      },
+      {
+        "file": "timeframe_is_not_observable.json",
+        "expect_fired": [
+          "unfalsifiable_outcome"
+        ],
+        "allow_also": [
+          "unstated_precondition"
+        ],
+        "fired": [
+          "unfalsifiable_outcome"
+        ],
+        "as_expected": true,
+        "why": "a time frame alone does not make an outcome observable"
+      },
+      {
+        "file": "truism.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "no change, comparison or prediction: nothing to apply"
+      },
+      {
+        "file": "worrying_trend_no_cause.json",
+        "expect_fired": [],
+        "allow_also": [
+          "rival_explanation"
+        ],
+        "fired": [
+          "definition_drift",
+          "rival_explanation"
+        ],
+        "as_expected": false,
+        "why": "an evaluation, not a stated cause: defensible either way"
+      }
+    ],
+    "judge_stats": {
+      "calls": 16,
+      "usage": {
+        "input_tokens": 51772,
+        "output_tokens": 11641
+      },
+      "met": 86,
+      "not_met": 10,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  },
+  "mixed": {
+    "critic": "red_team",
+    "candidates": 74,
+    "seeded": {
+      "n": 36,
+      "caught": 36,
+      "caught_intended": 36
+    },
+    "clean": {
+      "candidates": 38,
+      "flagged_candidates": 0
+    },
+    "judge_stats": {
+      "calls": 15,
+      "usage": {
+        "input_tokens": 51942,
+        "output_tokens": 46679
+      },
+      "met": 403,
+      "not_met": 41,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  }
+}

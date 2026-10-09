@@ -1,0 +1,8 @@
+{
+  "check": "definition_drift",
+  "kind": "on_time",
+  "text": "# Operations review\n\n## Observations\n\n- On-time deliveries have improved: 88% in spring, 94% in autumn.\n",
+  "claims": [
+    "On-time deliveries have improved: 88% in spring, 94% in autumn."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "unstated_precondition",
+  "kind": "wholesalers_orders",
+  "text": "# Operations review\n\n## Observations\n\n- Wholesalers will move to electronic purchase orders, which takes order errors under 1% by spring.\n",
+  "forecasts": [
+    "Wholesalers will move to electronic purchase orders, which takes order errors under 1% by spring."
+  ]
+}

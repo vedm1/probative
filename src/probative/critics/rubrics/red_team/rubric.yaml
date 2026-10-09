@@ -1,0 +1,119 @@
+id: red_team
+severity: warn            # a linter, not a gate: nothing here blocks (DESIGN §13)
+invariant: null
+applies_to: [ClaimCandidate, ForecastCandidate]
+checks:
+  - id: rival_explanation
+    description: >-
+      The statement reports a change, trend, pattern or correlation, links it in
+      its own words to a cause or a conclusion (because, so, driving, shows that,
+      clearly, which is why, proves), and rules out no other explanation:
+      seasonality, a change in who or what was counted, a concurrent release or
+      event, a selection effect. Applies only to such a link; otherwise,
+      including for a bare report of a change with no stated cause or
+      conclusion, a definition, a description of what the product does, or a
+      prediction, it is met. Not a violation: a statement that names the
+      alternative it excludes or controls for ("in a randomised test", "after
+      removing the holiday week").
+    examples_bad:
+      - "Refund requests rose in March, which shows the redesigned receipt confuses buyers"
+      - "Members who open the weekly digest renew more often, so the digest keeps people subscribed"
+    examples_good:
+      - "Refund requests rose in March"
+      - "In a randomised test of 2,000 buyers, the redesigned receipt raised refund requests"
+    remedy: Name the other explanations and how each was excluded, or state the conclusion as a hypothesis
+    must_be_true: "For “{quote}” to support the conclusion drawn from it, the other plausible explanations must have been excluded."
+  - id: unstated_denominator
+    description: >-
+      The statement offers a raw count or amount as evidence that something is
+      large, common, growing or important, and gives neither the population or
+      total the count belongs to nor a comparison base. Applies only to a count
+      used that way; otherwise, including for a share or rate stated with its
+      population, a change stated with its starting and ending values, a count
+      of the product's own parts or of the document's own items, or a count that
+      only describes (how many people were interviewed), it is met.
+    examples_bad:
+      - "Support logged 1,900 chargeback disputes last quarter, a serious problem"
+      - "Over 300 sellers have asked for bulk upload"
+    examples_good:
+      - "Support logged 1,900 chargeback disputes last quarter, up from 1,100 the quarter before"
+      - "46 of the 210 sellers we surveyed asked for bulk upload"
+    remedy: Give the total the count is drawn from, or a before-and-after base
+    must_be_true: "“{quote}” is a large number only if the total it is drawn from is not larger still."
+  - id: definition_drift
+    description: >-
+      The statement compares a category or metric across time periods, groups or
+      sources without stating the category's boundary or how it is measured
+      (active users, churned accounts, failed payments, qualified leads,
+      conversions), so its meaning could differ between the things compared.
+      Applies only to such a comparison; otherwise, including for a statement
+      that defines the category, one that makes no comparison, one that only
+      proposes a comparison to be made later as a test, or one whose terms are
+      ordinary words with no measurement sense, it is met.
+    examples_bad:
+      - "Active accounts grew from 12,400 in January to 15,100 in June"
+      - "Qualified leads from the partner channel are double those from paid search"
+    examples_good:
+      - "Accounts that logged in at least once in the trailing 30 days grew from 12,400 in January to 15,100 in June"
+      - "The warehouse has two loading docks"
+    remedy: State how the category is defined and counted, and that it was counted the same way throughout
+    must_be_true: "The category in “{quote}” must have been defined and counted the same way in everything it is compared with."
+  - id: unstated_precondition
+    description: >-
+      The statement predicts an outcome that can only happen if someone other
+      than the team (customers, a partner, a competitor, a regulator) first
+      does a specific act that is not itself the outcome (adopts, agrees,
+      supplies, switches, signs), and treats that act as given without saying
+      so. Applies only to a prediction; otherwise, including for a statement
+      that names the condition (if, provided, assuming, once, "we assume"), one
+      that says it is to be tested, one whose outcome needs nothing from anyone
+      outside the team, one whose only outside act is the outcome itself, or any
+      statement that is not a prediction, it is met. A hedge or belief marker
+      alone (may, we believe, our bet) is not a statement that it is to be
+      tested.
+    examples_bad:
+      - "Guests will book the late checkout upgrade, lifting add-on revenue by a fifth"
+      - "Hospitals will route their referrals through the portal, cutting intake time in half"
+    examples_good:
+      - "If hospitals agree to route referrals through the portal, intake time should halve"
+      - "The nightly export will finish before 06:00"
+    remedy: State what others must do for the outcome to follow, as an assumption to be tested
+    must_be_true: "For “{quote}” to come about, the people outside the team whose actions it relies on must act as it assumes."
+  - id: no_adaptive_response
+    description: >-
+      The statement predicts an outcome from a change the team makes that
+      depends on others not working against it: it treats competitors,
+      suppliers, fraudsters or regulators as unchanging and does not
+      acknowledge that they may react (copy it, work around it, game it,
+      undercut it, retaliate). Applies only to a prediction of that kind;
+      otherwise, including for a statement that acknowledges the reaction, one
+      that predicts the reaction itself, one whose only outside actors simply
+      respond as intended (customers buying more), or any statement that is not
+      a prediction, it is met.
+    examples_bad:
+      - "Cutting the delivery fee will win away the local grocer's regular shoppers"
+      - "The new referral bonus will bring in a steady flow of genuine new members"
+    examples_good:
+      - "Cutting the delivery fee will win shoppers unless the local grocer matches it, which we expect"
+      - "Rival grocers are expected to match any fee cut within a month"
+    remedy: Say how the others are expected to respond and whether the outcome survives it
+    must_be_true: "The outcome in “{quote}” must survive the reaction of the others it affects."
+  - id: unfalsifiable_outcome
+    description: >-
+      The statement predicts an outcome that names no observable change that
+      could be checked: no metric, count, event or measurable behaviour, so that
+      no observation could show the prediction wrong ("improve the experience",
+      "build loyalty", "strengthen the brand"). A time frame alone does not make
+      an outcome observable. Applies only to a prediction; otherwise, including
+      for a prediction that names a quantity, an event or a behaviour that can
+      be seen, or any statement that is not a prediction, it is met.
+    examples_bad:
+      - "The simpler checkout will make shoppers feel more confident over the coming year"
+      - "Opening the partner programme will deepen our standing in the trade"
+    examples_good:
+      - "The simpler checkout will cut abandoned carts"
+      - "The partner programme will have signed 15 resellers by year end"
+    remedy: Name the observable that would show the prediction wrong
+    must_be_true: "Something observable must exist that would show “{quote}” has not happened."
+clean_fixtures: fixtures/clean/**/*.json
+defect_fixtures: fixtures/seeded/**/*.json

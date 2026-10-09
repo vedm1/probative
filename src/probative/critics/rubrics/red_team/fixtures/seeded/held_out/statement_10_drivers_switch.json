@@ -1,0 +1,8 @@
+{
+  "check": "unstated_precondition",
+  "kind": "drivers_switch",
+  "text": "# Operations review\n\n## Observations\n\n- Drivers will switch to the app for route changes; dispatch calls drop by 70% by summer.\n",
+  "forecasts": [
+    "Drivers will switch to the app for route changes; dispatch calls drop by 70% by summer."
+  ]
+}

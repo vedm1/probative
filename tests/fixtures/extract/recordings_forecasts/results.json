@@ -1,0 +1,226 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "documents": {
+    "prd_forecasts.md": {
+      "score": {
+        "per_kind": {
+          "claim": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "need": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "story": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "constraint": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "dependency": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "segment": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "forecast": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "overall": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "rejected": [],
+      "usage": {
+        "input_tokens": 1249,
+        "output_tokens": 503
+      },
+      "predicted": [
+        {
+          "kind": "forecast",
+          "text": "Once lockers are live at the five busiest transit stops, failed first-time deliveries will drop by a third within two quarters."
+        },
+        {
+          "kind": "forecast",
+          "text": "Recipients will collect parcels more often on weekdays because the lockers sit on their commute."
+        },
+        {
+          "kind": "forecast",
+          "text": "We expect that merchants who offer locker pickup are likely to see fewer \"where is my order\" contacts."
+        },
+        {
+          "kind": "forecast",
+          "text": "Competing couriers are expected to copy the locker model within a year of our launch."
+        }
+      ]
+    },
+    "prd_payments.md": {
+      "score": {
+        "per_kind": {
+          "claim": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "precision": null,
+            "recall": 0.0
+          },
+          "need": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "precision": null,
+            "recall": 0.0
+          },
+          "story": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": null,
+            "recall": 0.0
+          },
+          "constraint": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "precision": null,
+            "recall": 0.0
+          },
+          "dependency": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "precision": null,
+            "recall": 0.0
+          },
+          "segment": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "forecast": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          }
+        },
+        "overall": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 14,
+          "precision": null,
+          "recall": 0.0
+        }
+      },
+      "rejected": [],
+      "usage": {
+        "input_tokens": 1423,
+        "output_tokens": 309
+      },
+      "predicted": []
+    },
+    "memo_logistics.txt": {
+      "score": {
+        "per_kind": {
+          "claim": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "need": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "story": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "constraint": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "dependency": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "segment": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          },
+          "forecast": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null
+          }
+        },
+        "overall": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "rejected": [],
+      "usage": {
+        "input_tokens": 961,
+        "output_tokens": 12
+      },
+      "predicted": []
+    }
+  }
+}

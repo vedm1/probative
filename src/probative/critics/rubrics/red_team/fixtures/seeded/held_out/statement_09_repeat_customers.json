@@ -1,0 +1,8 @@
+{
+  "check": "definition_drift",
+  "kind": "repeat_customers",
+  "text": "# Operations review\n\n## Observations\n\n- Repeat customers in the retail channel spend twice what they do in the trade channel.\n",
+  "claims": [
+    "Repeat customers in the retail channel spend twice what they do in the trade channel."
+  ]
+}

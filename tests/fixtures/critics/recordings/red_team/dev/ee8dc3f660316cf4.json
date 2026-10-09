@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_claim_2a50e3d52615\",\"check_id\":\"rival_explanation\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_2a50e3d52615\",\"check_id\":\"unstated_denominator\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_2a50e3d52615\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"44,000 engaged readers\"},{\"candidate_id\":\"cand_claim_2a50e3d52615\",\"check_id\":\"unstated_precondition\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_2a50e3d52615\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_claim_2a50e3d52615\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3244,
+    "completion_tokens": 488
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "check": "unstated_precondition",
+  "kind": "suppliers_send_files",
+  "text": "# Operations review\n\n## Observations\n\n- Suppliers will start sending invoices as structured files, cutting our data-entry hours by 60% by December.\n",
+  "forecasts": [
+    "Suppliers will start sending invoices as structured files, cutting our data-entry hours by 60% by December."
+  ]
+}

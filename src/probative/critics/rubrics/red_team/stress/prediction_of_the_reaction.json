@@ -1,0 +1,12 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unstated_precondition",
+    "unfalsifiable_outcome"
+  ],
+  "why": "the prediction is itself about others' reaction",
+  "text": "# Operations review\n\n## Observations\n\n- Competing couriers are expected to copy the locker model within a year.\n",
+  "forecasts": [
+    "Competing couriers are expected to copy the locker model within a year."
+  ]
+}

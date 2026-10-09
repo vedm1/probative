@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"candidate_id\":\"cand_forecast_a47e6035f369\",\"check_id\":\"rival_explanation\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_a47e6035f369\",\"check_id\":\"unstated_denominator\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_a47e6035f369\",\"check_id\":\"definition_drift\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_a47e6035f369\",\"check_id\":\"unstated_precondition\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_a47e6035f369\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_a47e6035f369\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_33d2b85caf2a\",\"check_id\":\"rival_explanation\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_33d2b85caf2a\",\"check_id\":\"unstated_denominator\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_33d2b85caf2a\",\"check_id\":\"definition_drift\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_33d2b85caf2a\",\"check_id\":\"unstated_precondition\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_33d2b85caf2a\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_33d2b85caf2a\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_2736305b7e1d\",\"check_id\":\"rival_explanation\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_2736305b7e1d\",\"check_id\":\"unstated_denominator\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_2736305b7e1d\",\"check_id\":\"definition_drift\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_2736305b7e1d\",\"check_id\":\"unstated_precondition\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_2736305b7e1d\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"met\"},{\"candidate_id\":\"cand_forecast_2736305b7e1d\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"met\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3355,
+    "completion_tokens": 1460
+  }
+}

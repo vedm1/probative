@@ -1,0 +1,10 @@
+{
+  "text": "# Operations review\n\n## Observations\n\n- Orders from the north depot are packed in a separate room.\n- Payments that return an error code from the bank are 2.1% of card attempts and 0.4% of transfer attempts.\n- Assuming two of the three carriers agree to scan at pickup, missing-parcel reports should fall by a quarter by June.\n",
+  "claims": [
+    "Orders from the north depot are packed in a separate room.",
+    "Payments that return an error code from the bank are 2.1% of card attempts and 0.4% of transfer attempts."
+  ],
+  "forecasts": [
+    "Assuming two of the three carriers agree to scan at pickup, missing-parcel reports should fall by a quarter by June."
+  ]
+}

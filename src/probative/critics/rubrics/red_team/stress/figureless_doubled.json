@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "rival_explanation"
+  ],
+  "allow_also": [],
+  "why": "also trips EvidenceAuditor's unsourced_statistic; both critics may legitimately fire",
+  "text": "# Operations review\n\n## Observations\n\n- Support tickets doubled after the form change, so the form is failing.\n",
+  "claims": [
+    "Support tickets doubled after the form change, so the form is failing."
+  ]
+}

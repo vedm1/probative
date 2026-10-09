@@ -1,0 +1,8 @@
+{
+  "check": "unstated_precondition",
+  "kind": "councils_adopt",
+  "text": "# Operations review\n\n## Observations\n\n- Local councils will adopt the permit API, and permit processing times will fall below ten days.\n",
+  "forecasts": [
+    "Local councils will adopt the permit API, and permit processing times will fall below ten days."
+  ]
+}

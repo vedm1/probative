@@ -1,0 +1,8 @@
+{
+  "check": "definition_drift",
+  "kind": "churned_regions",
+  "text": "# Operations review\n\n## Observations\n\n- Churned subscribers in the northern region are well below those in the southern region.\n",
+  "claims": [
+    "Churned subscribers in the northern region are well below those in the southern region."
+  ]
+}

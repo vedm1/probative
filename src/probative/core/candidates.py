@@ -28,6 +28,7 @@ class CandidateKind(StrEnum):
     CONSTRAINT = "constraint"
     DEPENDENCY = "dependency"
     SEGMENT = "segment"
+    FORECAST = "forecast"
 
 
 def candidate_id(kind: CandidateKind, span: EvidenceSpan) -> str:
@@ -91,13 +92,22 @@ class SegmentCandidate(_CandidateBase):
     kind: Literal[CandidateKind.SEGMENT] = CandidateKind.SEGMENT
 
 
+class ForecastCandidate(_CandidateBase):
+    """A statement in which the document predicts what will happen to customers,
+    the market or competitors as a result of something, in its own words (PB8).
+    It makes no claim that the prediction is sound; `RedTeam` asks that."""
+
+    kind: Literal[CandidateKind.FORECAST] = CandidateKind.FORECAST
+
+
 Candidate = Annotated[
     ClaimCandidate
     | NeedCandidate
     | StoryCandidate
     | ConstraintCandidate
     | DependencyCandidate
-    | SegmentCandidate,
+    | SegmentCandidate
+    | ForecastCandidate,
     Field(discriminator="kind"),
 ]
 
@@ -125,6 +135,7 @@ class ExtractionResult(BaseModel):
     constraints: list[ConstraintCandidate] = Field(default_factory=list)
     dependencies: list[DependencyCandidate] = Field(default_factory=list)
     segments: list[SegmentCandidate] = Field(default_factory=list)
+    forecasts: list[ForecastCandidate] = Field(default_factory=list)
     rejected: list[RejectedQuote] = Field(default_factory=list)
     usage: TokenUsage = Field(default_factory=lambda: TokenUsage(input_tokens=0, output_tokens=0))
 
@@ -137,6 +148,7 @@ class ExtractionResult(BaseModel):
             *self.constraints,
             *self.dependencies,
             *self.segments,
+            *self.forecasts,
         ]
         return sorted(flat, key=lambda c: (c.evidence.start, c.evidence.end, c.kind.value))
 

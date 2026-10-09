@@ -1,0 +1,8 @@
+{
+  "check": "definition_drift",
+  "kind": "resolved_per_agent",
+  "text": "# Operations review\n\n## Observations\n\n- Resolved tickets per agent are 40% higher on the night shift than on the day shift.\n",
+  "claims": [
+    "Resolved tickets per agent are 40% higher on the night shift than on the day shift."
+  ]
+}

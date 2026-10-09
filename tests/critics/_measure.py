@@ -126,18 +126,12 @@ def measure_mixed(corpus: Corpus, critic: LLMCritic) -> dict[str, Any]:
     for split in SPLITS:
         for path in corpus.files("seeded", split):
             data = load_fixture(path)
-            (cand,) = corpus.build(
-                data["text"], data[corpus.candidate_key], source_id=f"src_{split}_{path.stem}"
-            )
+            (cand,) = corpus.build_from(data, source_id=f"src_{split}_{path.stem}")
             seeded.append(cand)
             intended[cand.id] = data["check"]  # type: ignore[attr-defined]
         for path in corpus.files("clean", split):
             data = load_fixture(path)
-            clean.extend(
-                corpus.build(
-                    data["text"], data[corpus.candidate_key], source_id=f"src_{split}_{path.stem}"
-                )
-            )
+            clean.extend(corpus.build_from(data, source_id=f"src_{split}_{path.stem}"))
     interleaved: list[Any] = []
     for i in range(max(len(seeded), len(clean))):
         interleaved.extend(seeded[i : i + 1])

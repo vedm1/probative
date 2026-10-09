@@ -54,7 +54,10 @@ def test_replayed_score_candidates_and_usage_equal_the_recorded_ones(
 ) -> None:
     _, result, score = _run(document, gold_file)
     recorded = RESULTS["documents"][document]
-    assert score.model_dump(mode="json") == recorded["score"]
+    dumped = score.model_dump(mode="json")
+    forecast = dumped["per_kind"].pop(CandidateKind.FORECAST.value)  # PB8: not asked for here
+    assert (forecast["tp"], forecast["fp"], forecast["fn"]) == (0, 0, 0)
+    assert dumped == recorded["score"]
     assert [{"kind": c.kind.value, "text": c.text} for c in result.candidates()] == recorded[
         "predicted"
     ]

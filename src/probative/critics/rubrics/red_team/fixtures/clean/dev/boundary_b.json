@@ -1,0 +1,11 @@
+{
+  "text": "# Operations review\n\n## Observations\n\n- We hypothesise that shorter forms raise completion; we will test it by comparing completion on the old and new form over four weeks.\n- The warehouse team will finish the shelf relabelling by 30 June.\n- Support hours run from 08:00 to 20:00 on weekdays.\n- The queue at the north gate was shorter on Friday than on Thursday.\n",
+  "forecasts": [
+    "We hypothesise that shorter forms raise completion; we will test it by comparing completion on the old and new form over four weeks.",
+    "The warehouse team will finish the shelf relabelling by 30 June."
+  ],
+  "claims": [
+    "Support hours run from 08:00 to 20:00 on weekdays.",
+    "The queue at the north gate was shorter on Friday than on Thursday."
+  ]
+}

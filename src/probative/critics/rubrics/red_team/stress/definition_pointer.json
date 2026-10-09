@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "definition_drift"
+  ],
+  "why": "points to a definition elsewhere; a one-statement critic cannot follow it: defensible either way",
+  "text": "# Operations review\n\n## Observations\n\n- Active users, as defined in the glossary, grew 12% year on year.\n",
+  "claims": [
+    "Active users, as defined in the glossary, grew 12% year on year."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "no change, comparison or prediction: nothing to apply",
+  "text": "# Operations review\n\n## Observations\n\n- Customers prefer lower prices.\n",
+  "claims": [
+    "Customers prefer lower prices."
+  ]
+}

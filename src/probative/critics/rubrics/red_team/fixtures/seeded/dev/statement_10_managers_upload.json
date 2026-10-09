@@ -1,0 +1,8 @@
+{
+  "check": "unstated_precondition",
+  "kind": "managers_upload",
+  "text": "# Operations review\n\n## Observations\n\n- Onboarding a new building will take under two days, because managers will put their tenancy agreements on the portal themselves.\n",
+  "forecasts": [
+    "Onboarding a new building will take under two days, because managers will put their tenancy agreements on the portal themselves."
+  ]
+}

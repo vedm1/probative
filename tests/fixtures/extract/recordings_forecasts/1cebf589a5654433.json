@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\":[{\"quote\":\"Once lockers are live at the five busiest transit stops, failed first-time deliveries will drop by a third within two quarters.\"},{\"quote\":\"Recipients will collect parcels more often on weekdays because the lockers sit on their commute.\"},{\"quote\":\"We expect that merchants who offer locker pickup are likely to see fewer \\\"where is my order\\\" contacts.\"},{\"quote\":\"Competing couriers are expected to copy the locker model within a year of our launch.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1249,
+    "completion_tokens": 503
+  }
+}

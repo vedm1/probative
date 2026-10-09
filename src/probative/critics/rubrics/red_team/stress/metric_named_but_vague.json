@@ -1,0 +1,11 @@
+{
+  "expect_fired": [],
+  "allow_also": [
+    "unfalsifiable_outcome"
+  ],
+  "why": "a metric is named, so an observation could show it wrong: defensible either way",
+  "text": "# Operations review\n\n## Observations\n\n- The new layout will improve satisfaction scores.\n",
+  "forecasts": [
+    "The new layout will improve satisfaction scores."
+  ]
+}

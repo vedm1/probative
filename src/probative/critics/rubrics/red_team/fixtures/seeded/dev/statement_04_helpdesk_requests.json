@@ -1,0 +1,8 @@
+{
+  "check": "unstated_denominator",
+  "kind": "helpdesk_requests",
+  "text": "# Operations review\n\n## Observations\n\n- Password resets filled the helpdesk's May: 2,300 tickets, far too heavy a load for the team.\n",
+  "claims": [
+    "Password resets filled the helpdesk's May: 2,300 tickets, far too heavy a load for the team."
+  ]
+}

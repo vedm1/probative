@@ -1,0 +1,13 @@
+{
+  "expect_fired": [
+    "unfalsifiable_outcome"
+  ],
+  "allow_also": [
+    "unstated_precondition"
+  ],
+  "why": "a time frame alone does not make an outcome observable",
+  "text": "# Operations review\n\n## Observations\n\n- The new onboarding will make teams more effective within six months.\n",
+  "forecasts": [
+    "The new onboarding will make teams more effective within six months."
+  ]
+}

@@ -12,6 +12,7 @@ from probative.core.candidates import (
     ClaimCandidate,
     ConstraintCandidate,
     DependencyCandidate,
+    ForecastCandidate,
     NeedCandidate,
     SegmentCandidate,
     StoryCandidate,
@@ -45,6 +46,17 @@ def claims(text: str, quotes: list[str], *, source_id: str = "src_test") -> list
     for quote in quotes:
         span = _resolve(source, quote)
         out.append(ClaimCandidate(id=candidate_id(CandidateKind.CLAIM, span), evidence=span))
+    return out
+
+
+def forecasts(
+    text: str, quotes: list[str], *, source_id: str = "src_test"
+) -> list[ForecastCandidate]:
+    source = make_source(text, source_id=source_id)
+    out = []
+    for quote in quotes:
+        span = _resolve(source, quote)
+        out.append(ForecastCandidate(id=candidate_id(CandidateKind.FORECAST, span), evidence=span))
     return out
 
 
@@ -126,3 +138,18 @@ def parse_dependency_fixture(path: Path) -> list[DependencyCandidate]:
 def parse_segment_fixture(path: Path) -> list[SegmentCandidate]:
     data = load_fixture(path)
     return segments(data["text"], data["segments"], source_id=f"src_{path.stem}")
+
+
+def build_statement_fixture(
+    data: dict[str, Any], *, source_id: str
+) -> list[ClaimCandidate | ForecastCandidate]:
+    """RedTeam fixtures hold claim quotes under `claims` and forecast quotes under
+    `forecasts` (either may be absent), resolved in the one fixture text."""
+    return [
+        *claims(data["text"], data.get("claims", []), source_id=source_id),
+        *forecasts(data["text"], data.get("forecasts", []), source_id=source_id),
+    ]
+
+
+def parse_statement_fixture(path: Path) -> list[ClaimCandidate | ForecastCandidate]:
+    return build_statement_fixture(load_fixture(path), source_id=f"src_{path.stem}")

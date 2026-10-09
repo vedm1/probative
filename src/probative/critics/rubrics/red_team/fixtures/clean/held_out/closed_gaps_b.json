@@ -1,0 +1,8 @@
+{
+  "text": "# Operations review\n\n## Observations\n\n- Provided the depot signs off on the new layout, pick times should drop to 90 seconds per line by August.\n- The rival will probably follow with free returns of its own; we would still allow ten more days to send items back.\n- The nightly report will load in under 5 seconds after the index migration.\n",
+  "forecasts": [
+    "Provided the depot signs off on the new layout, pick times should drop to 90 seconds per line by August.",
+    "The rival will probably follow with free returns of its own; we would still allow ten more days to send items back.",
+    "The nightly report will load in under 5 seconds after the index migration."
+  ]
+}

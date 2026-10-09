@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "definition_drift"
+  ],
+  "allow_also": [],
+  "why": "the definition is on the next line; one statement cannot show it, so this fires",
+  "text": "# Operations review\n\n## Observations\n\n- Satisfied accounts rose from 2,100 in March to 2,600 in September.\n\nA satisfied account is one that scored 9 or 10 on the quarterly survey.\n",
+  "claims": [
+    "Satisfied accounts rose from 2,100 in March to 2,600 in September."
+  ]
+}

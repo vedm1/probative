@@ -689,7 +689,7 @@ For the solo case this agent *is* the product's intelligence. It is not a form â
 | `KanoTimeCritic` | Delighters decay into must-haves (p. 65) | note |
 | `HierarchyCritic` | Investing in a higher-tier need while a lower one is unmet (p. 44) | warn |
 | `INVESTCritic` | Story quality; testability especially | block on untestable |
-| `RedTeam` | Mandate: kill this. Strongest counter-case, named failure modes, "what would have to be true" | warn |
+| `RedTeam` | Mandate: kill this. Implemented as a closed taxonomy of six named failure modes over claims and forecasts, each with a rubric-authored "what would have to be true" sentence filled with the quote; no model-authored counter-case. A linter: nothing it says blocks. **Not run in onboarding mode** (I9; enforcement waits for the mode config, OI22). *Measured caveats (PB8 notes): `definition_drift` over-applies to reports of change, and a precondition, base or definition in the next sentence is flagged (OI26)* | warn |
 | `Falsifier` | Cheapest disconfirming test per load-bearing hypothesis | block if none exists |
 | `DriftCritic` | Post-commit: which downstream nodes just lost their justification? | warn |
 | `TediumAuditor` | Interaction count per phase against the I6 budget | note â†’ warn |

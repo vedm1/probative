@@ -1,0 +1,11 @@
+{
+  "expect_fired": [
+    "unstated_denominator"
+  ],
+  "allow_also": [],
+  "why": "the total is on the next line; one statement cannot show it, so this fires",
+  "text": "# Operations review\n\n## Observations\n\n- Warehouse staff logged 960 near-miss reports last year, which is a lot.\n\nStaff headcount averaged 1,850 over the year.\n",
+  "claims": [
+    "Warehouse staff logged 960 near-miss reports last year, which is a lot."
+  ]
+}

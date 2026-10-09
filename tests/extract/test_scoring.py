@@ -141,7 +141,8 @@ def test_gold_labels_build_every_candidate_kind() -> None:
     from tests.extract._helpers import make_source
 
     source = make_source(
-        "Claim one. Need two. Story three. Constraint four. Dependency five. Segment six.\n"
+        "Claim one. Need two. Story three. Constraint four. Dependency five. "
+        "Segment six. Forecast seven.\n"
     )
     labels = [
         GoldLabel(kind=kind, quote=quote)
@@ -154,6 +155,7 @@ def test_gold_labels_build_every_candidate_kind() -> None:
                 "Constraint four.",
                 "Dependency five.",
                 "Segment six.",
+                "Forecast seven.",
             ],
             strict=True,
         )

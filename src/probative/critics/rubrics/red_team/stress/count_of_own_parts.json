@@ -1,0 +1,9 @@
+{
+  "expect_fired": [],
+  "allow_also": [],
+  "why": "a count of the product's own parts",
+  "text": "# Operations review\n\n## Observations\n\n- The public API exposes 47 endpoints.\n",
+  "claims": [
+    "The public API exposes 47 endpoints."
+  ]
+}
