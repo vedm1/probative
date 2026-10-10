@@ -223,3 +223,35 @@ def test_the_summary_fits_inside_githubs_comment_limit() -> None:
     assert len(plan.summary_body) <= 65_000
     assert plan.summary_body.startswith(SUMMARY_MARKER)
     assert "not shown" in plan.summary_body
+
+
+def _single_finding_outcome(phrase: str, check_id: str = "names_feature") -> FileOutcome:
+    from tests.critique._builders import make_finding, make_report, make_source, span_of
+
+    text = "# T\n\nShoppers need a one-click checkout button.\nSecond line.\n"
+    source = make_source(text)
+    finding = make_finding(check_id=check_id, evidence=span_of(source, phrase))
+    report = make_report(source, [finding], checked=1)
+    return FileOutcome("s.md", report, text, parse_patch(make_patch("", text)), True)
+
+
+def _bot_comments(plan: ReviewPlan) -> list[dict[str, object]]:
+    return [{"body": c.body, "user": {"login": "github-actions[bot]"}} for c in plan.comments]
+
+
+def test_a_model_that_words_the_quote_differently_is_still_the_same_finding() -> None:
+    # live run (convocore#1): the same defect came back as "one-click checkout button" and
+    # then "a one-click checkout button"; keyed on the quote, that posted a duplicate
+    first = _plan(_single_finding_outcome("one-click checkout button"))
+    seen = existing_markers(_bot_comments(first))
+    second = _plan(_single_finding_outcome("a one-click checkout button"), existing=seen)
+    assert len(first.comments) == 1 and second.comments == []
+
+
+def test_another_check_on_the_same_line_is_a_different_finding() -> None:
+    first = _plan(_single_finding_outcome("one-click checkout button"))
+    seen = existing_markers(_bot_comments(first))
+    other = _plan(
+        _single_finding_outcome("one-click checkout button", check_id="other_check"), existing=seen
+    )
+    assert len(other.comments) == 1

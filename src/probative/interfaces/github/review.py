@@ -91,8 +91,10 @@ def fence(text: str) -> str:
     return f"{ticks}\n{text}\n{ticks}"
 
 
-def marker_id(path: str, check_id: str, quote: str) -> str:
-    return hashlib.sha256(f"{path}\0{check_id}\0{quote}".encode()).hexdigest()[:12]
+def marker_id(path: str, check_id: str, line_text: str) -> str:
+    """Keyed on the file's own line(s), not on the model's quote: a model asked again picks
+    a slightly different span of the same sentence (seen live), and that is not a new finding."""
+    return hashlib.sha256(f"{path}\0{check_id}\0{line_text}".encode()).hexdigest()[:12]
 
 
 def existing_markers(comments: Iterable[Mapping[str, Any]]) -> frozenset[str]:
@@ -163,15 +165,16 @@ def plan_review(
     for row in rows:
         reason: str | None = row.anchor.reason
         if row.anchor.kind == "inline":
-            marker = marker_id(row.outcome.path, row.finding.check_id, row.finding.quote)
+            start, end = row.anchor.start_line, row.anchor.end_line
+            assert start is not None and end is not None
+            line_text = "\n".join(row.outcome.text.split("\n")[start - 1 : end])
+            marker = marker_id(row.outcome.path, row.finding.check_id, line_text)
             if marker in existing:
                 already += 1
                 continue
             if len(comments) >= max_inline:
                 reason = overflow
             else:
-                start, end = row.anchor.start_line, row.anchor.end_line
-                assert start is not None and end is not None
                 comments.append(
                     ReviewComment(
                         path=row.outcome.path,
