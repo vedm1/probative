@@ -88,13 +88,13 @@ def _server(root: Path, provider: Provider | None = None, **kw: Any) -> Any:
     return build_server(lambda model: chosen, roots=[root], default_out=root / "reports", **kw)
 
 
-def test_the_server_lists_exactly_one_tool_with_the_documented_arguments(root: Path) -> None:
+def test_the_server_lists_critique_and_doctor_with_the_documented_arguments(root: Path) -> None:
     async def go() -> Any:
         async with Client(_server(root)) as client:
             return (await client.list_tools()).tools
 
     tools = asyncio.run(go())
-    assert [t.name for t in tools] == ["critique"]
+    assert [t.name for t in tools] == ["critique", "doctor"]  # PB34 added `doctor`
     props = set(tools[0].input_schema["properties"])
     assert props == {"path", "content", "filename", "encoding", "source_format", "format", "out"}
     assert not {"model", "jobs", "batch_size", "tier", "kind"} & props
@@ -385,7 +385,7 @@ def test_probative_mcp_serves_over_stdio_with_no_credentials(tmp_path: Path) -> 
         async with Client(params) as client:
             return [t.name for t in (await client.list_tools()).tools]
 
-    assert asyncio.run(go()) == ["critique"]
+    assert asyncio.run(go()) == ["critique", "doctor"]
 
 
 def test_stdout_carries_only_json_rpc(tmp_path: Path) -> None:

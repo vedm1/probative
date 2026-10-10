@@ -24,7 +24,7 @@ import os
 import shutil
 import tempfile
 import threading
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
@@ -45,6 +45,7 @@ from probative.critique import (
     ReportIntegrityError,
     critique,
 )
+from probative.interfaces.doctor import configured_model, diagnose, render_doctor
 from probative.llm import Message, Provider, StructuredResult
 from probative.llm.types import OutputT
 from probative.render.html import render_html
@@ -219,6 +220,7 @@ def build_server(
     roots: Sequence[Path],
     default_out: Path,
     base_options: CritiqueOptions | None = None,
+    environ: Mapping[str, str] | None = None,
 ) -> MCPServer:
     """The MCP server. `provider_factory(model)` builds the provider per call, so a missing
     key is a tool error at the moment it matters, never a startup failure."""
@@ -228,7 +230,8 @@ def build_server(
         instructions=(
             "Probative scores a product document (PRD, spec, Jira/ADO export, Confluence page) "
             "and returns findings that each quote the source. Call `critique` with a `path` "
-            "or with inline `content` and `filename`; a run takes 30 to 65 seconds."
+            "or with inline `content` and `filename`; a run takes 30 to 65 seconds. `doctor` "
+            "reports whether the server is configured and ready."
         ),
     )
 
@@ -356,6 +359,21 @@ def build_server(
         if incomplete:
             raise ToolError(text)
         return text
+
+    @server.tool(name="doctor")
+    def doctor_tool() -> str:
+        """Report what this server sees: its allowed roots, working directory, which provider
+        keys are present (never their values) and whether it is ready to run `critique`."""
+        return render_doctor(
+            diagnose(
+                environ=os.environ if environ is None else environ,
+                roots=resolved_roots,
+                default_out=default_out,
+                cwd=Path.cwd(),
+                # the model `critique` will actually use (see `_run_unowned`)
+                model=base_options.model if base_options else configured_model(),
+            )
+        )
 
     return server
 

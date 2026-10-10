@@ -1,6 +1,6 @@
 [project]
 name = "probative"
-version = "0.1.0.dev0"
+version = "0.1.0"
 description = "Evidence-grounded product discovery: every claim cites its source or is labelled a hypothesis with a test attached."
 readme = "README.md"
 license = "Apache-2.0"

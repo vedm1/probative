@@ -1,0 +1,15 @@
+{
+  "name": "probative",
+  "description": "Probative: evidence-grounded product discovery for Claude Code and Cowork.",
+  "owner": {
+    "name": "Ved Muthal",
+    "email": "muthal.ved@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "probative",
+      "description": "Critique a PRD, spec or backlog export. Every finding quotes the source; numbers are computed, never generated.",
+      "source": "./"
+    }
+  ]
+}

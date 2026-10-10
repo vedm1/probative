@@ -21,9 +21,26 @@ Or run it once with nothing to undo:
 uvx probative --version
 ```
 
+## Use it as a Claude plugin
+
+In Claude Code (needs `uv` on the machine):
+
+```
+/plugin install probative --marketplace vedm1/probative
+/probative:setup
+```
+
+`/probative:setup` runs `doctor`, shows what the server sees, and tells you the one thing
+that is missing. The API key is entered with `/plugin configure probative@probative` (Claude Code's own prompt for a sensitive option) or exported as `ANTHROPIC_API_KEY` before you start Claude;
+it is never typed into the chat. Then `/probative:critique path/to/prd.pdf`. `/probative:doctor`
+re-checks the configuration at any time.
+
+The plugin runs `uvx --from 'probative[mcp]' probative mcp`, so it works once a release is on
+PyPI; until then use the MCP entry below. Whether Cowork loads this plugin is unverified.
+
 ## Use it from Claude (MCP)
 
-`probative mcp` serves `critique` to any MCP client over stdio. It needs the extra:
+`probative mcp` serves `critique` and `doctor` (a read-only configuration check) to any MCP client over stdio. It needs the extra:
 
 ```bash
 pip install 'probative[mcp]'

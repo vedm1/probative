@@ -24,7 +24,7 @@ uvx probative critique your-prd.pdf
 uv tool install probative      # or: pipx install probative
 ```
 
-**No terminal?** Install the Probative plugin from the marketplace in Claude Code or Cowork. Everything below works as a slash command instead, with identical results.
+**No terminal?** Install the Probative plugin in Claude Code (`/plugin install probative --marketplace vedm1/probative`, then `/probative:setup`). It still needs `uv` on the machine, and Cowork support is unverified. `/probative:critique <path>` gives the same results as the command below.
 
 **Then set a key** — Probative talks to an LLM provider of your choosing (Anthropic, OpenAI, Gemini, or a local model):
 

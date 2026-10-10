@@ -1,0 +1,31 @@
+{
+  "name": "probative",
+  "version": "0.1.0",
+  "description": "Evidence-grounded critique of product documents: every finding quotes its source, and no score is ever written by a model.",
+  "author": {
+    "name": "Ved Muthal",
+    "email": "muthal.ved@gmail.com"
+  },
+  "homepage": "https://probative.wevit.ai",
+  "repository": "https://github.com/vedm1/probative",
+  "license": "Apache-2.0",
+  "keywords": ["product-discovery", "requirements", "evidence", "critique"],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Anthropic API key",
+      "description": "Used by Probative to call the model. Kept by Claude Code as a sensitive option. Leave empty if ANTHROPIC_API_KEY is already set in your shell.",
+      "sensitive": true,
+      "required": false
+    }
+  },
+  "mcpServers": {
+    "probative": {
+      "command": "uvx",
+      "args": ["--from", "probative[mcp]", "probative", "mcp"],
+      "env": {
+        "PROBATIVE_PLUGIN_ANTHROPIC_KEY": "${user_config.api_key}"
+      }
+    }
+  }
+}
