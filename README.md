@@ -21,6 +21,33 @@ Or run it once with nothing to undo:
 uvx probative --version
 ```
 
+## Use it from Claude (MCP)
+
+`probative mcp` serves `critique` to any MCP client over stdio. It needs the extra:
+
+```bash
+pip install 'probative[mcp]'
+```
+
+Claude Desktop / Claude Code server entry:
+
+```json
+{
+  "mcpServers": {
+    "probative": {
+      "command": "probative",
+      "args": ["mcp"],
+      "env": {
+        "ANTHROPIC_API_KEY": "<your key>",
+        "PROBATIVE_MCP_ROOTS": "/path/to/your/specs"
+      }
+    }
+  }
+}
+```
+
+The tool reads only inside `PROBATIVE_MCP_ROOTS` (default: the server's working directory) and writes reports to `<first root>/probative-reports/`. A run takes 30 to 65 seconds; see OI28 in `PROBATIVE_BUILD_PLAN.md` for the client-timeout caveat.
+
 ## Develop
 
 Requires [`uv`](https://docs.astral.sh/uv/) and Python 3.12+.

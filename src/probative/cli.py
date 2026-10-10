@@ -8,7 +8,6 @@ interface over `probative.critique` / `probative.core` /
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 from typing import Annotated
 
@@ -26,7 +25,7 @@ from probative.critique.pipeline import (
 )
 from probative.critique.report import ReportIntegrityError
 from probative.critique.sources import DEFAULT_MAX_FILES
-from probative.llm import LiteLLMProvider, Provider
+from probative.llm.factory import make_provider
 from probative.render.html import render_html
 from probative.render.markdown import render_markdown, render_summary
 
@@ -57,37 +56,12 @@ def main(
     """Probative."""
 
 
-_KEYS = {
-    "anthropic": "ANTHROPIC_API_KEY",
-    "openai": "OPENAI_API_KEY",
-    "gemini": "GEMINI_API_KEY",
-}
 _FORMATS = ("md", "html")
 EXIT_INCOMPLETE = 3
 EXIT_FAILED = 2
 
-
-def _make_provider(model: str) -> Provider:
-    """The real provider. `Settings` reads `.env`, litellm reads `os.environ`, so
-    keys found by `Settings` are exported (never overriding the environment), and
-    a missing key for a named vendor fails here, before any call."""
-    settings = Settings()
-    for vendor, variable in _KEYS.items():
-        secret = settings.credential_for(vendor) if _has(settings, vendor) else None
-        if secret is not None:
-            os.environ.setdefault(variable, secret.get_secret_value())
-    vendor = model.split("/", 1)[0]
-    if vendor in _KEYS and not os.environ.get(_KEYS[vendor]):
-        raise MissingCredentialsError(vendor)
-    return LiteLLMProvider(num_retries=3, timeout=120.0)
-
-
-def _has(settings: Settings, vendor: str) -> bool:
-    try:
-        settings.credential_for(vendor)
-    except MissingCredentialsError:
-        return False
-    return True
+# Shared with the MCP server; the alias keeps the name tests patch.
+_make_provider = make_provider
 
 
 def _fail(message: str) -> typer.Exit:
@@ -174,6 +148,19 @@ def critique(
         typer.echo(f"Full report → {target}")
     if report.incomplete:
         raise typer.Exit(EXIT_INCOMPLETE)
+
+
+@app.command()
+def mcp() -> None:
+    """Serve `critique` to an MCP client over stdio (needs `pip install 'probative[mcp]'`)."""
+    try:
+        from probative.interfaces.mcp_server import serve
+    except ModuleNotFoundError as error:
+        if error.name is None or not error.name.startswith("mcp"):
+            raise
+        typer.echo("error: the MCP server needs the extra: pip install 'probative[mcp]'", err=True)
+        raise typer.Exit(EXIT_FAILED) from error
+    serve()
 
 
 if __name__ == "__main__":  # pragma: no cover

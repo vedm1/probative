@@ -29,6 +29,10 @@ dependencies = [
   "typer>=0.15",
 ]
 
+[project.optional-dependencies]
+# `probative mcp` (PB33). Optional: the CLI install stays light (mcp pulls starlette/uvicorn).
+mcp = ["mcp>=2.3,<3"]
+
 [project.urls]
 Homepage = "https://probative.wevit.ai"
 Repository = "https://github.com/vedm1/probative"
@@ -39,6 +43,7 @@ probative = "probative.cli:app"
 
 [dependency-groups]
 dev = [
+  "mcp>=2.3,<3",
   "fpdf2>=2.8",
   "mypy>=1.14",
   "pre-commit>=4.0",
