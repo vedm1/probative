@@ -35,8 +35,8 @@ that is missing. The API key is entered with `/plugin configure probative@probat
 it is never typed into the chat. Then `/probative:critique path/to/prd.pdf`. `/probative:doctor`
 re-checks the configuration at any time.
 
-The plugin runs `uvx --from 'probative[mcp]' probative mcp`, so it works once a release is on
-PyPI; until then use the MCP entry below. Whether Cowork loads this plugin is unverified.
+The plugin runs `uvx --from 'probative[mcp]' probative mcp` (verified against the published
+0.1.0). Whether Cowork loads this plugin is unverified.
 
 ## Use it from Claude (MCP)
 

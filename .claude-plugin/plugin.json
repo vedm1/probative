@@ -1,6 +1,6 @@
 {
   "name": "probative",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Evidence-grounded critique of product documents: every finding quotes its source, and no score is ever written by a model.",
   "author": {
     "name": "Ved Muthal",
