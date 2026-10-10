@@ -10,3 +10,8 @@ tests/fixtures/ingest/** -text
 # after being bitten once — see PROBATIVE_PHASE_SPECS.md PB1's Implementation
 # notes).
 tests/fixtures/tracker/** -text
+
+# The PB2-p2 Confluence fixtures are MIME and must stay CRLF. With `core.autocrlf=input`
+# they were committed as LF, so CI checked out different bytes than the ones the PB9 `folder`
+# recording was made from and its prompt hash changed (CI-only failure since PB8).
+tests/fixtures/confluence/** -text

@@ -493,40 +493,84 @@ def test_skipped_files_keep_their_real_name_in_the_report(root: Path) -> None:
 def test_a_cancelled_call_stops_spending_and_cleans_up(
     root: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
+    """Deterministic: no sleep decides the outcome. A gate holds the model calls, the test waits
+    for the server's own cancel flag to be set (the flag is captured, not timed), then releases
+    the gate and asserts that no call began after the cancellation and the temp dir is gone."""
     import tempfile
-    import time
+    import threading
+    import types
+
+    from probative.extract.prompts import PASSES
+    from probative.interfaces import mcp_server
 
     body = "# Many\n\n" + "\n".join(f"CLAIM: Claim number {i} stands." for i in range(40)) + "\n"
     (root / "many.md").write_text(body)
 
-    class Counting(Scripted):
-        calls = 0
+    flags: list[threading.Event] = []
+
+    class RecordingEvent(threading.Event):
+        def __init__(self) -> None:
+            super().__init__()
+            flags.append(self)
+
+    # the server creates its cancel flag with `threading.Event()`; capture it
+    monkeypatch.setattr(
+        mcp_server,
+        "threading",
+        types.SimpleNamespace(Event=RecordingEvent, Lock=threading.Lock),
+    )
+
+    gate = threading.Event()
+    started = threading.Event()
+    lock = threading.Lock()
+
+    class Gated(Scripted):
+        entered = 0
+        after_cancel = 0
 
         def complete_structured(self, *args: Any, **kwargs: Any) -> Any:
-            type(self).calls += 1
+            with lock:
+                type(self).entered += 1
+                if flags and flags[0].is_set():
+                    type(self).after_cancel += 1
+                if type(self).entered >= len(PASSES):
+                    started.set()
+            gate.wait(timeout=30)  # a failing test must not hang
             return super().complete_structured(*args, **kwargs)
 
-    provider = Counting(delay=0.05)
+    provider = Gated()
     made: list[str] = []
     real = tempfile.mkdtemp
     monkeypatch.setattr(tempfile, "mkdtemp", lambda *a, **k: made.append(real(*a, **k)) or made[-1])
 
-    async def go() -> int:
-        async with Client(_server(root, provider)) as client:
-            with pytest.raises(TimeoutError):
-                await asyncio.wait_for(
-                    client.call_tool("critique", {"path": str(root / "many.md")}), 0.4
-                )
-        await asyncio.sleep(0.5)
-        first = Counting.calls
-        await asyncio.sleep(0.5)
-        assert Counting.calls == first  # nothing more is being spent
-        return first
+    async def until(condition: Any, what: str) -> None:
+        for _ in range(500):  # a deadline, never an expected duration
+            if condition():
+                return
+            await asyncio.sleep(0.01)
+        raise AssertionError(f"timed out waiting for {what}")
 
-    spent = asyncio.run(go())
-    time.sleep(0.2)
-    assert spent > 0
-    assert made and not any(Path(d).exists() for d in made)
+    async def go() -> None:
+        async with Client(_server(root, provider)) as client:
+            call = asyncio.create_task(
+                client.call_tool("critique", {"path": str(root / "many.md")})
+            )
+            try:
+                await until(started.is_set, "the extraction calls to reach the gate")
+                call.cancel()
+                with pytest.raises(asyncio.CancelledError):
+                    await call
+                await until(lambda: bool(flags) and flags[0].is_set(), "the server's cancel flag")
+            finally:
+                gate.set()
+            await until(
+                lambda: bool(made) and not any(Path(d).exists() for d in made),
+                "the run to finish and remove its temp dir",
+            )
+
+    asyncio.run(go())
+    assert Gated.entered >= len(PASSES)  # the run really was spending
+    assert Gated.after_cancel == 0  # and nothing began once the cancellation was seen
 
 
 def test_the_filesystem_root_is_refused_and_the_home_directory_is_warned_about(
