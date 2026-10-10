@@ -38,6 +38,13 @@ re-checks the configuration at any time.
 The plugin runs `uvx --from 'probative[mcp]' probative mcp` (verified against the published
 0.1.0). Whether Cowork loads this plugin is unverified.
 
+## Use it on pull requests (GitHub Action)
+
+Critique the specs a pull request changes and get the findings as review comments. Copy
+[`docs/examples/probative-critique.yml`](docs/examples/probative-critique.yml) into your
+workflows and add an `ANTHROPIC_API_KEY` secret. See [`docs/GITHUB-ACTION.md`](docs/GITHUB-ACTION.md);
+it has not yet been run on a real pull request (OI32).
+
 ## Use it from Claude (MCP)
 
 `probative mcp` serves `critique` and `doctor` (a read-only configuration check) to any MCP client over stdio. It needs the extra:

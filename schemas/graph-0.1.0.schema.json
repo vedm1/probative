@@ -1,0 +1,2942 @@
+{
+  "$defs": {
+    "AcceptanceCriterion": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "acceptance_criterion",
+          "default": "acceptance_criterion",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text"
+      ],
+      "title": "AcceptanceCriterion",
+      "type": "object"
+    },
+    "Adoption": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "stage": {
+          "enum": [
+            "innovators",
+            "early_adopters",
+            "early_majority",
+            "late_majority",
+            "laggards"
+          ],
+          "title": "Stage",
+          "type": "string"
+        },
+        "type": {
+          "const": "adoption",
+          "default": "adoption",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "stage"
+      ],
+      "title": "Adoption",
+      "type": "object"
+    },
+    "Alternative": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "is_incumbent": {
+          "default": false,
+          "title": "Is Incumbent",
+          "type": "boolean"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "alternative",
+          "default": "alternative",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name"
+      ],
+      "title": "Alternative",
+      "type": "object"
+    },
+    "Backbone": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "backbone",
+          "default": "backbone",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name"
+      ],
+      "title": "Backbone",
+      "type": "object"
+    },
+    "Baseline": {
+      "additionalProperties": false,
+      "description": "Immutable, content-addressed snapshot (I7). Computing it is PB27.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "gate": {
+          "minLength": 1,
+          "title": "Gate",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "snapshot_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Hash",
+          "type": "string"
+        },
+        "type": {
+          "const": "baseline",
+          "default": "baseline",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "snapshot_hash",
+        "gate"
+      ],
+      "title": "Baseline",
+      "type": "object"
+    },
+    "BuildPhase": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "build_phase",
+          "default": "build_phase",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name"
+      ],
+      "title": "BuildPhase",
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "description": "An assertion. Its `basis` is not a field: it is the node's outgoing\n`EVIDENCED_BY` / `DERIVED_FROM` edges, so there is one record of it. A\n`Hypothesis` is a different node type, not a flavour of `Claim`.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Computed"
+        },
+        "evidence_kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceKind"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "type": {
+          "const": "claim",
+          "default": "claim",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text",
+        "tier",
+        "confidence"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Computed": {
+      "additionalProperties": false,
+      "description": "An output of a registered formula. `FormulaValidator` (PB11) recomputes\n`value` from `input_ids` and diffs it.",
+      "properties": {
+        "formula_id": {
+          "minLength": 1,
+          "title": "Formula Id",
+          "type": "string"
+        },
+        "input_ids": {
+          "items": {
+            "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+            "type": "string"
+          },
+          "title": "Input Ids",
+          "type": "array"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value",
+        "formula_id",
+        "input_ids"
+      ],
+      "title": "Computed",
+      "type": "object"
+    },
+    "Constraint": {
+      "additionalProperties": false,
+      "description": "Regulatory, contractual or policy obligation. Always sourced (I8): a\ndocument and a locator, never an inference.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "constraint_kind": {
+          "enum": [
+            "regulatory",
+            "contractual",
+            "policy"
+          ],
+          "title": "Constraint Kind",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "locator": {
+          "$ref": "#/$defs/GraphLocator"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "source_doc": {
+          "minLength": 1,
+          "title": "Source Doc",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "constraint",
+          "default": "constraint",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text",
+        "constraint_kind",
+        "source_doc",
+        "locator"
+      ],
+      "title": "Constraint",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "gate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gate"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "rationale": {
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "type": {
+          "const": "decision",
+          "default": "decision",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "statement",
+        "rationale"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "DeliverySignal": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "source_system": {
+          "minLength": 1,
+          "title": "Source System",
+          "type": "string"
+        },
+        "status_text": {
+          "minLength": 1,
+          "title": "Status Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "delivery_signal",
+          "default": "delivery_signal",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "source_system",
+        "status_text"
+      ],
+      "title": "DeliverySignal",
+      "type": "object"
+    },
+    "Dependency": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "dependency_class": {
+          "enum": [
+            "team",
+            "system",
+            "vendor",
+            "data",
+            "legal",
+            "migration"
+          ],
+          "title": "Dependency Class",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "owner_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Owner Ref"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "dependency",
+          "default": "dependency",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text",
+        "dependency_class"
+      ],
+      "title": "Dependency",
+      "type": "object"
+    },
+    "Edge": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "attrs": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Attrs",
+          "type": "object"
+        },
+        "dst": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Dst",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "src": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Src",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/EdgeType"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "src",
+        "dst",
+        "owner",
+        "asserted_at"
+      ],
+      "title": "Edge",
+      "type": "object"
+    },
+    "EdgeType": {
+      "enum": [
+        "EVIDENCED_BY",
+        "DERIVED_FROM",
+        "LADDERS_UP_TO",
+        "REQUIRES",
+        "ADDRESSES",
+        "CONTAINS",
+        "REALISES",
+        "MEASURED_BY",
+        "CLASSIFIED_AS",
+        "SERVED_BY",
+        "CONTRADICTS",
+        "TESTED_BY",
+        "DECIDED_BY",
+        "FLAGGED_BY",
+        "SUPERSEDES",
+        "CURRENT_STATE",
+        "FUTURE_STATE",
+        "PAIN_AT",
+        "SATISFIED_BY",
+        "CONSTRAINED_BY",
+        "EVIDENCES_NEED",
+        "DEPENDS_ON",
+        "BASELINED_AS",
+        "VARIES_FROM",
+        "IMPLEMENTS",
+        "OBSERVED_AS",
+        "CLAIMED_BY",
+        "CONFLICTS_WITH"
+      ],
+      "title": "EdgeType",
+      "type": "string"
+    },
+    "EmpathyEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "channel": {
+          "enum": [
+            "says",
+            "thinks",
+            "does",
+            "feels"
+          ],
+          "title": "Channel",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "inferred": {
+          "title": "Inferred",
+          "type": "boolean"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "empathy_entry",
+          "default": "empathy_entry",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "channel",
+        "text",
+        "inferred"
+      ],
+      "title": "EmpathyEntry",
+      "type": "object"
+    },
+    "Estimate": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "effort": {
+          "$ref": "#/$defs/Input"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "estimate",
+          "default": "estimate",
+          "title": "Type",
+          "type": "string"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/Input"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "effort",
+        "uncertainty"
+      ],
+      "title": "Estimate",
+      "type": "object"
+    },
+    "EvidenceKind": {
+      "description": "What sort of thing a piece of evidence is (docs/DESIGN.md §5.1).",
+      "enum": [
+        "customer",
+        "operational",
+        "documentary",
+        "system",
+        "delivery",
+        "market"
+      ],
+      "title": "EvidenceKind",
+      "type": "string"
+    },
+    "EvidenceSpan": {
+      "additionalProperties": false,
+      "description": "A located extract: the atom of provenance (I1). `start` and `end` are\ncharacter offsets into the source's normalised text projection (the same\noffsets `core.evidence.EvidenceSpan` uses), not raw file bytes; I1 is checked\nby re-extracting the file and slicing at them.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "end": {
+          "title": "End",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "locator": {
+          "$ref": "#/$defs/GraphLocator"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "source_ref": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Source Ref",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "evidence_span",
+          "default": "evidence_span",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "source_ref",
+        "start",
+        "end",
+        "text",
+        "locator"
+      ],
+      "title": "EvidenceSpan",
+      "type": "object"
+    },
+    "FeatureChunk": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "feature_chunk",
+          "default": "feature_chunk",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text"
+      ],
+      "title": "FeatureChunk",
+      "type": "object"
+    },
+    "FeatureIdea": {
+      "additionalProperties": false,
+      "description": "May reference a `Need` (via ADDRESSES); a `Need` may never reference it (I3).",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "feature_idea",
+          "default": "feature_idea",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text"
+      ],
+      "title": "FeatureIdea",
+      "type": "object"
+    },
+    "Finding": {
+      "additionalProperties": false,
+      "description": "A critic's finding, shape-compatible with `core.critic.Finding`.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "check_id": {
+          "minLength": 1,
+          "title": "Check Id",
+          "type": "string"
+        },
+        "critic_id": {
+          "minLength": 1,
+          "title": "Critic Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "invariant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Invariant"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "remedy": {
+          "title": "Remedy",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "target_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Id"
+        },
+        "type": {
+          "const": "finding",
+          "default": "finding",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "critic_id",
+        "check_id",
+        "severity",
+        "message",
+        "remedy"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "GraphLocator": {
+      "additionalProperties": false,
+      "description": "`core.evidence.Locator`, frozen. The ingest `Locator` is mutable, and a\nnode's locator must not change after its id was derived.",
+      "properties": {
+        "cell": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cell"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "heading_path": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Heading Path"
+        },
+        "issue_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issue Key"
+        },
+        "line": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "sheet": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sheet"
+        }
+      },
+      "title": "GraphLocator",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "status": {
+          "default": "untested",
+          "enum": [
+            "untested",
+            "testing",
+            "supported",
+            "killed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "type": {
+          "const": "hypothesis",
+          "default": "hypothesis",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "statement",
+        "tier"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    },
+    "IncumbentSystem": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "incumbent_system",
+          "default": "incumbent_system",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name"
+      ],
+      "title": "IncumbentSystem",
+      "type": "object"
+    },
+    "Input": {
+      "additionalProperties": false,
+      "description": "A proposed or authored quantity. Never an output of arithmetic.",
+      "properties": {
+        "provenance": {
+          "minLength": 1,
+          "title": "Provenance",
+          "type": "string"
+        },
+        "unit": {
+          "minLength": 1,
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value",
+        "unit",
+        "provenance"
+      ],
+      "title": "Input",
+      "type": "object"
+    },
+    "JourneyStage": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/$defs/Input"
+        },
+        "type": {
+          "const": "journey_stage",
+          "default": "journey_stage",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name",
+        "position"
+      ],
+      "title": "JourneyStage",
+      "type": "object"
+    },
+    "KanoClass": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "classification": {
+          "enum": [
+            "must_have",
+            "performance",
+            "delighter",
+            "indifferent",
+            "reverse"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "kano_class",
+          "default": "kano_class",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "classification"
+      ],
+      "title": "KanoClass",
+      "type": "object"
+    },
+    "Ladder": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "ladder",
+          "default": "ladder",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "description"
+      ],
+      "title": "Ladder",
+      "type": "object"
+    },
+    "MVPMembership": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "in_v1": {
+          "$ref": "#/$defs/Computed"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "mvp_membership",
+          "default": "mvp_membership",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "in_v1"
+      ],
+      "title": "MVPMembership",
+      "type": "object"
+    },
+    "Need": {
+      "additionalProperties": false,
+      "description": "A customer benefit, verb-first, in the customer's voice (I3).",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "need",
+          "default": "need",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text"
+      ],
+      "title": "Need",
+      "type": "object"
+    },
+    "NeedHierarchy": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "need_hierarchy",
+          "default": "need_hierarchy",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "description"
+      ],
+      "title": "NeedHierarchy",
+      "type": "object"
+    },
+    "Opportunity": {
+      "additionalProperties": false,
+      "description": "Computed, never authored.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "opportunity",
+          "default": "opportunity",
+          "title": "Type",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/Computed"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "value"
+      ],
+      "title": "Opportunity",
+      "type": "object"
+    },
+    "Partition": {
+      "additionalProperties": false,
+      "description": "Named scope area with a declared boundary (§12.2). `CLAIMED_BY` targets it.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "boundary": {
+          "default": "",
+          "title": "Boundary",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "partition",
+          "default": "partition",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name"
+      ],
+      "title": "Partition",
+      "type": "object"
+    },
+    "Persona": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "persona",
+          "default": "persona",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name"
+      ],
+      "title": "Persona",
+      "type": "object"
+    },
+    "Postmortem": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "postmortem",
+          "default": "postmortem",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text"
+      ],
+      "title": "Postmortem",
+      "type": "object"
+    },
+    "Premortem": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "premortem",
+          "default": "premortem",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text"
+      ],
+      "title": "Premortem",
+      "type": "object"
+    },
+    "ProcessModel": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "model_kind": {
+          "enum": [
+            "as_is",
+            "to_be"
+          ],
+          "title": "Model Kind",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "process_model",
+          "default": "process_model",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name",
+        "model_kind"
+      ],
+      "title": "ProcessModel",
+      "type": "object"
+    },
+    "ProcessStep": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "minLength": 1,
+          "title": "Actor",
+          "type": "string"
+        },
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "metrics": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Input"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "pain": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pain"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "system": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "System"
+        },
+        "type": {
+          "const": "process_step",
+          "default": "process_step",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name",
+        "actor"
+      ],
+      "title": "ProcessStep",
+      "type": "object"
+    },
+    "Question": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "raised_by": {
+          "enum": [
+            "contradiction",
+            "gap",
+            "elicitation"
+          ],
+          "title": "Raised By",
+          "type": "string"
+        },
+        "status": {
+          "default": "open",
+          "enum": [
+            "open",
+            "resolved"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "question",
+          "default": "question",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text",
+        "raised_by"
+      ],
+      "title": "Question",
+      "type": "object"
+    },
+    "Rating": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "dimension": {
+          "enum": [
+            "importance",
+            "satisfaction"
+          ],
+          "title": "Dimension",
+          "type": "string"
+        },
+        "dispersion": {
+          "$ref": "#/$defs/Input"
+        },
+        "evidence_kind": {
+          "$ref": "#/$defs/EvidenceKind"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "n": {
+          "$ref": "#/$defs/Input"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "type": {
+          "const": "rating",
+          "default": "rating",
+          "title": "Type",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/Input"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "dimension",
+        "value",
+        "n",
+        "dispersion",
+        "tier",
+        "evidence_kind"
+      ],
+      "title": "Rating",
+      "type": "object"
+    },
+    "Risk": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "impact": {
+          "$ref": "#/$defs/Input"
+        },
+        "likelihood": {
+          "$ref": "#/$defs/Input"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "risk",
+          "default": "risk",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text",
+        "likelihood",
+        "impact"
+      ],
+      "title": "Risk",
+      "type": "object"
+    },
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "segment",
+          "default": "segment",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "name"
+      ],
+      "title": "Segment",
+      "type": "object"
+    },
+    "Severity": {
+      "description": "How much authority a Finding carries (docs/DESIGN.md §9.1).",
+      "enum": [
+        "block",
+        "warn",
+        "note"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "description": "A raw ingested artifact. Holds no text and no absolute path: the file's\nbytes are the source of record, and `graph.json` is portable.",
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "extractor": {
+          "minLength": 1,
+          "title": "Extractor",
+          "type": "string"
+        },
+        "extractor_version": {
+          "minLength": 1,
+          "title": "Extractor Version",
+          "type": "string"
+        },
+        "format": {
+          "$ref": "#/$defs/SourceFormat"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "ingest_id": {
+          "minLength": 1,
+          "title": "Ingest Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/EvidenceKind"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "type": {
+          "const": "source",
+          "default": "source",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "ingest_id",
+        "sha256",
+        "format",
+        "tier",
+        "kind",
+        "extractor",
+        "extractor_version",
+        "path"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "SourceFormat": {
+      "enum": [
+        "pdf",
+        "docx",
+        "xlsx",
+        "csv",
+        "markdown",
+        "text",
+        "jira_csv",
+        "jira_html",
+        "jira_xml",
+        "ado_csv",
+        "confluence_word"
+      ],
+      "title": "SourceFormat",
+      "type": "string"
+    },
+    "Story": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "const": "story",
+          "default": "story",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "text"
+      ],
+      "title": "Story",
+      "type": "object"
+    },
+    "Test": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "cost": {
+          "$ref": "#/$defs/Input"
+        },
+        "criterion_recorded_at": {
+          "format": "date-time",
+          "title": "Criterion Recorded At",
+          "type": "string"
+        },
+        "duration": {
+          "$ref": "#/$defs/Input"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kill_criterion": {
+          "title": "Kill Criterion",
+          "type": "string"
+        },
+        "method": {
+          "title": "Method",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Started At"
+        },
+        "status": {
+          "default": "planned",
+          "enum": [
+            "planned",
+            "running",
+            "passed",
+            "killed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "type": {
+          "const": "test",
+          "default": "test",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "method",
+        "cost",
+        "duration",
+        "kill_criterion",
+        "criterion_recorded_at"
+      ],
+      "title": "Test",
+      "type": "object"
+    },
+    "Tier": {
+      "description": "How direct a piece of evidence is (docs/DESIGN.md §5.1).",
+      "enum": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
+      "title": "Tier",
+      "type": "string"
+    },
+    "Touchpoint": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "channel": {
+          "default": "",
+          "title": "Channel",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "touchpoint",
+          "default": "touchpoint",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "description"
+      ],
+      "title": "Touchpoint",
+      "type": "object"
+    },
+    "ValueProp": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "refuses": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+            "type": "string"
+          },
+          "title": "Refuses",
+          "type": "array"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "type": {
+          "const": "value_prop",
+          "default": "value_prop",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "statement"
+      ],
+      "title": "ValueProp",
+      "type": "object"
+    },
+    "Variance": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "baseline_ref": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Baseline Ref",
+          "type": "string"
+        },
+        "blast_radius": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+            "type": "string"
+          },
+          "title": "Blast Radius",
+          "type": "array"
+        },
+        "change_kind": {
+          "enum": [
+            "added",
+            "removed",
+            "modified",
+            "reprioritised",
+            "unsupported"
+          ],
+          "title": "Change Kind",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "rationale": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rationale"
+        },
+        "severity": {
+          "$ref": "#/$defs/Computed"
+        },
+        "subject_ref": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Subject Ref",
+          "type": "string"
+        },
+        "type": {
+          "const": "variance",
+          "default": "variance",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "change_kind",
+        "subject_ref",
+        "baseline_ref",
+        "severity"
+      ],
+      "title": "Variance",
+      "type": "object"
+    },
+    "Workaround": {
+      "additionalProperties": false,
+      "properties": {
+        "asserted_at": {
+          "format": "date-time",
+          "title": "Asserted At",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z_]*_[0-9a-f]{12}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "owner": {
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "partition": {
+          "default": "main",
+          "minLength": 1,
+          "title": "Partition",
+          "type": "string"
+        },
+        "type": {
+          "const": "workaround",
+          "default": "workaround",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "owner",
+        "asserted_at",
+        "description"
+      ],
+      "title": "Workaround",
+      "type": "object"
+    }
+  },
+  "$id": "urn:probative:graph-schema:0.1.0",
+  "additionalProperties": false,
+  "properties": {
+    "content_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/Edge"
+      },
+      "title": "Edges",
+      "type": "array"
+    },
+    "nodes": {
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "acceptance_criterion": "#/$defs/AcceptanceCriterion",
+            "adoption": "#/$defs/Adoption",
+            "alternative": "#/$defs/Alternative",
+            "backbone": "#/$defs/Backbone",
+            "baseline": "#/$defs/Baseline",
+            "build_phase": "#/$defs/BuildPhase",
+            "claim": "#/$defs/Claim",
+            "constraint": "#/$defs/Constraint",
+            "decision": "#/$defs/Decision",
+            "delivery_signal": "#/$defs/DeliverySignal",
+            "dependency": "#/$defs/Dependency",
+            "empathy_entry": "#/$defs/EmpathyEntry",
+            "estimate": "#/$defs/Estimate",
+            "evidence_span": "#/$defs/EvidenceSpan",
+            "feature_chunk": "#/$defs/FeatureChunk",
+            "feature_idea": "#/$defs/FeatureIdea",
+            "finding": "#/$defs/Finding",
+            "hypothesis": "#/$defs/Hypothesis",
+            "incumbent_system": "#/$defs/IncumbentSystem",
+            "journey_stage": "#/$defs/JourneyStage",
+            "kano_class": "#/$defs/KanoClass",
+            "ladder": "#/$defs/Ladder",
+            "mvp_membership": "#/$defs/MVPMembership",
+            "need": "#/$defs/Need",
+            "need_hierarchy": "#/$defs/NeedHierarchy",
+            "opportunity": "#/$defs/Opportunity",
+            "partition": "#/$defs/Partition",
+            "persona": "#/$defs/Persona",
+            "postmortem": "#/$defs/Postmortem",
+            "premortem": "#/$defs/Premortem",
+            "process_model": "#/$defs/ProcessModel",
+            "process_step": "#/$defs/ProcessStep",
+            "question": "#/$defs/Question",
+            "rating": "#/$defs/Rating",
+            "risk": "#/$defs/Risk",
+            "segment": "#/$defs/Segment",
+            "source": "#/$defs/Source",
+            "story": "#/$defs/Story",
+            "test": "#/$defs/Test",
+            "touchpoint": "#/$defs/Touchpoint",
+            "value_prop": "#/$defs/ValueProp",
+            "variance": "#/$defs/Variance",
+            "workaround": "#/$defs/Workaround"
+          },
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/Source"
+          },
+          {
+            "$ref": "#/$defs/EvidenceSpan"
+          },
+          {
+            "$ref": "#/$defs/Claim"
+          },
+          {
+            "$ref": "#/$defs/Question"
+          },
+          {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          {
+            "$ref": "#/$defs/Test"
+          },
+          {
+            "$ref": "#/$defs/Decision"
+          },
+          {
+            "$ref": "#/$defs/Finding"
+          },
+          {
+            "$ref": "#/$defs/Risk"
+          },
+          {
+            "$ref": "#/$defs/IncumbentSystem"
+          },
+          {
+            "$ref": "#/$defs/ProcessModel"
+          },
+          {
+            "$ref": "#/$defs/ProcessStep"
+          },
+          {
+            "$ref": "#/$defs/Constraint"
+          },
+          {
+            "$ref": "#/$defs/Workaround"
+          },
+          {
+            "$ref": "#/$defs/Segment"
+          },
+          {
+            "$ref": "#/$defs/Persona"
+          },
+          {
+            "$ref": "#/$defs/Adoption"
+          },
+          {
+            "$ref": "#/$defs/Need"
+          },
+          {
+            "$ref": "#/$defs/Ladder"
+          },
+          {
+            "$ref": "#/$defs/NeedHierarchy"
+          },
+          {
+            "$ref": "#/$defs/Rating"
+          },
+          {
+            "$ref": "#/$defs/Opportunity"
+          },
+          {
+            "$ref": "#/$defs/KanoClass"
+          },
+          {
+            "$ref": "#/$defs/Alternative"
+          },
+          {
+            "$ref": "#/$defs/JourneyStage"
+          },
+          {
+            "$ref": "#/$defs/Touchpoint"
+          },
+          {
+            "$ref": "#/$defs/EmpathyEntry"
+          },
+          {
+            "$ref": "#/$defs/ValueProp"
+          },
+          {
+            "$ref": "#/$defs/FeatureIdea"
+          },
+          {
+            "$ref": "#/$defs/FeatureChunk"
+          },
+          {
+            "$ref": "#/$defs/Estimate"
+          },
+          {
+            "$ref": "#/$defs/MVPMembership"
+          },
+          {
+            "$ref": "#/$defs/Backbone"
+          },
+          {
+            "$ref": "#/$defs/Story"
+          },
+          {
+            "$ref": "#/$defs/AcceptanceCriterion"
+          },
+          {
+            "$ref": "#/$defs/Dependency"
+          },
+          {
+            "$ref": "#/$defs/Baseline"
+          },
+          {
+            "$ref": "#/$defs/Variance"
+          },
+          {
+            "$ref": "#/$defs/BuildPhase"
+          },
+          {
+            "$ref": "#/$defs/DeliverySignal"
+          },
+          {
+            "$ref": "#/$defs/Premortem"
+          },
+          {
+            "$ref": "#/$defs/Postmortem"
+          },
+          {
+            "$ref": "#/$defs/Partition"
+          }
+        ]
+      },
+      "title": "Nodes",
+      "type": "array"
+    },
+    "schema_version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "nodes",
+    "edges",
+    "content_hash"
+  ],
+  "title": "Probative graph",
+  "type": "object"
+}

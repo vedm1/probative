@@ -228,3 +228,6 @@ runs/
 # PB5 live-record staging directories (swapped into place on success)
 tests/fixtures/critics/recordings/*/*.recording/
 tests/fixtures/critics/recordings/*/*.previous/
+
+# PB10: derived SQLite mirror of graph.json (disposable)
+graph.sqlite
