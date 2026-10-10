@@ -1,0 +1,88 @@
+# Probative critique for pull requests (PROBATIVE_PHASE_SPECS.md PB35).
+# Reads the spec files a PR changes over the GitHub API (it never checks out or runs PR
+# code), critiques them, and posts findings as one review plus one summary comment.
+# Every user-controlled value reaches the shell through `env:`, never through `${{ }}` in
+# a script, so an input cannot become shell syntax.
+name: Probative critique
+description: >-
+  Critique the spec files a pull request changes and post the findings, each quoting the
+  line it is about, as review comments.
+author: Ved Muthal
+branding:
+  icon: check-circle
+  color: gray-dark
+
+inputs:
+  anthropic-api-key:
+    description: Model API key. Pass it from a repository secret; it is never logged.
+    required: false
+    default: ""
+  github-token:
+    description: Token used to read the PR and post the review (needs pull-requests write).
+    required: false
+    default: ${{ github.token }}
+  paths:
+    description: Comma-separated globs of files to critique.
+    required: false
+    default: "**/*.md,**/*.markdown,**/*.txt,**/*.pdf,**/*.docx,**/*.xlsx"
+  max-files:
+    description: Most files critiqued per run; the rest are listed as skipped.
+    required: false
+    default: "25"
+  max-minutes:
+    description: Stop starting new files after this many minutes.
+    required: false
+    default: "20"
+  max-inline:
+    description: Most inline comments per run; the rest go to the summary.
+    required: false
+    default: "50"
+  fail-on:
+    description: "`never` (advisory, the default) or `block` (fail the job on a blocking finding)."
+    required: false
+    default: never
+  model:
+    description: Model id. Empty uses the default.
+    required: false
+    default: ""
+  version:
+    description: probative release to run, kept equal to the release this action ships with.
+    required: false
+    default: "0.1.1"
+  install-from:
+    description: >-
+      A pip requirement to install instead of `probative==<version>`, for testing an
+      unreleased commit (for example `git+https://github.com/OWNER/probative@SHA`).
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - uses: astral-sh/setup-uv@v7
+      with:
+        python-version: "3.12"
+    - name: Critique the changed specs
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        ANTHROPIC_API_KEY: ${{ inputs.anthropic-api-key }}
+        PROBATIVE_PATHS: ${{ inputs.paths }}
+        PROBATIVE_MAX_FILES: ${{ inputs.max-files }}
+        PROBATIVE_MAX_MINUTES: ${{ inputs.max-minutes }}
+        PROBATIVE_MAX_INLINE: ${{ inputs.max-inline }}
+        PROBATIVE_FAIL_ON: ${{ inputs.fail-on }}
+        PROBATIVE_MODEL: ${{ inputs.model }}
+        PROBATIVE_VERSION: ${{ inputs.version }}
+        PROBATIVE_INSTALL_FROM: ${{ inputs.install-from }}
+      run: |
+        set -euo pipefail
+        requirement="${PROBATIVE_INSTALL_FROM:-probative==${PROBATIVE_VERSION}}"
+        # an input set to the empty string falls back to its default instead of failing the job
+        args=(--paths "${PROBATIVE_PATHS:-**/*.md,**/*.markdown,**/*.txt,**/*.pdf,**/*.docx,**/*.xlsx}"
+              --max-files "${PROBATIVE_MAX_FILES:-25}"
+              --max-minutes "${PROBATIVE_MAX_MINUTES:-20}"
+              --max-inline "${PROBATIVE_MAX_INLINE:-50}"
+              --fail-on "${PROBATIVE_FAIL_ON:-never}")
+        if [ -n "$PROBATIVE_MODEL" ]; then args+=(--model "$PROBATIVE_MODEL"); fi
+        uvx --from "$requirement" probative github-review "${args[@]}"

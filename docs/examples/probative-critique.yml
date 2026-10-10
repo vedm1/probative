@@ -1,0 +1,35 @@
+# Copy to .github/workflows/probative-critique.yml in the repository that holds your specs.
+# Add the model key as a repository secret named ANTHROPIC_API_KEY.
+#
+# Uses `pull_request`, not `pull_request_target`: a pull request from a fork gets no secrets,
+# so the action says so and posts nothing. Forks are not supported in this version.
+name: Probative critique
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "**/*.pdf"
+      - "**/*.docx"
+      - "**/*.xlsx"
+
+# The least this needs: read the PR's files, write one review and one comment.
+permissions:
+  contents: read
+  pull-requests: write
+
+# A new push replaces the run for the old one instead of paying for both.
+concurrency:
+  group: probative-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  critique:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # Pin to a release tag once one contains this action; `main` moves.
+      - uses: vedm1/probative@main
+        with:
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # fail-on: block   # make a blocking finding fail the job (default: advisory)

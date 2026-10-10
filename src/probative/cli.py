@@ -8,6 +8,7 @@ interface over `probative.critique` / `probative.core` /
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Annotated
 
@@ -25,6 +26,8 @@ from probative.critique.pipeline import (
 )
 from probative.critique.report import ReportIntegrityError
 from probative.critique.sources import DEFAULT_MAX_FILES
+from probative.interfaces.github.entry import run_from_env
+from probative.interfaces.github.runner import DEFAULT_PATHS, ActionOptions
 from probative.llm.factory import make_provider
 from probative.render.html import render_html
 from probative.render.markdown import render_markdown, render_summary
@@ -148,6 +151,41 @@ def critique(
         typer.echo(f"Full report → {target}")
     if report.incomplete:
         raise typer.Exit(EXIT_INCOMPLETE)
+
+
+@app.command(name="github-review")
+def github_review(
+    paths: Annotated[
+        str, typer.Option(help="Comma-separated globs of files to critique.")
+    ] = ",".join(DEFAULT_PATHS),
+    max_files: Annotated[int, typer.Option(min=1, help="Files critiqued per run.")] = 25,
+    max_minutes: Annotated[
+        float, typer.Option(min=0.1, help="Stop starting new files after this long.")
+    ] = 20.0,
+    fail_on: Annotated[str, typer.Option(help="never or block.")] = "never",
+    max_inline: Annotated[int, typer.Option(min=0, help="Inline comments per run.")] = 50,
+    model: Annotated[str | None, typer.Option(help="Model id; default from settings.")] = None,
+) -> None:
+    """Critique the spec files a pull request changes and post the findings (GitHub Actions)."""
+    if fail_on not in ("never", "block"):
+        raise _fail(f"--fail-on takes never or block; got {fail_on!r}")
+    chosen = tuple(part.strip() for part in paths.split(",") if part.strip())
+    if not chosen:
+        raise _fail("--paths needs at least one glob")
+    code = run_from_env(
+        dict(os.environ),
+        ActionOptions(
+            paths=chosen,
+            max_files=max_files,
+            max_minutes=max_minutes,
+            fail_on="block" if fail_on == "block" else "never",
+            max_inline=max_inline,
+        ),
+        provider_factory=_make_provider,
+        echo=typer.echo,
+        model=model,
+    )
+    raise typer.Exit(code)
 
 
 @app.command()
