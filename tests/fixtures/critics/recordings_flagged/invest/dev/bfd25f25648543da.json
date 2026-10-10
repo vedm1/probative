@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_story_f883f18254a6\",\"check_id\":\"valuable\",\"verdict\":\"not_met\",\"quote\":\"As the system, I want to write audit rows to the database.\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2298,
+    "completion_tokens": 278
+  }
+}

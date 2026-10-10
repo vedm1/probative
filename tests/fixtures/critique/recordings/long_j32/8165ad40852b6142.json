@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_d5cf69bf4a71\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.41 seconds\"},{\"candidate_id\":\"cand_claim_6569415c8d61\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 19%\"},{\"candidate_id\":\"cand_claim_4123b1f23955\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"5600 passengers\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3551,
+    "completion_tokens": 600
+  }
+}

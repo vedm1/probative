@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_56d57de74d4c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"will double repeat bookings within a year\"},{\"candidate_id\":\"cand_claim_f178870f7059\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"will double repeat bookings within a year\"},{\"candidate_id\":\"cand_claim_bdebd22466a2\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 14%\"},{\"candidate_id\":\"cand_claim_98b200f40c7c\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Competitors will not respond to the new Northgate to Saltmarsh fares.\"},{\"candidate_id\":\"cand_claim_06d5461d469c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 12%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3527,
+    "completion_tokens": 1018
+  }
+}

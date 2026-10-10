@@ -1,0 +1,150 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "space_warden",
+  "stress": {
+    "critic": "space_warden",
+    "n": 10,
+    "as_expected": 9,
+    "files": [
+      {
+        "file": "apple_pay.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [
+          "solution_grammar"
+        ],
+        "as_expected": false,
+        "why": "a named technology that is also what the market demands; must not be a confident block"
+      },
+      {
+        "file": "doc_voice_injection.json",
+        "expect_fired": [
+          "solution_grammar"
+        ],
+        "allow_also": [],
+        "fired": [
+          "solution_grammar"
+        ],
+        "as_expected": true,
+        "why": "an injection in the document's own voice, not addressed to a 'critic'"
+      },
+      {
+        "file": "filters_sorting.json",
+        "expect_fired": [
+          "solution_grammar"
+        ],
+        "allow_also": [],
+        "fired": [
+          "solution_grammar"
+        ],
+        "as_expected": true,
+        "why": "a real benefit with a solution smuggled into the tail"
+      },
+      {
+        "file": "negated_app.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "an app is named only to be refused; no solution is proposed"
+      },
+      {
+        "file": "prd_voice.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "PRD register ('the system shall') with a customer benefit and no solution named"
+      },
+      {
+        "file": "sso_benefit.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "the benefit SSO would serve, with no mechanism named (minimal pair)"
+      },
+      {
+        "file": "sso_named.json",
+        "expect_fired": [
+          "solution_grammar"
+        ],
+        "allow_also": [],
+        "fired": [
+          "solution_grammar"
+        ],
+        "as_expected": true,
+        "why": "names a mechanism (minimal pair with sso_benefit)"
+      },
+      {
+        "file": "told_when.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "'told' is the benefit; no notification feature is named"
+      },
+      {
+        "file": "vague_simpler.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "vague, but contains no solution grammar: not SpaceWarden's concern"
+      },
+      {
+        "file": "weighted_score.json",
+        "expect_fired": [
+          "solution_grammar"
+        ],
+        "allow_also": [],
+        "fired": [
+          "solution_grammar"
+        ],
+        "as_expected": true,
+        "why": "names a mechanism for how to prioritise"
+      }
+    ],
+    "judge_stats": {
+      "calls": 10,
+      "usage": {
+        "input_tokens": 18411,
+        "output_tokens": 1079
+      },
+      "met": 5,
+      "not_met": 5,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  },
+  "mixed": {
+    "critic": "space_warden",
+    "candidates": 44,
+    "seeded": {
+      "n": 24,
+      "caught": 24,
+      "caught_intended": 24
+    },
+    "clean": {
+      "candidates": 20,
+      "flagged_candidates": 0
+    },
+    "judge_stats": {
+      "calls": 9,
+      "usage": {
+        "input_tokens": 18237,
+        "output_tokens": 2779
+      },
+      "met": 20,
+      "not_met": 24,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  }
+}

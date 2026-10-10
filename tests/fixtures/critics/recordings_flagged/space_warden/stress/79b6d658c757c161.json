@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_need_136f089f1b01\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a weekly emailed PDF\"},{\"candidate_id\":\"cand_need_43e0a714d28a\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a leaderboard for refunds\"},{\"candidate_id\":\"cand_need_2034f1548f09\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"an inventory management system\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2034,
+    "completion_tokens": 298
+  }
+}

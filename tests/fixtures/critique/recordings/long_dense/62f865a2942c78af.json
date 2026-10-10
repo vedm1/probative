@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_346247e0a229\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_346247e0a229\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 56%\"},{\"candidate_id\":\"cand_claim_9d9f2d7ad434\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_9d9f2d7ad434\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 52%\"},{\"candidate_id\":\"cand_claim_cae6ca2528f0\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Rival operators fill 7% more seats per sailing than we do\"},{\"candidate_id\":\"cand_claim_ae4cbf1ebc76\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Rival operators fill 16% more seats per sailing than we do\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3901,
+    "completion_tokens": 2137
+  }
+}

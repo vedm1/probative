@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_dependency_ff4fdc503004\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"reliance on the card network\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2637,
+    "completion_tokens": 176
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_dependency_9b9d36877d8c\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"depends on the Fraud team shipping the new risk-scoring API\"},{\"candidate_id\":\"cand_dependency_eb34c309c1e1\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"blocked until Acme Bank certifies our tokenisation integration\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2876,
+    "completion_tokens": 535
+  }
+}

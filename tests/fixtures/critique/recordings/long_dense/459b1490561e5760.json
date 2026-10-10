@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\": [{\"quote\": \"Competitors will not respond to the new Old Quay to Heron Point fares.\"}, {\"quote\": \"Competitors will not respond to the new Northgate to Saltmarsh fares.\"}, {\"quote\": \"Once live, a fare calculator widget will cut support calls by 37%.\"}, {\"quote\": \"Launching a live-map screen will double repeat bookings within a year.\"}, {\"quote\": \"Launching a seat picker will double repeat bookings within a year.\"}, {\"quote\": \"Once live, a QR ticket wallet will cut support calls by 22%.\"}, {\"quote\": \"Launching a QR ticket wallet will double repeat bookings within a year.\"}, {\"quote\": \"Launching a fare calculator widget will double repeat bookings within a year.\"}, {\"quote\": \"Once live, a seat picker will cut support calls by 67%.\"}, {\"quote\": \"Once live, a live-map screen will cut support calls by 48%.\"}, {\"quote\": \"Once live, a seat picker will cut support calls by 19%.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4172,
+    "completion_tokens": 1185
+  }
+}

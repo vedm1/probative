@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\":[{\"quote\":\"Once live, a seat picker will cut support calls by 52%.\"},{\"quote\":\"Once live, a live-map screen will cut support calls by 47%.\"},{\"quote\":\"Once live, a seat picker will cut support calls by 64%.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3256,
+    "completion_tokens": 94
+  }
+}

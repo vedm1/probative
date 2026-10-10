@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_c4e1d2a14587\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"22% more seats per sailing\"},{\"candidate_id\":\"cand_claim_ad10832e4875\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 23% after the timetable change\"},{\"candidate_id\":\"cand_claim_f04983d68bf4\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 51%\"},{\"candidate_id\":\"cand_claim_4418e3c6bf12\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 28%\"},{\"candidate_id\":\"cand_claim_6a1fcc5de4da\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.34 seconds\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3541,
+    "completion_tokens": 1045
+  }
+}

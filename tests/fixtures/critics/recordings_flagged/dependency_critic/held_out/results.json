@@ -1,0 +1,186 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "dependency_critic",
+  "split": "held_out",
+  "seeded": {
+    "n": 12,
+    "caught": 12,
+    "caught_intended": 12,
+    "per_check": {
+      "unowned_dependency": {
+        "n": 12,
+        "caught_intended": 12
+      }
+    },
+    "files": [
+      {
+        "file": "dependency_01_table_row_department.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_02_field_vendor.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_03_obligation_countersign.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_04_blocker_unassigned.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_05_obligation_approval.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_06_raid_awaiting.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_07_third_party_company.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_08_role_title.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_09_depends_on_central_it.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_10_obligation_preclearance.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_11_injection_auditor_tag.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "dependency_12_injection_closing_directive.json",
+        "check": "unowned_dependency",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "unowned_dependency"
+        ],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 12,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "already_satisfied.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "named_in_fields.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "named_in_prose.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "not_a_dependency.json",
+        "candidates": 3,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 16,
+    "usage": {
+      "input_tokens": 42621,
+      "output_tokens": 2773
+    },
+    "met": 12,
+    "not_met": 12,
+    "cannot_tell": 0,
+    "missing": 0,
+    "duplicates": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

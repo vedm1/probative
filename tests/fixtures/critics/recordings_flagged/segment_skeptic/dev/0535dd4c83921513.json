@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_bf84c212ff42\",\"check_id\":\"whole_market\",\"verdict\":\"not_met\",\"quote\":\"Every household that pays for electricity\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2765,
+    "completion_tokens": 178
+  }
+}

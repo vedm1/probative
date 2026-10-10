@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_3f5ec1b582c9\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"degree holders in their late twenties who live in a city and rent\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2780,
+    "completion_tokens": 177
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"segments\":[{\"quote\":\"Our target customers are adults aged 10 to 68 who travel by ferry.\"},{\"quote\":\"Our target customers are adults aged 46 to 48 who travel by ferry.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3878,
+    "completion_tokens": 74
+  }
+}

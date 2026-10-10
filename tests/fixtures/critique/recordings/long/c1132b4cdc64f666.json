@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\":[]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3851,
+    "completion_tokens": 250
+  }
+}

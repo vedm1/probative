@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_fb2600231ac0\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_fb2600231ac0\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 31%\"},{\"candidate_id\":\"cand_claim_e5d030c15991\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_e5d030c15991\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 23%\"},{\"candidate_id\":\"cand_claim_203e70adf668\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_203e70adf668\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 29%\"},{\"candidate_id\":\"cand_claim_2ed3ec4be7fa\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"fill 8% more seats per sailing than we do\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3899,
+    "completion_tokens": 2510
+  }
+}

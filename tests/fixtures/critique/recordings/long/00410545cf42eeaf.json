@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_7fefcb82eed7\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_14677c4bc09b\",\"story_id\":null,\"quote\":null}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3070,
+    "completion_tokens": 121
+  }
+}

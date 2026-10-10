@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_ba62582870bb\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"adults aged 26 to 47 who travel by ferry\"}],\"reviewed\":2}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2827,
+    "completion_tokens": 394
+  }
+}

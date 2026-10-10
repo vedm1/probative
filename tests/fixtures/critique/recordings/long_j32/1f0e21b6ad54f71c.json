@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_16f875fe4696\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 43% after the timetable change\"},{\"candidate_id\":\"cand_claim_915b8a974e7b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.62 seconds\"},{\"candidate_id\":\"cand_claim_d3d7cdc91313\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"fill 50% more seats per sailing\"},{\"candidate_id\":\"cand_claim_ce0852e7a865\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 17% after the timetable change\"},{\"candidate_id\":\"cand_claim_05ce326abbda\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"25% of island residents miss the last sailing\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3558,
+    "completion_tokens": 779
+  }
+}

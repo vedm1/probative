@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"claims\":[{\"quote\":\"67% of freight clerks miss the last sailing on Pier 4 to Gull Island.\"},{\"quote\":\"41% of day visitors miss the last sailing on Pier 4 to Gull Island.\"},{\"quote\":\"Queue time at the Old Quay to Heron Point kiosk rose 24% after the timetable change.\"},{\"quote\":\"11% of commuters miss the last sailing on Pier 4 to Gull Island.\"},{\"quote\":\"Refund requests are down 48%, so the new policy is working.\"},{\"quote\":\"52% of school parties miss the last sailing on Northgate to Saltmarsh.\"},{\"quote\":\"The Old Quay to Heron Point service carried 5800 passengers last month.\"},{\"quote\":\"Queue time at the Northgate to Saltmarsh kiosk rose 20% after the timetable change.\"},{\"quote\":\"The segment we are building for is island residents who cross more than twice a week.\"},{\"quote\":\"Our target customers are adults aged 36 to 64 who travel by ferry.\"}],\"needs\":[{\"quote\":\"School parties need to board the Old Quay to Heron Point ferry without queueing at the kiosk.\"},{\"quote\":\"School parties need a QR ticket wallet.\"},{\"quote\":\"School parties need a QR ticket wallet.\"},{\"quote\":\"Island residents need a live-map screen.\"},{\"quote\":\"School parties want to know whether the Pier 4 to Gull Island sailing is delayed before leaving home.\"},{\"quote\":\"School parties need to change a ticket without calling anyone.\"},{\"quote\":\"School parties want a refund within a day of cancelling.\"},{\"quote\":\"Freight clerks want a refund within a day of cancelling.\"},{\"quote\":\"Day visitors want a refund within a day of cancelling.\"}],\"stories\":[{\"quote\":\"As a day visitors traveller, I want to buy a return ticket for Northgate to Saltmarsh so that I can plan one trip.\"}],\"dependencies\":[]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4197,
+    "completion_tokens": 1308
+  }
+}

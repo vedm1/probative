@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_c657dad9c1e9\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 52%\"},{\"candidate_id\":\"cand_claim_c657dad9c1e9\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_b6cdb47d6600\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 4900 passengers\"},{\"candidate_id\":\"cand_claim_74eda005fdc3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"63% more seats per sailing\"},{\"candidate_id\":\"cand_claim_852803af15d3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 23%\"},{\"candidate_id\":\"cand_claim_852803af15d3\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_a84ec4649e63\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 36%\"},{\"candidate_id\":\"cand_claim_a84ec4649e63\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3516,
+    "completion_tokens": 2206
+  }
+}

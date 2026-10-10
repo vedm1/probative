@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_933ccf2c1111\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"accountants\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2762,
+    "completion_tokens": 140
+  }
+}

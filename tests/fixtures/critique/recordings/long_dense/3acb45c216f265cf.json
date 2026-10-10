@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_72e06f12e79e\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"adults aged 36 to 57\"},{\"candidate_id\":\"cand_segment_5de99bcefaf2\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"adults aged 7 to 50\"},{\"candidate_id\":\"cand_segment_938cca892298\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"adults aged 20 to 70\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2977,
+    "completion_tokens": 1058
+  }
+}

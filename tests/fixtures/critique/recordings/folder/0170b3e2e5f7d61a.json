@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"claims\":[{\"quote\":\"Sprocket | Turns the main gear assembly. | Generally available\"},{\"quote\":\"Widget | Placeholder for the thing itself. | Alpha\"},{\"quote\":\"Alpha | Generally available\"},{\"quote\":\"Audience - Internal teams / Stability - Experimentation in progress / Support - None | Officially launched and used by clients.\"}],\"needs\":[],\"stories\":[],\"dependencies\":[]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1381,
+    "completion_tokens": 587
+  }
+}

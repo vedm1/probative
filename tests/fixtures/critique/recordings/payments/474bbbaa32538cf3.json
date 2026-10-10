@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"segments\":[{\"quote\":\"Finance analysts struggle to reconcile settlements against bank statements.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1382,
+    "completion_tokens": 798
+  }
+}

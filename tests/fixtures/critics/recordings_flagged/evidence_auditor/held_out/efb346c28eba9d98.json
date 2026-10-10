@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_5b570ed9a1cd\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Parents rarely check the school portal during the week\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3322,
+    "completion_tokens": 160
+  }
+}

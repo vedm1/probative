@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_5417341ffb75\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Competitors will not respond to the new Old Quay to Heron Point fares.\"},{\"candidate_id\":\"cand_claim_70ece3dd29cf\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 28%\"},{\"candidate_id\":\"cand_claim_e1bc587d7b31\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 49%\"},{\"candidate_id\":\"cand_claim_8e41f754394d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"double repeat bookings within a year\"},{\"candidate_id\":\"cand_claim_ad9ecf25e484\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 23%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3527,
+    "completion_tokens": 785
+  }
+}

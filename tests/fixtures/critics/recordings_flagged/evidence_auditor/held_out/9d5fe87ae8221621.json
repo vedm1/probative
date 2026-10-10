@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_164db16169aa\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Most clinics still book appointments by phone\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3335,
+    "completion_tokens": 259
+  }
+}

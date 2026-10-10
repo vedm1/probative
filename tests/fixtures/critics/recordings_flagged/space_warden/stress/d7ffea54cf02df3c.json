@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_need_4b7cbc2f6727\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a wishlist\"},{\"candidate_id\":\"cand_need_c42dcdd3343d\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a reconciliation module\"},{\"candidate_id\":\"cand_need_3240ba12210a\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"push notifications\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2013,
+    "completion_tokens": 341
+  }
+}

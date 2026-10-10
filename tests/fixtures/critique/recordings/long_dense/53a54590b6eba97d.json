@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_dbcd3dafd96b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 59% after the timetable change\"},{\"candidate_id\":\"cand_claim_69c757d12a1e\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.40 seconds\"},{\"candidate_id\":\"cand_claim_a7f9a660f230\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"56% of commuters miss the last sailing\"},{\"candidate_id\":\"cand_claim_d70659459505\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"61% of freight clerks miss the last sailing\"},{\"candidate_id\":\"cand_claim_282667cbb93f\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"fill 31% more seats per sailing than we do\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3554,
+    "completion_tokens": 622
+  }
+}

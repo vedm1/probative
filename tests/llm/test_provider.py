@@ -104,3 +104,38 @@ def test_litellm_provider_parses_recorded_response() -> None:
     # our model, not left it to prompt text.
     assert captured_kwargs["response_format"] is Greeting
     assert captured_kwargs["messages"] == [{"role": "user", "content": "say hello"}]
+
+
+def _stub_response() -> Any:
+    return _as_namespace(json.loads(FIXTURE.read_text(encoding="utf-8")))
+
+
+def test_litellm_provider_sends_no_retry_kwargs_by_default() -> None:
+    seen: dict[str, Any] = {}
+
+    def completion(**kwargs: Any) -> Any:
+        seen.update(kwargs)
+        return _stub_response()
+
+    LiteLLMProvider(completion_fn=completion).complete_structured(
+        [Message(role="user", content="hi")], output_model=Greeting, model="m"
+    )
+    assert "num_retries" not in seen and "timeout" not in seen
+
+
+def test_litellm_provider_passes_num_retries_and_timeout_when_set() -> None:
+    seen: dict[str, Any] = {}
+
+    def completion(**kwargs: Any) -> Any:
+        seen.update(kwargs)
+        return _stub_response()
+
+    LiteLLMProvider(completion_fn=completion, num_retries=3, timeout=90.0).complete_structured(
+        [Message(role="user", content="hi")], output_model=Greeting, model="m"
+    )
+    assert seen["num_retries"] == 3 and seen["timeout"] == 90.0
+
+
+def test_litellm_provider_rejects_a_negative_retry_count() -> None:
+    with pytest.raises(ValueError, match="num_retries"):
+        LiteLLMProvider(num_retries=-1)

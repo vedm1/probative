@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_db039be5e510\",\"check_id\":\"unstated_denominator\",\"verdict\":\"not_met\",\"quote\":\"5800 passengers last month\"},{\"candidate_id\":\"cand_claim_f03546c916f2\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"rose 20% after the timetable change\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3922,
+    "completion_tokens": 1792
+  }
+}

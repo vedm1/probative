@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_df0d5d8381f5\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"58% of online shoppers abandon at the account-creation step\"},{\"candidate_id\":\"cand_claim_df0d5d8381f5\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"guest checkout drives conversion\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3339,
+    "completion_tokens": 1829
+  }
+}

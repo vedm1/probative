@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_6901bef3d25d\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"credit unions holding under two billion euros in assets\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2774,
+    "completion_tokens": 148
+  }
+}

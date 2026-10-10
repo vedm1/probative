@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\": [{\"quote\": \"Launching a fare calculator widget will double repeat bookings within a year.\"}, {\"quote\": \"Launching a live-map screen will double repeat bookings within a year.\"}, {\"quote\": \"Once live, a fare calculator widget will cut support calls by 14%.\"}, {\"quote\": \"Competitors will not respond to the new Northgate to Saltmarsh fares.\"}, {\"quote\": \"Once live, a QR ticket wallet will cut support calls by 12%.\"}, {\"quote\": \"Competitors will not respond to the new Pier 4 to Gull Island fares.\"}, {\"quote\": \"Once live, a fare calculator widget will cut support calls by 43%.\"}, {\"quote\": \"Once live, a seat picker will cut support calls by 36%.\"}, {\"quote\": \"Once live, a live-map screen will cut support calls by 22%.\"}, {\"quote\": \"Once live, a fare calculator widget will cut support calls by 16%.\"}, {\"quote\": \"Competitors will not respond to the new Old Quay to Heron Point fares.\"}, {\"quote\": \"Once live, a fare calculator widget will cut support calls by 28%.\"}, {\"quote\": \"Once live, a QR ticket wallet will cut support calls by 49%.\"}, {\"quote\": \"Launching a seat picker will double repeat bookings within a year.\"}, {\"quote\": \"Once live, a live-map screen will cut support calls by 23%.\"}, {\"quote\": \"Once live, a fare calculator widget will cut support calls by 51%.\"}, {\"quote\": \"Launching a QR ticket wallet will double repeat bookings within a year.\"}, {\"quote\": \"Once live, a live-map screen will cut support calls by 53%.\"}, {\"quote\": \"Once live, a QR ticket wallet will cut support calls by 34%.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4236,
+    "completion_tokens": 1404
+  }
+}

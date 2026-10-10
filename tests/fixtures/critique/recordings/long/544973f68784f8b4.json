@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_13c5e8cde2d3\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"fill 26% more seats per sailing than we do\"},{\"candidate_id\":\"cand_claim_61d5185a8538\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"fill 32% more seats per sailing than we do\"}],\"reviewed\":2}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3756,
+    "completion_tokens": 702
+  }
+}

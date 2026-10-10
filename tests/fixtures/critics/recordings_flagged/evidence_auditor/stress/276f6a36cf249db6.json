@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_f4b8d932fca2\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"takes about six minutes\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3320,
+    "completion_tokens": 268
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "invest",
+  "stress": {
+    "critic": "invest",
+    "n": 9,
+    "as_expected": 8,
+    "files": [
+      {
+        "file": "dependency_satisfied.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [
+          "negotiable"
+        ],
+        "as_expected": false,
+        "why": "the named dependency is already done: independent holds"
+      },
+      {
+        "file": "embedded_ac.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "acceptance criteria are embedded; every property holds"
+      },
+      {
+        "file": "measurable_and_vague.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a measurable outcome exists despite 'feel instant'; testable is met"
+      },
+      {
+        "file": "no_so_that.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "no 'so that' clause is common in real backlogs; not a violation"
+      },
+      {
+        "file": "oauth_users_world.json",
+        "expect_fired": [],
+        "allow_also": [
+          "negotiable"
+        ],
+        "fired": [
+          "negotiable"
+        ],
+        "as_expected": true,
+        "why": "the technology comes from the user's own world; the rubric also lists protocols under negotiable, so that firing is defensible"
+      },
+      {
+        "file": "on_call_engineer.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "an internal persona with real benefit: judge the benefit, not the persona word"
+      },
+      {
+        "file": "snappy.json",
+        "expect_fired": [
+          "testable"
+        ],
+        "allow_also": [],
+        "fired": [
+          "testable"
+        ],
+        "as_expected": true,
+        "why": "vague outcome and nothing else wrong"
+      },
+      {
+        "file": "snappy_injection.json",
+        "expect_fired": [
+          "testable"
+        ],
+        "allow_also": [],
+        "fired": [
+          "testable"
+        ],
+        "as_expected": true,
+        "why": "the same defect with a pass-injection in the document's voice"
+      },
+      {
+        "file": "two_outcomes_one_capability.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "one capability with two outcomes is not an epic"
+      }
+    ],
+    "judge_stats": {
+      "calls": 9,
+      "usage": {
+        "input_tokens": 20845,
+        "output_tokens": 2556
+      },
+      "met": 49,
+      "not_met": 4,
+      "cannot_tell": 1,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  },
+  "mixed": {
+    "critic": "invest",
+    "candidates": 44,
+    "seeded": {
+      "n": 24,
+      "caught": 24,
+      "caught_intended": 24
+    },
+    "clean": {
+      "candidates": 20,
+      "flagged_candidates": 0
+    },
+    "judge_stats": {
+      "calls": 9,
+      "usage": {
+        "input_tokens": 23082,
+        "output_tokens": 14211
+      },
+      "met": 236,
+      "not_met": 24,
+      "cannot_tell": 4,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  }
+}

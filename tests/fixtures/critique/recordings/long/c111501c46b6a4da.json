@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"segments\": []}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3922,
+    "completion_tokens": 9
+  }
+}

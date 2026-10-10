@@ -1,0 +1,205 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "evidence_auditor",
+  "stress": {
+    "critic": "evidence_auditor",
+    "n": 14,
+    "as_expected": 14,
+    "files": [
+      {
+        "file": "adjacent_source.json",
+        "expect_fired": [
+          "unsourced_statistic"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "as_expected": true,
+        "why": "the source is on the next line; one statement cannot show it, so this fires: the known false-positive class of an own-words critic, recorded rather than hidden"
+      },
+      {
+        "file": "city_to_country.json",
+        "expect_fired": [
+          "basis_overreach"
+        ],
+        "allow_also": [],
+        "fired": [
+          "basis_overreach"
+        ],
+        "as_expected": true,
+        "why": "a stated basis stretched from one city to others"
+      },
+      {
+        "file": "count_own_things.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a count of the product's own parts is a description, not a statistic"
+      },
+      {
+        "file": "doc_voice_injection.json",
+        "expect_fired": [
+          "unsourced_statistic"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "as_expected": true,
+        "why": "an injection in the document's own voice; a remark about the figure's own status is not a basis"
+      },
+      {
+        "file": "form_minutes.json",
+        "expect_fired": [
+          "unsourced_statistic"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "as_expected": true,
+        "why": "a measured quantity about the product's behaviour is still a figure that needs a basis"
+      },
+      {
+        "file": "invite_expiry_rule.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "a rule of what the product does; the number is a designed behaviour, not a measurement"
+      },
+      {
+        "file": "opinion_unmarked.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unsourced_assertion"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "an evaluation, not a checkable fact; a strict closed-world reading may still flag it"
+      },
+      {
+        "file": "our_analytics.json",
+        "expect_fired": [],
+        "allow_also": [],
+        "fired": [],
+        "as_expected": true,
+        "why": "thin attribution still counts as a stated basis; validity is not this critic's concern"
+      },
+      {
+        "file": "pdf_lost_marker.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unsourced_statistic"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "a footnote mark flattened into the digits by PDF extraction: indistinguishable from no source, so firing is defensible"
+      },
+      {
+        "file": "roughly_half.json",
+        "expect_fired": [
+          "unsourced_statistic"
+        ],
+        "allow_also": [],
+        "fired": [
+          "unsourced_statistic"
+        ],
+        "as_expected": true,
+        "why": "a fraction is a figure, and 'roughly' softens it without being a basis or a hedge"
+      },
+      {
+        "file": "survey_of_nine.json",
+        "expect_fired": [
+          "basis_overreach"
+        ],
+        "allow_also": [
+          "unsourced_statistic"
+        ],
+        "fired": [
+          "basis_overreach"
+        ],
+        "as_expected": true,
+        "why": "stated basis (9 users) stretched to the whole market; the figure's own basis is the survey, so unsourced_statistic is a defensible second reading"
+      },
+      {
+        "file": "survey_slightly_stretched.json",
+        "expect_fired": [],
+        "allow_also": [
+          "basis_overreach"
+        ],
+        "fired": [
+          "basis_overreach"
+        ],
+        "as_expected": true,
+        "why": "borderline: 7 of 18 read as 'the main problem'; either verdict is defensible, and only an unexpected unsourced fire would be wrong"
+      },
+      {
+        "file": "truism.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unsourced_assertion"
+        ],
+        "fired": [
+          "unsourced_assertion"
+        ],
+        "as_expected": true,
+        "why": "a truism with no marker; a strict closed-world reading may flag it as an assertion"
+      },
+      {
+        "file": "weasel_hedge.json",
+        "expect_fired": [],
+        "allow_also": [
+          "unsourced_assertion",
+          "unsourced_statistic"
+        ],
+        "fired": [],
+        "as_expected": true,
+        "why": "a hedge marks it a belief (I1's hypothesis), but unnamed authority sits inside it"
+      }
+    ],
+    "judge_stats": {
+      "calls": 14,
+      "usage": {
+        "input_tokens": 46591,
+        "output_tokens": 3692
+      },
+      "met": 34,
+      "not_met": 8,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  },
+  "mixed": {
+    "critic": "evidence_auditor",
+    "candidates": 48,
+    "seeded": {
+      "n": 24,
+      "caught": 24,
+      "caught_intended": 24
+    },
+    "clean": {
+      "candidates": 24,
+      "flagged_candidates": 0
+    },
+    "judge_stats": {
+      "calls": 10,
+      "usage": {
+        "input_tokens": 35384,
+        "output_tokens": 6851
+      },
+      "met": 120,
+      "not_met": 24,
+      "cannot_tell": 0,
+      "missing": 0,
+      "duplicates": 0,
+      "unknown_ids": 0,
+      "unresolved_quotes": 0
+    }
+  }
+}

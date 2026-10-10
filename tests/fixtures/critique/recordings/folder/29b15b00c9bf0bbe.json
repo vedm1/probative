@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_02e0ba0af729\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Our primary customers are adults aged 28 to 45 with a university degree who live in large cities.\"},{\"candidate_id\":\"cand_claim_52e5b535b6f8\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Our second market is freelance photographers who invoice ten or more clients a month and wait more than 45 days to be paid.\"},{\"candidate_id\":\"cand_claim_7d709a06dde1\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"About four million people in the country work for themselves.\"},{\"candidate_id\":\"cand_claim_0e5216a9c4d7\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Maria is a 34-year-old photographer in Leeds who sends twelve invoices a month and tracks them in a spreadsheet.\"}],\"reviewed\":4}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3513,
+    "completion_tokens": 2482
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_need_ad46c48f990f\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"routed by a nightly batch job\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1844,
+    "completion_tokens": 115
+  }
+}

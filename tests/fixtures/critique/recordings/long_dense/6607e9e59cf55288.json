@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\":[{\"quote\":\"Once live, a live-map screen will cut support calls by 41%.\"},{\"quote\":\"Competitors will not respond to the new Northgate to Saltmarsh fares.\"},{\"quote\":\"Competitors will not respond to the new Old Quay to Heron Point fares.\"},{\"quote\":\"Once live, a seat picker will cut support calls by 13%.\"},{\"quote\":\"Once live, a QR ticket wallet will cut support calls by 33%.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4465,
+    "completion_tokens": 473
+  }
+}

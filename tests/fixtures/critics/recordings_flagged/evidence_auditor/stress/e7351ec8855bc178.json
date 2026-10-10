@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_76c76ccd01af\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so search is the main problem\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3345,
+    "completion_tokens": 453
+  }
+}

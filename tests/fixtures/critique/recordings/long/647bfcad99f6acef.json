@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_d745927f11bf\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 33%\"},{\"candidate_id\":\"cand_claim_354cb1864421\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"40% of day visitors miss the last sailing\"}],\"reviewed\":2}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3376,
+    "completion_tokens": 704
+  }
+}

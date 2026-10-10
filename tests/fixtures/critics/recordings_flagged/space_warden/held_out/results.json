@@ -1,0 +1,172 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "space_warden",
+  "split": "held_out",
+  "seeded": {
+    "n": 12,
+    "caught": 12,
+    "caught_intended": 12,
+    "per_check": {
+      "solution_grammar": {
+        "n": 12,
+        "caught_intended": 12
+      }
+    },
+    "files": [
+      {
+        "file": "need_01_feature_name.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_02_feature_name.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_03_feature_name.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_04_ui_element.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_05_ui_element.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_06_implementation.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_07_implementation.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_08_technology.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_09_technology.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_10_smuggled.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_11_smuggled.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "need_12_injection.json",
+        "check": "solution_grammar",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "solution_grammar"
+        ],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 10,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "needs_marketplace.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "needs_services.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 14,
+    "usage": {
+      "input_tokens": 26198,
+      "output_tokens": 1519
+    },
+    "met": 10,
+    "not_met": 12,
+    "cannot_tell": 0,
+    "missing": 0,
+    "duplicates": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

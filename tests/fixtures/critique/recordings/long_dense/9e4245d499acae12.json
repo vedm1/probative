@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"constraints\": []}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4164,
+    "completion_tokens": 10
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_9d9f2d7ad434\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 52%\"},{\"candidate_id\":\"cand_claim_cae6ca2528f0\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"fill 7% more seats\"},{\"candidate_id\":\"cand_claim_ae4cbf1ebc76\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"fill 16% more seats\"},{\"candidate_id\":\"cand_claim_fb2600231ac0\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 31%\"},{\"candidate_id\":\"cand_claim_ff2a1633241b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"46% of school parties miss the last sailing\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3526,
+    "completion_tokens": 711
+  }
+}

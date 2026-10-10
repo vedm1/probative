@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_5c23b17f9a32\",\"story_id\":\"cand_story_25f0316e6c78\",\"quote\":\"I want to save my card\"},{\"constraint_id\":\"cand_constraint_c19502f3112c\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_a44f50c17a7a\",\"story_id\":null,\"quote\":null}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2066,
+    "completion_tokens": 526
+  }
+}

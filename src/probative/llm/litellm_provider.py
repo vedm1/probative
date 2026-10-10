@@ -28,7 +28,21 @@ CompletionFn = Callable[..., Any]
 class LiteLLMProvider:
     """`Provider` backed by LiteLLM's multi-vendor `completion` call."""
 
-    def __init__(self, *, completion_fn: CompletionFn | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        completion_fn: CompletionFn | None = None,
+        num_retries: int | None = None,
+        timeout: float | None = None,
+    ) -> None:
+        # Both are forwarded to `completion` only when set, so a provider built
+        # without them sends exactly the request it always did (recordings are
+        # keyed on messages, and are unaffected either way). `max_tokens` and
+        # `temperature` are still not set: OI19.
+        if num_retries is not None and num_retries < 0:
+            raise ValueError(f"num_retries must be at least 0, got {num_retries}")
+        self._num_retries = num_retries
+        self._timeout = timeout
         # None in production: resolved lazily to the real `litellm.completion`
         # on first use. A test passes its own fixture-backed callable.
         self._completion_fn = completion_fn
@@ -51,10 +65,16 @@ class LiteLLMProvider:
         completion = self._completion()
         raw_messages = [{"role": message.role, "content": message.content} for message in messages]
 
+        extra: dict[str, Any] = {}
+        if self._num_retries is not None:
+            extra["num_retries"] = self._num_retries
+        if self._timeout is not None:
+            extra["timeout"] = self._timeout
         response = completion(
             model=model,
             messages=raw_messages,
             response_format=output_model,
+            **extra,
         )
 
         content = response.choices[0].message.content

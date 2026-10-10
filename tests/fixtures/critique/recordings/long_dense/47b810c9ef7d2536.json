@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"segments\":[{\"quote\":\"The segment we are building for is island residents who cross more than twice a week.\"},{\"quote\":\"The segment we are building for is freight clerks who cross more than twice a week.\"},{\"quote\":\"The segment we are building for is commuters who cross more than twice a week.\"},{\"quote\":\"Our target customers are adults aged 45 to 62 who travel by ferry.\"},{\"quote\":\"Our target customers are adults aged 34 to 60 who travel by ferry.\"},{\"quote\":\"Our target customers are adults aged 53 to 52 who travel by ferry.\"},{\"quote\":\"The segment we are building for is day visitors who cross more than twice a week.\"},{\"quote\":\"Our target customers are adults aged 64 to 65 who travel by ferry.\"},{\"quote\":\"Our target customers are adults aged 25 to 46 who travel by ferry.\"},{\"quote\":\"The segment we are building for is island residents who cross more than twice a week.\"},{\"quote\":\"Our target customers are adults aged 13 to 60 who travel by ferry.\"},{\"quote\":\"Our target customers are adults aged 38 to 70 who travel by ferry.\"},{\"quote\":\"The segment we are building for is day visitors who cross more than twice a week.\"},{\"quote\":\"Our target customers are adults aged 36 to 57 who travel by ferry.\"},{\"quote\":\"Our target customers are adults aged 7 to 50 who travel by ferry.\"},{\"quote\":\"Our target customers are adults aged 20 to 70 who travel by ferry.\"},{\"quote\":\"The segment we are building for is commuters who cross more than twice a week.\"},{\"quote\":\"Our target customers are adults aged 35 to 55 who travel by ferry.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4145,
+    "completion_tokens": 1577
+  }
+}

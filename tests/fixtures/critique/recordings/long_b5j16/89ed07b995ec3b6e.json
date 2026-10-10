@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_dfc16c0be420\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"46% of school parties miss the last sailing\"},{\"candidate_id\":\"cand_claim_836537bfc40f\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 10%\"},{\"candidate_id\":\"cand_claim_836537bfc40f\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_13c5e8cde2d3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"26% more seats per sailing\"},{\"candidate_id\":\"cand_claim_61d5185a8538\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"32% more seats per sailing\"},{\"candidate_id\":\"cand_claim_03ebeeee2225\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.49 seconds\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3533,
+    "completion_tokens": 1349
+  }
+}

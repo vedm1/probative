@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_6b7418185753\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"adults aged 8 to 47 who travel by ferry\"},{\"candidate_id\":\"cand_segment_8194c7bf629c\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"adults aged 62 to 67 who travel by ferry\"},{\"candidate_id\":\"cand_segment_5176be092536\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"adults aged 17 to 65 who travel by ferry\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2977,
+    "completion_tokens": 1102
+  }
+}

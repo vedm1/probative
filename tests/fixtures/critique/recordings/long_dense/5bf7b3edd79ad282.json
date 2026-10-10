@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\":[{\"quote\":\"Competitors will not respond to the new Northgate to Saltmarsh fares.\"},{\"quote\":\"Launching a live-map screen will double repeat bookings within a year.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4410,
+    "completion_tokens": 299
+  }
+}

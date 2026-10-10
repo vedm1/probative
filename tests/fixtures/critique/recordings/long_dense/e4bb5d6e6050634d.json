@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_e5d030c15991\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 23%\"},{\"candidate_id\":\"cand_claim_2ed3ec4be7fa\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"8% more seats per sailing\"},{\"candidate_id\":\"cand_claim_203e70adf668\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 29%\"},{\"candidate_id\":\"cand_claim_225357bb6572\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"68% of school parties\"},{\"candidate_id\":\"cand_claim_6030e7197e60\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"44% more seats per sailing\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3517,
+    "completion_tokens": 1503
+  }
+}

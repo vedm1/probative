@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_46e28bb87095\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"On-time deliveries have improved: 88% in spring, 94% in autumn.\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3711,
+    "completion_tokens": 614
+  }
+}

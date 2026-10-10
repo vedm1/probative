@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_forecast_873574e796fd\",\"check_id\":\"unstated_precondition\",\"verdict\":\"not_met\",\"quote\":\"Launching a QR ticket wallet will double repeat bookings within a year.\"},{\"candidate_id\":\"cand_claim_8b9a7ee588e5\",\"check_id\":\"unstated_precondition\",\"verdict\":\"not_met\",\"quote\":\"Launching a fare calculator widget will double repeat bookings within a year.\"},{\"candidate_id\":\"cand_forecast_8b9a7ee588e5\",\"check_id\":\"unstated_precondition\",\"verdict\":\"not_met\",\"quote\":\"Launching a fare calculator widget will double repeat bookings within a year.\"},{\"candidate_id\":\"cand_claim_e48699509daf\",\"check_id\":\"unstated_precondition\",\"verdict\":\"not_met\",\"quote\":\"a seat picker will cut support calls by 67%\"},{\"candidate_id\":\"cand_forecast_e48699509daf\",\"check_id\":\"unstated_precondition\",\"verdict\":\"not_met\",\"quote\":\"a seat picker will cut support calls by 67%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3905,
+    "completion_tokens": 1251
+  }
+}

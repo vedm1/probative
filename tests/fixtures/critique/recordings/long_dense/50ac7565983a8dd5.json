@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_80eac802219d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.21 seconds\"},{\"candidate_id\":\"cand_claim_692ba28a9de9\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.64 seconds\"},{\"candidate_id\":\"cand_claim_4a2c677d064c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"6000 passengers\"},{\"candidate_id\":\"cand_claim_193ded777062\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"3700 passengers\"},{\"candidate_id\":\"cand_claim_346247e0a229\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 56%\"},{\"candidate_id\":\"cand_claim_346247e0a229\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3539,
+    "completion_tokens": 2866
+  }
+}

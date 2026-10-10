@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_forecast_2863b4d2139b\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"not_met\",\"quote\":\"win back the shoppers lost to the rival chain\"},{\"candidate_id\":\"cand_forecast_a70b5e2b65b4\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"not_met\",\"quote\":\"will end bad-faith claims\"},{\"candidate_id\":\"cand_forecast_e12587f9639e\",\"check_id\":\"unstated_precondition\",\"verdict\":\"not_met\",\"quote\":\"Doubling the commission on third-party listings will deliver 30% more margin per order\"},{\"candidate_id\":\"cand_forecast_e12587f9639e\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"not_met\",\"quote\":\"will deliver 30% more margin per order by year end\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3951,
+    "completion_tokens": 1925
+  }
+}

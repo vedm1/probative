@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_efa104aa205a\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"66% of day visitors miss the last sailing\"},{\"candidate_id\":\"cand_claim_7e3fbe61a3fd\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 4900 passengers last month\"},{\"candidate_id\":\"cand_claim_72e4b5047af1\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.13 seconds\"},{\"candidate_id\":\"cand_claim_4d39d6d20170\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"40% of freight clerks miss the last sailing\"},{\"candidate_id\":\"cand_claim_ae385df0b646\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"28% of day visitors miss the last sailing\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3555,
+    "completion_tokens": 737
+  }
+}

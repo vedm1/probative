@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_3b88e7d187fa\",\"check_id\":\"unstated_denominator\",\"verdict\":\"not_met\",\"quote\":\"6300 passengers\"},{\"candidate_id\":\"cand_claim_6b063e1a74f7\",\"check_id\":\"unstated_denominator\",\"verdict\":\"not_met\",\"quote\":\"800 passengers\"},{\"candidate_id\":\"cand_claim_4059d382fd74\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"fill 23% more seats per sailing\"},{\"candidate_id\":\"cand_claim_3cb3f61119d7\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_3cb3f61119d7\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 44%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3915,
+    "completion_tokens": 3864
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_919e5e92dd4b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Studies consistently find that three in four customers leave after a single failed payment\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3329,
+    "completion_tokens": 146
+  }
+}

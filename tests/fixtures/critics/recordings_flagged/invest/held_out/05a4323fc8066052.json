@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_story_2c7ba07eb7c1\",\"check_id\":\"testable\",\"verdict\":\"not_met\",\"quote\":\"integrated with our existing tools\"},{\"candidate_id\":\"cand_story_2c7ba07eb7c1\",\"check_id\":\"estimable\",\"verdict\":\"not_met\",\"quote\":\"as many as possible\"},{\"candidate_id\":\"cand_story_2c7ba07eb7c1\",\"check_id\":\"small\",\"verdict\":\"cannot_tell\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2322,
+    "completion_tokens": 786
+  }
+}

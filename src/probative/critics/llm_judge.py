@@ -23,7 +23,7 @@ from abc import ABC
 from collections.abc import Sequence
 from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import ClassVar
+from typing import ClassVar, Literal, TypeVar
 
 from pydantic import BaseModel, Field, ValidationError
 
@@ -43,6 +43,8 @@ from probative.extract.resolve import occurrences
 from probative.llm import Provider, TokenUsage
 from probative.llm.structured import complete_with_repair
 from probative.llm.types import Message
+
+ReplyT = TypeVar("ReplyT", bound=BaseModel)
 
 AnyCandidate = (
     ClaimCandidate
@@ -74,6 +76,26 @@ class JudgementBatch(BaseModel):
     judgements: list[CheckJudgement] = Field(default_factory=list)
 
 
+class FlaggedItem(BaseModel):
+    """One (candidate, check) pair the model did not find met (PB9, reply="flagged")."""
+
+    candidate_id: str
+    check_id: str
+    verdict: Verdict
+    quote: str | None = None
+
+
+class FlaggedBatch(BaseModel):
+    """The flagged reply: only the pairs that are not met, then how many candidates the
+    model examined. `reviewed` is required and written last, so a truncated reply is
+    malformed and a wrong count is re-asked. It is a self-report: a model that returns
+    `flagged=[]` and the right count is trusted. It guards truncation and miscounting,
+    not laziness, and is not a completeness guarantee."""
+
+    flagged: list[FlaggedItem] = Field(default_factory=list)
+    reviewed: int
+
+
 @dataclass
 class JudgeStats:
     """Cumulative over a critic instance's calls. Not thread-safe; PB12's
@@ -88,6 +110,8 @@ class JudgeStats:
     duplicates: int = 0
     unknown_ids: int = 0
     unresolved_quotes: int = 0
+    implied_met: int = 0  # flagged reply: pairs not flagged, taken as met
+    recounted: int = 0  # flagged reply: replies re-asked (wrong `reviewed` or unknown ids)
 
 
 class CriticJudgementError(Exception):
@@ -98,19 +122,24 @@ class CriticJudgementError(Exception):
     managed to judge, so incompleteness is an error, not a quiet pass.
     """
 
-    def __init__(self, critic_id: str, missing: list[tuple[str, str]] | None = None) -> None:
+    def __init__(
+        self,
+        critic_id: str,
+        missing: list[tuple[str, str]] | None = None,
+        detail: str | None = None,
+    ) -> None:
         self.critic_id = critic_id
         self.missing = missing or []
         # Findings from batches judged before this one failed. `check` raises
         # rather than return a partial list that looks complete; a caller that
         # wants the partial result reads it here.
         self.partial_findings: list[Finding] = []
-        detail = (
+        what = detail or (
             f"still no judgement for {len(self.missing)} (candidate, check) pair(s) after a re-ask"
             if self.missing
             else "malformed judgements after a repair retry"
         )
-        super().__init__(f"{critic_id}: model returned {detail}")
+        super().__init__(f"{critic_id}: model returned {what}")
 
 
 _JUDGE_PREAMBLE = """\
@@ -134,6 +163,24 @@ from that candidate's text, that shows the violation. For met and cannot_tell, \
 leave quote null. Do not paraphrase. Do not return scores, ratings, \
 severities or explanations of any kind.
 """
+
+
+FLAGGED_REPLY = """\
+
+Reply format for this task. It replaces the instruction above to return a judgement for \
+every candidate and every check: do NOT return a judgement for a (candidate, check) pair \
+that is met. Return JSON with two fields:
+- flagged: one entry for each (candidate, check) pair whose verdict is not_met or \
+cannot_tell, with candidate_id and check_id exactly as given, verdict ("not_met" or \
+"cannot_tell") and quote (for not_met, the shortest phrase copied exactly and verbatim from \
+that candidate's text that shows the violation; for cannot_tell, null). A candidate with \
+nothing to flag appears nowhere in flagged.
+- reviewed: the number of candidates you examined. It must equal the number of candidates \
+between the <candidates> tags; write it after you have examined every one of them.
+Return the JSON compactly, without indentation.
+"""
+
+Reply = Literal["full", "flagged"]
 
 
 def build_system_prompt(
@@ -226,6 +273,18 @@ def locate_phrase(candidate: AnyCandidate, quote: str | None) -> EvidenceSpan | 
 DEFAULT_BATCH_SIZE = 5
 
 
+def _as_judgements(reply: FlaggedBatch) -> list[CheckJudgement]:
+    return [
+        CheckJudgement(
+            candidate_id=item.candidate_id,
+            check_id=item.check_id,
+            verdict=item.verdict,
+            quote=item.quote,
+        )
+        for item in reply.flagged
+    ]
+
+
 class LLMCritic(Critic, ABC):
     """A critic whose checks are judged by a model.
 
@@ -247,7 +306,10 @@ class LLMCritic(Critic, ABC):
         *,
         model: str,
         batch_size: int = DEFAULT_BATCH_SIZE,
+        reply: Reply = "full",
     ) -> None:
+        if reply not in ("full", "flagged"):
+            raise ValueError(f"reply must be 'full' or 'flagged', got {reply!r}")
         for attr in ("candidate_type", "preamble"):
             if not hasattr(type(self), attr):
                 raise TypeError(f"{type(self).__name__} must define {attr}")
@@ -257,6 +319,7 @@ class LLMCritic(Critic, ABC):
         self._provider = provider
         self._model = model
         self._batch_size = batch_size
+        self.reply: Reply = reply
         self.stats = JudgeStats()
 
     def check(self, candidates: Sequence[BaseModel]) -> list[Finding]:
@@ -285,10 +348,14 @@ class LLMCritic(Critic, ABC):
                 raise
         return findings
 
-    def _ask(self, messages: list[Message]) -> JudgementBatch:
+    def system_prompt(self) -> str:
+        prompt = build_system_prompt(self.rubric, self.preamble, self.judge_preamble)
+        return prompt + FLAGGED_REPLY if self.reply == "flagged" else prompt
+
+    def _ask(self, messages: list[Message], output_model: type[ReplyT] = JudgementBatch) -> ReplyT:  # type: ignore[assignment]
         try:
             result = complete_with_repair(
-                self._provider, messages, output_model=JudgementBatch, model=self._model
+                self._provider, messages, output_model=output_model, model=self._model
             )
         except ValidationError as error:
             raise CriticJudgementError(self.rubric.id) from error
@@ -337,15 +404,26 @@ class LLMCritic(Critic, ABC):
 
     def _judge(self, batch: Sequence[AnyCandidate]) -> list[Finding]:
         messages = [
-            Message(
-                role="system",
-                content=build_system_prompt(self.rubric, self.preamble, self.judge_preamble),
-            ),
+            Message(role="system", content=self.system_prompt()),
             Message(role="user", content=build_user_message(batch)),
         ]
         by_id = {c.id: c for c in batch}
         wanted = [(c.id, check.id) for c in batch for check in self.rubric.checks]
         judged: dict[tuple[str, str], CheckJudgement] = {}
+        if self.reply == "flagged":
+            self._judge_flagged(messages, batch, by_id, judged)
+        else:
+            self._judge_full(messages, by_id, wanted, judged)
+
+        return self._findings(batch, judged)
+
+    def _judge_full(
+        self,
+        messages: list[Message],
+        by_id: dict[str, AnyCandidate],
+        wanted: list[tuple[str, str]],
+        judged: dict[tuple[str, str], CheckJudgement],
+    ) -> None:
         self._collect(self._ask(messages), by_id, judged)
 
         omitted = [pair for pair in wanted if pair not in judged]
@@ -364,6 +442,62 @@ class LLMCritic(Critic, ABC):
             if still:
                 raise CriticJudgementError(self.rubric.id, still)
 
+    def _judge_flagged(
+        self,
+        messages: list[Message],
+        batch: Sequence[AnyCandidate],
+        by_id: dict[str, AnyCandidate],
+        judged: dict[tuple[str, str], CheckJudgement],
+    ) -> None:
+        """Fold a flagged reply. Flags always count, even from a miscounted reply (a
+        blocking critic fails closed); a wrong `reviewed` is asked again once, and a
+        second wrong count raises. Pairs never flagged are taken as met."""
+        unknown_before = self.stats.unknown_ids
+        reply = self._ask(messages, FlaggedBatch)
+        self._collect(JudgementBatch(judgements=_as_judgements(reply)), by_id, judged)
+        problem = self._reply_problem(reply, len(batch), self.stats.unknown_ids - unknown_before)
+        if problem is not None:
+            self.stats.recounted += 1
+            reask = Message(
+                role="user",
+                content=(
+                    f"Your reply is not usable: {problem}. There are {len(batch)} candidates. "
+                    "Examine every candidate and reply again in the same format, using the "
+                    "candidate ids and check ids exactly as given."
+                ),
+            )
+            unknown_before = self.stats.unknown_ids
+            again = self._ask([*messages, reask], FlaggedBatch)
+            self._collect(JudgementBatch(judgements=_as_judgements(again)), by_id, judged)
+            problem = self._reply_problem(
+                again, len(batch), self.stats.unknown_ids - unknown_before
+            )
+            if problem is not None:
+                raise CriticJudgementError(self.rubric.id, detail=f"{problem} after a re-ask")
+        for candidate in batch:
+            for check in self.rubric.checks:
+                if (candidate.id, check.id) not in judged:
+                    self.stats.implied_met += 1
+                    judged[(candidate.id, check.id)] = CheckJudgement(
+                        candidate_id=candidate.id, check_id=check.id, verdict=Verdict.MET
+                    )
+
+    @staticmethod
+    def _reply_problem(reply: FlaggedBatch, expected: int, unknown: int) -> str | None:
+        """Why a flagged reply cannot be trusted as complete, or None. A flag under an id
+        that is not in the batch is a violation the model saw and mislabelled: reading it
+        as "all met" would fail open, so it is treated like a miscount."""
+        if unknown:
+            return f"{unknown} flagged item(s) named an unknown candidate or check id"
+        if reply.reviewed != expected:
+            return f"reviewed={reply.reviewed} for {expected} candidates"
+        return None
+
+    def _findings(
+        self,
+        batch: Sequence[AnyCandidate],
+        judged: dict[tuple[str, str], CheckJudgement],
+    ) -> list[Finding]:
         findings: list[Finding] = []
         for candidate in batch:
             for check in self.rubric.checks:

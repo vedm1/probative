@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_33e5eb9857f5\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"fill 19% more seats per sailing than we do\"},{\"candidate_id\":\"cand_claim_84dadefbf9c1\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"fill 18% more seats per sailing than we do\"},{\"candidate_id\":\"cand_claim_9a6d2195cefb\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_9a6d2195cefb\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 11%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3918,
+    "completion_tokens": 1481
+  }
+}

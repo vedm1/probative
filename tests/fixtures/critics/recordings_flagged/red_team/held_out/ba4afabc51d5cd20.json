@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_forecast_8d24cee76212\",\"check_id\":\"unstated_precondition\",\"verdict\":\"not_met\",\"quote\":\"Doubling the commission on third-party listings will deliver 30% more margin per order\"},{\"candidate_id\":\"cand_forecast_8d24cee76212\",\"check_id\":\"no_adaptive_response\",\"verdict\":\"not_met\",\"quote\":\"Doubling the commission on third-party listings will deliver 30% more margin per order\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3715,
+    "completion_tokens": 824
+  }
+}

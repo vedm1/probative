@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_need_5e9f99f2ff24\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"fare calculator widget\"},{\"candidate_id\":\"cand_need_8781a692a471\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"fare calculator widget\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2025,
+    "completion_tokens": 265
+  }
+}

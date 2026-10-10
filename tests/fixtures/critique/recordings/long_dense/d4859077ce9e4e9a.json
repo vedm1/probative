@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_cc000bacf4ec\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"34% more seats per sailing\"},{\"candidate_id\":\"cand_claim_056c26b616a9\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"43% of freight clerks miss the last sailing\"},{\"candidate_id\":\"cand_claim_d2bec73b9016\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 5800 passengers last month\"},{\"candidate_id\":\"cand_claim_6a98e0bc9d4d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 2700 passengers last month\"},{\"candidate_id\":\"cand_claim_a24745700ad4\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 41% after the timetable change\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3548,
+    "completion_tokens": 612
+  }
+}

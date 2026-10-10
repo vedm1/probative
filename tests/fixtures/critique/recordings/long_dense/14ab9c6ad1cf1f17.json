@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_2b19f899b003\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"46% of island residents miss the last sailing\"},{\"candidate_id\":\"cand_claim_520d34fa6e5e\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.12 seconds\"},{\"candidate_id\":\"cand_claim_e5d78d912f57\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Rival operators fill 13% more seats per sailing\"},{\"candidate_id\":\"cand_claim_04231bd70893\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"33% of commuters miss the last sailing\"},{\"candidate_id\":\"cand_claim_260bee22623f\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Queue time at the Pier 4 to Gull Island kiosk rose 14%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3550,
+    "completion_tokens": 849
+  }
+}

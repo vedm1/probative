@@ -33,7 +33,7 @@ from typing import ClassVar
 
 from probative.core.candidates import SegmentCandidate
 from probative.core.critic import Rubric
-from probative.critics.llm_judge import DEFAULT_BATCH_SIZE, LLMCritic
+from probative.critics.llm_judge import DEFAULT_BATCH_SIZE, LLMCritic, Reply
 from probative.critics.rubric import load_rubric
 from probative.llm import Provider
 
@@ -109,9 +109,16 @@ class SegmentSkeptic(LLMCritic):
 
     @classmethod
     def from_builtin_rubric(
-        cls, provider: Provider, *, model: str, batch_size: int = DEFAULT_BATCH_SIZE
+        cls,
+        provider: Provider,
+        *,
+        model: str,
+        batch_size: int = DEFAULT_BATCH_SIZE,
+        reply: Reply = "full",
     ) -> SegmentSkeptic:
-        return cls(load_rubric(RUBRIC_PATH), provider, model=model, batch_size=batch_size)
+        return cls(
+            load_rubric(RUBRIC_PATH), provider, model=model, batch_size=batch_size, reply=reply
+        )
 
 
 def segment_skeptic_rubric() -> Rubric:

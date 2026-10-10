@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_06f1d3e5374d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"double repeat bookings\"},{\"candidate_id\":\"cand_claim_c670cf3d3c74\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"double repeat bookings\"},{\"candidate_id\":\"cand_claim_547ca0805733\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"double repeat bookings\"},{\"candidate_id\":\"cand_claim_b2c8c064e16c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 10%\"},{\"candidate_id\":\"cand_claim_649ab651e413\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 38%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3520,
+    "completion_tokens": 1179
+  }
+}

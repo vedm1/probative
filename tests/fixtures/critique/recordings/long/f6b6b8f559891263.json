@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\": [{\"quote\": \"Launching a QR ticket wallet will double repeat bookings within a year.\"}, {\"quote\": \"Launching a fare calculator widget will double repeat bookings within a year.\"}, {\"quote\": \"Once live, a seat picker will cut support calls by 14%.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3904,
+    "completion_tokens": 102
+  }
+}

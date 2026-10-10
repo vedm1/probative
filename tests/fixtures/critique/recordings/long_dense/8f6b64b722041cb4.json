@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"judgements\":[{\"constraint_id\":\"cand_constraint_71fa6784b164\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_be8daf927434\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_7d65b993acc2\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_3eb1ce08bcea\",\"story_id\":null,\"quote\":null},{\"constraint_id\":\"cand_constraint_47011327ca0b\",\"story_id\":null,\"quote\":null}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2501,
+    "completion_tokens": 510
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_78d07f371d32\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 49%\"},{\"candidate_id\":\"cand_claim_78d07f371d32\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_66db5d3742e8\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"56% of school parties miss the last sailing\"},{\"candidate_id\":\"cand_claim_717e31488d15\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"26% of freight clerks miss the last sailing\"},{\"candidate_id\":\"cand_claim_accb73e3b3eb\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.21 seconds\"},{\"candidate_id\":\"cand_claim_243f2b724d4a\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.29 seconds\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3548,
+    "completion_tokens": 1624
+  }
+}

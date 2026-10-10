@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_e5e7f9193777\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"9% of commuters miss the last sailing on Pier 4 to Gull Island\"},{\"candidate_id\":\"cand_claim_dd1b0865e0ed\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"57% of school parties miss the last sailing on Pier 4 to Gull Island\"},{\"candidate_id\":\"cand_claim_074aaee1c0d3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Rival operators fill 35% more seats per sailing than we do\"},{\"candidate_id\":\"cand_claim_a02890fd2b2c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"8% of island residents miss the last sailing on Pier 4 to Gull Island\"},{\"candidate_id\":\"cand_claim_6cff26dd5129\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 48%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3538,
+    "completion_tokens": 852
+  }
+}

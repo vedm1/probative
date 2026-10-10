@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\":[{\"quote\":\"Once live, a live-map screen will cut support calls by 25%.\"},{\"quote\":\"Competitors will not respond to the new Old Quay to Heron Point fares.\"},{\"quote\":\"Competitors will not respond to the new Pier 4 to Gull Island fares.\"},{\"quote\":\"Competitors will not respond to the new Northgate to Saltmarsh fares.\"},{\"quote\":\"Launching a seat picker will double repeat bookings within a year.\"},{\"quote\":\"Once live, a seat picker will cut support calls by 59%.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1081,
+    "completion_tokens": 436
+  }
+}

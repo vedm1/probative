@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_e6b6a83125dc\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"34% of day visitors miss the last sailing\"},{\"candidate_id\":\"cand_claim_6b063e1a74f7\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 800 passengers last month\"},{\"candidate_id\":\"cand_claim_4059d382fd74\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"23% more seats per sailing\"},{\"candidate_id\":\"cand_claim_3cb3f61119d7\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 44%\"},{\"candidate_id\":\"cand_claim_f5d9b86585ec\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 5400 passengers last month\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3535,
+    "completion_tokens": 745
+  }
+}

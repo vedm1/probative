@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"constraints\": [{\"quote\": \"The service must meet the Maritime Passenger Records Act, section 12.\"}, {\"quote\": \"Passenger names must be retained for seven years under the operator's licence condition 7.3.\"}, {\"quote\": \"The service must meet the Maritime Passenger Records Act, section 12.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3806,
+    "completion_tokens": 107
+  }
+}

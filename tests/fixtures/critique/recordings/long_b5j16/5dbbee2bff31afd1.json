@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_783648900ded\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 48% after the timetable change\"},{\"candidate_id\":\"cand_claim_72c5441e6560\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 6000 passengers last month\"},{\"candidate_id\":\"cand_claim_971d250d7f6c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"40% of commuters miss the last sailing\"},{\"candidate_id\":\"cand_claim_6221fd457e34\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"fill 40% more seats per sailing\"},{\"candidate_id\":\"cand_claim_b7ba95ac936d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 19% after the timetable change\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3551,
+    "completion_tokens": 622
+  }
+}

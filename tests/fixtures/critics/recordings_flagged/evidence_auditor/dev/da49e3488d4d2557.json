@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_2b117e76663a\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"so the market has no appetite for it\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3331,
+    "completion_tokens": 307
+  }
+}

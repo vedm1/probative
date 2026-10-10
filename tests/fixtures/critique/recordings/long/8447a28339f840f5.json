@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_1fd18020a36b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"53%\"},{\"candidate_id\":\"cand_claim_1fd18020a36b\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"the new policy is working\"},{\"candidate_id\":\"cand_claim_f6b6e4882539\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.34 seconds\"}],\"reviewed\":2}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3382,
+    "completion_tokens": 1054
+  }
+}

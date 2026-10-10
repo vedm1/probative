@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_2a2a98ed7c56\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Most shoppers abandon checkout at the card entry form.\"},{\"candidate_id\":\"cand_claim_083a8522f050\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"doubled between March and June\"},{\"candidate_id\":\"cand_claim_ea62af88b2ea\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Competitors let returning shoppers pay in a single tap.\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3497,
+    "completion_tokens": 606
+  }
+}

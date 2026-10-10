@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_ef55090ecd7d\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_ef55090ecd7d\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"down 48%\"},{\"candidate_id\":\"cand_claim_6d2e28eeb5c9\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"so the new policy is working\"},{\"candidate_id\":\"cand_claim_6d2e28eeb5c9\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"down 45%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3922,
+    "completion_tokens": 1521
+  }
+}

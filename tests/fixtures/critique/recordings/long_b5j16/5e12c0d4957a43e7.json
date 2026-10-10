@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[],\"reviewed\":4}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1961,
+    "completion_tokens": 58
+  }
+}

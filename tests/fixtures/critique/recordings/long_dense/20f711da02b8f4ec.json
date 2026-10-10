@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_9a364dfa03f2\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"will cut support calls by 13%\"},{\"candidate_id\":\"cand_claim_59b16cd351bb\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"will cut support calls by 33%\"},{\"candidate_id\":\"cand_claim_2e873a69dc1e\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.41 seconds\"},{\"candidate_id\":\"cand_claim_b95a0c536eaf\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.7 seconds\"},{\"candidate_id\":\"cand_claim_f631e0a1390e\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.60 seconds\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3556,
+    "completion_tokens": 752
+  }
+}

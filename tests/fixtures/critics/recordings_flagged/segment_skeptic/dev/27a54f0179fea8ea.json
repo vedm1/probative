@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_c6cbcdaeeaa3\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"urban professionals in their thirties earning above the regional median\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2780,
+    "completion_tokens": 167
+  }
+}

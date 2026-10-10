@@ -43,48 +43,52 @@ Don't start a project. Start by pointing it at something you already have — a 
 probative critique ~/Documents/checkout-redesign-prd.pdf
 ```
 
-You'll get something like this:
+A 30-page document takes about a minute (measured at 65 s on a synthetic one; yours will vary with how many statements it makes). You'll get a summary in the terminal and two report files. This is the shape (illustrative numbers):
 
 ```
-Probative · critique · checkout-redesign-prd.pdf · 18 pages · 41s
+# Probative critique: checkout-redesign-prd.pdf
 
-  Evidence           38 / 100   ▓▓▓▓░░░░░░
-  Problem framing    24 / 100   ▓▓░░░░░░░░
-  Story quality      71 / 100   ▓▓▓▓▓▓▓░░░
-  Dependencies        —         none declared
-  Constraints         —         none found
+anthropic/claude-sonnet-5 (reference model) · 1 document · 54210 characters · 18 pages · 41.0s · 31 model calls
 
-  5 blocking · 10 warnings · 6 notes
+**5 blocking · 10 warnings · 6 notes**
 
-  ✗ BLOCK   Problem framing — 9 of 12 stated "user needs" name a solution
-            "Users need a one-click checkout button"            p.4 ¶2
-            "Customers need a saved-cards dashboard"            p.5 ¶1
-            → A need says what the user gets, not what you build.
-              What does one-click checkout give them that they lack?
+| Dimension | Checked | Clean | Block | Warn | Note | Floor (0 to 10) | Status |
+|---|---:|---:|---:|---:|---:|---:|---|
+| Evidence | 14 | 8 of 14 (57%) | 4 | 2 | 0 | 0.0 | BLOCKED |
+| Problem framing | 12 | 3 of 12 (25%) | 9 | 0 | 0 | 0.0 | BLOCKED |
+| Segments | 2 | 1 of 2 (50%) | 1 | 0 | 0 | 0.0 | BLOCKED · small sample |
+| Story quality | 9 | 6 of 9 (67%) | 0 | 3 | 1 | 4.0 | warnings |
+| Dependencies | 0 | — | 0 | 0 | 0 | — | nothing found to check |
+| Constraints | 0 | — | 0 | 0 | 0 | — | nothing found to check |
+| Stress test: least sure about | 11 | 7 of 11 (64%) | 0 | 4 | 0 | 2.0 | warnings |
 
-  ✗ BLOCK   Evidence — 6 quantitative claims have no source
-            "73% of users abandon at payment"                   p.2 ¶3
-            "Competitors convert 2.4x better"                   p.7 ¶2
-            → Neither appears in any cited document. If these came
-              from analytics, say which query and when.
+Full report → ./checkout-redesign-prd.critique.html
+Full report → ./checkout-redesign-prd.critique.md
+```
 
-  ✗ BLOCK   Segment — "users aged 25-45 who shop online" is a
-            demographic bucket, not a segment. Nothing here says
-            these people have different needs from anyone else.
+The Markdown and HTML files carry the findings. Each one quotes your document and says where:
 
-  Full report → ./checkout-redesign-prd.critique.html
+```
+#### Problem framing: The need names a feature, a screen or UI element, an implementation, ... (9 of 12)
+
+- > “Users need a one-click checkout button”
+  checkout-redesign-prd.pdf, p.4 · line 12
+  Fix: Restate as a customer benefit — verb first, customer voice
 ```
 
 ### How to read that
 
-- **Scores** are per dimension, so you can see whether the problem is your evidence, your framing, or your stories. They're computed from findings, not judged by a model.
+- **Every number sits next to how many things it is a number of.** "3 of 12 clean" means 12 statements were checked and 3 drew no blocking or warning finding. A dimension with under five statements says "small sample". The rate is arithmetic over findings, not a model's opinion.
+- **Floor** is the veto score: any block takes a dimension to 0.0, and each warning costs 2 points. It is shown beside the rate because they answer different questions: the rate says how much of the document conforms, the floor says whether anything in it would stop a real run.
+- **`—` is not a pass.** "Nothing found to check" means the document had no statements of that kind (no constraints, no dependencies), not that they were fine. "INCOMPLETE" means the model could not judge some of them; the dimension has no rate, and the command exits with code 3 (the report is still written).
 - **Blocks** are things that would stop a real run. **Warnings** are worth fixing. **Notes** are observations.
-- **Every finding has a locator.** Page and paragraph, sheet and cell, heading path. If you can't find what a finding is talking about, that's a bug — please file it.
-- **The HTML report** is where you'll actually work. Click any finding to see the surrounding text.
+- **Every finding quotes your document and has a locator**: page and line, sheet and cell, heading path, or issue key and field, whichever your format has. The report checks each quote against your file's own bytes before it writes anything; a quote that does not match is an error, not a finding.
+- **The HTML report** is where you'll actually work. Open any finding to see the quote in its surrounding text; filter by severity. It is one file with no network use.
+- **It judges what each statement says, one statement at a time.** A source or an owner named in the *next* sentence is not seen, so such a statement can be flagged. The critics' known limits are in `PROBATIVE_BUILD_PLAN.md` (OI21 to OI26).
 
 ### It accepts most things you'll have
 
-PDF, Word, Excel, CSV, Markdown, plain text, Confluence exports, Jira and Azure DevOps CSV exports. Point it at a folder and it takes the lot:
+PDF, Word, Excel, CSV, Markdown, plain text, Confluence "Export to Word" pages, Jira (CSV, HTML, XML) and Azure DevOps (CSV) exports. It works out which export it was given and says what it chose; `--as` overrides. Point it at a folder and it takes the lot (up to 25 files, anything it cannot read is listed, not dropped):
 
 ```bash
 probative critique ./specs/

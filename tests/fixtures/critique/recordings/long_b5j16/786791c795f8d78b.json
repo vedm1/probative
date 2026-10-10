@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"claims\":[{\"quote\":\"Ticket scans take 1.61 seconds on the Pier 4 to Gull Island gate.\"},{\"quote\":\"64% of freight clerks miss the last sailing on Northgate to Saltmarsh.\"},{\"quote\":\"8% of commuters miss the last sailing on Old Quay to Heron Point.\"},{\"quote\":\"Refund requests are down 42%, so the new policy is working.\"},{\"quote\":\"Queue time at the Northgate to Saltmarsh kiosk rose 47% after the timetable change.\"},{\"quote\":\"Ticket scans take 1.63 seconds on the Old Quay to Heron Point gate.\"},{\"quote\":\"Ticket scans take 1.63 seconds on the Old Quay to Heron Point gate.\"},{\"quote\":\"Refund requests are down 53%, so the new policy is working.\"},{\"quote\":\"Ticket scans take 1.21 seconds on the Pier 4 to Gull Island gate.\"},{\"quote\":\"Ticket scans take 1.68 seconds on the Pier 4 to Gull Island gate.\"},{\"quote\":\"Refund requests are down 62%, so the new policy is working.\"},{\"quote\":\"Ticket scans take 1.46 seconds on the Northgate to Saltmarsh gate.\"},{\"quote\":\"Ticket scans take 1.58 seconds on the Pier 4 to Gull Island gate.\"},{\"quote\":\"Ticket scans take 1.18 seconds on the Northgate to Saltmarsh gate.\"},{\"quote\":\"The Northgate to Saltmarsh service carried 2700 passengers last month.\"},{\"quote\":\"Rival operators fill 64% more seats per sailing than we do.\"},{\"quote\":\"The Northgate to Saltmarsh service carried 6800 passengers last month.\"},{\"quote\":\"The Old Quay to Heron Point service carried 4300 passengers last month.\"},{\"quote\":\"26% of commuters miss the last sailing on Old Quay to Heron Point.\"},{\"quote\":\"Queue time at the Northgate to Saltmarsh kiosk rose 68% after the timetable change.\"}],\"needs\":[],\"stories\":[],\"dependencies\":[]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4297,
+    "completion_tokens": 1417
+  }
+}

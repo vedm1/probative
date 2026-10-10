@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_forecast_f5c696cb26f8\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"not_met\",\"quote\":\"foster a culture of trust on the floor\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3726,
+    "completion_tokens": 296
+  }
+}

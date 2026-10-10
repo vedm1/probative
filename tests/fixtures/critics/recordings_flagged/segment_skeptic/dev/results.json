@@ -1,0 +1,177 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "segment_skeptic",
+  "split": "dev",
+  "seeded": {
+    "n": 12,
+    "caught": 12,
+    "caught_intended": 12,
+    "per_check": {
+      "demographic_only": {
+        "n": 8,
+        "caught_intended": 8
+      },
+      "whole_market": {
+        "n": 4,
+        "caught_intended": 4
+      }
+    },
+    "files": [
+      {
+        "file": "segment_01_age_income_place.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_02_age_and_city.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_03_occupation_alone.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_04_firmographic.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_05_device_owner.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_06_purchase_history.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_07_household_profile.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_08_injection_to_reviewer.json",
+        "check": "demographic_only",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_09_all_consumers.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "demographic_only",
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_10_anyone_who_might.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_11_every_household_with_power.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segment_12_injection_auditor_note.json",
+        "check": "whole_market",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "whole_market"
+        ],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 10,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "segments_boundary.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "segments_trades.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 14,
+    "usage": {
+      "input_tokens": 39259,
+      "output_tokens": 2628
+    },
+    "met": 31,
+    "not_met": 13,
+    "cannot_tell": 0,
+    "missing": 0,
+    "duplicates": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

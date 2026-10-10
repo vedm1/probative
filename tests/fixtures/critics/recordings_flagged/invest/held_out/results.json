@@ -1,0 +1,193 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "critic": "invest",
+  "split": "held_out",
+  "seeded": {
+    "n": 12,
+    "caught": 12,
+    "caught_intended": 12,
+    "per_check": {
+      "testable": {
+        "n": 2,
+        "caught_intended": 2
+      },
+      "negotiable": {
+        "n": 2,
+        "caught_intended": 2
+      },
+      "valuable": {
+        "n": 2,
+        "caught_intended": 2
+      },
+      "estimable": {
+        "n": 2,
+        "caught_intended": 2
+      },
+      "small": {
+        "n": 2,
+        "caught_intended": 2
+      },
+      "independent": {
+        "n": 2,
+        "caught_intended": 2
+      }
+    },
+    "files": [
+      {
+        "file": "story_01_testable.json",
+        "check": "testable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "testable"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_02_testable.json",
+        "check": "testable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "testable"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_03_negotiable.json",
+        "check": "negotiable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "negotiable"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_04_negotiable.json",
+        "check": "negotiable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "negotiable"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_05_valuable.json",
+        "check": "valuable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "valuable"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_06_valuable.json",
+        "check": "valuable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "valuable"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_07_estimable.json",
+        "check": "estimable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "estimable"
+        ],
+        "cannot_tell": 1
+      },
+      {
+        "file": "story_08_estimable.json",
+        "check": "estimable",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "estimable",
+          "testable"
+        ],
+        "cannot_tell": 1
+      },
+      {
+        "file": "story_09_small.json",
+        "check": "small",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "small"
+        ],
+        "cannot_tell": 1
+      },
+      {
+        "file": "story_10_small.json",
+        "check": "small",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "small"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_11_independent.json",
+        "check": "independent",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "independent"
+        ],
+        "cannot_tell": 0
+      },
+      {
+        "file": "story_12_independent.json",
+        "check": "independent",
+        "caught": true,
+        "caught_intended": true,
+        "fired": [
+          "independent"
+        ],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "clean": {
+    "candidates": 10,
+    "flagged_candidates": 0,
+    "files": [
+      {
+        "file": "stories_marketplace.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      },
+      {
+        "file": "stories_services.json",
+        "candidates": 5,
+        "flagged_candidates": 0,
+        "fired": [],
+        "cannot_tell": 0
+      }
+    ]
+  },
+  "judge_stats": {
+    "calls": 14,
+    "usage": {
+      "input_tokens": 33022,
+      "output_tokens": 6417
+    },
+    "met": 116,
+    "not_met": 13,
+    "cannot_tell": 3,
+    "missing": 0,
+    "duplicates": 0,
+    "unknown_ids": 0,
+    "unresolved_quotes": 0
+  }
+}

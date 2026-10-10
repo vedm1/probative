@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_613ec72f2c76\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Roughly 70% of invoices are paid late\"},{\"candidate_id\":\"cand_claim_55c91b5dc7a6\",\"check_id\":\"basis_overreach\",\"verdict\":\"not_met\",\"quote\":\"the market has no appetite for it\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3583,
+    "completion_tokens": 918
+  }
+}

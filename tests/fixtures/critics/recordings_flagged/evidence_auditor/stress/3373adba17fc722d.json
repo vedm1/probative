@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_c44692da3760\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Other scheduling vendors do not integrate with hospital records.\"},{\"candidate_id\":\"cand_claim_a81cb10591c7\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Parents rarely check the school portal during the week.\"},{\"candidate_id\":\"cand_claim_c8583548e4e4\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"Several large carriers recently moved to dynamic pricing.\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3523,
+    "completion_tokens": 573
+  }
+}

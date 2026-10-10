@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_segment_d4d17b05e3fc\",\"check_id\":\"demographic_only\",\"verdict\":\"not_met\",\"quote\":\"Households earning between $40,000 and $60,000 a year\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2775,
+    "completion_tokens": 135
+  }
+}

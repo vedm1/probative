@@ -1,0 +1,104 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "case": "payments",
+  "wall_seconds": 31.0,
+  "calls": 12,
+  "input_tokens": 27915,
+  "output_tokens": 7130,
+  "jobs": 16,
+  "reply": "flagged",
+  "documents": [
+    {
+      "file": "prd_payments.md",
+      "chars": 1505,
+      "pages": null,
+      "candidates": {
+        "claim": 5,
+        "need": 3,
+        "story": 2,
+        "constraint": 3,
+        "dependency": 6,
+        "segment": 1,
+        "forecast": 0
+      }
+    }
+  ],
+  "incomplete": false,
+  "totals": {
+    "block": 7,
+    "warn": 2,
+    "note": 0
+  },
+  "dimensions": {
+    "evidence_auditor": {
+      "status": "assessed",
+      "checked": 5,
+      "flagged": 3,
+      "counts": {
+        "block": 1,
+        "warn": 2,
+        "note": 0
+      }
+    },
+    "space_warden": {
+      "status": "assessed",
+      "checked": 3,
+      "flagged": 1,
+      "counts": {
+        "block": 1,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "segment_skeptic": {
+      "status": "assessed",
+      "checked": 1,
+      "flagged": 0,
+      "counts": {
+        "block": 0,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "invest": {
+      "status": "assessed",
+      "checked": 2,
+      "flagged": 0,
+      "counts": {
+        "block": 0,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "dependency_critic": {
+      "status": "assessed",
+      "checked": 6,
+      "flagged": 3,
+      "counts": {
+        "block": 3,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "constraint_critic": {
+      "status": "assessed",
+      "checked": 3,
+      "flagged": 2,
+      "counts": {
+        "block": 2,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "red_team": {
+      "status": "assessed",
+      "checked": 5,
+      "flagged": 0,
+      "counts": {
+        "block": 0,
+        "warn": 0,
+        "note": 0
+      }
+    }
+  }
+}

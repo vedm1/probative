@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_story_1efd4bb68529\",\"check_id\":\"valuable\",\"verdict\":\"not_met\",\"quote\":\"As the system\"},{\"candidate_id\":\"cand_story_b67b9f80e993\",\"check_id\":\"estimable\",\"verdict\":\"not_met\",\"quote\":\"whatever that turns out to involve\"},{\"candidate_id\":\"cand_story_9d7100094925\",\"check_id\":\"estimable\",\"verdict\":\"not_met\",\"quote\":\"details to be decided later\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2529,
+    "completion_tokens": 1741
+  }
+}

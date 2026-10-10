@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_need_2fef7052dc01\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a QR ticket wallet\"},{\"candidate_id\":\"cand_need_cd681478c9a6\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a QR ticket wallet\"},{\"candidate_id\":\"cand_need_2556c2740edd\",\"check_id\":\"solution_grammar\",\"verdict\":\"not_met\",\"quote\":\"a live-map screen\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2033,
+    "completion_tokens": 358
+  }
+}

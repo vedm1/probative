@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_bee7a76bd3b1\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Defect rates: 3.2% (Q1) vs 1.9% (Q3).\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3716,
+    "completion_tokens": 286
+  }
+}

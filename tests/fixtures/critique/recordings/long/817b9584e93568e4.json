@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_story_74dde9e693a2\",\"check_id\":\"testable\",\"verdict\":\"not_met\",\"quote\":\"quickly\"}],\"reviewed\":2}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2360,
+    "completion_tokens": 525
+  }
+}

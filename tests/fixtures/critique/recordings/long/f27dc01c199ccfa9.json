@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_e284dcd8fb89\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.61 seconds\"},{\"candidate_id\":\"cand_claim_46b88618e4d9\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"64% of freight clerks miss the last sailing\"}],\"reviewed\":2}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3394,
+    "completion_tokens": 357
+  }
+}

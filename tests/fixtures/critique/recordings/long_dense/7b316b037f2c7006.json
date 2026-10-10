@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_a5fe2f3ef769\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"cut support calls by 48%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3530,
+    "completion_tokens": 449
+  }
+}

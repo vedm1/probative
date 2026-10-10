@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"claims\":[{\"quote\":\"The service must meet the Maritime Passenger Records Act, section 12.\"},{\"quote\":\"Passenger names must be retained for seven years under the operator's licence condition 7.3.\"},{\"quote\":\"Once live, a seat picker will cut support calls by 52%.\"},{\"quote\":\"Once live, a live-map screen will cut support calls by 47%.\"},{\"quote\":\"Once live, a seat picker will cut support calls by 64%.\"}],\"needs\":[{\"quote\":\"Tickets should feel instant.\"}],\"stories\":[{\"quote\":\"As a day visitors traveller, I want to buy a return ticket for Northgate to Saltmarsh so that I can plan one trip.\"},{\"quote\":\"As an operator, I want to export sailings so that finance can reconcile them.\"},{\"quote\":\"As a ticket inspector, I want to scan a code so that I can confirm a booking quickly.\"},{\"quote\":\"As a freight clerks traveller, I want to buy a return ticket for Northgate to Saltmarsh so that I can plan one trip.\"},{\"quote\":\"As a commuters traveller, I want to be told of a delay so that I can rebook.\"},{\"quote\":\"As a ticket inspector, I want to scan a code so that I can confirm a booking quickly.\"}],\"dependencies\":[{\"quote\":\"We rely on the harbour CCTV vendor for berth availability.\"},{\"quote\":\"Sam Okoro on the payments gateway team will confirm the schedule feed by June.\"},{\"quote\":\"Delivery depends on the payments gateway team, with no named owner yet.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3590,
+    "completion_tokens": 1070
+  }
+}

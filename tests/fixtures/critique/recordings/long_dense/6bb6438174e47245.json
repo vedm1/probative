@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_dependency_8c1e0803758b\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"We rely on the harbour CCTV vendor\"},{\"candidate_id\":\"cand_dependency_3bc8ad21edb6\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Delivery depends on the harbour CCTV vendor\"},{\"candidate_id\":\"cand_dependency_ae58b179e14f\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"Delivery depends on the payments gateway team\"},{\"candidate_id\":\"cand_dependency_4ff8104ef9ab\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"We rely on the payments gateway team\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2844,
+    "completion_tokens": 656
+  }
+}

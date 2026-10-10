@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_345974804d49\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 62%\"},{\"candidate_id\":\"cand_claim_345974804d49\",\"check_id\":\"unsourced_assertion\",\"verdict\":\"not_met\",\"quote\":\"the new policy is working\"},{\"candidate_id\":\"cand_claim_45ab5ed2cb0b\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.12 seconds\"},{\"candidate_id\":\"cand_claim_f76843f1eb4e\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"46% of island residents miss the last sailing\"},{\"candidate_id\":\"cand_claim_9b767aad703d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"35% of day visitors miss the last sailing\"},{\"candidate_id\":\"cand_claim_b835f574a71e\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"52% more seats per sailing\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3538,
+    "completion_tokens": 1879
+  }
+}

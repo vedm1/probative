@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_6a9688844572\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 3800 passengers last month\"},{\"candidate_id\":\"cand_claim_635812e86d88\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"66% more seats per sailing\"},{\"candidate_id\":\"cand_claim_289824cef8f1\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"23% of freight clerks miss the last sailing\"},{\"candidate_id\":\"cand_claim_a0eaff6a110d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"29% more seats per sailing\"},{\"candidate_id\":\"cand_claim_c9116d687d3c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 53%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3525,
+    "completion_tokens": 909
+  }
+}

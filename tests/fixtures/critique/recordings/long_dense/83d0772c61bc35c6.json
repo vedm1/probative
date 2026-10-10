@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_c4eeb78d036d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 6800 passengers last month\"},{\"candidate_id\":\"cand_claim_bc10982f307d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Refund requests are down 21%\"},{\"candidate_id\":\"cand_claim_92dbd4b41cbc\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 4700 passengers last month\"},{\"candidate_id\":\"cand_claim_06d01479a7fb\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"fill 11% more seats per sailing\"},{\"candidate_id\":\"cand_claim_fc2ac36297c0\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"Ticket scans take 1.23 seconds\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3540,
+    "completion_tokens": 1103
+  }
+}

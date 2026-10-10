@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"segments\":[{\"quote\":\"The segment we are building for is island residents who cross more than twice a week.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3867,
+    "completion_tokens": 197
+  }
+}

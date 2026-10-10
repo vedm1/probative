@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"forecasts\":[{\"quote\":\"Refund requests are down 62%, so the new policy is working.\"}]}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3882,
+    "completion_tokens": 557
+  }
+}

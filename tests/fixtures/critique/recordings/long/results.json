@@ -1,0 +1,106 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "case": "long_b2",
+  "wall_seconds": 64.8,
+  "calls": 184,
+  "input_tokens": 623373,
+  "output_tokens": 94906,
+  "jobs": 32,
+  "reply": "flagged",
+  "batch_size": 2,
+  "window_chars": 10000,
+  "documents": [
+    {
+      "file": "spec_long.pdf",
+      "chars": 87503,
+      "pages": 30,
+      "candidates": {
+        "claim": 102,
+        "need": 25,
+        "story": 21,
+        "constraint": 7,
+        "dependency": 16,
+        "segment": 6,
+        "forecast": 13
+      }
+    }
+  ],
+  "incomplete": false,
+  "totals": {
+    "block": 118,
+    "warn": 80,
+    "note": 0
+  },
+  "dimensions": {
+    "evidence_auditor": {
+      "status": "assessed",
+      "checked": 102,
+      "flagged": 96,
+      "counts": {
+        "block": 98,
+        "warn": 7,
+        "note": 0
+      }
+    },
+    "space_warden": {
+      "status": "assessed",
+      "checked": 25,
+      "flagged": 3,
+      "counts": {
+        "block": 3,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "segment_skeptic": {
+      "status": "assessed",
+      "checked": 6,
+      "flagged": 2,
+      "counts": {
+        "block": 2,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "invest": {
+      "status": "assessed",
+      "checked": 21,
+      "flagged": 4,
+      "counts": {
+        "block": 4,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "dependency_critic": {
+      "status": "assessed",
+      "checked": 16,
+      "flagged": 4,
+      "counts": {
+        "block": 4,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "constraint_critic": {
+      "status": "assessed",
+      "checked": 7,
+      "flagged": 7,
+      "counts": {
+        "block": 7,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "red_team": {
+      "status": "assessed",
+      "checked": 115,
+      "flagged": 52,
+      "counts": {
+        "block": 0,
+        "warn": 73,
+        "note": 0
+      }
+    }
+  }
+}

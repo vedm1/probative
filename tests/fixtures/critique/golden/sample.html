@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;sha256-XCC5fL9V8FDUl3C34R7RpKTdJQc4sDLthH8RJo9BQP4=&#x27;; script-src &#x27;sha256-Aqk+o783C0CqLlIjN9yHjz4fWOdd2HDZeOg3wz9PMT0=&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
+<title>Probative critique: checkout-prd.md</title>
+<style>:root {
+  --bg: #fbfbf9; --surface: #ffffff; --fg: #1b1f24; --muted: #5b636b; --line: #d9d9d4;
+  --block: #b3261e; --warn: #8a5a00; --note: #3d5a80; --focus: #0b57d0;
+  --mark: #fff0b3; --mark-fg: #1b1f24; --block-bg: #fdecea; --warn-bg: #fff4de; --note-bg: #e8eff7;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --bg: #14171a; --surface: #1c2024; --fg: #e8eaed; --muted: #a0a8b0; --line: #343a40;
+  --block: #ff8a80; --warn: #f2c46d; --note: #9fb8d9; --focus: #8ab4f8;
+  --mark: #5c4b00; --mark-fg: #fff7d6; --block-bg: #3a1f1d; --warn-bg: #3a2f17; --note-bg: #1f2a38;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171a; --surface: #1c2024; --fg: #e8eaed; --muted: #a0a8b0; --line: #343a40;
+  --block: #ff8a80; --warn: #f2c46d; --note: #9fb8d9; --focus: #8ab4f8;
+  --mark: #5c4b00; --mark-fg: #fff7d6; --block-bg: #3a1f1d; --warn-bg: #3a2f17; --note-bg: #1f2a38;
+}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+main { max-width: 62rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+h1 { font-size: 1.5rem; margin: 0 0 .25rem; overflow-wrap: anywhere; }
+h2 { font-size: 1.2rem; margin: 2rem 0 .5rem; border-bottom: 1px solid var(--line); }
+h3 { font-size: 1.05rem; margin: 1.25rem 0 .25rem; }
+h4 { font-size: .98rem; margin: 1rem 0 .25rem; font-weight: 600; }
+.muted { color: var(--muted); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+table { border-collapse: collapse; width: 100%; background: var(--surface); }
+th, td {
+  border: 1px solid var(--line); padding: .4rem .6rem; text-align: left; vertical-align: top;
+}
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; }
+button {
+  font: inherit; color: var(--fg); background: var(--surface); border: 1px solid var(--line);
+  border-radius: .4rem; padding: .25rem .7rem; cursor: pointer;
+}
+button[aria-pressed="true"] { border-color: var(--fg); font-weight: 600; }
+.sev { font-weight: 700; letter-spacing: .02em; }
+.sev-block { color: var(--block); }
+.sev-warn { color: var(--warn); }
+.sev-note { color: var(--note); }
+.bar { font-family: ui-monospace, Menlo, monospace; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; }
+.js-only { display: none; }
+.js .js-only { display: flex; }
+.group { margin: 0 0 1rem; }
+details.finding {
+  background: var(--surface); border: 1px solid var(--line); border-left-width: 6px;
+  border-radius: .3rem; margin: .4rem 0; padding: .1rem .75rem;
+}
+details.sev-block-box { border-left-style: solid; border-left-color: var(--block); }
+details.sev-warn-box { border-left-style: dashed; border-left-color: var(--warn); }
+details.sev-note-box { border-left-style: dotted; border-left-color: var(--note); }
+details.finding > summary { cursor: pointer; padding: .4rem 0; overflow-wrap: anywhere; }
+.where { color: var(--muted); font-size: .9rem; }
+.ctx { white-space: pre-wrap; overflow-wrap: anywhere; margin: .5rem 0; }
+mark { background: var(--mark); color: var(--mark-fg); padding: 0 .1em; }
+.fix::before { content: "Fix: "; font-weight: 600; }
+@media print { .chips, .js-only { display: none !important; } }
+</style>
+</head>
+<body>
+<main>
+<header><h1>Probative critique: checkout-prd.md</h1><p class="muted">test/model · 1 document · 431 characters · 0.0s · 10 successful model calls</p><p><strong>2 blocking · 1 warnings · 0 notes</strong> <button id="theme" class="js-only" type="button">Toggle theme</button></p></header>
+<h2 id="summary">Summary</h2><div class="scroll"><table><caption class="muted">One row per critic. Clean is the share of candidates checked that drew no blocking or warning finding; the floor is the severity veto.</caption><thead><tr><th>Dimension</th><th class="n">Checked</th><th>Clean</th><th class="n">Block</th><th class="n">Warn</th><th class="n">Note</th><th class="n">Floor (0 to 10)</th><th>Status</th></tr></thead><tbody><tr><th scope="row">Evidence</th><td class="n">2</td><td><span class="bar" aria-hidden="true">▓▓▓▓▓░░░░░</span> 1 of 2 (50%)</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">0.0</td><td>BLOCKED · small sample</td></tr><tr><th scope="row">Problem framing</th><td class="n">2</td><td><span class="bar" aria-hidden="true">▓▓▓▓▓░░░░░</span> 1 of 2 (50%)</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">0.0</td><td>BLOCKED · small sample</td></tr><tr><th scope="row">Segments</th><td class="n">1</td><td><span class="bar" aria-hidden="true">▓▓▓▓▓▓▓▓▓▓</span> 1 of 1 (100%)</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">10.0</td><td>clean · small sample</td></tr><tr><th scope="row">Story quality</th><td class="n">1</td><td><span class="bar" aria-hidden="true">▓▓▓▓▓▓▓▓▓▓</span> 1 of 1 (100%)</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">10.0</td><td>clean · small sample</td></tr><tr><th scope="row">Dependencies</th><td class="n">0</td><td>—</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">—</td><td>nothing found to check</td></tr><tr><th scope="row">Constraints</th><td class="n">0</td><td>—</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">—</td><td>nothing found to check</td></tr><tr><th scope="row">Stress test: least sure about</th><td class="n">3</td><td><span class="bar" aria-hidden="true">▓▓▓▓▓▓▓░░░</span> 2 of 3 (67%)</td><td class="n">0</td><td class="n">1</td><td class="n">0</td><td class="n">8.0</td><td>warnings · small sample</td></tr></tbody></table></div>
+<h2 id="findings">Findings</h2>
+<div class="chips js-only" role="group" aria-label="Filter by severity"><button type="button" data-sev="block" aria-pressed="true">✗ Blocking</button><button type="button" data-sev="warn" aria-pressed="true">▲ Warnings</button><button type="button" data-sev="note" aria-pressed="true">• Notes</button></div>
+<h3>Blocking</h3>
+<section class="group" data-sev="block"><h4>Evidence: The statement presents a specific figure, proportion, ranking, benchmark or study finding as fact, and gives no basis for it. <span class="muted">(1 of 2)</span></h4><details class="finding sev-block-box" id="f-0" data-sev="block"><summary><span class="sev sev-block">✗ BLOCK</span> “FLAG Competitors convert far better than we do.” <span class="where">checkout-prd.md, line 4</span></summary><p class="ctx"># Checkout PRD
+
+CLAIM: Conversion drops 12% at the payment step.
+CLAIM: <mark>FLAG Competitors convert far better than we do.</mark>
+NEED: Users need a FLAG &lt;script&gt;alert(1)&lt;/script&gt; | `tick` **bold** [x](http://evil.test)
+NEED: Users want to pay without retyping details.
+STORY: As a shopper I want to save my card so that I can pay faster.
+SEGMENT: Adults aged 25 to 45 …</p><p class="fix">Name where the figure comes from, or restate it as an assumption to be tested</p></details></section>
+<section class="group" data-sev="block"><h4>Problem framing: The need names a feature, a screen or UI element, an implementation, or a named technology instead of the customer benefit. <span class="muted">(1 of 2)</span></h4><details class="finding sev-block-box" id="f-1" data-sev="block"><summary><span class="sev sev-block">✗ BLOCK</span> “Users need a FLAG &lt;script&gt;alert(1)&lt;/script&gt; | `tick` **bold** [x](http://evil.test)” <span class="where">checkout-prd.md, line 5</span></summary><p class="ctx"># Checkout PRD
+
+CLAIM: Conversion drops 12% at the payment step.
+CLAIM: FLAG Competitors convert far better than we do.
+NEED: <mark>Users need a FLAG &lt;script&gt;alert(1)&lt;/script&gt; | `tick` **bold** [x](http://evil.test)</mark>
+NEED: Users want to pay without retyping details.
+STORY: As a shopper I want to save my card so that I can pay faster.
+SEGMENT: Adults aged 25 to 45 who shop online.
+FORECAST: Launching this will double repeat purchases.
+</p><p class="fix">Restate as a customer benefit — verb first, customer voice</p></details></section>
+<h3>Warnings</h3>
+<section class="group" data-sev="warn"><h4>Stress test: least sure about: The statement reports a change, trend, pattern or correlation, links it in its own words to a cause or a conclusion (because, so, driving, shows that, clearly, which is why, proves), and rules out no other explanation: seasonality, a change in who or what was counted, a concurrent release or event, a selection effect. <span class="muted">(1 of 3)</span></h4><details class="finding sev-warn-box" id="f-2" data-sev="warn"><summary><span class="sev sev-warn">▲ WARN</span> “FLAG Competitors convert far better than we do.” <span class="where">checkout-prd.md, line 4</span></summary><p class="ctx"># Checkout PRD
+
+CLAIM: Conversion drops 12% at the payment step.
+CLAIM: <mark>FLAG Competitors convert far better than we do.</mark>
+NEED: Users need a FLAG &lt;script&gt;alert(1)&lt;/script&gt; | `tick` **bold** [x](http://evil.test)
+NEED: Users want to pay without retyping details.
+STORY: As a shopper I want to save my card so that I can pay faster.
+SEGMENT: Adults aged 25 to 45 …</p><p class="detail">Would have to be true: For “FLAG Competitors convert far better than we do.” to support the conclusion drawn from it, the other plausible explanations must have been excluded.</p><p class="fix">Name the other explanations and how each was excluded, or state the conclusion as a hypothesis</p></details></section>
+<h2 id="not-assessed">Not assessed</h2>
+<ul><li>Dependencies: nothing found to check</li><li>Constraints: nothing found to check</li></ul>
+<h2 id="coverage">Coverage</h2><div class="scroll"><table><thead><tr><th>Document</th><th>Format</th><th class="n">claim</th><th class="n">constraint</th><th class="n">dependency</th><th class="n">forecast</th><th class="n">need</th><th class="n">segment</th><th class="n">story</th></tr></thead><tbody><tr><th scope="row">checkout-prd.md</th><td>markdown (detected)</td><td class="n">2</td><td class="n">0</td><td class="n">0</td><td class="n">1</td><td class="n">2</td><td class="n">1</td><td class="n">1</td></tr></tbody></table></div>
+<p class="muted">100 input tokens · 50 output tokens · 1 concurrent calls · critics reply with flagged items only · probative 0.0.0-test</p>
+</main>
+<script>(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+  var toggle = document.getElementById('theme');
+  if (toggle) toggle.addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+  });
+  var chips = document.querySelectorAll('button[data-sev]');
+  function apply() {
+    var on = {};
+    chips.forEach(function (c) {
+      on[c.getAttribute('data-sev')] = c.getAttribute('aria-pressed') === 'true';
+    });
+    document.querySelectorAll('details.finding').forEach(function (d) {
+      d.hidden = !on[d.getAttribute('data-sev')];
+    });
+    document.querySelectorAll('section.group').forEach(function (g) {
+      g.hidden = g.querySelectorAll('details.finding:not([hidden])').length === 0;
+    });
+  }
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      apply();
+    });
+  });
+  window.addEventListener('beforeprint', function () {
+    document.querySelectorAll('details').forEach(function (d) { d.open = true; });
+  });
+})();
+</script>
+</body>
+</html>

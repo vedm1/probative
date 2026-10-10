@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_7b40b9f13fa6\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"37% more seats per sailing\"},{\"candidate_id\":\"cand_claim_ccedd77cfc63\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 36% after the timetable change\"},{\"candidate_id\":\"cand_claim_080caaa0e6ac\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"carried 6300 passengers last month\"},{\"candidate_id\":\"cand_claim_28c8c2ea9737\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"rose 61% after the timetable change\"},{\"candidate_id\":\"cand_claim_2e8b131b8c74\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"take 1.52 seconds\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3565,
+    "completion_tokens": 775
+  }
+}

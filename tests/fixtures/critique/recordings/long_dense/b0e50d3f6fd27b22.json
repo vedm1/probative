@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_a24745700ad4\",\"check_id\":\"rival_explanation\",\"verdict\":\"not_met\",\"quote\":\"rose 41% after the timetable change\"},{\"candidate_id\":\"cand_claim_a24745700ad4\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Queue time at the Old Quay to Heron Point kiosk rose 41%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3941,
+    "completion_tokens": 1603
+  }
+}

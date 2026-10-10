@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_dependency_e156924b2e98\",\"check_id\":\"unowned_dependency\",\"verdict\":\"not_met\",\"quote\":\"the ledger has been migrated to the new database by the platform group\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2639,
+    "completion_tokens": 114
+  }
+}

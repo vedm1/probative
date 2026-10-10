@@ -1,0 +1,132 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "case": "folder",
+  "wall_seconds": 36.2,
+  "calls": 20,
+  "input_tokens": 38302,
+  "output_tokens": 12156,
+  "jobs": 16,
+  "reply": "flagged",
+  "documents": [
+    {
+      "file": "backlog.csv",
+      "chars": 224,
+      "pages": null,
+      "candidates": {
+        "claim": 1,
+        "need": 0,
+        "story": 0,
+        "constraint": 0,
+        "dependency": 0,
+        "segment": 0,
+        "forecast": 0
+      }
+    },
+    {
+      "file": "page_export.doc",
+      "chars": 484,
+      "pages": null,
+      "candidates": {
+        "claim": 4,
+        "need": 0,
+        "story": 0,
+        "constraint": 0,
+        "dependency": 0,
+        "segment": 0,
+        "forecast": 0
+      }
+    },
+    {
+      "file": "prd_segments.md",
+      "chars": 1029,
+      "pages": null,
+      "candidates": {
+        "claim": 4,
+        "need": 3,
+        "story": 1,
+        "constraint": 0,
+        "dependency": 1,
+        "segment": 4,
+        "forecast": 0
+      }
+    }
+  ],
+  "incomplete": false,
+  "totals": {
+    "block": 3,
+    "warn": 5,
+    "note": 0
+  },
+  "dimensions": {
+    "evidence_auditor": {
+      "status": "assessed",
+      "checked": 9,
+      "flagged": 5,
+      "counts": {
+        "block": 1,
+        "warn": 4,
+        "note": 0
+      }
+    },
+    "space_warden": {
+      "status": "assessed",
+      "checked": 3,
+      "flagged": 0,
+      "counts": {
+        "block": 0,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "segment_skeptic": {
+      "status": "assessed",
+      "checked": 4,
+      "flagged": 2,
+      "counts": {
+        "block": 1,
+        "warn": 1,
+        "note": 0
+      }
+    },
+    "invest": {
+      "status": "assessed",
+      "checked": 1,
+      "flagged": 0,
+      "counts": {
+        "block": 0,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "dependency_critic": {
+      "status": "assessed",
+      "checked": 1,
+      "flagged": 1,
+      "counts": {
+        "block": 1,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "constraint_critic": {
+      "status": "not_applicable",
+      "checked": 0,
+      "flagged": 0,
+      "counts": {
+        "block": 0,
+        "warn": 0,
+        "note": 0
+      }
+    },
+    "red_team": {
+      "status": "assessed",
+      "checked": 9,
+      "flagged": 0,
+      "counts": {
+        "block": 0,
+        "warn": 0,
+        "note": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_abcee1c6897d\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Queue time at the Pier 4 to Gull Island kiosk rose 38%\"},{\"candidate_id\":\"cand_claim_04c51816f79c\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"Queue time at the Old Quay to Heron Point kiosk rose 27%\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3928,
+    "completion_tokens": 4100
+  }
+}

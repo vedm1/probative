@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_9382bca4f2e2\",\"check_id\":\"definition_drift\",\"verdict\":\"not_met\",\"quote\":\"missed visits fell only in the assigned group\"}],\"reviewed\":3}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3863,
+    "completion_tokens": 849
+  }
+}

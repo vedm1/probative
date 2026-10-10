@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_claim_db2fc886a8f0\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"1.61 seconds\"},{\"candidate_id\":\"cand_claim_ef55090ecd7d\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 48%\"},{\"candidate_id\":\"cand_claim_6d2e28eeb5c9\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"down 45%\"},{\"candidate_id\":\"cand_claim_7f471d28016c\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"64% of school parties\"},{\"candidate_id\":\"cand_claim_05b4ff0442f3\",\"check_id\":\"unsourced_statistic\",\"verdict\":\"not_met\",\"quote\":\"67% of school parties\"}],\"reviewed\":5}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3541,
+    "completion_tokens": 1068
+  }
+}

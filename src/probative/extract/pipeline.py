@@ -7,6 +7,7 @@ builds no graph. It proposes nothing to the Committer; it returns candidates.
 from __future__ import annotations
 
 from collections.abc import Sequence
+from concurrent.futures import Executor, Future
 
 from pydantic import BaseModel, ValidationError
 
@@ -76,10 +77,17 @@ def extract_candidates(
     max_chars_per_call: int = 60_000,
     max_quote_chars: int = 500,
     passes: Sequence[ExtractionPass] | None = None,
+    executor: Executor | None = None,
 ) -> ExtractionResult:
     """`passes=None` runs PB4's two passes. Pass `[*PASSES, SEGMENT_PASS]` to
     also extract segments (PB6-p2), or add `FORECAST_PASS` for forecasts (PB8);
-    the default is unchanged so PB4's recorded prompts keep replaying."""
+    the default is unchanged so PB4's recorded prompts keep replaying.
+
+    `executor` (PB9) runs the (window, pass) model calls concurrently. Quotes are
+    then resolved and de-duplicated afterwards in the same window-major order the
+    sequential path uses, so the result is identical. The caller must not itself
+    be running on `executor` (it blocks on the calls it submits). Without an
+    executor the calls run one at a time, lazily, exactly as before."""
     chosen = list(PASSES if passes is None else passes)
     if not chosen:
         raise ValueError("passes must name at least one extraction pass")
@@ -90,16 +98,30 @@ def extract_candidates(
     rejected: list[RejectedQuote] = []
     input_tokens = output_tokens = 0
 
-    for window in chunk_windows(source, max_chars=max_chars_per_call):
+    plan = [
+        (window, extraction_pass)
+        for window in chunk_windows(source, max_chars=max_chars_per_call)
+        for extraction_pass in chosen
+    ]
+
+    def call(
+        window: tuple[int, int], extraction_pass: ExtractionPass
+    ) -> tuple[BaseModel, TokenUsage]:
         chunk = source.text[window[0] : window[1]]
-        for extraction_pass in chosen:
-            output, usage = _call(
-                provider,
-                extraction_pass,
-                _messages(extraction_pass, chunk),
-                model=model,
-                source_id=source.id,
-            )
+        return _call(
+            provider,
+            extraction_pass,
+            _messages(extraction_pass, chunk),
+            model=model,
+            source_id=source.id,
+        )
+
+    futures: list[Future[tuple[BaseModel, TokenUsage]]] = []
+    if executor is not None:
+        futures = [executor.submit(call, window, p) for window, p in plan]
+    try:
+        for index, (window, extraction_pass) in enumerate(plan):
+            output, usage = futures[index].result() if futures else call(window, extraction_pass)
             input_tokens += usage.input_tokens
             output_tokens += usage.output_tokens
             for field_name, kind in extraction_pass.fields.items():
@@ -117,6 +139,10 @@ def extract_candidates(
                     else:
                         claimed[kind].add((resolved.start, resolved.end))
                         found[kind].append(resolved)
+    except BaseException:
+        for future in futures:
+            future.cancel()
+        raise
 
     def ordered(kind: CandidateKind) -> list[EvidenceSpan]:
         return sorted(found[kind], key=lambda span: (span.start, span.end))

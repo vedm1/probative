@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5",
+  "choices": [
+    {
+      "message": {
+        "content": "{\"flagged\":[{\"candidate_id\":\"cand_forecast_97a2758e32cc\",\"check_id\":\"unfalsifiable_outcome\",\"verdict\":\"not_met\",\"quote\":\"a firmer grip on their work\"}],\"reviewed\":1}"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3715,
+    "completion_tokens": 306
+  }
+}
