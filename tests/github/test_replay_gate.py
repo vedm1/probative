@@ -8,11 +8,13 @@ from __future__ import annotations
 
 import json
 import re
+from pathlib import Path
 
 from probative.critique.pipeline import CritiqueOptions
 from probative.interfaces.github.api import GitHubClient
 from probative.interfaces.github.context import load_context
 from probative.interfaces.github.runner import ActionOptions, run_review
+from probative.interfaces.github.trust import decide
 from probative.llm import LiteLLMProvider
 from tests._recording import replay
 from tests.critique._cases import FIXTURES, RECORDINGS, rerecord_hint
@@ -22,13 +24,15 @@ PRD = FIXTURES / "extract" / "prd_payments.md"
 FENCE = re.compile(r"(`{3,})[^\n]*\n(.*?)\n\1", re.DOTALL)
 
 
-def _run(github: FakeGitHub, event: str) -> None:
+def _run(github: FakeGitHub, event: str, event_name: str = "pull_request") -> None:
     results = json.loads((RECORDINGS / "payments" / "results.json").read_text())
     provider = LiteLLMProvider(
         completion_fn=replay(RECORDINGS / "payments", rerecord_hint("payments"))
     )
+    ctx = load_context(EVENTS / event, event_name)
     run_review(
-        load_context(EVENTS / event, "pull_request"),
+        ctx,
+        decide(ctx),
         GitHubClient(github.url, "ghs_tok"),
         ActionOptions(),
         provider=provider,
@@ -73,3 +77,21 @@ def test_a_second_push_changes_nothing_when_nothing_changed(github: FakeGitHub) 
     assert len(github.review_comments) == posted
     assert github.reviews() == []
     assert len(github.issue_comments) == 1
+
+
+def test_the_recorded_run_under_a_trusted_pull_request_target_posts_the_same_review(
+    github: FakeGitHub, tmp_path: Path
+) -> None:
+    from tests.github.conftest import target_event
+
+    text = PRD.read_text(encoding="utf-8")
+    github.add_file("docs/saved-cards.md", text)
+    _run(github, "pull_request_same_repo.json")
+    expected = sorted(c["body"] for c in github.review_comments)
+    github.review_comments.clear()
+    github.issue_comments.clear()
+    event = target_event(
+        tmp_path, association="OWNER", action="opened", label=None, head_repo="acme/specs"
+    )
+    _run(github, event, "pull_request_target")  # type: ignore[arg-type]
+    assert sorted(c["body"] for c in github.review_comments) == expected

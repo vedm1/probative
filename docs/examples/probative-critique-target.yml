@@ -1,0 +1,39 @@
+# For repositories that take pull requests from forks. Read docs/GITHUB-ACTION.md first.
+#
+# `pull_request_target` runs with your secrets and a write token for code you do not control.
+# That is safe here only because this workflow NEVER checks out the pull request: the action
+# reads files over the API at the event's commit, and nothing from the PR is executed.
+# Do not add a checkout step to this file.
+#
+# Authors with write access are reviewed on every push (the repository owner, or an org
+# member or collaborator whose permission is write or admin). Anyone
+# else is reviewed only after a maintainer applies the `probative-review` label, and then
+# only their .md, .markdown and .txt files. Create the label once; look at the diff before
+# you apply it. Pushing again does not re-run for an outside author: label again.
+name: Probative critique (forks)
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
+
+# The least this needs: read the PR's files, write one review and one comment.
+permissions:
+  contents: read
+  pull-requests: write
+
+# A new push replaces the run for the old one instead of paying for both.
+concurrency:
+  # Per label, so adding an unrelated label cannot cancel the run a maintainer's label started.
+  group: probative-${{ github.event.pull_request.number }}-${{ github.event.action == 'labeled' && github.event.label.name || 'push' }}
+  cancel-in-progress: true
+
+jobs:
+  critique:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # Pin to a release tag once one contains this action; `main` moves.
+      - uses: vedm1/probative@main
+        with:
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # label: probative-review   # the label a maintainer applies for an outside author

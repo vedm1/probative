@@ -26,6 +26,39 @@ HEAD_SHA = "1" * 40
 BOT = {"login": "github-actions[bot]"}
 
 
+def target_event(
+    directory: Path,
+    *,
+    association: str = "NONE",
+    action: str = "labeled",
+    label: str | None = "probative-review",
+    sender: str = "maintainer",
+    author: str = "mallory",
+    head_repo: str = "mallory/specs",
+    name: str = "event.json",
+) -> Path:
+    """A `pull_request_target` event written to `directory`; the head is a fork by default."""
+    event: dict[str, Any] = {
+        "action": action,
+        "number": 7,
+        "pull_request": {
+            "number": 7,
+            "head": {"sha": HEAD_SHA, "repo": {"full_name": head_repo}},
+            "base": {"sha": "2" * 40, "repo": {"full_name": REPO}},
+            "user": {"login": author},
+            "author_association": association,
+            "labels": [{"name": label}] if label else [],
+        },
+        "repository": {"full_name": REPO},
+        "sender": {"login": sender},
+    }
+    if action in ("labeled", "unlabeled") and label:
+        event["label"] = {"name": label}
+    path = directory / name
+    path.write_text(json.dumps(event))
+    return path
+
+
 def make_patch(old: str, new: str) -> str:
     """The `patch` field GitHub returns: unified-diff hunks without the file header."""
     diff = list(difflib.unified_diff(old.splitlines(), new.splitlines(), lineterm="", n=3))
@@ -49,6 +82,9 @@ class FakeGitHub:
     review_comments: list[dict[str, Any]] = field(default_factory=list)
     issue_comments: list[dict[str, Any]] = field(default_factory=list)
     permissions: dict[str, str] = field(default_factory=dict)
+    head_repo: str = REPO  # contents are served under this repo (a fork) as well as under REPO
+    pr_head_sha: str = HEAD_SHA  # what `GET /pulls/{n}` reports as the PR's current head
+    permission_status: int = 200  # a non-200 answers the collaborator-permission call with it
     reject_review_with_422: bool = False
     echo_auth_in_errors: bool = False
     fail_files_with: int = 0
@@ -129,18 +165,30 @@ def _handler(state: FakeGitHub) -> type[BaseHTTPRequestHandler]:
                 page = int(query.get("page", ["1"])[0])
                 size = int(query.get("per_page", ["30"])[0])
                 return self._send(200, state.files[(page - 1) * size : page * size])
-            if path.startswith(f"{base}/contents/"):
-                name = unquote(path[len(f"{base}/contents/") :])
+            content_base = next(
+                (
+                    f"/repos/{repo}/contents/"
+                    for repo in (REPO, state.head_repo)
+                    if path.startswith(f"/repos/{repo}/contents/")
+                ),
+                None,
+            )
+            if content_base is not None:
+                name = unquote(path[len(content_base) :])
                 key = (name, query.get("ref", [""])[0])
                 if key not in state.contents:
                     return self._send(404, {"message": "Not Found"})
                 return self._send(200, None, raw=state.contents[key])
+            if path == f"{base}/pulls/7":
+                return self._send(200, {"number": 7, "head": {"sha": state.pr_head_sha}})
             if path == f"{base}/pulls/7/comments":
                 return self._send(200, state.review_comments)
             if path == f"{base}/issues/7/comments":
                 return self._send(200, state.issue_comments)
             if path.startswith(f"{base}/collaborators/") and path.endswith("/permission"):
                 who = path.split("/")[-2]
+                if state.permission_status != 200:
+                    return self._send(state.permission_status, {"message": "nope"})
                 return self._send(200, {"permission": state.permissions.get(who, "read")})
             if state.echo_auth_in_errors:
                 return self._send(500, {"message": self.headers.get("Authorization", "")})

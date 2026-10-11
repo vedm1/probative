@@ -41,6 +41,7 @@ not write are deliberately not turned into line comments.
 | `max-minutes` | `20` | stop starting new files after this; set the job's `timeout-minutes` higher |
 | `max-inline` | `50` | the rest go to the summary |
 | `fail-on` | `never` | `block` fails the job on a blocking finding or an incomplete file |
+| `label` | `probative-review` | `pull_request_target` only: the label a maintainer applies to start a review of an outside author's pull request |
 | `model` | the default | |
 | `version` | the release this action ships with | |
 | `install-from` | none | a pip requirement, to test an unreleased commit |
@@ -49,13 +50,42 @@ With `fail-on: never` the job succeeds whatever happens, including provider and 
 which become workflow warnings. With `fail-on: block` a blocking finding exits 1 and an error
 exits 2.
 
-## Forks
+## Forks and outside authors
 
-This version supports the `pull_request` event only. A pull request from a fork gets no
-secrets and a read-only token, so the action prints a notice and posts nothing. Do not switch
-the workflow to `pull_request_target` to get around that: this version refuses it, because
-running a model over an outsider's files with your key needs a trust policy that is not built
-yet (PB35-p2).
+With the plain `pull_request` event (the first example), a pull request from a fork gets no
+secrets and a read-only token, so the action prints a notice and posts nothing.
+
+To review forks, use [`examples/probative-critique-target.yml`](examples/probative-critique-target.yml),
+which uses `pull_request_target`. That event runs with your secrets and a write token on
+code you do not control, so the action gates it:
+
+| Who opened the pull request | What starts a review |
+|---|---|
+| The repository owner, or an org member or collaborator whose permission is write or admin (membership alone is not enough: it can mean read-only) | opened, pushed to, reopened, ready for review, or the `probative-review` label applied |
+| Anyone else, including a read-only member | only a maintainer **applying the `probative-review` label** (the person who applied it must have write or admin permission); a later push does not run again, label again |
+
+For an outside author the review covers `.md`, `.markdown` and `.txt` files only. PDF, DOCX
+and XLSX files are listed in the summary as skipped and are never downloaded, because their
+parsers would run with your model key in the environment. Any other label, a labeler without
+write permission, or a failed permission lookup is a notice and nothing else: no model call,
+no post.
+
+A refusal is a green check, even with `fail-on: block`: it means "not reviewed", so do not
+use this check as a gate for outsiders. The label name is matched exactly (case included),
+and anyone who can apply labels can start a review on a trusted author's pull request. A
+file over 1 MB from an outside author is skipped. If the pull request moved on since the
+event, the run stops with a notice and you apply the label again.
+
+What this does not protect against: **look at the diff before you apply the label.** The
+model reads the outsider's text, and a crafted file can skew a verdict (it can still not
+call a tool, change a number, or make a quote appear that is not in the file: quotes are
+checked against the file's bytes, and bodies are rubric strings plus fenced quotes). The
+review reads the commit the label event names; a push after labeling is not reviewed until
+the label is applied again.
+
+Never add a checkout step to the `pull_request_target` workflow. The action runs from the
+runner's temp directory so a stray `.env` or `uv.toml` could not be read, but nothing else
+protects a job that executes pull request code with these secrets.
 
 ## Cost and time
 

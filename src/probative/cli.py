@@ -28,6 +28,7 @@ from probative.critique.report import ReportIntegrityError
 from probative.critique.sources import DEFAULT_MAX_FILES
 from probative.interfaces.github.entry import run_from_env
 from probative.interfaces.github.runner import DEFAULT_PATHS, ActionOptions
+from probative.interfaces.github.trust import DEFAULT_LABEL
 from probative.llm.factory import make_provider
 from probative.render.html import render_html
 from probative.render.markdown import render_markdown, render_summary
@@ -164,6 +165,9 @@ def github_review(
     ] = 20.0,
     fail_on: Annotated[str, typer.Option(help="never or block.")] = "never",
     max_inline: Annotated[int, typer.Option(min=0, help="Inline comments per run.")] = 50,
+    label: Annotated[
+        str, typer.Option(help="pull_request_target: the label a maintainer applies to start it.")
+    ] = DEFAULT_LABEL,
     model: Annotated[str | None, typer.Option(help="Model id; default from settings.")] = None,
 ) -> None:
     """Critique the spec files a pull request changes and post the findings (GitHub Actions)."""
@@ -180,6 +184,7 @@ def github_review(
             max_minutes=max_minutes,
             fail_on="block" if fail_on == "block" else "never",
             max_inline=max_inline,
+            label=label.strip() or DEFAULT_LABEL,
         ),
         provider_factory=_make_provider,
         echo=typer.echo,

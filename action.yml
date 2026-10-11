@@ -41,6 +41,12 @@ inputs:
     description: "`never` (advisory, the default) or `block` (fail the job on a blocking finding)."
     required: false
     default: never
+  label:
+    description: >-
+      pull_request_target only: the label a maintainer applies to start a review of a
+      pull request by an author without write access.
+    required: false
+    default: probative-review
   model:
     description: Model id. Empty uses the default.
     required: false
@@ -62,8 +68,11 @@ runs:
     - uses: astral-sh/setup-uv@v7
       with:
         python-version: "3.12"
+        enable-cache: false  # no shared cache scope on an event that carries secrets
     - name: Critique the changed specs
       shell: bash
+      # Never the workspace: a .env or uv.toml there could belong to the pull request.
+      working-directory: ${{ runner.temp }}
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
         ANTHROPIC_API_KEY: ${{ inputs.anthropic-api-key }}
@@ -72,6 +81,7 @@ runs:
         PROBATIVE_MAX_MINUTES: ${{ inputs.max-minutes }}
         PROBATIVE_MAX_INLINE: ${{ inputs.max-inline }}
         PROBATIVE_FAIL_ON: ${{ inputs.fail-on }}
+        PROBATIVE_LABEL: ${{ inputs.label }}
         PROBATIVE_MODEL: ${{ inputs.model }}
         PROBATIVE_VERSION: ${{ inputs.version }}
         PROBATIVE_INSTALL_FROM: ${{ inputs.install-from }}
@@ -83,6 +93,7 @@ runs:
               --max-files "${PROBATIVE_MAX_FILES:-25}"
               --max-minutes "${PROBATIVE_MAX_MINUTES:-20}"
               --max-inline "${PROBATIVE_MAX_INLINE:-50}"
-              --fail-on "${PROBATIVE_FAIL_ON:-never}")
+              --fail-on "${PROBATIVE_FAIL_ON:-never}"
+              --label "${PROBATIVE_LABEL:-probative-review}")
         if [ -n "$PROBATIVE_MODEL" ]; then args+=(--model "$PROBATIVE_MODEL"); fi
         uvx --from "$requirement" probative github-review "${args[@]}"

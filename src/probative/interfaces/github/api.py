@@ -114,6 +114,20 @@ class GitHubClient:
         )
         return raw
 
+    def pr_head_sha(self, repo: str, number: int) -> str:
+        body = self._json("GET", f"/repos/{repo}/pulls/{number}")
+        try:
+            return str(body["head"]["sha"])
+        except (KeyError, TypeError):
+            raise GitHubError(200, "the pull request had an unexpected shape") from None
+
+    def collaborator_permission(self, repo: str, login: str) -> str:
+        """`admin`, `write`, `read` or `none`. A bot or a stranger is a 200 with `none`."""
+        who = urllib.parse.quote(login, safe="")
+        body = self._json("GET", f"/repos/{repo}/collaborators/{who}/permission")
+        value = body.get("permission") if isinstance(body, dict) else None
+        return value if isinstance(value, str) else ""
+
     def list_review_comments(self, repo: str, number: int) -> list[dict[str, Any]]:
         return list(self._paged(f"/repos/{repo}/pulls/{number}/comments"))
 

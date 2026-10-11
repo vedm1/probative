@@ -80,3 +80,44 @@ def test_empty_inputs_fall_back_to_the_defaults_in_the_script() -> None:
     script = next(s for s in _steps() if "run" in s)["run"]
     for name in ("PATHS", "MAX_FILES", "MAX_MINUTES", "MAX_INLINE", "FAIL_ON"):
         assert f"${{PROBATIVE_{name}:-" in script
+
+
+# --- PB35-p2 ---------------------------------------------------------------------------------
+
+TARGET_PATH = ROOT / "docs" / "examples" / "probative-critique-target.yml"
+
+
+def test_the_action_runs_outside_the_workspace_and_takes_a_label() -> None:
+    run = next(s for s in _steps() if "run" in s)
+    assert run["working-directory"] == "${{ runner.temp }}"  # a stray .env or uv.toml is not read
+    assert ACTION["inputs"]["label"]["default"] == "probative-review"
+    assert run["env"]["PROBATIVE_LABEL"] == "${{ inputs.label }}"
+    assert "${PROBATIVE_LABEL:-" in run["run"] and "--label" in run["run"]
+
+
+def test_the_target_example_is_least_privilege_and_never_checks_out_pr_code() -> None:
+    text = TARGET_PATH.read_text()
+    example = yaml.safe_load(text)
+    on = example[True] if True in example else example["on"]
+    assert set(on) == {"pull_request_target"}
+    assert set(on["pull_request_target"]["types"]) == {
+        "opened",
+        "synchronize",
+        "reopened",
+        "ready_for_review",
+        "labeled",
+    }
+    assert example["permissions"] == {"contents": "read", "pull-requests": "write"}
+    assert "actions/checkout" not in text
+    assert "cancel-in-progress" in text
+    # an unrelated label must not cancel the run a maintainer's label started
+    assert "github.event.label.name" in example["concurrency"]["group"]
+    for job in example["jobs"].values():
+        for step in job["steps"]:
+            assert "${{" not in step.get("run", "")
+    assert re.search(r"^\s*-?\s*uses:\s*vedm1/probative@", text, re.MULTILINE)
+
+
+def test_the_action_does_not_share_a_cache_on_a_secrets_bearing_event() -> None:
+    setup = next(s for s in _steps() if "uses" in s)
+    assert setup["with"]["enable-cache"] is False

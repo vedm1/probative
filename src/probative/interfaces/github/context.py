@@ -28,6 +28,8 @@ class PullRequestContext(BaseModel):
     author_association: str
     sender_login: str
     labels: tuple[str, ...] = ()
+    # the label this event applied (`labeled` only); the PR's `labels` say what it carries now
+    event_label: str = ""
 
     @property
     def is_fork(self) -> bool:
@@ -58,6 +60,11 @@ def load_context(event_path: Path, event_name: str) -> PullRequestContext:
         head_repo = _dig(pr, "head", "repo", "full_name")
     except ContextError:  # a deleted fork has no head repo
         head_repo = ""
+    label = event.get("label") or {}
+    if not isinstance(label, dict) or not all(
+        isinstance(item, dict) for item in pr.get("labels", [])
+    ):
+        raise ContextError("the event has a malformed label")
     return PullRequestContext(
         repo=str(_dig(event, "repository", "full_name")),
         number=int(_dig(pr, "number")),
@@ -68,5 +75,6 @@ def load_context(event_path: Path, event_name: str) -> PullRequestContext:
         author_login=str(_dig(pr, "user", "login")),
         author_association=str(pr.get("author_association", "NONE")),
         sender_login=str(_dig(event, "sender", "login")),
+        event_label=str(label.get("name", "")),
         labels=tuple(str(label.get("name", "")) for label in pr.get("labels", [])),
     )

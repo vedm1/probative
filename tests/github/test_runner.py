@@ -11,6 +11,7 @@ from probative.interfaces.github.api import GitHubClient
 from probative.interfaces.github.context import load_context
 from probative.interfaces.github.review import SUMMARY_MARKER
 from probative.interfaces.github.runner import ActionOptions, RunResult, run_review
+from probative.interfaces.github.trust import decide
 from tests.critique._sample import DOC
 from tests.critique._scripted import Scripted
 from tests.github.conftest import EVENTS, HEAD_SHA, FakeGitHub
@@ -32,8 +33,10 @@ def _run(
     provider: object | None = None,
     clock: object | None = None,
 ) -> RunResult:
+    ctx = load_context(EVENTS / event, event_name)
     return run_review(
-        load_context(EVENTS / event, event_name),
+        ctx,
+        decide(ctx),
         GitHubClient(github.url, TOKEN),
         options or _opts(),
         provider=provider or Scripted(),  # type: ignore[arg-type]
@@ -100,12 +103,6 @@ def test_a_fork_pr_posts_and_fetches_nothing(github: FakeGitHub) -> None:
     assert result.exit_code == 0
     assert github.requests == []
     assert any("fork" in m for m in result.messages)
-
-
-def test_pull_request_target_is_refused_in_p1(github: FakeGitHub) -> None:
-    github.add_file(SPEC, DOC)
-    result = _run(github, event_name="pull_request_target")
-    assert github.requests == [] and result.exit_code == 0
 
 
 def test_a_pr_with_no_spec_files_writes_nothing(github: FakeGitHub) -> None:

@@ -39,13 +39,6 @@ def test_fork_pull_request_is_refused_with_a_reason() -> None:
     assert "fork" in decision.reason
 
 
-def test_pull_request_target_is_refused_until_p2() -> None:
-    ctx = load_context(EVENTS / "pull_request_same_repo.json", "pull_request_target")
-    decision = decide(ctx)
-    assert not decision.allowed
-    assert "pull_request_target" in decision.reason
-
-
 def test_an_event_that_is_not_a_pull_request_is_an_error(tmp_path: Path) -> None:
     path = tmp_path / "push.json"
     path.write_text(json.dumps({"ref": "refs/heads/main"}))

@@ -32,11 +32,16 @@ from probative.interfaces.github.review import (
     existing_markers,
     plan_review,
 )
-from probative.interfaces.github.trust import decide
+from probative.interfaces.github.trust import DEFAULT_LABEL, TrustDecision
 from probative.llm import Provider
 
 DEFAULT_PATHS = ("**/*.md", "**/*.markdown", "**/*.txt", "**/*.pdf", "**/*.docx", "**/*.xlsx")
 _LINE_ADDRESSABLE = {".md", ".markdown", ".txt"}
+# What an author without write access may have critiqued: no PDF, DOCX or XLSX parser ever
+# runs over their bytes while the model key is in the environment.
+UNTRUSTED_FORMATS = (".md", ".markdown", ".txt")
+MAX_UNTRUSTED_BYTES = 1024 * 1024
+_RESTRICTED = "format not allowed for authors without write access (text files only)"
 
 
 @dataclass(frozen=True)
@@ -46,6 +51,7 @@ class ActionOptions:
     max_minutes: float = 20.0
     fail_on: Literal["never", "block"] = "never"
     max_inline: int = 50
+    label: str = DEFAULT_LABEL
 
 
 @dataclass
@@ -91,12 +97,17 @@ def _matches(path: str, patterns: tuple[re.Pattern[str], ...]) -> bool:
     return any(p.match(path) for p in patterns)
 
 
+def _suffix(path: str) -> str:
+    return PurePosixPath(path).suffix.lower()
+
+
 def _skip(path: str, reason: str) -> SkippedFile:
     return SkippedFile(path=path, reason=reason)
 
 
 def run_review(
     ctx: PullRequestContext,
+    decision: TrustDecision,
     client: GitHubClient,
     options: ActionOptions,
     *,
@@ -105,7 +116,6 @@ def run_review(
     clock: Callable[[], float] = time.monotonic,
 ) -> RunResult:
     result = RunResult()
-    decision = decide(ctx)
     if not decision.allowed:
         result.messages.append(annotate("notice", decision.reason))
         return result
@@ -116,18 +126,39 @@ def run_review(
         result.exit_code = 2 if options.fail_on == "block" else 0
         return result
 
+    if ctx.event_name == "pull_request_target":
+        # the label (or push) event names a commit; if the PR moved on, what was approved is
+        # not what the file list and the patches now describe
+        try:
+            current = client.pr_head_sha(ctx.repo, ctx.number)
+        except GitHubError as error:
+            return failed(f"could not check the pull request's head: {error}")
+        if current != ctx.head_sha:
+            result.messages.append(
+                annotate(
+                    "notice", "the pull request head moved since this event; nothing was reviewed"
+                )
+            )
+            return result
     try:
         changed = client.list_pr_files(ctx.repo, ctx.number)
     except GitHubError as error:
         return failed(f"could not list the pull request's files: {error}")
 
     patterns = tuple(glob_to_regex(p) for p in options.paths)
-    wanted = sorted(
+    matched = sorted(
         (f for f in changed if f.status != "removed" and _matches(f.path, patterns)),
         key=lambda f: f.path,
     )
+    wanted = matched
+    if decision.restrict_formats:
+        wanted = [f for f in matched if _suffix(f.path) in UNTRUSTED_FORMATS]
+        result.skipped += [_skip(f.path, _RESTRICTED) for f in matched if f not in wanted]
     if not wanted:
-        result.messages.append(annotate("notice", "no changed file matches the paths to critique"))
+        what = "no changed file matches the paths to critique"
+        if result.skipped:
+            what = f"{len(result.skipped)} changed file(s) skipped: {_RESTRICTED}"
+        result.messages.append(annotate("notice", what))
         return result
     chosen, over = wanted[: options.max_files], wanted[options.max_files :]
     result.skipped += [_skip(f.path, f"over the file cap of {options.max_files}") for f in over]
@@ -144,7 +175,13 @@ def run_review(
                 break
             try:
                 outcome = _critique_one(
-                    client, ctx, file, Path(work) / str(index), provider, critique_options
+                    client,
+                    ctx,
+                    file,
+                    Path(work) / str(index),
+                    provider,
+                    critique_options,
+                    restrict_formats=decision.restrict_formats,
                 )
             except _FileSkipped as skip:
                 result.skipped.append(_skip(file.path, skip.reason))
@@ -186,12 +223,19 @@ def _critique_one(
     workdir: Path,
     provider: Provider,
     options: CritiqueOptions,
+    *,
+    restrict_formats: bool = False,
 ) -> FileOutcome:
+    # the gate is here as well as in the file list: nothing is downloaded, let alone parsed
+    if restrict_formats and _suffix(file.path) not in UNTRUSTED_FORMATS:
+        raise _FileSkipped(_RESTRICTED)
     try:
         raw = client.get_file(ctx.head_repo or ctx.repo, file.path, ctx.head_sha)
     except GitHubError as error:
         raise _FileSkipped(f"could not be read (HTTP {error.status})", is_error=True) from None
-    suffix = PurePosixPath(file.path).suffix.lower()
+    if restrict_formats and len(raw) > MAX_UNTRUSTED_BYTES:
+        raise _FileSkipped("over the 1 MB size cap for outside authors")
+    suffix = _suffix(file.path)
     addressable = suffix in _LINE_ADDRESSABLE
     text = ""
     if addressable:

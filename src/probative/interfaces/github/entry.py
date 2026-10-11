@@ -50,7 +50,12 @@ def run_from_env(
         ctx = load_context(Path(event_path), environ.get("GITHUB_EVENT_NAME", ""))
     except ContextError as error:
         return warn(str(error))
-    decision = decide(ctx)
+    client = GitHubClient(api_url(environ), token)
+    decision = decide(
+        ctx,
+        label=options.label,
+        permission_of=lambda login: client.collaborator_permission(ctx.repo, login),
+    )
     if not decision.allowed:
         echo(annotate("notice", decision.reason))
         return 0
@@ -63,7 +68,8 @@ def run_from_env(
         return warn(f"could not start the model provider ({type(error).__name__})")
     result = run_review(
         ctx,
-        GitHubClient(api_url(environ), token),
+        decision,
+        client,
         options,
         provider=provider,
         critique_options=critique_options or CritiqueOptions(model=model_id),

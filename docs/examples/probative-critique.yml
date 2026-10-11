@@ -2,7 +2,8 @@
 # Add the model key as a repository secret named ANTHROPIC_API_KEY.
 #
 # Uses `pull_request`, not `pull_request_target`: a pull request from a fork gets no secrets,
-# so the action says so and posts nothing. Forks are not supported in this version.
+# so the action says so and posts nothing. To review forks, use
+# probative-critique-target.yml and read the trust section of docs/GITHUB-ACTION.md first.
 name: Probative critique
 
 on:
