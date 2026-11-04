@@ -433,9 +433,9 @@ Every formula is a registered pure function in `probative/formulas/`, unit-teste
 | `customer_value_created` | `importance × (sat_after − sat_before)` | p. 62 |
 | `roi` | `return / investment` (developer-weeks) | p. 81 |
 | `approximate_roi` | 3×3 value/effort grid → rank 1–9 | p. 84 |
-| `kano_classify` | functional × dysfunctional pair → six-outcome table | Ch. 4 |
-| `hierarchy_discount` | discounts a need when a `REQUIRES` predecessor is unmet | p. 43 |
-| `invest_score` | rubric over the six INVEST properties | p. 78 |
+| `kano_classify` | functional × dysfunctional pair → six-outcome table | not in the book (p. 64 declines to give it); **not registered**, see OI35 |
+| `hierarchy_discount` | discounts a need when a `REQUIRES` predecessor is unmet | p. 43–44 gives no arithmetic; **not registered**, see OI35 |
+| `invest_score` | count of the six INVEST properties (p. 78 lists them) judged `met`; a Probative construct, not Olsen | p. 78 (list only) |
 | `incumbent_satisfaction` | operational signals → satisfaction estimate with confidence band | v0.3 |
 | `process_delta` | as-is vs to-be step difference | v0.3 |
 | `blast_radius` | transitive closure of dependent nodes | v0.2 |
