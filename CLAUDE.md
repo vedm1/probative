@@ -135,6 +135,7 @@ A green test suite is not sufficient for these. Launch a subagent for a fresh re
 
 - **PB10** graph core — the schema is the thing everyone else builds against
 - **PB11** formula registry — I4 lives or dies here
+- **PB12** runtime and `Committer` — everything that enters a baseline passes through it
 - **PB5–PB8, PB22, PB39–PB40** every critic phase, plus the onboarding reconstruction and people map — I9 is a reputational guardrail for the user, not a style rule — a miscalibrated critic is worse than no critic
 - **PB27** baselines and variance — silent drift is the failure mode
 - **PB28** exporters — this writes into someone else's backlog

@@ -1247,10 +1247,123 @@ Threat model (p2): parsers (PDF/DOCX/XLSX) would run with the key in the environ
 - **Numbers:** 114 formula tests (1812 in the suite), no credentials, `mypy --strict` and `ruff` clean.
 - **Not done, recorded:** OI34 (`Claim.confidence` formula, PB13), OI35 (`hierarchy_discount`, `kano_classify` not in the book), OI36 (unbound formulas; `check` skips dangling inputs, so PB12 must run both validators; the chain of `Computed` values is verified field by field).
 
+## PB11-p2 — Kano classifier
+**Objective**: A pure `kano_classify(functional, dysfunctional)` over Kano's evaluation table, tested cell by cell. It returns a class, not a number, so it is outside `Computed` and outside `FormulaValidator`.
+**Prerequisites**: PB11 ✅. **Gate before any code: the owner checks the table below against Berger et al. (1993), *Kano's methods for understanding customer-defined quality*, Center for Quality Management Journal, p. 6, and records the result here. Result: validated, 2026-11-05 (see the Implementation notes).** Before that check only the "like" row had been seen in a source (arXiv 1901.05130). Olsen p. 64 gives the three classes and declines to give the table.
+**Decision (owner, 2026-11-04)**: `hierarchy_discount` is **left out**: no published arithmetic exists and any formula would be invented. PB17 records `REQUIRES` edges without a number. OI35 is updated.
+
+**Table under test** (rows: functional answer; columns: dysfunctional answer; answers in the order like, must_be, neutral, live_with, dislike)
+
+| functional \ dysfunctional | like | must_be | neutral | live_with | dislike |
+|---|---|---|---|---|---|
+| like | Q | A | A | A | O |
+| must_be | R | I | I | I | M |
+| neutral | R | I | I | I | M |
+| live_with | R | I | I | I | M |
+| dislike | R | R | R | R | Q |
+
+A attractive, O one-dimensional, M must-be, I indifferent, R reverse, Q questionable.
+
+**Files**: `src/probative/formulas/kano.py` (mypy strict), `tests/formulas/test_kano.py`. Nothing else changes; the registry, the validator and the PB10 schema are untouched.
+
+**Types**: `KanoAnswer` and `KanoCategory` (`StrEnum`). `kano_classify(functional: KanoAnswer, dysfunctional: KanoAnswer) -> KanoCategory`, a lookup in one constant table. `node_class(category) -> Literal["must_have", "performance", "delighter", "indifferent", "reverse"] | None`: M → must_have, O → performance, A → delighter, I → indifferent, R → reverse, Q → `None` (a contradictory answer is counted, never classified). No tally or tie rule here: the way to combine many respondents is not in Olsen and is PB18's decision.
+
+**Test plan**: all 25 cells against an independent literal copy of the verified table (the page cited in the test); Q occurs only on the like/like and dislike/dislike cells; every category is reachable; `node_class` for all six categories; a malformed answer is a typed error; mutation checks (one cell changed, rows transposed, M and O swapped) each turn a test red; a test that `kano_classify` is **not** in `REGISTRY` and `kano.py` builds no `Computed`.
+
+**Invariants**: I4 is not touched (the output is not a number); I5, I6, I9 are not touched. The survey questions that produce the answers belong to the Elicitor (PB14) and must be offered as choices, never typed (I6).
+
+**Gating check**: the owner's table verification is recorded; every cell test passes; `ruff` and `mypy src` clean; suite key-free. Independent review is not on the required list.
+
+### Implementation notes (PB11-p2, built 2026-11-04)
+- Built as specified. The gate in the spec ("owner verifies the table before any code") was **waived by the owner** ("implement here"); the grid was unverified until the owner **validated it against Berger et al. on 2026-11-05**; no cell changed, and the "pending" notes were removed from `kano.py`, `test_kano.py` and `PHASES.md`. The grid lives in two places only (`kano.py` and an independent copy in the test), so a correction is a two-line change.
+- Answers are matched by type, not by value: `StrEnum` equality would let the plain string `"like"` through, so `kano_classify` accepts only `KanoAnswer` members. A caller converts with `KanoAnswer("like")`.
+- A test pins that `kano_classify` is not in `REGISTRY` and that `kano.py` names no `Computed` (read from the AST, so a word in a docstring does not trip it).
+- Mutation checks, all caught: one cell changed; functional and dysfunctional axes swapped; M and O swapped in a cell; Q mapped to a class.
+
 ## PB12 — Runtime
 **Objective**: LangGraph phase machine, propose/dispose patches, `Committer`, critic fan-out and join, repair loop capped at 3 cycles, gates with `interrupt_before`, SQLite checkpointing, per-phase token and wall-clock budgets, `TediumAuditor` interaction counters.
 **Prerequisites**: PB10, PB11 ✅.
-**Open item**: OI22 — the mode config must exclude `SegmentSkeptic`, `ConstraintCritic` and `DependencyCritic` (and decide on the other evaluative critics) in onboarding mode; today that is documentation only.
+**Open items**: OI22 (mode config excludes evaluative critics in onboarding mode; today documentation only), OI33a, OI34, OI36b. OI4 does not block this phase.
+**Status**: built 2026-11-04 (see Implementation notes below). Owner decisions taken at the playback: LangGraph is a hard dependency; critics see a patch through a node→candidate adapter (existing critics unchanged); the checkpoint is `runs/<id>/checkpoint.sqlite`; one PR (not sliced).
+
+### Probed before specifying (2026-11-04, scratch venv outside the repo)
+- `langgraph 1.2.19`, `langgraph-checkpoint-sqlite 3.1.3` install on Python 3.12 (pull in `langchain-core`, `langsmith`, `ormsgpack`, `aiosqlite`). Import costs about 0.8 s.
+- `Send` fan-out runs in parallel: three critic nodes of 0.2 s each finished in 0.22 s.
+- `interrupt_before=["gate"]` with `SqliteSaver` pauses, and a **second process** resumes it from the same file (`app.update_state(cfg, {...})` then `app.invoke(None, cfg)`). Confirmed.
+- A pydantic model inside state is stored but logs "Deserializing unregistered type … will be blocked in a future version" (`LANGGRAPH_STRICT_MSGPACK`). **Decision: checkpointed state holds only JSON primitives (str, int, float, list, dict).** Patches, findings and graphs live on disk; state holds ids and hashes.
+- **Not probed, so unconfirmed:** behaviour of a graph node that raises mid-fan-out; `recursion_limit` interaction with a 3-cycle loop; checkpoint size growth. The first implement step is a probe test for each (see Test plan T0).
+
+### Decisions (the spec was thin; these are mine, flagged for approval)
+- **D1. An agent never supplies a number.** Every `Computed` an agent proposes must carry `value=None`. The Committer fills it with `FormulaValidator.recompute` and `Graph.with_recomputed`, then re-checks. A non-`None` value is rejected with `I4_AGENT_VALUE` (the agent produced an output). This is the only reading of "an LLM may propose inputs, never outputs" that the existing `Computed` type allows without a silent fix.
+- **D2. The committed graph is always clean.** The Committer judges the *whole* resulting graph with `validate_graph` **and** `FormulaValidator.check` together (OI36b). There is no allow-list and no delta (OI34). Consequence: a `Claim` cannot be committed until PB13 registers `claim_confidence`; PB12 tests assert `I4_UNKNOWN_FORMULA` for it. A run refuses to start from a `graph.json` that already has violations.
+- **D3. Cheap before costly.** Order: structure → D1 → recompute → `validate_graph` + `FormulaValidator.check` → critics. If any deterministic violation exists, critics do not run and the cycle is spent on the violations.
+- **D4. Critics judge the node's own text.** The adapter builds a candidate whose span is *synthetic* (`source_id=node.id`, `start=0`, `end=len(text)`, `text=node.text`), because a restated `Need` differs from its quote and critics read `candidate.text`. The real provenance stays on the node's `EVIDENCED_BY` edge and is checked by I1, not by critics. Consequence: `EvidenceAuditor` judges the claim text, not the quote.
+- **D5. Human choices are closed.** `GateDecision` is `accept`, `reject(reason)` or `amend(drop_ids)`; `reason` is a closed enum. No free-text field (I6).
+- **D6. Findings that survive a commit become `Finding` nodes** with a `FLAGGED_BY` edge from the target node, added by the Committer in the same commit (audit trail in the graph, not a side file). A finding with no target stays in the commit ledger.
+- **D7. Mode is data.** `ModeConfig` lists the critics it runs and the phases it has. Onboarding mode omits `red_team`, `segment_skeptic`, `constraint_critic`, `dependency_critic`, and (provisional, OI22) `space_warden`, `invest` and `evidence_auditor` over reconstructed claims. **Owner confirm needed on the last three.** A test asserts the omission from the config object, and that no code path adds a critic that the config omits.
+
+### Files
+New, `src/probative/agents/contract.py`:
+- `ToolCall(name, input: dict[str, JSON], output_ref: str)`; `CostRecord(input_tokens: int, output_tokens: int, wall_seconds: float)` — measured usage, not scores, so exempt from I4 (the structural test for numeric fields covers graph nodes only); `SelfAssessment(least_sure_about: tuple[str, ...])`; `AgentResult(proposed_nodes: tuple[NodeBase, ...], proposed_edges: tuple[Edge, ...], tool_calls, rationale: str, self_assessment, cost)`, frozen; `Agent` Protocol as in S1 (`name`, `input_model`, `output_model`, `tools`, `tier_policy`, `run(state, ctx)`).
+- `TierPolicy(allowed: frozenset[Tier])`. Enforced by the Committer: a patch whose nodes rest on a tier outside the agent's policy is rejected `TIER_POLICY`.
+
+New, `src/probative/graph_runtime/`:
+- `state.py` — `GraphState` (read-only view handed to an agent: `graph`, `phase`, `mode`, `cycle`, `prior_findings: tuple[Finding, ...]`), `RunContext` (`provider`, `model`, `run_dir`, `source_root`, `clock`, `budget: BudgetView`, `interactions: InteractionLog`), and `RunState` (the checkpointed TypedDict, primitives only: `run_id`, `phase`, `cycle`, `patch_id`, `graph_hash`, `finding_refs`, `deterministic_violations`, `gate_decision`, `spent_tokens`, `started_monotonic`).
+- `patch.py` — `Patch` (`id` = sha256 of canonical nodes+edges, `agent`, `phase`, `cycle`, `result: AgentResult`); `PatchStore` (`runs/<id>/patches/<patch_id>.json`, `runs/<id>/rejected/<patch_id>.json` with findings and violations attached; atomic writes like `store.write_graph`).
+- `committer.py` — `Committer(source_root, registry=REGISTRY, variance=NoVariance())`; `judge(graph, patch) -> Judgement` (no side effect: `graph_after | None`, `violations`) and `commit(graph, patch, findings) -> CommitResult`. Steps in order: `Graph.with_patch` (a `GraphIntegrityError` is a rejection, not a crash) → D1 → `recompute`/`with_recomputed` → `validate_graph` + `FormulaValidator.check` → tier policy → variance hook (I7; `NoVariance` until PB27, called synchronously before the write) → add `Finding` nodes and `FLAGGED_BY` edges (D6) → re-validate → `write_graph` → `rebuild_mirror` → append `runs/<id>/commits.jsonl`. The ledger line is appended after the graph write; `reconcile()` on resume compares the graph hash with the last line and appends a `recovered` line if the graph is ahead.
+- `adapter.py` — `candidates_for(graph, node_ids) -> (list[Candidate], dict[candidate_id, node_id])`. Maps `Claim`, `Need`, `Story`, `Constraint`, `Dependency` (field `text`) and `Segment` (`name` + `description`) to candidates (D4). `ForecastCandidate` has no node type, so `RedTeam` sees nothing in a graph until one exists (recorded, OI26). `ConstraintCritic` also needs the stories it traces to: the adapter passes the `Story` nodes reachable by edge, as the roster's `feeds` does.
+- `modes.py` — `Mode` (`solo`, `team`, `enterprise`, `onboarding`), `ModeConfig` (critic ids per phase, gate policy per mode from DESIGN §9.3), `MODES` table (D7).
+- `phases.py` — `Phase` (`P0`…`P7`), `PhaseSpec(phase, gate, critics_for, budget, interaction_budget)`, and `PHASES` as data (DESIGN §9.2/§9.3). No producer is registered here; producers arrive with PB13–PB26.
+- `fanout.py` — `run_critic_fanout(critics, candidates, *, jobs)` returning `(findings, usage)`; thread pool, results ordered by critic order so output is deterministic; a critic that raises becomes a `block` finding `critic_error` (fail closed), never a swallowed exception.
+- `budget.py` — `Budget(tokens: int, wall_seconds: float)`, `BudgetLedger`. Checked before each producer call and each fan-out. On exhaustion the run **degrades explicitly**: critics not yet run are recorded as `critic_skipped_budget` `warn` findings on the patch and the phase goes to its gate with that stated. It never truncates silently. A budget is never an LLM-produced value.
+- `gates.py` — `Gate` (`G0`…`G6`), `GateDecision`, `GateRejectReason` (closed enum), `apply_amend(patch, drop_ids)` (drops nodes and every edge touching them; the shortened patch re-enters the gauntlet without consuming a repair cycle).
+- `tedium.py` — `InteractionLog` (append-only; one entry per `interrupt`: phase, gate or escalation, seconds to answer), `TediumAuditor.audit(log, phases) -> list[Finding]` (`note` → `warn` against `PhaseSpec.interaction_budget`; solo run total ≤ 40, gates ≤ 5, DESIGN §9.5). It counts; it does not decide.
+- `runtime.py` — `Runtime(run_dir, graph_path, mode, agents, critics, provider, ...)` builds the LangGraph `StateGraph`, `SqliteSaver` at `runs/<id>/checkpoint.sqlite`, `interrupt_before=["gate", "escalate"]`. Nodes: `produce → validate → fanout (Send) → join → decide → {commit | produce | gate | escalate}`. Methods: `start(phase)`, `pending() -> PendingDecision | None`, `decide(GateDecision)`, `resume()`. `decide` is the only entry point for a human.
+- `__init__.py` — exports.
+
+Changed, surgical: `pyproject.toml` (dependencies `langgraph`, `langgraph-checkpoint-sqlite`, pinned with a lower bound; `uv.lock`); `probative/critics/runner.py` docstring (its sequential-by-design note now points at `fanout.py`); `.gitignore` (confirm `runs/` is ignored). Nothing in `core/`, `formulas/`, `critics/` logic, `llm/` or `critique/` changes. `critique/roster.py` is *read* for critic factories and reused by `modes.py`, not edited.
+
+### Algorithms in full
+**Decide** (after join). Let `V` = deterministic violations, `F` = findings.
+1. `V` non-empty → blocking. 2. Else `F` has any `block` → blocking. 3. Blocking and `cycle < 3` → back to `produce` with `V` and `F` attached to `GraphState.prior_findings`, `cycle += 1`. 4. Blocking and `cycle == 3` → `escalate` (human sees the blocking items, answers accept-anyway is **not** offered: choices are `reject(reason)` or `amend(drop_ids)`; an unfixable patch is never committed over a `block`). 5. Not blocking: if `PhaseSpec.gate` is set and the mode needs a human → `gate`; else `commit`. 6. Every rejected cycle's patch goes to `rejected/`.
+
+**Resume.** Load `graph.json`, verify its hash against `RunState.graph_hash`, `reconcile()` the ledger, then `invoke(None, cfg)`. A hash mismatch is a refusal naming both hashes.
+
+**Determinism.** Same agents + same provider recording ⇒ same patch ids, same finding order, same commit ledger (modulo timestamps from an injected clock).
+
+### Test plan (all key-free; scripted agents and `FakeProvider`)
+- **T0 probes** (kept as tests): exception inside a fan-out branch; a 3-cycle loop under the default `recursion_limit`; a checkpoint written by process A resumed by process B (`subprocess`); state contains no non-primitive.
+- **Committer.** Clean patch commits and `graph.json` reloads equal. Each rejection is its own test with the code asserted: dangling edge (`GraphIntegrityError`), agent-supplied non-`None` number (`I4_AGENT_VALUE`), orphan `Claim` (I1), `Hypothesis` with no `Test` (I2), tampered span text (I1 round trip), unknown formula (`I4_UNKNOWN_FORMULA`), tier outside policy. **Pin for OI36b:** a patch that is clean under `validate_graph` but bad under `FormulaValidator.check`, and the reverse, are each rejected; a Committer with either validator removed fails the test (mutation-checked). **OI34 pin:** a `Claim` patch yields `I4_UNKNOWN_FORMULA`, and no allow-list exists. A rating patch with `value=None` computes via `recompute`, matches the PB11 worked example (Olsen p. 57), and the node id is unchanged.
+- **Atomicity.** A patch with one bad node commits nothing. A crash injected between the graph write and the ledger append is repaired by `reconcile()`.
+- **Adapter.** Each node type maps to the right candidate; the synthetic span is coherent (`len(text) == end - start`); `candidate_id → node_id` round trips; a `Need` restated differently from its quote is judged on the restatement.
+- **Fan-out.** Order is deterministic across 50 runs with shuffled completion times; a raising critic gives a `block` `critic_error`.
+- **Repair loop.** A scripted agent fixed on cycle 2 commits on cycle 2; one never fixed escalates after exactly 3 cycles and commits nothing; each failed cycle leaves a file in `rejected/` with its findings. Critics do not run on a cycle with deterministic violations (call count asserted).
+- **Gates and checkpoint.** The run pauses at G1; the process ends; a new `Runtime` on the same dir resumes and commits on `accept`. `reject` returns to `produce`. `amend` drops nodes and edges and re-judges. No free-text field exists on `GateDecision` (structural test over the model).
+- **Budgets.** Token exhaustion before the fan-out gives `critic_skipped_budget` warnings, not silence; wall-clock uses an injected clock (no sleeps).
+- **Modes (OI22).** `MODES[onboarding].critics` contains none of the four named critics (and, if the owner confirms, the other three); a run in onboarding mode never calls their `check` (spy); adding one by name raises.
+- **Tedium.** An over-budget scripted run yields a `warn`; counts equal the number of `interrupt`s.
+- **Variance hook (I7).** A spy is called once per commit, before the write; if it raises, `graph.json` is unchanged.
+- **Structural.** `import probative.graph_runtime` makes no network call and needs no key; `test_no_llm_import_leak` still passes; no module outside `graph_runtime` imports `langgraph`.
+
+### Gating check
+(1) A scripted two-phase run produces a graph that passes `validate_graph` and `FormulaValidator.check`. (2) The same run, killed at a gate and resumed in a new process, reaches the same final `content_hash`. (3) The onboarding config omits the named critics. (4) `uv run pytest` passes with no credentials; `ruff check` and `mypy src` clean (`mypy --strict` also on the new `agents/contract.py` if it is placed under `core/`; as specified it is not, so it is permissive, like `critics/`). (5) The independent subagent review of PB12 finds no blocker. PB12 is not in CLAUDE.md's required-review list; I am **adding it as a recommendation** because the Committer decides what enters a baseline. Owner to confirm.
+
+### Budgets
+Model calls: none added. Latency: about 0.8 s import. Human interactions: counted, not added.
+
+### Out of scope, named
+Real producers and phase bodies (PB13+), variance maths (PB27), the `Claim.confidence` formula (PB13), exporters, MCP/CLI exposure of `Runtime` (a later interface phase), async execution, multi-partition merge (v0.2), rendering `SelfAssessment` (OI10/PB29).
+
+### Risks
+1. **LangGraph version drift** — mitigation: lower-bound pin and the T0 probe tests; the cross-process resume test is the canary. 2. **Install weight** — `langchain-core` arrives with it; the `uvx` plugin path installs more. Measure install time in the implement session and record it. 3. **D4 weakens `EvidenceAuditor`** — it no longer sees the quote. Recorded, not fixed. 4. **Scope** — this is large for one PR (about ten modules). If review shows it unreviewable, slice at `committer`+`adapter`+`modes` (p1) versus `runtime`+`gates`+`budget`+`tedium` (p2); the owner chose one PR, so I will stop and ask rather than slice quietly.
+
+### Implementation notes (PB12, built 2026-11-04)
+- **Built as specified**, with these differences. `Committer` takes a `RunFiles` and a clock, not a bare run dir. Fan-out is a thread pool inside one LangGraph node, not LangGraph `Send` (checkpointed `Send` payloads would have to be primitives; the spec's own rule). Critics are keyed by rubric id and the mode's critic set is the roster's seven ids, so a test critic must borrow a real id. `Runtime.start(phase, attempt=1)` gives each phase attempt its own thread (`run:phase:attempt`); `resume` continues a run that stopped inside a step; `decide(phase, decision, *, patch_id)` is the only door for a person. Wall-clock budget counts compute seconds only.
+- **Probed (T0, kept as `tests/graph_runtime/test_probes.py`):** an agent that raises leaves a run that `resume` continues; three human rejects (nine repair cycles) fit under `recursion_limit=200`; a gate paused in one process resumes in another with the same `content_hash` under `LANGGRAPH_STRICT_MSGPACK=true`; only `runtime.py` imports `langgraph`.
+- **What the spec got wrong or left out, found by the independent review (fresh subagent, all fixed test-first, `test_review_fixes.py`):** (1) a decision was not bound to the patch the person saw, so a repeated or late `accept` could commit an unseen patch, and the decision was not in the audit trail: `decide` now needs `patch_id` and the interaction log records the decision; (2) the mode was enforced per process, not per run: an onboarding run could be continued by a solo process and run an excluded critic: mode is now checked on `pending`/`resume`/`decide`; (3) a producer that spent its own token budget skipped blocking critics and committed on a phase with no gate (my own test enshrined it): such a patch now always goes to a person; (4) re-committing a committed patch with a `Computed` failed `STRUCTURE`: the Committer uses the stored node for an id already present, which also stops a re-proposed node from changing a stored number; (5) `reconcile` never rebuilt the mirror and the mirror was written before the ledger: order is now graph, ledger, mirror, and a mirror failure cannot fail a commit; (6) the spec's resume hash check was missing: `graph.json` changing while a run waits is refused; (7) an agent could propose a `Decision`, `Finding`, `Baseline` or `Variance` node and so forge a sign-off or verdict: reserved node types.
+- **Mutations caught (own, then the reviewer's):** repair cap 3 to 4; critics run despite violations; onboarding given the roster; agent-value check off; escalation accepted; blocking finding committed over; `critic_error` to warn; variance after write; budget skip removed; tier policy off; `FormulaValidator.check` dropped; `validate_graph` dropped. The reviewer's two survivors (critic order unsorted, mirror before graph) now have tests.
+- **Gating check:** (1) a two-phase scripted run is clean under both validators; (2) killed at a gate and resumed in a new process, the final `content_hash` equals the uninterrupted run's; (3) the onboarding config omits the named critics and the runtime refuses one; (4) `uv run pytest` 1968 passed with no credentials (114 new), `ruff` and `mypy src` clean; (5) independent review done.
+- **Not done, recorded as OI37:** see `PROBATIVE_BUILD_PLAN.md`.
 
 ## PB13 — Evidence ledger
 **Objective**: Tier and kind classification, dedupe, entity resolution, contradiction detection producing `CONTRADICTS` edges and `Question` nodes, corroboration by independent source, confidence propagation.
