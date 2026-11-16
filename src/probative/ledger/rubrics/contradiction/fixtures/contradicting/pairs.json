@@ -1,0 +1,127 @@
+{
+  "expected": "contradicts",
+  "dev": [
+    {
+      "id": "cd01",
+      "a": "Approvals take three days or more.",
+      "b": "Approvals take under one day."
+    },
+    {
+      "id": "cd02",
+      "a": "Customers never use the export feature.",
+      "b": "Most customers use the export feature every week."
+    },
+    {
+      "id": "cd03",
+      "a": "The nightly sync always finishes before 6 am.",
+      "b": "The nightly sync often finishes after 9 am."
+    },
+    {
+      "id": "cd04",
+      "a": "Refunds are issued automatically within one hour.",
+      "b": "Refunds must be requested manually by a support agent."
+    },
+    {
+      "id": "cd05",
+      "a": "All invoices are sent in the customer's local currency.",
+      "b": "Invoices are always issued in US dollars."
+    },
+    {
+      "id": "cd06",
+      "a": "New users complete onboarding in under five minutes.",
+      "b": "Onboarding takes new users more than an hour."
+    },
+    {
+      "id": "cd07",
+      "a": "The mobile app works fully offline.",
+      "b": "The mobile app cannot be used without an internet connection."
+    },
+    {
+      "id": "cd08",
+      "a": "Managers can edit submitted expense reports.",
+      "b": "Submitted expense reports are locked and nobody can edit them."
+    },
+    {
+      "id": "cd09",
+      "a": "Support tickets are answered within two hours.",
+      "b": "Support tickets usually wait two days for a first reply."
+    },
+    {
+      "id": "cd10",
+      "a": "The warehouse team counts stock every day.",
+      "b": "Stock is only counted once a year."
+    },
+    {
+      "id": "cd11",
+      "a": "Our largest customers are in healthcare.",
+      "b": "None of our customers work in healthcare."
+    },
+    {
+      "id": "cd12",
+      "a": "The search page returns results instantly.",
+      "b": "Search results take about ten seconds to appear."
+    }
+  ],
+  "held_out": [
+    {
+      "id": "ch01",
+      "a": "Payroll runs on the 25th of every month.",
+      "b": "Payroll is processed on the first day of the month."
+    },
+    {
+      "id": "ch02",
+      "a": "Every team has a named owner for its deployments.",
+      "b": "Nobody is responsible for deployments."
+    },
+    {
+      "id": "ch03",
+      "a": "Passwords expire after 90 days.",
+      "b": "Passwords never expire."
+    },
+    {
+      "id": "ch04",
+      "a": "Customers can cancel at any time without a fee.",
+      "b": "Cancelling before the end of the contract incurs a penalty fee."
+    },
+    {
+      "id": "ch05",
+      "a": "The dashboard loads in under two seconds for every account.",
+      "b": "Large accounts wait over a minute for the dashboard to load."
+    },
+    {
+      "id": "ch06",
+      "a": "Only administrators can delete projects.",
+      "b": "Any member of a project can delete it."
+    },
+    {
+      "id": "ch07",
+      "a": "Returns are accepted for 60 days.",
+      "b": "Returns are not accepted after 14 days."
+    },
+    {
+      "id": "ch08",
+      "a": "The reporting tool is used by the whole finance team daily.",
+      "b": "The finance team has stopped using the reporting tool."
+    },
+    {
+      "id": "ch09",
+      "a": "Quotes are approved by one person.",
+      "b": "Every quote needs sign-off from three people."
+    },
+    {
+      "id": "ch10",
+      "a": "The import tool accepts files of any size.",
+      "b": "The import tool rejects files larger than 10 MB."
+    },
+    {
+      "id": "ch11",
+      "a": "Deployments happen several times a day.",
+      "b": "Releases ship once per quarter."
+    },
+    {
+      "id": "ch12",
+      "a": "Users find the new navigation easy to learn.",
+      "b": "Users find the new navigation confusing and hard to learn."
+    }
+  ]
+}

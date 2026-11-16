@@ -303,6 +303,9 @@ OBSERVED_AS     Story ──► DeliverySignal
 ── federation ──
 CLAIMED_BY      any ──► Partition               scope ownership
 CONFLICTS_WITH  any ──► any                     cross-partition collision
+
+── evidence (added in PB13, schema 0.2.0) ──
+RAISED_ABOUT    Question ──► Claim              what an open Question is about (a contradiction names both claims)
 ```
 
 Nothing is ever deleted. Revision is `SUPERSEDES` — which is what makes *"what did we believe on day 12, and why did it change"* answerable, and is the substrate the post-mortem and the RTM both run on.

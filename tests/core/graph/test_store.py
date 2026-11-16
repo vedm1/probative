@@ -131,3 +131,12 @@ def test_the_schema_names_every_node_type_and_the_version() -> None:
     doc = json.loads(schema_json())
     assert SCHEMA_VERSION in doc["$id"]
     assert len(doc["properties"]["nodes"]["items"]["oneOf"]) == 43
+
+
+def test_a_graph_written_at_schema_0_1_0_is_refused() -> None:
+    """PB13 D9: RAISED_ABOUT bumped the schema to 0.2.0; readers accept one major.minor."""
+    assert SCHEMA_VERSION == "0.2.0"
+    doc = json.loads(dumps(Graph.empty()))
+    doc["schema_version"] = "0.1.0"
+    with pytest.raises(GraphFileError, match=r"0\.1\.0"):
+        loads(json.dumps(doc).encode())

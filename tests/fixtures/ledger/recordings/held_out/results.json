@@ -1,0 +1,40 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "verdicts": {
+    "ch01": "contradicts",
+    "ch02": "contradicts",
+    "ch03": "contradicts",
+    "ch04": "contradicts",
+    "ch05": "contradicts",
+    "ch06": "contradicts",
+    "ch07": "contradicts",
+    "ch08": "contradicts",
+    "ch09": "contradicts",
+    "ch10": "contradicts",
+    "ch11": "cannot_tell",
+    "ch12": "contradicts",
+    "kh01": "consistent",
+    "kh02": "consistent",
+    "kh03": "consistent",
+    "kh04": "consistent",
+    "kh05": "consistent",
+    "kh06": "consistent",
+    "kh07": "cannot_tell",
+    "kh08": "consistent",
+    "kh09": "consistent",
+    "kh10": "consistent",
+    "kh11": "cannot_tell",
+    "kh12": "cannot_tell",
+    "hh01": "consistent",
+    "hh02": "cannot_tell",
+    "hh03": "consistent",
+    "hh04": "consistent"
+  },
+  "caught": 11,
+  "missed": [
+    "ch11"
+  ],
+  "false_positives": [],
+  "as_labelled": 23,
+  "total": 28
+}

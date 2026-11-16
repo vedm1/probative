@@ -7,11 +7,11 @@ or not at all. The order is fixed (cheap before costly, PB12 spec D1-D3):
    produces an output); a number it supplied is `I4_AGENT_VALUE`, even a right one;
 2. the patch must fit the agent's tier policy;
 3. `Graph.with_patch` (structure: dangling ends, endpoint types, supersession);
-4. `FormulaValidator.recompute` fills the numbers, `Graph.with_recomputed` stores
-   them (ids unchanged);
+4. `FormulaValidator.settle` (recompute to a fixed point) fills the numbers and
+   `Graph.with_recomputed` stores them (ids unchanged);
 5. **`validate_graph` and `FormulaValidator.check` together** on the whole
-   resulting graph (OI36b). There is no allow-list: until PB13 registers a
-   confidence formula, a `Claim` cannot commit (OI34, D2);
+   resulting graph (OI36b). There is no allow-list: a formula that is not
+   registered fails closed (OI34; PB13 registered the claim confidence ones);
 6. the I7 variance hook, synchronously, before anything is written;
 7. `graph.json`, the mirror, then the ledger line.
 
@@ -40,7 +40,7 @@ from probative.core.graph.store import content_hash, read_graph, write_graph
 from probative.core.graph.validators import Violation, validate_graph
 from probative.core.graph.values import Computed
 from probative.formulas.registry import REGISTRY, Registry
-from probative.formulas.validator import FormulaValidator
+from probative.formulas.validator import FormulaValidator, RecomputeDivergedError
 from probative.graph_runtime.patch import Patch
 from probative.graph_runtime.runfiles import RunFiles, append_jsonl, read_jsonl
 
@@ -172,11 +172,12 @@ class Committer:
                 nodes=[*proposed, *extra_nodes],
                 edges=[*patch.result.proposed_edges, *extra_edges],
             )
-            fixes = FormulaValidator(self._registry).recompute(candidate)
-            if fixes:
-                candidate = candidate.with_recomputed(fixes)
+            candidate = FormulaValidator(self._registry).settle(candidate)
         except GraphIntegrityError as err:
             found.append(Violation("STRUCT", "STRUCTURE", "patch", str(err)))
+            return Judgement(None, _sorted(found))
+        except RecomputeDivergedError as err:
+            found.append(Violation("I4", "I4_RECOMPUTE_DIVERGED", "patch", str(err)))
             return Judgement(None, _sorted(found))
         found.extend(self.verify_clean(candidate))
         violations = _sorted(found)

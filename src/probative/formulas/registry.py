@@ -17,7 +17,10 @@ import dataclasses
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from types import MappingProxyType
-from typing import Final, Literal
+from typing import TYPE_CHECKING, Final, Literal
+
+if TYPE_CHECKING:
+    from probative.core.graph.graph import Graph
 
 SCALE_0_10: Final = "scale_0_10"
 PERCENT: Final = "percent"
@@ -62,6 +65,37 @@ class InputSlot:
 
 
 @dataclass(frozen=True)
+class Unreadable:
+    """A graph fact that cannot be read: the node is the wrong kind, or has no basis."""
+
+    reason: str
+
+
+@dataclass(frozen=True)
+class Pending:
+    """A graph fact that waits on another stored value (a parent not yet computed)."""
+
+    reason: str
+
+
+FactResult = tuple[float, ...] | Unreadable | Pending
+
+
+@dataclass(frozen=True)
+class GraphFact:
+    """A registered, pure, deterministic read of the graph (PB13, D1).
+
+    For a number that depends on graph *structure* (how many independent sources
+    a claim has), not on one node's `Input`. The validator recomputes it on every
+    commit, so nothing stores it and nothing can be authored. A fact formula reads
+    the node that owns the `Computed`, and only that node.
+    """
+
+    name: str
+    fn: Callable[[Graph, str], FactResult]
+
+
+@dataclass(frozen=True)
 class Formula:
     id: str
     fn: Callable[..., float]
@@ -70,6 +104,7 @@ class Formula:
     citation: str
     construct: Literal["olsen", "probative"]
     tolerance: float = 1e-9
+    fact: GraphFact | None = None
 
     def __post_init__(self) -> None:
         if not self.id.strip():
@@ -82,6 +117,8 @@ class Formula:
             raise FormulaError(f"{self.id}: construct must be olsen or probative")
         if self.slots is not None and not self.slots:
             raise FormulaError(f"{self.id}: slots is None (unbound) or non-empty")
+        if self.slots is not None and self.fact is not None:
+            raise FormulaError(f"{self.id}: a formula has slots or a fact, not both")
 
 
 class Registry:
@@ -108,6 +145,12 @@ class Registry:
 
 
 REGISTRY: Final = Registry()
+
+FIELD_BINDINGS: Final[Mapping[tuple[str, str], frozenset[str]]] = MappingProxyType(
+    {("claim", "confidence"): frozenset({"claim_confidence_direct", "claim_confidence_derived"})}
+)
+"""(node type, field) to the only formula ids it may name. Without it a `Claim` could name
+any registered formula and an agent would choose the inputs that feed its confidence."""
 
 UNBOUND: Final[Mapping[str, str]] = MappingProxyType(
     {"roi": "PB25", "approximate_roi": "PB25", "invest_score": "PB26"}

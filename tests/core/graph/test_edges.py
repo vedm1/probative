@@ -18,9 +18,16 @@ DESIGN_6_2 = {
 }  # fmt: skip
 
 
-def test_all_28_design_edge_types_exist_and_have_rules() -> None:
-    assert {e.name for e in EdgeType} == DESIGN_6_2
+PB13_ADDED = {"RAISED_ABOUT"}  # Question -> Claim, schema 0.2.0 (PB13 D9)
+
+
+def test_all_design_edge_types_plus_pb13_exist_and_have_rules() -> None:
+    assert {e.name for e in EdgeType} == DESIGN_6_2 | PB13_ADDED
     assert set(ENDPOINT_RULES) == set(EdgeType)
+
+
+def test_raised_about_joins_a_question_to_a_claim_and_nothing_else() -> None:
+    assert ENDPOINT_RULES[EdgeType.RAISED_ABOUT] == (frozenset({"question"}), frozenset({"claim"}))
 
 
 def test_rules_only_name_real_node_types() -> None:

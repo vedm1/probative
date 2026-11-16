@@ -56,6 +56,7 @@ class EdgeType(StrEnum):
     OBSERVED_AS = "OBSERVED_AS"
     CLAIMED_BY = "CLAIMED_BY"
     CONFLICTS_WITH = "CONFLICTS_WITH"
+    RAISED_ABOUT = "RAISED_ABOUT"
 
 
 _Types = frozenset[str] | None
@@ -94,6 +95,7 @@ ENDPOINT_RULES: dict[EdgeType, tuple[_Types, _Types]] = {
     EdgeType.OBSERVED_AS: (_t("story"), _t("delivery_signal")),
     EdgeType.CLAIMED_BY: (None, _t("partition")),
     EdgeType.CONFLICTS_WITH: (None, None),
+    EdgeType.RAISED_ABOUT: (_t("question"), _t("claim")),  # PB13: what a Question is about
 }
 
 _DERIVE = "derive_id"

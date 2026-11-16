@@ -1,0 +1,171 @@
+{
+  "expected": "consistent",
+  "dev": [
+    {
+      "id": "kd01",
+      "a": "Approvals take three days in the EMEA team.",
+      "b": "Approvals take under one day in the US team."
+    },
+    {
+      "id": "kd02",
+      "a": "Median checkout time was 40 seconds in March.",
+      "b": "Median checkout time was 55 seconds in June."
+    },
+    {
+      "id": "kd03",
+      "a": "Users find the dashboard slow.",
+      "b": "Users like the colour scheme of the dashboard."
+    },
+    {
+      "id": "kd04",
+      "a": "The mobile app supports offline notes.",
+      "b": "The mobile app needs a connection to sync photos."
+    },
+    {
+      "id": "kd05",
+      "a": "Support answers email tickets within two hours.",
+      "b": "Phone support is available only on weekdays."
+    },
+    {
+      "id": "kd06",
+      "a": "Refunds over $500 need manager approval.",
+      "b": "Refunds under $500 are issued automatically."
+    },
+    {
+      "id": "kd07",
+      "a": "The nightly sync finishes before 6 am.",
+      "b": "The nightly sync copies about two gigabytes of data."
+    },
+    {
+      "id": "kd08",
+      "a": "Our largest customers are in healthcare.",
+      "b": "Our fastest growing customers are in retail."
+    },
+    {
+      "id": "kd09",
+      "a": "Managers can edit submitted expense reports.",
+      "b": "Managers can also reject submitted expense reports."
+    },
+    {
+      "id": "kd10",
+      "a": "The warehouse team counts fast-moving stock every day.",
+      "b": "Slow-moving stock is counted once a year."
+    },
+    {
+      "id": "kd11",
+      "a": "Onboarding takes new users about five minutes.",
+      "b": "Enterprise onboarding takes several weeks because of security reviews."
+    },
+    {
+      "id": "kd12",
+      "a": "Search results appear instantly for short queries.",
+      "b": "Search is slow for queries with many filters."
+    }
+  ],
+  "held_out": [
+    {
+      "id": "kh01",
+      "a": "Payroll runs on the 25th of every month.",
+      "b": "Payroll runs a day earlier when the 25th falls on a weekend."
+    },
+    {
+      "id": "kh02",
+      "a": "Every team has a named owner for its deployments.",
+      "b": "Deployments for the data team are owned by a rotating on-call engineer."
+    },
+    {
+      "id": "kh03",
+      "a": "Passwords expire after 90 days for staff.",
+      "b": "Passwords for service accounts never expire."
+    },
+    {
+      "id": "kh04",
+      "a": "Customers can cancel at any time.",
+      "b": "Cancelling mid-month does not give a partial refund."
+    },
+    {
+      "id": "kh05",
+      "a": "The dashboard loads in under two seconds for small accounts.",
+      "b": "Large accounts wait about ten seconds for the dashboard to load."
+    },
+    {
+      "id": "kh06",
+      "a": "Only administrators can delete projects.",
+      "b": "Members can archive projects."
+    },
+    {
+      "id": "kh07",
+      "a": "Returns are accepted for 60 days.",
+      "b": "Returns need the original receipt."
+    },
+    {
+      "id": "kh08",
+      "a": "The reporting tool is used daily by the finance team.",
+      "b": "The sales team uses the reporting tool once a month."
+    },
+    {
+      "id": "kh09",
+      "a": "Quotes under $1,000 are approved by one person.",
+      "b": "Quotes above $50,000 need sign-off from three people."
+    },
+    {
+      "id": "kh10",
+      "a": "The import tool accepts CSV and Excel files.",
+      "b": "The import tool shows a preview before saving."
+    },
+    {
+      "id": "kh11",
+      "a": "Deployments happen several times a day for the web app.",
+      "b": "The mobile app ships once per release train, every two weeks."
+    },
+    {
+      "id": "kh12",
+      "a": "Users find the new navigation easy to learn.",
+      "b": "Users miss the old keyboard shortcuts."
+    }
+  ],
+  "hard_dev": [
+    {
+      "id": "hd01",
+      "a": "Average ticket resolution took 4 hours in Q1.",
+      "b": "Average ticket resolution took 9 hours in Q3."
+    },
+    {
+      "id": "hd02",
+      "a": "The free plan allows 3 projects.",
+      "b": "The enterprise plan allows unlimited projects."
+    },
+    {
+      "id": "hd03",
+      "a": "Page load time is 2.1 seconds.",
+      "b": "Page load time is 2100 milliseconds."
+    },
+    {
+      "id": "hd04",
+      "a": "Some customers use the export feature weekly.",
+      "b": "Many customers never use the export feature."
+    }
+  ],
+  "hard_held_out": [
+    {
+      "id": "hh01",
+      "a": "Churn was 3% in January.",
+      "b": "Churn was 5% in February."
+    },
+    {
+      "id": "hh02",
+      "a": "The pilot team found the tool slow.",
+      "b": "The wider rollout team found the tool fast."
+    },
+    {
+      "id": "hh03",
+      "a": "The API returns results in JSON.",
+      "b": "The API returns results in XML on legacy endpoints."
+    },
+    {
+      "id": "hh04",
+      "a": "Deliveries take two days within the city.",
+      "b": "Deliveries take a week to rural areas."
+    }
+  ]
+}

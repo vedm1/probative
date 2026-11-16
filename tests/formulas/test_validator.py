@@ -115,7 +115,7 @@ def test_an_unbound_formula_fails_closed(formula_id: str) -> None:
     assert codes(check(opp(formula_id, 1.0, inputs), *inputs)) == ["I4_UNBOUND_FORMULA"]
 
 
-def test_claim_confidence_is_unregistered_until_pb13() -> None:
+def test_a_made_up_claim_confidence_formula_is_unregistered() -> None:
     claim = Claim.make(
         text="x",
         tier=Tier.T3,

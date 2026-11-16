@@ -65,6 +65,7 @@ packages = ["src/probative"]
 exclude = [
   "src/probative/critics/rubrics/*/fixtures",
   "src/probative/critics/rubrics/*/stress",
+  "src/probative/ledger/rubrics/*/fixtures",
 ]
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,38 @@
+id: contradiction
+severity: note            # the judge never blocks: a disagreement opens a Question, it stops nothing
+invariant: null
+applies_to: [Claim]
+checks:
+  - id: contradicts
+    description: >-
+      The two statements cannot both be true of the same thing at the same time.
+      One denies what the other asserts, or they give incompatible values for the
+      same quantity of the same subject, in the same scope and the same period.
+      Judge only the words of the two statements. Do not decide which one is true,
+      whether either is well supported, or whether a source exists. Not a
+      contradiction: statements about different subjects, different segments,
+      different time periods, different units or different scopes; one statement
+      that is simply more specific than the other; two opinions about different
+      aspects of the same thing; a statement and its qualification. When the
+      statements might refer to different things and the words do not say, the
+      verdict is cannot_tell, never contradicts. A statement whose subject is only
+      a pronoun or a bare "it" names no subject, so the verdict is cannot_tell.
+      Two different words for the same activity (for example two names for one
+      recurring event) are the same subject when nothing in the words separates
+      them; two incompatible frequencies or counts for that subject are a
+      contradiction. A general rule and a stated exception to it are consistent:
+      the exception qualifies the rule, it does not deny it.
+    examples_bad:
+      - "Approvals take three days or more. / Approvals take under one day."
+      - "Customers never use the export feature. / Most customers use the export feature weekly."
+      - "The nightly sync always completes before 6 am. / The nightly sync often finishes after 9 am."
+      - "Backups run every hour. / Backups run once a week."
+    examples_good:
+      - "Approvals take three days in the EMEA team. / Approvals take under one day in the US team."
+      - "Median checkout time was 40 seconds in March. / Median checkout time was 55 seconds in June."
+      - "Users find the dashboard slow. / Users like the colour scheme of the dashboard."
+      - "The office is open Monday to Friday. / The office closes at noon on public holidays."
+      - "That is expensive. / That is cheap."   # no named subject: cannot_tell, not a contradiction
+    remedy: Show both statements and their sources to a person, and ask which one holds
+clean_fixtures: "fixtures/consistent/*.json"
+defect_fixtures: "fixtures/contradicting/*.json"

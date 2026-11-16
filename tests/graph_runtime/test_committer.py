@@ -121,12 +121,25 @@ def test_an_orphan_claim_is_rejected_i1(tmp_path: Path) -> None:
     claim = Claim.make(
         text="Users wait.",
         tier=Tier.T1,
-        confidence=Computed(value=None, formula_id="claim_confidence", input_ids=[]),
+        confidence=Computed(value=None, formula_id="claim_confidence_direct", input_ids=[]),
         **ENV,
     )
     found = codes(reject(c, patch_of([claim])))
     assert "I1_ORPHAN_CLAIM" in found
-    assert "I4_UNKNOWN_FORMULA" in found  # OI34: no formula until PB13, and no allow-list
+    assert "I4_UNKNOWN_FORMULA" not in found  # OI34 resolved by PB13: the formula is registered
+
+
+def test_a_claim_naming_an_unregistered_confidence_formula_still_fails_closed(
+    tmp_path: Path,
+) -> None:
+    c, _ = make(tmp_path)
+    claim = Claim.make(
+        text="Users wait.",
+        tier=Tier.T1,
+        confidence=Computed(value=None, formula_id="claim_confidence", input_ids=[]),
+        **ENV,
+    )
+    assert "I4_UNKNOWN_FORMULA" in codes(reject(c, patch_of([claim])))  # no allow-list
 
 
 def test_a_claim_cannot_be_slipped_past_with_a_made_up_value(tmp_path: Path) -> None:
@@ -200,6 +213,9 @@ def test_removing_the_formula_validator_lets_an_unknown_formula_through(
 
         def recompute(self, graph: Graph) -> dict:  # type: ignore[type-arg]
             return {}
+
+        def settle(self, graph: Graph) -> Graph:
+            return graph
 
     monkeypatch.setattr(committer_module, "FormulaValidator", Blind)
     c, _ = make(tmp_path)

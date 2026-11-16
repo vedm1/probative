@@ -85,20 +85,27 @@ def test_the_registered_set_is_exactly_the_specified_set() -> None:
         "roi",
         "approximate_roi",
         "invest_score",
+        "claim_confidence_direct",  # PB13
+        "claim_confidence_derived",  # PB13
     }
 
 
 def test_every_registered_formula_cites_a_page_and_names_its_construct() -> None:
     for formula_id in REGISTRY.ids():
         f = REGISTRY.get(formula_id)
-        assert f.citation.startswith("p. "), formula_id
+        assert f.citation.startswith(("p. ", "DESIGN §")), formula_id
         assert f.construct in {"olsen", "probative"}
-    assert REGISTRY.get("invest_score").construct == "probative"
-    assert {REGISTRY.get(i).construct for i in REGISTRY.ids() if i != "invest_score"} == {"olsen"}
+    probative = {"invest_score", "claim_confidence_direct", "claim_confidence_derived"}
+    assert {i for i in REGISTRY.ids() if REGISTRY.get(i).construct == "probative"} == probative
+    assert {i for i in REGISTRY.ids() if not REGISTRY.get(i).citation.startswith("p. ")} == (
+        probative - {"invest_score"}
+    )
 
 
 def test_unbound_is_exactly_the_formulas_with_no_slots() -> None:
-    assert set(UNBOUND) == {i for i in REGISTRY.ids() if REGISTRY.get(i).slots is None}
+    assert set(UNBOUND) == {
+        i for i in REGISTRY.ids() if REGISTRY.get(i).slots is None and REGISTRY.get(i).fact is None
+    }
     assert dict(UNBOUND) == {"roi": "PB25", "approximate_roi": "PB25", "invest_score": "PB26"}
 
 
@@ -120,3 +127,22 @@ def test_a_slot_filter_cannot_be_mutated_after_construction() -> None:
     with pytest.raises(TypeError):
         slot.where["dimension"] = "satisfaction"  # type: ignore[index]
     assert hash(slot) is not None
+
+
+# -- PB13: graph-fact formulas ---------------------------------------------------
+
+
+def _fact() -> object:
+    from probative.formulas.registry import GraphFact
+
+    return GraphFact(name="f", fn=lambda graph, node_id: (1.0,))
+
+
+def test_a_formula_may_not_have_both_slots_and_a_fact() -> None:
+    with pytest.raises(FormulaError, match="slots or a fact"):
+        make("t.both", fact=_fact())
+
+
+def test_a_fact_formula_has_no_slots() -> None:
+    f = make("t.fact", slots=None, fact=_fact())
+    assert f.slots is None and f.fact is not None

@@ -15,7 +15,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from probative.core.graph.edges import Edge
 from probative.core.graph.nodes import Node
 
-SCHEMA_VERSION = "0.1.0"
+SCHEMA_VERSION = "0.2.0"
 
 
 class GraphFile(BaseModel):

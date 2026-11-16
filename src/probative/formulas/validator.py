@@ -25,18 +25,26 @@ from probative.core.graph.nodes import NodeBase
 from probative.core.graph.validators import Violation
 from probative.core.graph.values import Computed, Input
 from probative.formulas.registry import (
+    FIELD_BINDINGS,
     FRACTION,
     PERCENT,
     REGISTRY,
     UNIT_RANGE,
     Formula,
+    FormulaError,
     FormulaInputError,
     InputSlot,
+    Pending,
     Registry,
     UnknownFormulaError,
+    Unreadable,
 )
 
 _FIXABLE = frozenset({"I4_VALUE_MISMATCH", "I4_VALUE_TYPE"})
+
+
+class RecomputeDivergedError(FormulaError):
+    """`settle` did not reach a fixed point (`I4_RECOMPUTE_DIVERGED`)."""
 
 
 @dataclass(frozen=True)
@@ -83,6 +91,22 @@ class FormulaValidator:
                     )
         return fixes
 
+    def settle(self, graph: Graph) -> Graph:
+        """`recompute` and `Graph.with_recomputed` until nothing is left to fix.
+
+        A value that reads another stored value (a derived claim reads its
+        parents) cannot be computed until that one is, so a chain of depth d
+        needs d rounds. Each round re-evaluates every field, so a parent
+        corrected in round k corrects its child in round k + 1. The bound is the
+        node count; hitting it is `I4_RECOMPUTE_DIVERGED`, never a silent stop.
+        What `settle` cannot fix stays for `check` to report."""
+        for _ in range(len(graph.nodes) + 2):
+            fixes = self.recompute(graph)
+            if not fixes:
+                return graph
+            graph = graph.with_recomputed(fixes)
+        raise RecomputeDivergedError("I4_RECOMPUTE_DIVERGED: recomputing did not settle")
+
     # -- one field ---------------------------------------------------------------
 
     def _evaluate(self, graph: Graph, node: NodeBase, name: str, computed: Computed) -> _Outcome:
@@ -97,6 +121,18 @@ class FormulaValidator:
             return _Outcome(
                 (fail("I4_UNKNOWN_FORMULA", f"{computed.formula_id!r} is not registered"),)
             )
+        allowed = FIELD_BINDINGS.get((str(getattr(node, "type", "")), name))
+        if allowed is not None and formula.id not in allowed:
+            return _Outcome(
+                (
+                    fail(
+                        "I4_FORMULA_BINDING",
+                        f"{formula.id} may not fill this field; it takes {sorted(allowed)}",
+                    ),
+                )
+            )
+        if formula.fact is not None:
+            return self._evaluate_fact(graph, node, formula, computed, fail)
         if formula.slots is None:
             return _Outcome(
                 (fail("I4_UNBOUND_FORMULA", f"{formula.id} is not yet bound to graph nodes"),)
@@ -158,6 +194,48 @@ class FormulaValidator:
 
         try:
             result = float(formula.fn(*values))
+        except FormulaInputError as err:
+            return _Outcome((fail("I4_INPUT_RANGE", str(err)),))
+        if not math.isfinite(result):
+            return _Outcome((fail("I4_INPUT_RANGE", f"{formula.id} gave {result!r}"),))
+        return self._diff(fail, formula, computed, result)
+
+    def _evaluate_fact(
+        self,
+        graph: Graph,
+        node: NodeBase,
+        formula: Formula,
+        computed: Computed,
+        fail: Callable[[str, str], Violation],
+    ) -> _Outcome:
+        """A formula that reads graph structure (PB13). It reads the node that owns
+        the `Computed` and no other, so a claim cannot borrow another claim's number."""
+        assert formula.fact is not None
+        if len(computed.input_ids) != 1:
+            return _Outcome(
+                (
+                    fail(
+                        "I4_INPUT_ARITY",
+                        f"{formula.id} takes 1 input, got {len(computed.input_ids)}",
+                    ),
+                )
+            )
+        if computed.input_ids[0] != node.id:
+            return _Outcome(
+                (
+                    fail(
+                        "I4_INPUT_TYPE",
+                        f"{formula.id} reads its own node, not {computed.input_ids[0]}",
+                    ),
+                )
+            )
+        read = formula.fact.fn(graph, node.id)
+        if isinstance(read, Unreadable):
+            return _Outcome((fail("I4_INPUT_TYPE", read.reason),))
+        if isinstance(read, Pending):
+            return _Outcome((fail("I4_INPUT_PENDING", read.reason),))
+        try:
+            result = float(formula.fn(*read))
         except FormulaInputError as err:
             return _Outcome((fail("I4_INPUT_RANGE", str(err)),))
         if not math.isfinite(result):

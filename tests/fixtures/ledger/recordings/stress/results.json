@@ -1,0 +1,18 @@
+{
+  "model": "anthropic/claude-sonnet-5",
+  "verdicts": {
+    "s01": "cannot_tell",
+    "s02": "contradicts",
+    "s03": "cannot_tell",
+    "s04": "consistent",
+    "s05": "cannot_tell",
+    "s06": "contradicts",
+    "s07": "consistent",
+    "s08": "contradicts"
+  },
+  "caught": 0,
+  "missed": [],
+  "false_positives": [],
+  "as_labelled": 7,
+  "total": 8
+}

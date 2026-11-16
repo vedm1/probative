@@ -736,7 +736,8 @@
         "IMPLEMENTS",
         "OBSERVED_AS",
         "CLAIMED_BY",
-        "CONFLICTS_WITH"
+        "CONFLICTS_WITH",
+        "RAISED_ABOUT"
       ],
       "title": "EdgeType",
       "type": "string"
@@ -2725,7 +2726,7 @@
       "type": "object"
     }
   },
-  "$id": "urn:probative:graph-schema:0.1.0",
+  "$id": "urn:probative:graph-schema:0.2.0",
   "additionalProperties": false,
   "properties": {
     "content_hash": {
