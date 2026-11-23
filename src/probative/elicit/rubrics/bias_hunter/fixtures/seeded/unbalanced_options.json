@@ -1,0 +1,57 @@
+[
+ {
+  "id": "ub1",
+  "text": "A source says: \"Approvals take three days\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "confirm",
+   "unknown"
+  ],
+  "expect": [
+   "unbalanced_options"
+  ],
+  "judged": false
+ },
+ {
+  "id": "ub2",
+  "text": "A source says: \"Exports run nightly\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "unknown"
+  ],
+  "expect": [
+   "unbalanced_options"
+  ],
+  "judged": false
+ },
+ {
+  "id": "ub3",
+  "text": "A source says: \"Refunds are manual\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "confirm",
+   "deny",
+   "unknown"
+  ],
+  "expect": [
+   "unbalanced_options"
+  ],
+  "judged": false
+ },
+ {
+  "id": "ub4",
+  "text": "A source says: \"Reports go out monthly\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "confirm",
+   "confirm",
+   "amend",
+   "unknown"
+  ],
+  "expect": [
+   "unbalanced_options"
+  ],
+  "judged": false
+ }
+]

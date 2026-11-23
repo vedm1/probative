@@ -1,0 +1,41 @@
+# Question templates (PB14, D3). Data, not code: a contributor adds a question
+# without touching the runtime. Every option set offers `unknown` and a way to
+# disagree. Text is neutral: it states what a source says and asks whether it
+# matches, never what the respondent should think.
+templates:
+  - id: confirm_source_claim
+    family: discover
+    modes: [solo, team, enterprise]
+    kind: confirm
+    text: 'A source says: "{claim}" Does that match what you know?'
+    options:
+      - {label: "It matches what I know", kind: confirm}
+      - {label: "It does not match what I know", kind: deny}
+      - {label: "It partly matches. I will say how", kind: amend}
+      - {label: "I do not know", kind: unknown}
+  - id: resolve_open_question
+    family: discover
+    modes: [solo, team, enterprise]
+    kind: resolve
+    text: 'This is still open: "{question}" What do you know about it?'
+    options:
+      - {label: "I will say what I know", kind: open}
+      - {label: "I do not know", kind: unknown}
+  - id: challenge_contradiction
+    family: discover
+    modes: [solo, team, enterprise]
+    kind: challenge
+    text: 'You said: "{mine}" A source says: "{theirs}" ({where}) Which holds?'
+    options:
+      - {label: "What I said holds", kind: confirm}
+      - {label: "What the source says holds", kind: deny}
+      - {label: "Both hold in different contexts. I will say how", kind: amend}
+      - {label: "I do not know", kind: unknown}
+  - id: reconstruct_recorded_item
+    family: reconstruct
+    modes: [onboarding]
+    kind: open
+    text: 'The records show: "{claim}" What does it appear to rest on?'
+    options:
+      - {label: "I will say what I can see", kind: open}
+      - {label: "I do not know", kind: unknown}

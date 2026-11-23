@@ -1,0 +1,90 @@
+id: bias_hunter
+severity: warn            # per-check severity below; a leading question blocks
+invariant: null           # no one of the nine; it protects T3 evidence at source (DESIGN §13.1)
+applies_to: [ExchangeCandidate]
+checks:
+  # -- deterministic: read the option set, no model ------------------------------------------
+  - id: no_unknown_option
+    severity: block
+    description: >-
+      The options offered to the person do not include one that says they do not know. A
+      question that cannot be answered with "I do not know" turns a guess into evidence.
+    examples_bad:
+      - "Options: It matches / It does not match"
+    examples_good:
+      - "Options: It matches / It does not match / I do not know"
+    remedy: Offer an option that says the person does not know
+  - id: unbalanced_options
+    severity: block
+    description: >-
+      The options offered lean one way: more ways to agree than to disagree, or no way to
+      qualify the answer. A person who can only agree, or agree in two ways, is led.
+    examples_bad:
+      - "Options: Yes / Yes, mostly / I do not know"
+      - "Options: Yes / No / I do not know"
+    examples_good:
+      - "Options: It matches / It does not match / It partly matches / I do not know"
+    remedy: Offer as many ways to disagree as to agree, and a way to qualify
+  - id: agreement_skew
+    severity: warn
+    description: >-
+      Across the session the person confirmed every proposal put to them, after at least five
+      proposals. Agreeing every time is a sign of acquiescence, not of knowledge.
+    examples_bad:
+      - "Seven proposals, seven confirmed"
+    examples_good:
+      - "Seven proposals: four confirmed, two denied, one not known"
+    remedy: Treat the confirmations as weaker evidence and check a sample with an open question
+  # -- judged: the model returns a verdict per check, never a score or prose -------------------
+  - id: leading_question
+    severity: block
+    description: >-
+      The question's own words steer the answer: they suggest which answer is expected, say
+      what most people think, or state a conclusion and ask the person to agree. Not leading:
+      a question that states what a source says and asks whether it matches, or that names
+      options evenly.
+    examples_bad:
+      - "Surely finance leads are frustrated with the invoice screen, aren't they?"
+      - "Most teams find approvals too slow. Would you say the same?"
+    examples_good:
+      - "A source says approvals take three days. Does that match what you know?"
+      - "Who is affected by the problem, and how many of them have you seen it with?"
+    remedy: Restate the question without a suggested answer
+  - id: presupposition
+    severity: block
+    description: >-
+      The question takes as settled something the person has not said and nothing in the
+      session established: it asks how bad a problem is before asking whether there is one.
+      Not a presupposition: a fact the person already stated in this session.
+    examples_bad:
+      - "How much time do your finance leads waste on the invoice screen?"
+      - "Why do customers hate the approval step?"
+    examples_good:
+      - "What do your finance leads do on the invoice screen, if anything?"
+      - "How often does the approval step come up, and what is that based on?"
+    remedy: Ask whether it is so before asking about it
+  - id: anchoring
+    severity: warn
+    description: >-
+      The question gives a figure, range or example before asking for one, so the answer
+      is pulled toward it. Not anchoring: quoting a source's figure to ask whether it
+      matches, when the question says it is quoting.
+    examples_bad:
+      - "Approvals take about three days. How long do they take?"
+      - "Is it five clients, ten clients, or more?"
+    examples_good:
+      - "A source says approvals take three days. Does that match what you know?"
+      - "How many clients have you seen it with?"
+    remedy: Ask for the figure first, or say that the figure is a source's
+  - id: loaded_term
+    severity: warn
+    description: >-
+      The question uses an emotionally charged or judging word where a neutral one exists:
+      frustrating, broken, painful, terrible, obviously, clearly.
+    examples_bad:
+      - "How painful is the broken export for your team?"
+    examples_good:
+      - "What happens when the export fails for your team?"
+    remedy: Replace the charged word with a plain description
+clean_fixtures: fixtures/clean/*.json
+defect_fixtures: fixtures/seeded/*.json

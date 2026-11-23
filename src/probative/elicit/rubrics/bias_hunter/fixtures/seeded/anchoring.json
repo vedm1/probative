@@ -1,0 +1,50 @@
+[
+ {
+  "id": "an1",
+  "text": "Approvals take about three days. How long do they take?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "anchoring"
+  ],
+  "judged": true
+ },
+ {
+  "id": "an2",
+  "text": "Is it five clients, ten clients, or more?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "anchoring"
+  ],
+  "judged": true
+ },
+ {
+  "id": "an3",
+  "text": "Most reports are done in an hour. How long does one take your team?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "anchoring"
+  ],
+  "judged": true
+ },
+ {
+  "id": "an4",
+  "text": "Starting from a budget of ten thousand, what would your team pay?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "anchoring"
+  ],
+  "judged": true
+ }
+]

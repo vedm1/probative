@@ -1,0 +1,51 @@
+[
+ {
+  "id": "nu1",
+  "text": "A source says: \"Approvals take three days\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend"
+  ],
+  "expect": [
+   "no_unknown_option"
+  ],
+  "judged": false
+ },
+ {
+  "id": "nu2",
+  "text": "A source says: \"Exports run nightly\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny"
+  ],
+  "expect": [
+   "no_unknown_option"
+  ],
+  "judged": false
+ },
+ {
+  "id": "nu3",
+  "text": "Who is affected by the problem?",
+  "options": [
+   "open"
+  ],
+  "expect": [
+   "no_unknown_option"
+  ],
+  "judged": false
+ },
+ {
+  "id": "nu4",
+  "text": "A source says: \"Refunds are manual\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "confirm",
+   "amend"
+  ],
+  "expect": [
+   "no_unknown_option"
+  ],
+  "judged": false
+ }
+]

@@ -1,0 +1,13 @@
+# Coverage topics (PB14). The `Elicitor` uses them to know what it has not asked;
+# the question is the topic's own text, asked as written.
+topics:
+  - {id: who_is_affected, family: discover, evidence_kind: customer,
+     question: "Who is affected by the problem you are looking at, and how many of them have you seen it with?"}
+  - {id: current_workaround, family: discover, evidence_kind: customer,
+     question: "What do those people do about it today?"}
+  - {id: frequency, family: discover, evidence_kind: operational,
+     question: "How often does it happen, and what is that based on?"}
+  - {id: known_constraint, family: discover, evidence_kind: documentary,
+     question: "What limits are there on a solution, and which document states each one?"}
+  - {id: recorded_decision, family: reconstruct, evidence_kind: documentary,
+     question: "Which decisions in the records still lack a stated reason?"}

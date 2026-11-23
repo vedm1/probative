@@ -1,0 +1,50 @@
+[
+ {
+  "id": "ps1",
+  "text": "How much time do your finance leads waste on the invoice screen?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "presupposition"
+  ],
+  "judged": true
+ },
+ {
+  "id": "ps2",
+  "text": "Why do customers hate the approval step?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "presupposition"
+  ],
+  "judged": true
+ },
+ {
+  "id": "ps3",
+  "text": "What stops your team from fixing the slow export?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "presupposition"
+  ],
+  "judged": true
+ },
+ {
+  "id": "ps4",
+  "text": "Which workaround costs your clients the most?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "presupposition"
+  ],
+  "judged": true
+ }
+]

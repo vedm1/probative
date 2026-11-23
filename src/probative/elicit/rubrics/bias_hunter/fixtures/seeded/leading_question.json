@@ -1,0 +1,58 @@
+[
+ {
+  "id": "ld1",
+  "text": "Surely finance leads are frustrated with the invoice screen, aren't they?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [
+   "leading_question"
+  ],
+  "judged": true
+ },
+ {
+  "id": "ld2",
+  "text": "Most teams find approvals too slow. Would you say the same?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [
+   "leading_question"
+  ],
+  "judged": true
+ },
+ {
+  "id": "ld3",
+  "text": "You would agree that the export is the main problem, right?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [
+   "leading_question"
+  ],
+  "judged": true
+ },
+ {
+  "id": "ld4",
+  "text": "Everyone knows support is overloaded. Is that what you see too?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [
+   "leading_question"
+  ],
+  "judged": true
+ }
+]

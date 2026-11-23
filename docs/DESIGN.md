@@ -150,7 +150,7 @@ Evidence is classified on **tier** (how direct) and **kind** (what sort of thing
 |---|---|---|---|
 | **T1** | Primary | Direct observation of the real world: transcripts, tickets, reviews, survey responses, session recordings, production analytics, incident logs | Source id + span + attribution |
 | **T2** | Secondary | Desk research retrieved by agents: analyst reports, competitor docs, forum threads, regulatory text | URL + retrieval timestamp + content hash |
-| **T3** | Elicited | The operator's or a stakeholder's domain knowledge, extracted by structured interrogation | Question id + verbatim answer + declared basis and confidence |
+| **T3** | Elicited | The operator's or a stakeholder's domain knowledge, extracted by structured interrogation | Question id + verbatim answer + declared basis (confidence is computed, never declared: I4) |
 | **T4** | Inferred | Model synthesis over T1–T3 | Declared parent node ids; never a leaf |
 | **T5** | Simulated | Model-generated proxy responses | Quarantined (§5.5) |
 

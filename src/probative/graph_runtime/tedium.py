@@ -25,7 +25,7 @@ RUN_GATE_BUDGET = 5
 @dataclass(frozen=True)
 class Interaction:
     phase: Phase
-    kind: Literal["gate", "escalation"]
+    kind: Literal["gate", "escalation", "question"]
     seconds: float
     patch_id: str | None = None
     decision: dict[str, Any] | None = None

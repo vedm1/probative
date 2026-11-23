@@ -1378,7 +1378,7 @@ Real producers and phase bodies (PB13+), variance maths (PB27), the `Claim.confi
 - `validate_graph` (`I1_TIER_MISMATCH`) requires a non-T4 claim to rest only on sources of its own tier.
 - `SUPERSEDES` is one-to-one (a node supersedes one node, and is superseded once). It cannot merge two claims.
 - `Question` has no edge to the claims it is about. `EdgeType` has no such member.
-- `PHASES[P0].interaction_budget == 0` and G0 is auto in every human-gated mode.
+- `PHASES[P0].interaction_budget == 0` and G0 is auto in every human-gated mode. *(Reconciled in PB14: P0 now has an interaction budget of 4 for the elicitation rounds; G0 is still auto.)*
 - `ingest()` takes `tier` and `kind` from its caller. Nothing classifies them. `extract_candidates` returns candidates, not nodes. Nothing turns candidates into `Source`/`EvidenceSpan`/`Claim` nodes.
 - Schema: a reader accepts the same `major.minor` only (`schema.py`); a new `EdgeType` member changes the committed JSON Schema, and a test fails until `SCHEMA_VERSION` and `schemas/` are regenerated.
 
@@ -1464,8 +1464,103 @@ OI38 confidence constants are provisional policy with no source. OI39 independen
 
 ## PB14 — Elicitor + BiasHunter
 **Objective**: Adaptive interrogation with basis capture, information-gain stopping, `unknown` as a valid outcome, in-the-moment challenge against ingested evidence. `BiasHunter` audits the transcript in the same phase.
-**Prerequisites**: PB13 ✅.
-**Known unknowns**: how to measure marginal information gain cheaply enough to run between questions.
+**Prerequisites**: PB13 ✅ (closed by the owner 2026-11-16 with gating check 3 not met; see OI44).
+**Status**: BUILT 2026-11-16 (`PB14-p1`; see Implementation notes at the end of this section). Spec approved by the owner 2026-11-16. Slice `PB14-p1` = everything below. `PB14-p2` = terminal respondent and `probative elicit` command (not in this phase).
+**Known unknowns**: how to measure marginal information gain cheaply enough to run between questions. Answer: it is a pure recompute of the graph, no model call, zero tokens (see "Information gain").
+
+### Owner decisions (2026-11-16)
+- **D1** One *round* of up to 3 questions is one human interaction (`Interaction.kind="question"`); at most 4 rounds per session. P0 interaction budget goes from 0 to 4 (provisional configuration; PB12 had set P0 to 0 because P0 had no human step).
+- **D2** `BiasHunter` runs **inside** the `Elicitor` (pre-flight on every filled question, and over the whole transcript at seal). It is **not** in the roster and `modes.py` is unchanged. Reason (Step 0 probe): `graph_runtime.adapter` hands a critic only a node's own text, so through the roster a critic sees a T3 claim's answer and never the question. The alternative, an exchange node, was declined because it bumps the schema. Consequence: a blocked exchange never becomes a claim, so the `Committer` never sees contaminated T3; its findings live in the run record, not in the graph.
+- **D3** Question text is a fixed template filled with verbatim claim text. No model writes question prose.
+- **D4** The declared basis decides *claim or Question* only. It does not weight confidence (a graded weight is a new provisional constant, OI38 territory).
+
+### Facts probed in the code (2026-11-16; read and run, not assumed)
+- `Graph.with_patch` runs `_verify_node`/`_verify_edge` only; it does **not** run I1. A trial graph with spans whose source file is not on disk yet is therefore accepted, and `FormulaValidator.settle` computes confidences on it. Information gain needs no file and no model.
+- A Markdown transcript ingests as T3 and re-extracts exactly: an answer-line span sliced from `Source.text` equals `reextract(source, span)`. The transcript must use plain lines (no list markers) so normalisation leaves the line unchanged.
+- `EvidenceLedger._discover` skips any path with a part that starts with `.`. The sealed transcript is written to `<source_root>/.elicitation/<session>.md`, which the ledger never rediscovers. `Source.path` accepts a leading-dot directory. **No change to `ledger/agent.py`.**
+- `adapter.candidates_for` builds a candidate from a node's own text only (see D2).
+- `Question.raised_by` already has `"elicitation"`; `EdgeType.RAISED_ABOUT` exists. **No new node, edge or schema bump.**
+- Every claim from one sealed transcript shares one `Source.sha256`, so `n = 1` and T3 confidence is the single-source value. Two sessions by one operator would count as two independent sources (OI39); the `Elicitor` therefore never re-states a claim the operator already made at T3.
+
+### Objective in one sentence
+The `Elicitor` interviews the operator in rounds, turns answers into T3 claims or `Question`s with a captured basis, challenges an answer that contradicts ingested evidence, and stops when answers stop changing the graph; `BiasHunter` audits every question.
+
+### Package `probative/elicit/`
+- `types.py`: `Basis` (StrEnum `observed|told|document|belief`); `AnswerKind` (`confirm|deny|amend|unknown|open`); `QuestionTemplate` (`id`, `family` = `discover|reconstruct`, `modes`, `text` with named slots, `options`, `evidence_kind`); `AskedQuestion`; `RawAnswer` (`kind`, `text` at most 400 characters, `basis`, `basis_count`); `Turn` (frozen: `index`, `template_id`, `subject_ref`, `question_text`, `options`, `answer_kind`, `answer_text`, `basis`, `basis_count`, `asked_at`, `prev_hash`); `GainReport` (`new_claims`, `confidence_delta`, `questions_closed`, `contradictions`, `questions_opened`, `wasted`); `Respondent` (Protocol: `answer(round) -> tuple[RawAnswer, ...]`); `ElicitorInput` (`topic`, `max_rounds=4`, `round_size=3`, `quiet_rounds=2`).
+- `templates.yaml`, `topics.yaml`: data, not code. Every option set contains a neutral option and `unknown`. Onboarding mode may use `reconstruct` templates only (I9): they ask what appears to have been decided and what it rests on, never whether it was right.
+- `session.py`: append-only `runs/<id>/elicitation/<session>/turns.jsonl`, one line per turn with `prev_hash` (sha256 of the previous line). `resume` replays it; a trailing incomplete round is dropped; a broken chain is refused.
+- `select.py`: deterministic, no model. Candidates in priority order: open contradiction `Question`s, other open `Question`s, uncovered topics, in-scope T1 claims as a `confirm` proposition. It never proposes to confirm an existing T3 claim.
+- `gain.py`: pure functions (see below).
+- `build.py`: answer to graph content (see below). `seal.py`: transcript render and ingest.
+- `challenge.py`: new claim against current claims through the existing `ledger.contradict` judge and rubric `rubrics/contradiction`.
+- `agent.py`: `Elicitor` (`tier_policy = {T3}`); its output model has no numeric field (I4).
+- `bias_hunter.py` and `rubrics/bias_hunter/` (rubric, `fixtures/seeded`, `fixtures/clean`): the critic.
+
+### Answer to graph (I1, I2, I4, I6)
+- `observed` or `told`: one T3 `Claim`, text = the respondent's verbatim answer (for `confirm`, the proposition as confirmed), `Computed(value=None, formula_id=<direct>)`; one `EvidenceSpan` over the respondent's line only; one `EVIDENCED_BY` edge.
+- `document`: a `gap` `Question` ("ingest this document"); no claim.
+- `belief` and `unknown`: a `Question` with `raised_by="elicitation"`; no claim. Not a `Hypothesis`: I2 would require a `Test` with a kill criterion, and I6 forbids asking the person to author it.
+- `deny` of a proposed T1 claim: a `Question` about that claim (`RAISED_ABOUT`); no claim and no edit of the T1 claim.
+- A duplicate of an existing T3 claim from the same owner is not emitted; the report lists it.
+- Spans never cover question text, so a leading question cannot become evidence.
+
+### Challenge in the moment
+Each new claim is judged against current claims only (O(n), not O(n²)). On `contradicts`, the person sees the stored `EvidenceSpan.text` verbatim and chooses "mine stands", "theirs stands", "both, in different contexts" or "unknown". The graph gets the existing `CONTRADICTS` edge plus the templated `Question` with two `RAISED_ABOUT` edges. A contradiction is preserved, never averaged. The pre-filter is weak (OI44); a miss is expected and recorded, not hidden.
+
+### Information gain (I4: a stopping rule, not a node number)
+After each answer the agent builds the trial graph (`with_patch` + `settle`) and compares it with the graph before. A turn is **wasted** when `new_claims == 0`, `confidence_delta == 0`, `questions_closed == 0` and `contradictions == 0`. An `unknown` opens a `Question` but that is not gain. The session stops after `quiet_rounds` (default 2) consecutive rounds in which every turn is wasted. A yes/no test was chosen over a weighted sum so no threshold is invented; `quiet_rounds` is provisional configuration. Limit: at PB14 the only downstream values are `Claim.confidence` and `Question`s, and one transcript gives every T3 claim the same confidence, so `new_claims` drives gain. Needs and ratings (PB17-18) widen it.
+
+### Seal
+When the session stops, `seal` renders `transcript.md` deterministically into `<source_root>/.elicitation/<session>.md`, ingests it as one T3 `Source` (`evidence_kind` from the template, EvidenceKind of the first answered template; mixed kinds split into one Source per kind), and builds the nodes. All of a session's claims share that Source. The sealed file never changes; a new session is a new file.
+
+### `BiasHunter` (D2: inside the `Elicitor`)
+Checks, in `rubrics/bias_hunter/rubric.yaml` (S2):
+- Deterministic, no model: `no_unknown_option` (block), `unbalanced_options` (block), `agreement_skew` (warn: every proposal confirmed after at least 5 turns).
+- Model-judged, categorical verdict only: `leading_question` (block), `presupposition` (block), `anchoring` (warn), `loaded_term` (warn).
+Pre-flight: deterministic checks, then the judge, on the filled question text before the person sees it. A `block` makes the `Elicitor` pick another template (at most 2 times), then drop the question and record why. At seal the judge runs again over the whole transcript; a `block` there turns that exchange's claim into a `Question`. Findings go to `runs/<id>/elicitation/<session>/findings.jsonl`. Sampling and survivorship checks (DESIGN §13 roster line) audit evidence sets, not transcripts, and are not built here (new open item).
+
+### Interface contracts exposed
+- `Elicitor(owner=..., respondent=..., topics=...)` implements the S1 `Agent` protocol; `run(state, ctx)` returns an `AgentResult` (nodes, edges, `ToolCall`s for each template fill and judge call, `SelfAssessment.least_sure_about` = the session's unknowns, provider-measured `CostRecord`).
+- `Respondent` protocol and a `ReplayRespondent` (reads recorded answers) for tests. The terminal respondent is `PB14-p2`.
+- Each round writes one `Interaction(kind="question")` to `ctx.interactions`.
+
+### Edits outside the new package (surgical)
+- `graph_runtime/tedium.py`: `"question"` added to `Interaction.kind`.
+- `graph_runtime/phases.py`: P0 `interaction_budget` 0 to 4.
+- `docs/DESIGN.md` §5.1: T3 provenance row says "declared basis", not "declared basis and confidence" (confidence is computed, I4).
+- `critique/roster.py`, `graph_runtime/modes.py`, `ledger/agent.py`: **unchanged**.
+
+### Budget
+At most 2 small judge calls per answer (contradiction, bias), about 30 calls per session, far below the 200 000-token provisional budget. Between-question gain costs no tokens. Human: at most 4 interactions, up to 3 one-keystroke choices each. Provider-measured cost, as in PB13.
+
+### Test plan (all key-free; fixtures in `tests/fixtures/elicit/`)
+Fixtures: `interview_solo.jsonl`, `interview_stalls.jsonl`, `interview_unknown.jsonl`, `interview_contradicts.jsonl`, `interview_onboarding.jsonl`. Judge calls use recorded responses (S3).
+1. Round trip (I1): every T3 span re-extracts to its recorded text; no span contains question text.
+2. Resume: a truncated `turns.jsonl` replays to an identical patch; a broken `prev_hash` is refused.
+3. Stopping: `interview_stalls` stops after exactly 2 quiet rounds; the report lists each wasted question.
+4. `unknown`: a `Question`, no `Claim`, session continues.
+5. Challenge: the quote shown equals the stored span text; `CONTRADICTS` edge and `Question` present.
+6. I9: an onboarding session draws from `reconstruct` templates only; `red_team` stays excluded (existing mode test).
+7. I4: the output model schema has no numeric field; every proposed `Claim.confidence` has `value=None`.
+8. Tedium: a full session records at most 4 interactions and `TediumAuditor` raises no finding.
+9. `BiasHunter`: catches every seeded defect it is measured on and raises nothing on the clean set; both numbers recorded here. Judged checks are measured from recorded replays; with no key they are **unmeasured**, and the recorder test sits behind `-m live`.
+10. Mutations (each must fail a test): pre-flight removed, span restricted to nothing (covers question text), duplicate rule off, gain always positive, `unknown` counted as gain, chain check off.
+11. Template hygiene: every template has `unknown` and a neutral option, and passes the deterministic `BiasHunter` checks.
+
+### Gating check
+Tests 1 to 9 and 11 pass with no credentials; `uv run ruff check` and `uv run mypy src` are clean; the `BiasHunter` catch and false-positive counts are recorded here; an independent subagent reviews `BiasHunter` and the seal path.
+
+### Open items this phase adds
+OI45 basis has no graded weight (D4). OI46 independence is per file, not per respondent (two sessions by one operator count twice, OI39). OI47 sampling and survivorship checks are not built. OI48 question selection is deterministic; model-assisted ranking is deferred. OI49 terminal respondent and CLI are `PB14-p2`. OI50 the `BiasHunter` judge is unmeasured until someone records it with a key. OI51 `BiasHunter` is not in the roster, so a critic block is not visible to the `Committer` (D2). OI52 review residue (see the notes).
+
+### Implementation notes (PB14-p1, built 2026-11-16)
+- **Built as specified** (D1-D4, the algorithm, the seal, the rubric) with these differences. (a) The P0 interaction budget was **0**, not 2, so the edit is 0 to 4. (b) `ledger/agent.py` is unchanged: its discovery already skips dot paths. (c) `Graph.with_patch` does not run I1, so the trial graph for information gain needs no file on disk; the trial still writes a throwaway transcript so spans and confidences exist. (d) The default session id is `<run dir name>-1`, not a fixed name, so two runs sharing a source root do not collide on a sealed file.
+- **What the spec left open, now decided.** A `deny` or "mine stands" answer to a challenge records only the answer in the transcript; the contradiction `Question` stays open for a later phase. An `unknown` on a `resolve` question changes nothing (it stays open). A claim from a `confirm` answer carries the *source claim's* words, because the respondent chose an option and had no words; a `deny` becomes a `Question` about the source claim. Topic coverage is tracked inside one session only. `evidence_kind` for a resolve or challenge turn is inherited from the claim it concerns, else `customer`.
+- **Review (fresh subagent, no edits by it): no blocker, four should-fix, all fixed test-first** (`tests/elicit/test_agent.py`, last five tests). (1) `cannot_tell` on a blocking judged check passed silently, so a question the judge could not decide reached the person; it now fails closed (the question is dropped). (2) The duplicate test compared raw answer text with the normalised stored text, so a whitespace variant crashed `Graph.with_patch` and bricked every resume; it now compares `normalise(...)` and also dedupes inside one session. (3) A respondent could return an answer kind the question never offered (a `deny` to a topic), which was saved and then crashed every resume; it is now refused before it is saved. (4) The fixed default session id made a second run on the same source root fail at seal.
+- **Mutations caught: 23** (pre-flight removed, span covers question text, duplicate rule off, whitespace-blind duplicate, in-session duplicates allowed, gain always positive, `unknown` counted as gain, chain check off, judge gaps ignored, `cannot_tell` passes, belief becomes a claim, interaction not recorded, quiet rounds ignored, tainted turn still a claim, T3 claim re-proposed, gap question asked, onboarding uses discover templates, blocked question still asked, unknown option not required, seal overwrites silently, unoffered answer accepted, fixed session id).
+- **Measured, key-free:** `BiasHunter` deterministic checks catch **8 of 8** seeded defects (4 `no_unknown_option`, 4 `unbalanced_options`; `test_every_seeded_deterministic_defect_is_caught`) and raise **0** findings on the 20 clean exchanges; the shipped templates raise 0. The four judged checks have 16 seeded and 12 clean fixtures and are **unmeasured** (OI50): the tests use a scripted provider and prove the plumbing, not the judgement.
+- **Gating check:** tests 1 to 9 and 11 pass with no credentials; `ruff` and `mypy src` clean; suite 2220 passed. Test 9's judged half is unmet by design (OI50).
+- **Stubbed or open:** OI45 to OI52. Not built: the terminal respondent and `probative elicit` (`PB14-p2`), model-assisted question ranking, sampling and survivorship checks.
 
 ## PB15 — DeskResearcher
 **Prerequisites**: PB13 ✅.

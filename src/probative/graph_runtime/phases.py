@@ -60,7 +60,9 @@ def _spec(phase: Phase, gate: Gate | None, *critics: str, interactions: int = 2)
 
 
 PHASES: dict[Phase, PhaseSpec] = {
-    Phase.P0: _spec(Phase.P0, Gate.G0, _EVIDENCE, interactions=0),
+    Phase.P0: _spec(
+        Phase.P0, Gate.G0, _EVIDENCE, interactions=4
+    ),  # PB14: up to 4 elicitation rounds
     Phase.P1: _spec(Phase.P1, None, _EVIDENCE, interactions=0),
     Phase.P2: _spec(Phase.P2, Gate.G1, _EVIDENCE, "segment_skeptic"),
     Phase.P3: _spec(Phase.P3, Gate.G2, _EVIDENCE, "space_warden"),

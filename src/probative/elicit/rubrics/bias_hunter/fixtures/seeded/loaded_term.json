@@ -1,0 +1,50 @@
+[
+ {
+  "id": "lt1",
+  "text": "How painful is the broken export for your team?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "loaded_term"
+  ],
+  "judged": true
+ },
+ {
+  "id": "lt2",
+  "text": "What is the most terrible part of the approval step?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "loaded_term"
+  ],
+  "judged": true
+ },
+ {
+  "id": "lt3",
+  "text": "Obviously the invoice screen needs work. What would you change first?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "loaded_term"
+  ],
+  "judged": true
+ },
+ {
+  "id": "lt4",
+  "text": "What happens after the awful sync fails?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [
+   "loaded_term"
+  ],
+  "judged": true
+ }
+]

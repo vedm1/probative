@@ -1,0 +1,220 @@
+[
+ {
+  "id": "cc0",
+  "text": "A source says: \"Approvals take three days\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cc1",
+  "text": "A source says: \"Exports run nightly\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cc2",
+  "text": "A source says: \"Refunds are handled by hand\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cc3",
+  "text": "A source says: \"Reports go out monthly\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cc4",
+  "text": "A source says: \"Support answers within a day\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cc5",
+  "text": "A source says: \"The sync runs at six\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cc6",
+  "text": "A source says: \"Invoices are checked twice\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cc7",
+  "text": "A source says: \"Onboarding takes two weeks\" Does that match what you know?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": false
+ },
+ {
+  "id": "cq0",
+  "text": "Who is affected by the problem you are looking at, and how many of them have you seen it with?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq1",
+  "text": "What do those people do about it today?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq2",
+  "text": "How often does it happen, and what is that based on?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq3",
+  "text": "What limits are there on a solution, and which document states each one?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq4",
+  "text": "Which decisions in the records still lack a stated reason?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq5",
+  "text": "What do your finance leads do on the invoice screen, if anything?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq6",
+  "text": "How often does the approval step come up, and what is that based on?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq7",
+  "text": "What happens when the export fails for your team?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq8",
+  "text": "How many clients have you seen it with?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq9",
+  "text": "This is still open: \"How often does it happen?\" What do you know about it?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq10",
+  "text": "The records show: \"Vendor X was chosen in 2023\" What does it appear to rest on?",
+  "options": [
+   "open",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ },
+ {
+  "id": "cq11",
+  "text": "You said: \"Approvals take two days\" A source says: \"Approvals take three days\" (notes.md, line 4) Which holds?",
+  "options": [
+   "confirm",
+   "deny",
+   "amend",
+   "unknown"
+  ],
+  "expect": [],
+  "judged": true
+ }
+]
